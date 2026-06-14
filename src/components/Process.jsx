@@ -1,0 +1,117 @@
+import { motion, useReducedMotion } from "motion/react";
+import {
+  ChatCircleDots,
+  PencilRuler,
+  Code,
+  RocketLaunch,
+} from "@phosphor-icons/react";
+import { fadeUp, staggerContainer } from "../lib/motion";
+
+const steps = [
+  {
+    number: "1",
+    title: "Kennismaking",
+    description: "We bespreken je doelen, merk en wat je klanten nodig hebben.",
+    icon: ChatCircleDots,
+  },
+  {
+    number: "2",
+    title: "Ontwerp",
+    description: "Een helder ontwerp dat past bij je merk en je bezoekers stuurt.",
+    icon: PencilRuler,
+  },
+  {
+    number: "3",
+    title: "Bouw",
+    description: "We bouwen een snelle, vindbare site die op elk scherm werkt.",
+    icon: Code,
+  },
+  {
+    number: "4",
+    title: "Lancering en onderhoud",
+    description: "Live zetten en daarna blijven we zorgen voor updates en support.",
+    icon: RocketLaunch,
+  },
+];
+
+export default function Process() {
+  const reduceMotion = useReducedMotion();
+
+  const lineTransition = { duration: 0.7, ease: [0.23, 1, 0.32, 1] };
+
+  return (
+    <section id="aanpak" className="bg-surface py-16 lg:py-24">
+      <div className="mx-auto max-w-6xl px-6">
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.4 }}
+          className="max-w-2xl"
+        >
+          <h2 className="font-heading text-3xl font-bold tracking-tight text-ink text-balance sm:text-4xl">
+            Zo werken we
+          </h2>
+          <p className="mt-3 text-lg leading-relaxed text-ink-soft">
+            Van eerste gesprek tot een live website. Een duidelijk traject in
+            vier stappen, zonder verrassingen.
+          </p>
+        </motion.div>
+
+        <motion.div
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.25 }}
+          className="relative mt-12 lg:mt-16"
+        >
+          {/* Verbindingslijn: verticaal mobiel, horizontaal desktop */}
+          <div
+            aria-hidden="true"
+            className="absolute left-[27px] top-3 bottom-3 w-px bg-line md:left-0 md:right-0 md:top-9 md:bottom-auto md:h-px md:w-auto"
+          >
+            <motion.span
+              className="absolute inset-0 origin-top bg-accent md:origin-left"
+              initial={
+                reduceMotion
+                  ? { scaleX: 1, scaleY: 1 }
+                  : { scaleX: 0, scaleY: 0 }
+              }
+              whileInView={{ scaleX: 1, scaleY: 1 }}
+              viewport={{ once: true, amount: 0.4 }}
+              transition={reduceMotion ? { duration: 0 } : lineTransition}
+            />
+          </div>
+
+          <ol className="relative grid gap-10 md:grid-cols-4 md:gap-6">
+            {steps.map((step) => {
+              const Icon = step.icon;
+              return (
+                <motion.li
+                  key={step.number}
+                  variants={fadeUp}
+                  className="flex gap-5 md:flex-col md:gap-0"
+                >
+                  <div className="relative z-10 flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-line bg-bg">
+                    <Icon size={26} weight="duotone" className="text-accent" />
+                  </div>
+                  <div className="md:mt-5">
+                    <p className="font-heading text-2xl font-bold tabular-nums text-accent">
+                      {step.number}
+                    </p>
+                    <h3 className="mt-1 font-heading text-lg font-bold tracking-tight text-ink">
+                      {step.title}
+                    </h3>
+                    <p className="mt-1.5 max-w-xs text-sm leading-relaxed text-ink-soft">
+                      {step.description}
+                    </p>
+                  </div>
+                </motion.li>
+              );
+            })}
+          </ol>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
