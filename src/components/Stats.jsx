@@ -12,15 +12,17 @@ import {
 import { chartData, keyStats } from "../data/stats";
 import { fadeUp } from "../lib/motion";
 
-const ACCENT = "#0B5FD8";
-const MUTED = "#E2E9F2";
+const ACCENT_BRIGHT = "#3B9EFF";
+const GRID = "#FFFFFF1A";
+const AXIS = "#FFFFFF99";
+const BAR_MUTED = "#FFFFFF26";
 
 function ChartTooltip({ active, payload, label }) {
   if (!active || !payload || payload.length === 0) return null;
   return (
-    <div className="rounded-rsm border border-line bg-bg px-3 py-2 text-sm shadow-md">
-      <p className="font-medium text-ink">{label}</p>
-      <p className="text-ink-soft">{payload[0].value} sec laadtijd</p>
+    <div className="rounded-rsm border border-white/10 bg-panel px-3 py-2 text-sm shadow-md">
+      <p className="font-medium text-white">{label}</p>
+      <p className="text-white/70">{payload[0].value} sec laadtijd</p>
     </div>
   );
 }
@@ -33,7 +35,7 @@ export default function Stats() {
     .join(". ");
 
   return (
-    <section id="cijfers" className="bg-bg py-16 lg:py-24">
+    <section id="cijfers" className="bg-ink py-16 lg:py-24">
       <div className="mx-auto max-w-6xl px-6">
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <motion.div
@@ -42,10 +44,10 @@ export default function Stats() {
             whileInView="show"
             viewport={{ once: true, amount: 0.4 }}
           >
-            <h2 className="font-heading text-3xl font-bold tracking-tight text-ink text-balance sm:text-4xl">
+            <h2 className="font-heading text-3xl font-bold tracking-tight text-white text-balance sm:text-4xl">
               Snelheid die je merkt en Google waardeert
             </h2>
-            <p className="mt-4 max-w-md text-lg leading-relaxed text-ink-soft">
+            <p className="mt-4 max-w-md text-lg leading-relaxed text-white/70">
               Een snelle site houdt bezoekers vast en scoort beter in
               zoekresultaten. Onze sites laden in een fractie van de tijd van een
               gemiddelde website. De cijfers hieronder zijn illustratief.
@@ -54,10 +56,10 @@ export default function Stats() {
             <div className="mt-8 flex flex-wrap gap-x-10 gap-y-6">
               {keyStats.map((stat) => (
                 <div key={stat.label}>
-                  <p className="font-heading text-4xl font-bold tabular-nums tracking-tight text-ink">
+                  <p className="font-heading text-4xl font-bold tabular-nums tracking-tight text-white">
                     {stat.value}
                   </p>
-                  <p className="mt-1 text-sm text-ink-soft">{stat.label}</p>
+                  <p className="mt-1 text-sm text-white/60">{stat.label}</p>
                 </div>
               ))}
             </div>
@@ -68,9 +70,9 @@ export default function Stats() {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, amount: 0.3 }}
-            className="rounded-rmd border border-line bg-bg p-5 sm:p-6"
+            className="rounded-rlg border border-white/10 bg-white/5 p-4 sm:p-6"
           >
-            <p className="mb-4 text-sm font-medium text-ink-soft">
+            <p className="mb-4 text-sm font-medium text-white/60">
               Laadtijd in seconden (illustratief)
             </p>
             <figure
@@ -83,22 +85,27 @@ export default function Stats() {
                     data={chartData}
                     margin={{ top: 8, right: 8, left: -16, bottom: 0 }}
                   >
-                    <CartesianGrid stroke={MUTED} vertical={false} />
+                    <CartesianGrid stroke={GRID} vertical={false} />
                     <XAxis
                       dataKey="label"
-                      tick={{ fill: "#3A4A60", fontSize: 12 }}
+                      tick={{ fill: AXIS, fontSize: 12 }}
                       tickLine={false}
-                      axisLine={{ stroke: MUTED }}
+                      axisLine={{ stroke: GRID }}
                     />
                     <YAxis
                       unit="s"
-                      tick={{ fill: "#3A4A60", fontSize: 12 }}
+                      tick={{ fill: AXIS, fontSize: 12 }}
                       tickLine={false}
                       axisLine={false}
                     />
                     <Tooltip
                       content={<ChartTooltip />}
-                      cursor={{ fill: "rgba(11,95,216,0.06)" }}
+                      cursor={{ fill: "rgba(255,255,255,0.06)" }}
+                      contentStyle={{
+                        background: "#0F2236",
+                        border: "1px solid #FFFFFF1A",
+                        color: "#fff",
+                      }}
                     />
                     <Bar
                       dataKey="waarde"
@@ -109,7 +116,11 @@ export default function Stats() {
                       {chartData.map((entry, index) => (
                         <Cell
                           key={entry.label}
-                          fill={index === chartData.length - 1 ? ACCENT : MUTED}
+                          fill={
+                            index === chartData.length - 1
+                              ? ACCENT_BRIGHT
+                              : BAR_MUTED
+                          }
                         />
                       ))}
                     </Bar>

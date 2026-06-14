@@ -13,7 +13,7 @@ const PHONES = [
 
 export default function Footer() {
   return (
-    <footer className="bg-ink text-white">
+    <footer className="bg-night text-white">
       <div className="mx-auto max-w-6xl px-6 py-16">
         <div className="grid gap-10 md:grid-cols-3">
           <div>
@@ -82,7 +82,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 border-t border-white/15 pt-8">
+        <div className="mt-12 border-t border-white/10 pt-8">
           <p className="text-sm text-white/70">
             &copy; {new Date().getFullYear()} BlueStar Development. Alle rechten
             voorbehouden.

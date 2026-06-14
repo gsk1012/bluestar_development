@@ -11,7 +11,7 @@ function ProjectImage({ src, alt }) {
     return (
       <div
         aria-hidden="true"
-        className="flex aspect-[16/10] w-full items-center justify-center rounded-rlg border border-line bg-surface text-sm text-ink-soft"
+        className="flex aspect-[16/10] w-full items-center justify-center rounded-rlg border border-white/10 bg-panel text-sm text-white/60"
       >
         Afbeelding niet beschikbaar
       </div>
@@ -19,7 +19,13 @@ function ProjectImage({ src, alt }) {
   }
 
   return (
-    <div className="group overflow-hidden rounded-rlg border border-line bg-bg shadow-xl shadow-accent/10">
+    <div className="group overflow-hidden rounded-rlg border border-white/10 bg-panel shadow-xl shadow-accent/10">
+      {/* Browserbalk in donker glas */}
+      <div className="flex items-center gap-2 border-b border-white/10 bg-white/5 px-4 py-3">
+        <span className="h-3 w-3 rounded-full bg-white/20" />
+        <span className="h-3 w-3 rounded-full bg-white/20" />
+        <span className="h-3 w-3 rounded-full bg-white/20" />
+      </div>
       <img
         src={src}
         alt={alt}
@@ -33,7 +39,7 @@ function ProjectImage({ src, alt }) {
 
 export default function Portfolio() {
   return (
-    <section id="portfolio" className="bg-bg py-16 lg:py-24">
+    <section id="portfolio" className="bg-night py-16 lg:py-24">
       <div className="mx-auto max-w-6xl px-6">
         <motion.div
           variants={fadeUp}
@@ -42,10 +48,10 @@ export default function Portfolio() {
           viewport={{ once: true, amount: 0.4 }}
           className="max-w-2xl"
         >
-          <h2 className="font-heading text-3xl font-bold tracking-tight text-ink text-balance sm:text-4xl">
+          <h2 className="font-heading text-3xl font-bold tracking-tight text-white text-balance sm:text-4xl">
             Werk waar we trots op zijn
           </h2>
-          <p className="mt-3 text-lg leading-relaxed text-ink-soft">
+          <p className="mt-3 text-lg leading-relaxed text-white/70">
             Een greep uit de sites die we bouwden, snel, vindbaar en helemaal
             afgestemd op het merk.
           </p>
@@ -80,17 +86,17 @@ export default function Portfolio() {
                 </div>
 
                 <div className={imageRight ? "lg:order-1" : "lg:order-2"}>
-                  <h3 className="font-heading text-2xl font-bold tracking-tight text-ink sm:text-3xl">
+                  <h3 className="font-heading text-2xl font-bold tracking-tight text-white sm:text-3xl">
                     {project.title}
                   </h3>
-                  <p className="mt-3 max-w-md text-lg leading-relaxed text-ink-soft">
+                  <p className="mt-3 max-w-md text-lg leading-relaxed text-white/70">
                     {project.description}
                   </p>
                   <a
                     href={project.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group mt-6 inline-flex min-h-[44px] items-center gap-1.5 text-sm font-medium text-accent transition-colors duration-150 hover:text-accent/80 active:scale-[0.97]"
+                    className="group mt-6 inline-flex min-h-[44px] items-center gap-1.5 text-sm font-medium text-accent-bright transition-colors duration-150 hover:text-white active:scale-[0.97]"
                   >
                     Bekijk project
                     <ArrowUpRight

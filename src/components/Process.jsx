@@ -40,7 +40,7 @@ export default function Process() {
   const lineTransition = { duration: 0.7, ease: [0.23, 1, 0.32, 1] };
 
   return (
-    <section id="aanpak" className="bg-surface py-16 lg:py-24">
+    <section id="aanpak" className="bg-ink py-16 lg:py-24">
       <div className="mx-auto max-w-6xl px-6">
         <motion.div
           variants={fadeUp}
@@ -49,10 +49,10 @@ export default function Process() {
           viewport={{ once: true, amount: 0.4 }}
           className="max-w-2xl"
         >
-          <h2 className="font-heading text-3xl font-bold tracking-tight text-ink text-balance sm:text-4xl">
+          <h2 className="font-heading text-3xl font-bold tracking-tight text-white text-balance sm:text-4xl">
             Zo werken we
           </h2>
-          <p className="mt-3 text-lg leading-relaxed text-ink-soft">
+          <p className="mt-3 text-lg leading-relaxed text-white/70">
             Van eerste gesprek tot een live website. Een duidelijk traject in
             vier stappen, zonder verrassingen.
           </p>
@@ -68,10 +68,10 @@ export default function Process() {
           {/* Verbindingslijn: verticaal mobiel, horizontaal desktop */}
           <div
             aria-hidden="true"
-            className="absolute left-[27px] top-3 bottom-3 w-px bg-line md:left-0 md:right-0 md:top-9 md:bottom-auto md:h-px md:w-auto"
+            className="absolute left-[27px] top-3 bottom-3 w-px bg-white/10 md:left-0 md:right-0 md:top-9 md:bottom-auto md:h-px md:w-auto"
           >
             <motion.span
-              className="absolute inset-0 origin-top bg-accent md:origin-left"
+              className="absolute inset-0 origin-top bg-accent-bright md:origin-left"
               initial={
                 reduceMotion
                   ? { scaleX: 1, scaleY: 1 }
@@ -92,17 +92,17 @@ export default function Process() {
                   variants={fadeUp}
                   className="flex gap-5 md:flex-col md:gap-0"
                 >
-                  <div className="relative z-10 flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-line bg-bg">
-                    <Icon size={26} weight="duotone" className="text-accent" />
+                  <div className="relative z-10 flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/5">
+                    <Icon size={26} weight="duotone" className="text-accent-bright" />
                   </div>
                   <div className="md:mt-5">
-                    <p className="font-heading text-2xl font-bold tabular-nums text-accent">
+                    <p className="font-heading text-2xl font-bold tabular-nums text-accent-bright">
                       {step.number}
                     </p>
-                    <h3 className="mt-1 font-heading text-lg font-bold tracking-tight text-ink">
+                    <h3 className="mt-1 font-heading text-lg font-bold tracking-tight text-white">
                       {step.title}
                     </h3>
-                    <p className="mt-1.5 max-w-xs text-sm leading-relaxed text-ink-soft">
+                    <p className="mt-1.5 max-w-xs text-sm leading-relaxed text-white/70">
                       {step.description}
                     </p>
                   </div>

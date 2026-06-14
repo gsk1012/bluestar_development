@@ -28,7 +28,15 @@ const cellClasses = [
 
 export default function Services() {
   return (
-    <section id="diensten" className="bg-surface py-16 lg:py-24">
+    <section
+      id="diensten"
+      className="relative isolate overflow-hidden bg-night py-16 lg:py-24"
+    >
+      {/* Subtiele blauwe gloed achter de inhoud */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute right-[-5%] top-[10%] -z-10 h-[40vh] w-[40vh] rounded-full bg-accent/20 blur-[120px]"
+      />
       <div className="mx-auto max-w-6xl px-6">
         <motion.div
           variants={fadeUp}
@@ -36,10 +44,10 @@ export default function Services() {
           whileInView="show"
           viewport={{ once: true, amount: 0.4 }}
         >
-          <h2 className="font-heading text-3xl font-bold tracking-tight text-ink text-balance sm:text-4xl">
+          <h2 className="font-heading text-3xl font-bold tracking-tight text-white text-balance sm:text-4xl">
             Alles voor je online aanwezigheid
           </h2>
-          <p className="mt-3 max-w-xl text-lg leading-relaxed text-ink-soft">
+          <p className="mt-3 max-w-xl text-lg leading-relaxed text-white/70">
             Van een eerste bedrijfssite tot maatwerk software, met onderhoud en
             hosting die je werk uit handen nemen.
           </p>
@@ -60,16 +68,16 @@ export default function Services() {
               <motion.div
                 key={service.title}
                 variants={fadeUp}
-                className={`flex flex-col rounded-rmd p-6 ${cellClasses[i]} ${
+                className={`flex flex-col rounded-rmd p-6 transition-colors duration-150 ${cellClasses[i]} ${
                   isFeature
                     ? "bg-accent text-white"
-                    : "border border-line bg-bg text-ink"
+                    : "border border-white/10 bg-white/5 text-white hover:border-white/20 hover:bg-white/[0.07]"
                 }`}
               >
                 <Icon
                   size={isFeature ? 56 : 32}
                   weight="duotone"
-                  className={isFeature ? "text-white" : "text-accent"}
+                  className={isFeature ? "text-white" : "text-accent-bright"}
                 />
                 <h3
                   className={`font-heading font-bold tracking-tight ${
@@ -80,7 +88,7 @@ export default function Services() {
                 </h3>
                 <p
                   className={`mt-2 leading-relaxed ${
-                    isFeature ? "max-w-sm text-white/85" : "text-sm text-ink-soft"
+                    isFeature ? "max-w-sm text-white/85" : "text-sm text-white/70"
                   }`}
                 >
                   {service.description}
