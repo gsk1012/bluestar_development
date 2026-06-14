@@ -1,0 +1,10 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="BlueStar Development">
+  <defs>
+    <linearGradient id="bs" x1="8" y1="6" x2="56" y2="58" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#3B9EFF"/>
+      <stop offset="1" stop-color="#0B5FD8"/>
+    </linearGradient>
+  </defs>
+  <rect x="2" y="2" width="60" height="60" rx="15" fill="url(#bs)"/>
+  <path d="M32 14 L36.47 26.85 L50.07 27.13 L39.23 35.35 L43.17 48.37 L32 40.6 L20.83 48.37 L24.77 35.35 L13.93 27.13 L27.53 26.85 Z" fill="#FFFFFF"/>
+</svg>
