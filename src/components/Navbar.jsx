@@ -40,7 +40,7 @@ export default function Navbar() {
           className="flex items-center gap-2.5"
           aria-label="BlueStar Development, naar boven"
         >
-          <img src="/logo.svg" alt="BlueStar Development logo" className="h-9 w-9" />
+          <img src="/logo-mark.png" alt="BlueStar Development logo" className="h-9 w-9 object-contain" />
           <span className="flex flex-col leading-none">
             <span className="font-heading text-lg font-bold text-ink">BlueStar</span>
             <span className="text-xs uppercase tracking-wide text-ink-soft">
