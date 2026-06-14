@@ -17,11 +17,21 @@ export default function Footer() {
       <div className="mx-auto max-w-6xl px-6 py-16">
         <div className="grid gap-10 md:grid-cols-3">
           <div>
-            <img
-              src="/logo_bg.png"
-              alt="BlueStar Development logo"
-              className="h-12 w-auto"
-            />
+            <div className="flex items-center gap-2.5">
+              <img
+                src="/logo-mark.png"
+                alt="BlueStar Development logo"
+                className="h-10 w-10 object-contain"
+              />
+              <span className="flex flex-col leading-none">
+                <span className="font-heading text-lg font-bold text-white">
+                  BlueStar
+                </span>
+                <span className="text-xs uppercase tracking-wide text-white/60">
+                  Development
+                </span>
+              </span>
+            </div>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-white/70">
               Snelle, vindbare websites en webshops op maat voor ondernemers.
             </p>

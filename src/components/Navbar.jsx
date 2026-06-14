@@ -1,5 +1,11 @@
 import { useState } from "react";
-import { motion, AnimatePresence, useReducedMotion } from "motion/react";
+import {
+  motion,
+  AnimatePresence,
+  useReducedMotion,
+  useScroll,
+  useMotionValueEvent,
+} from "motion/react";
 import { List, X } from "@phosphor-icons/react";
 
 const navLinks = [
@@ -12,27 +18,45 @@ const navLinks = [
 
 const CTA_LABEL = "Plan een gesprek";
 
-function NavLink({ href, label, onClick }) {
+function NavLink({ href, label, onClick, scrolled }) {
   return (
     <a
       href={href}
       onClick={onClick}
-      className="group relative inline-flex items-center px-1 py-2 text-sm font-medium text-ink-soft transition-colors duration-150 hover:text-ink"
+      className={`group relative inline-flex items-center px-1 py-2 text-sm font-medium transition-colors duration-150 ${
+        scrolled ? "text-ink-soft hover:text-ink" : "text-white/80 hover:text-white"
+      }`}
     >
       {label}
-      <span className="pointer-events-none absolute inset-x-1 -bottom-0.5 h-0.5 origin-left scale-x-0 rounded-full bg-accent transition-transform duration-150 ease-out group-hover:scale-x-100" />
+      <span
+        className={`pointer-events-none absolute inset-x-1 -bottom-0.5 h-0.5 origin-left scale-x-0 rounded-full transition-transform duration-150 ease-out group-hover:scale-x-100 ${
+          scrolled ? "bg-accent" : "bg-accent-bright"
+        }`}
+      />
     </a>
   );
 }
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const reduceMotion = useReducedMotion();
+  const { scrollY } = useScroll();
+
+  useMotionValueEvent(scrollY, "change", (y) => {
+    setScrolled(y > 24);
+  });
 
   const closeMenu = () => setOpen(false);
+  // When the mobile menu is open over the dark hero, treat the bar as "solid" for contrast.
+  const solid = scrolled || open;
 
   return (
-    <header className="sticky top-0 z-40 border-b border-line bg-bg/90 backdrop-blur">
+    <header
+      className={`fixed inset-x-0 top-0 z-40 transition-colors duration-300 ${
+        solid ? "border-b border-line bg-bg/90 backdrop-blur" : "border-b border-transparent bg-transparent"
+      }`}
+    >
       <nav className="mx-auto flex h-[72px] max-w-6xl items-center justify-between px-6">
         <a
           href="#home"
@@ -40,10 +64,24 @@ export default function Navbar() {
           className="flex items-center gap-2.5"
           aria-label="BlueStar Development, naar boven"
         >
-          <img src="/logo-mark.png" alt="BlueStar Development logo" className="h-9 w-9 object-contain" />
+          <img
+            src="/logo-mark.png"
+            alt="BlueStar Development logo"
+            className="h-9 w-9 object-contain"
+          />
           <span className="flex flex-col leading-none">
-            <span className="font-heading text-lg font-bold text-ink">BlueStar</span>
-            <span className="text-xs uppercase tracking-wide text-ink-soft">
+            <span
+              className={`font-heading text-lg font-bold transition-colors duration-300 ${
+                solid ? "text-ink" : "text-white"
+              }`}
+            >
+              BlueStar
+            </span>
+            <span
+              className={`text-xs uppercase tracking-wide transition-colors duration-300 ${
+                solid ? "text-ink-soft" : "text-white/60"
+              }`}
+            >
               Development
             </span>
           </span>
@@ -51,7 +89,12 @@ export default function Navbar() {
 
         <div className="hidden items-center gap-7 md:flex">
           {navLinks.map((link) => (
-            <NavLink key={link.href} href={link.href} label={link.label} />
+            <NavLink
+              key={link.href}
+              href={link.href}
+              label={link.label}
+              scrolled={scrolled}
+            />
           ))}
         </div>
 
@@ -69,7 +112,9 @@ export default function Navbar() {
           onClick={() => setOpen((v) => !v)}
           aria-label={open ? "Menu sluiten" : "Menu openen"}
           aria-expanded={open}
-          className="inline-flex h-11 w-11 items-center justify-center rounded-rsm text-ink transition-colors duration-150 hover:bg-surface active:scale-[0.97] md:hidden"
+          className={`inline-flex h-11 w-11 items-center justify-center rounded-rsm transition-colors duration-150 active:scale-[0.97] md:hidden ${
+            solid ? "text-ink hover:bg-surface" : "text-white hover:bg-white/10"
+          }`}
         >
           {open ? <X size={24} weight="regular" /> : <List size={24} weight="regular" />}
         </button>
