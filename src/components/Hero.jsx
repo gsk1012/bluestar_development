@@ -139,7 +139,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative h-[100dvh] overflow-hidden text-white"
+      className="relative h-[100svh] overflow-hidden text-white"
     >
       {/* Rotating star, bleeding off the right edge */}
       <StarVisual reduce={reduce} />

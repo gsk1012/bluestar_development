@@ -127,6 +127,7 @@ export default function Contact() {
                 onChange={handleChange}
                 aria-invalid={errors.name ? "true" : undefined}
                 aria-describedby={errors.name ? "name-error" : undefined}
+                placeholder="Gurpreet"
                 className={`mt-1.5 ${fieldClass}`}
               />
               <FieldError id="name-error" message={errors.name} />
@@ -144,6 +145,7 @@ export default function Contact() {
                 onChange={handleChange}
                 aria-invalid={errors.email ? "true" : undefined}
                 aria-describedby={errors.email ? "email-error" : undefined}
+                placeholder="info@bluestardevelopment.nl"
                 className={`mt-1.5 ${fieldClass}`}
               />
               <FieldError id="email-error" message={errors.email} />
@@ -161,6 +163,7 @@ export default function Contact() {
                 onChange={handleChange}
                 aria-invalid={errors.message ? "true" : undefined}
                 aria-describedby={errors.message ? "message-error" : undefined}
+                placeholder="Vertel ons over je project. Wat voor site zoek je, wat is je deadline en heb je al een huisstijl?"
                 className={`mt-1.5 resize-y ${fieldClass}`}
               />
               <FieldError id="message-error" message={errors.message} />
