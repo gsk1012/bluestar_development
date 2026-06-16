@@ -91,11 +91,14 @@ function StarVisual({ reduce }) {
           />
 
           {reduce ? (
-            <img
-              src="/star.webp"
-              alt="BlueStar kristallen ster"
-              className="relative z-[2] h-full w-full object-contain"
-            />
+            <picture>
+              <source srcSet="/star.avif" type="image/avif" />
+              <img
+                src="/star.webp"
+                alt="BlueStar kristallen ster"
+                className="relative z-[2] h-full w-full object-contain"
+              />
+            </picture>
           ) : (
             <>
               {/* Solid navy sits directly behind the video inside the same
@@ -122,7 +125,9 @@ function StarVisual({ reduce }) {
                 preload="metadata"
                 aria-label="Roterende kristallen ster"
               >
-                <source src="/star-hd.mp4" type="video/mp4" />
+                {/* HD only on desktop — saves ~4.8 MB on mobile */}
+                <source src="/star-hd.mp4" type="video/mp4" media="(min-width: 1024px)" />
+                <source src="/star.mp4" type="video/mp4" />
                 <source src="/star.webm" type="video/webm" />
               </video>
             </>

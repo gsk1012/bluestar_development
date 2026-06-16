@@ -61,7 +61,7 @@ export default function Navbar() {
           aria-label="BlueStar Development, naar boven"
         >
           <img
-            src="/logo-mark.png"
+            src="/logo-mark.webp"
             alt="BlueStar Development logo"
             className="h-9 w-9 object-contain"
           />

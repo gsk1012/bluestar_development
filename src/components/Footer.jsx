@@ -19,7 +19,7 @@ export default function Footer() {
           <div>
             <div className="flex items-center gap-2.5">
               <img
-                src="/logo-mark.png"
+                src="/logo-mark.webp"
                 alt="BlueStar Development logo"
                 className="h-10 w-10 object-contain"
               />

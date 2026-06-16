@@ -12,19 +12,14 @@
 
 ## Contact
 
-- E-mail: gsinghkaur1012@gmail.com
-- Telefoon: 06 8647 7249 / 06 5335 6007
-- Website: https://bluestardevelopment.nl/
+- E-mail: [gsinghkaur1012@gmail.com](mailto:gsinghkaur1012@gmail.com)
+- Website: [https://bluestardevelopment.nl/](https://bluestardevelopment.nl/)
 
 ## Doelgroep
 
 Nederlandse ondernemers en mkb-bedrijven die een professionele online aanwezigheid willen — van een eerste bedrijfssite tot maatwerk software.
 
-## Taal
-
-Nederlands (primair) en Engels.
-
 ## Voorbeeldprojecten
 
-- **Prince Schilder** — Bedrijfswebsite voor een schildersbedrijf in Amsterdam met contactformulier en Google Maps: https://prince-schilder.vercel.app/
-- **GSK Portfolio** — Moderne portfolio-website met donker futuristisch thema en scroll-animaties: https://gurpreetsingh-gsk.vercel.app/
+- [Prince Schilder](https://prince-schilder.vercel.app/) — Bedrijfswebsite voor een schildersbedrijf in Amsterdam met contactformulier en Google Maps.
+- [GSK Portfolio](https://gurpreetsingh-gsk.vercel.app/) — Moderne portfolio-website met donker futuristisch thema en scroll-animaties.
