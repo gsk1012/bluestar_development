@@ -4,7 +4,7 @@ import { ArrowRight } from "@phosphor-icons/react";
 // Generated once at module level — stable across re-renders.
 // Stars are intentionally dim: they live in the background layer, not on top.
 // Two animations per star: ease-in-out movement + independent linear opacity curve.
-const SHOOTING_STARS = Array.from({ length: 50 }, (_, i) => ({
+const SHOOTING_STARS = Array.from({ length: 20 }, (_, i) => ({
   id: i,
   left:     `${(15 + Math.random() * 90).toFixed(2)}%`,
   top:      `${(Math.random() * 72).toFixed(2)}%`,
@@ -119,7 +119,7 @@ function StarVisual({ reduce }) {
                 loop
                 muted
                 playsInline
-                preload="auto"
+                preload="metadata"
                 aria-label="Roterende kristallen ster"
               >
                 <source src="/star-hd.mp4" type="video/mp4" />

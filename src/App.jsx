@@ -1,12 +1,16 @@
+import { lazy, Suspense } from "react";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import Services from "./components/Services";
 import Stats from "./components/Stats";
-import Portfolio from "./components/Portfolio";
-import Process from "./components/Process";
-import Testimonials from "./components/Testimonials";
-import Contact from "./components/Contact";
-import Footer from "./components/Footer";
+
+// Below-fold sections: split into separate chunks so the initial JS bundle
+// only includes what's needed above the fold.
+const Portfolio    = lazy(() => import("./components/Portfolio"));
+const Process      = lazy(() => import("./components/Process"));
+const Testimonials = lazy(() => import("./components/Testimonials"));
+const Contact      = lazy(() => import("./components/Contact"));
+const Footer       = lazy(() => import("./components/Footer"));
 
 function App() {
   return (
@@ -22,12 +26,16 @@ function App() {
         <Hero />
         <Services />
         <Stats />
-        <Portfolio />
-        <Process />
-        <Testimonials />
-        <Contact />
+        <Suspense>
+          <Portfolio />
+          <Process />
+          <Testimonials />
+          <Contact />
+        </Suspense>
       </main>
-      <Footer />
+      <Suspense>
+        <Footer />
+      </Suspense>
     </>
   );
 }
