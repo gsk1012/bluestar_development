@@ -13,8 +13,8 @@ const PHONES = [
 
 export default function Footer() {
   return (
-    <footer className="bg-night text-white">
-      <div className="mx-auto max-w-6xl px-6 py-16">
+    <footer className="text-white">
+      <div className="mx-auto max-w-7xl px-6 sm:px-8 py-16">
         <div className="grid gap-10 md:grid-cols-3">
           <div>
             <div className="flex items-center gap-2.5">

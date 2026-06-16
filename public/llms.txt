@@ -1,0 +1,30 @@
+# BlueStar Development
+
+> BlueStar Development bouwt snelle, vindbare websites, webshops en web-applicaties op maat voor ondernemers in Nederland.
+
+## Wat we doen
+
+- **Website op maat** — Een snelle, vindbare bedrijfswebsite afgestemd op jouw merk, scherp op elk scherm.
+- **Webshop** — Complete webshop met productbeheer, veilige betalingen en soepel afrekenproces.
+- **Web-applicatie** — Maatwerk software in de browser: klantportalen, planningstools en meer.
+- **Onderhoud & support** — Updates, back-ups en snelle hulp zodat je site veilig en actueel blijft.
+- **Hosting** — Betrouwbare hosting met SSL en dagelijkse back-ups.
+
+## Contact
+
+- E-mail: gsinghkaur1012@gmail.com
+- Telefoon: 06 8647 7249 / 06 5335 6007
+- Website: https://bluestardevelopment.nl/
+
+## Doelgroep
+
+Nederlandse ondernemers en mkb-bedrijven die een professionele online aanwezigheid willen — van een eerste bedrijfssite tot maatwerk software.
+
+## Taal
+
+Nederlands (primair) en Engels.
+
+## Voorbeeldprojecten
+
+- **Prince Schilder** — Bedrijfswebsite voor een schildersbedrijf in Amsterdam met contactformulier en Google Maps: https://prince-schilder.vercel.app/
+- **GSK Portfolio** — Moderne portfolio-website met donker futuristisch thema en scroll-animaties: https://gurpreetsingh-gsk.vercel.app/

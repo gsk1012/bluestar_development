@@ -10,8 +10,9 @@ const PHONES = [
   { label: "06 5335 6007", tel: "0653356007" },
 ];
 
-const PLACEHOLDER_STATUS =
-  "Bedankt. Dit formulier wordt binnenkort gekoppeld. Bel of mail ons gerust direct.";
+// Replace FORMSPREE_ID with the endpoint from formspree.io (e.g. "xwkgpqbe")
+const FORMSPREE_ID = "FORMSPREE_ID";
+const FORMSPREE_URL = `https://formspree.io/f/${FORMSPREE_ID}`;
 
 const emptyForm = { name: "", email: "", message: "" };
 
@@ -27,34 +28,43 @@ function FieldError({ id, message }) {
 export default function Contact() {
   const [values, setValues] = useState(emptyForm);
   const [errors, setErrors] = useState({});
-  const [status, setStatus] = useState("");
+  const [status, setStatus] = useState(""); // "sending" | "ok" | "error" | ""
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setValues((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const nextErrors = validateContactForm(values);
     setErrors(nextErrors);
+    if (Object.keys(nextErrors).length > 0) return;
 
-    if (Object.keys(nextErrors).length > 0) {
-      setStatus("");
-      return;
+    setStatus("sending");
+    try {
+      const res = await fetch(FORMSPREE_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify(values),
+      });
+      if (res.ok) {
+        setStatus("ok");
+        setValues(emptyForm);
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
     }
-
-    // Form verstuurt nog niet. Toon een nette placeholder-status en leeg de velden.
-    setStatus(PLACEHOLDER_STATUS);
-    setValues(emptyForm);
   };
 
   const fieldClass =
     "w-full rounded-rsm border border-white/10 bg-white/5 px-4 py-3 text-white placeholder-white/40 transition-colors duration-150 focus:border-accent-bright focus:outline-none focus:ring-1 focus:ring-accent-bright";
 
   return (
-    <section id="contact" className="bg-ink py-16 lg:py-24">
-      <div className="mx-auto max-w-6xl px-6">
+    <section id="contact" className="py-16 lg:py-24">
+      <div className="mx-auto max-w-7xl px-6 sm:px-8">
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
           <motion.div
             variants={fadeUp}
@@ -158,17 +168,30 @@ export default function Contact() {
 
             <button
               type="submit"
-              className="mt-6 inline-flex h-12 w-full items-center justify-center rounded-full bg-accent px-6 text-sm font-medium text-white transition-colors duration-150 hover:bg-accent/90 active:scale-[0.97] sm:w-auto"
+              disabled={status === "sending"}
+              className="mt-6 inline-flex h-12 w-full items-center justify-center rounded-full bg-accent px-6 text-sm font-medium text-white transition-colors duration-150 hover:bg-accent/90 active:scale-[0.97] disabled:opacity-60 sm:w-auto"
             >
-              Verstuur bericht
+              {status === "sending" ? "Versturen…" : "Verstuur bericht"}
             </button>
 
-            {status && (
+            {status === "ok" && (
               <p
                 role="status"
                 className="mt-4 rounded-rsm border border-white/10 bg-white/5 px-4 py-3 text-sm leading-relaxed text-white/80"
               >
-                {status}
+                Bedankt voor je bericht! We nemen zo snel mogelijk contact met je op.
+              </p>
+            )}
+            {status === "error" && (
+              <p
+                role="alert"
+                className="mt-4 rounded-rsm border border-accent-bright/30 bg-accent-bright/5 px-4 py-3 text-sm leading-relaxed text-accent-bright"
+              >
+                Er ging iets mis. Stuur je bericht naar{" "}
+                <a href={`mailto:${EMAIL}`} className="underline">
+                  {EMAIL}
+                </a>{" "}
+                of bel ons direct.
               </p>
             )}
           </motion.form>

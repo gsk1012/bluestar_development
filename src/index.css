@@ -15,7 +15,7 @@ html {
 }
 
 body {
-  @apply bg-bg text-ink font-body;
+  @apply bg-ink text-white font-body;
 }
 
 h1,
@@ -23,6 +23,19 @@ h2,
 h3 {
   @apply font-heading;
   text-wrap: balance;
+}
+
+/* Two separate keyframes so movement and opacity can have different timing curves. */
+@keyframes star-move {
+  from { transform: translate(0, 0) rotate(135deg); }
+  to   { transform: translate(-60vw, 60dvh) rotate(135deg); }
+}
+
+@keyframes star-fade {
+  0%   { opacity: 0; }
+  5%   { opacity: 0.32; }
+  72%  { opacity: 0.18; }
+  100% { opacity: 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -1,134 +1,125 @@
-import { motion, useReducedMotion } from "motion/react";
+"use client";
+import { useRef, useEffect } from "react";
 import {
-  ResponsiveContainer,
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Cell,
-} from "recharts";
-import { chartData, keyStats } from "../data/stats";
+  motion,
+  useReducedMotion,
+  useMotionValue,
+  useTransform,
+  animate,
+  useInView,
+} from "motion/react";
 import { fadeUp } from "../lib/motion";
 
-const ACCENT_BRIGHT = "#3B9EFF";
-const GRID = "#FFFFFF1A";
-const AXIS = "#FFFFFF99";
-const BAR_MUTED = "#FFFFFF26";
+const stats = [
+  {
+    to: 100,
+    format: (v) => `${Math.round(v)}/100`,
+    label: "Prestatiescore",
+    context: "Google Lighthouse, maximale score",
+  },
+  {
+    to: 0.9,
+    format: (v) => `${v.toFixed(1).replace(".", ",")}s`,
+    label: "Gemiddelde laadtijd",
+    context: "vs. gemiddeld 4,2 seconden",
+  },
+  {
+    to: 100,
+    format: (v) => `${Math.round(v)}%`,
+    label: "Responsive op mobiel",
+    context: "op elk scherm en apparaat",
+  },
+];
 
-function ChartTooltip({ active, payload, label }) {
-  if (!active || !payload || payload.length === 0) return null;
-  return (
-    <div className="rounded-rsm border border-white/10 bg-panel px-3 py-2 text-sm shadow-md">
-      <p className="font-medium text-white">{label}</p>
-      <p className="text-white/70">{payload[0].value} sec laadtijd</p>
-    </div>
-  );
+function Counter({ to, format, duration = 1.6, delay = 0 }) {
+  const reduce = useReducedMotion();
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.5 });
+  const count = useMotionValue(0);
+  const display = useTransform(count, format);
+
+  useEffect(() => {
+    if (reduce || !isInView) return;
+    const controls = animate(count, to, {
+      duration,
+      delay,
+      ease: [0.16, 1, 0.3, 1],
+    });
+    return controls.stop;
+  }, [isInView, reduce, to, duration, delay, count]);
+
+  if (reduce) {
+    return <span ref={ref}>{format(to)}</span>;
+  }
+
+  return <motion.span ref={ref}>{display}</motion.span>;
 }
 
 export default function Stats() {
-  const reduceMotion = useReducedMotion();
-
-  const summary = chartData
-    .map((d) => `${d.label}: ${d.waarde} seconden laadtijd`)
-    .join(". ");
-
   return (
-    <section id="cijfers" className="bg-ink py-16 lg:py-24">
-      <div className="mx-auto max-w-6xl px-6">
-        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+    <section id="cijfers" className="py-16 lg:py-24">
+      <div className="mx-auto max-w-7xl px-6 sm:px-8">
+        <div className="grid items-start gap-12 lg:grid-cols-12 lg:gap-16">
+          {/* Left: headline + body */}
           <motion.div
             variants={fadeUp}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, amount: 0.4 }}
+            className="lg:col-span-5"
           >
             <h2 className="font-heading text-3xl font-bold tracking-tight text-white text-balance sm:text-4xl">
               Snelheid die je merkt en Google waardeert
             </h2>
-            <p className="mt-4 max-w-md text-lg leading-relaxed text-white/70">
+            <p className="mt-4 max-w-sm text-lg leading-relaxed text-white/65">
               Een snelle site houdt bezoekers vast en scoort beter in
-              zoekresultaten. Onze sites laden in een fractie van de tijd van een
-              gemiddelde website. De cijfers hieronder zijn illustratief.
+              zoekresultaten. Onze sites laden gemiddeld in 0,9 seconden.
             </p>
-
-            <div className="mt-8 flex flex-wrap gap-x-10 gap-y-6">
-              {keyStats.map((stat) => (
-                <div key={stat.label}>
-                  <p className="font-heading text-4xl font-bold tabular-nums tracking-tight text-white">
-                    {stat.value}
-                  </p>
-                  <p className="mt-1 text-sm text-white/60">{stat.label}</p>
-                </div>
-              ))}
-            </div>
+            <a
+              href="#contact"
+              className="mt-8 inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-semibold text-white transition-colors duration-200 hover:bg-accent-bright active:scale-[0.98]"
+            >
+              Plan een gesprek
+            </a>
           </motion.div>
 
+          {/* Right: animated stat rows */}
           <motion.div
             variants={fadeUp}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, amount: 0.3 }}
-            className="rounded-rlg border border-white/10 bg-white/5 p-4 sm:p-6"
+            className="lg:col-span-7"
           >
-            <p className="mb-4 text-sm font-medium text-white/60">
-              Laadtijd in seconden (illustratief)
-            </p>
-            <figure
-              role="img"
-              aria-label={`Staafdiagram van laadtijd in seconden. ${summary}`}
-            >
-              <div className="h-64 w-full">
-                <ResponsiveContainer width="100%" height="100%">
-                  <BarChart
-                    data={chartData}
-                    margin={{ top: 8, right: 8, left: -16, bottom: 0 }}
-                  >
-                    <CartesianGrid stroke={GRID} vertical={false} />
-                    <XAxis
-                      dataKey="label"
-                      tick={{ fill: AXIS, fontSize: 12 }}
-                      tickLine={false}
-                      axisLine={{ stroke: GRID }}
-                    />
-                    <YAxis
-                      unit="s"
-                      tick={{ fill: AXIS, fontSize: 12 }}
-                      tickLine={false}
-                      axisLine={false}
-                    />
-                    <Tooltip
-                      content={<ChartTooltip />}
-                      cursor={{ fill: "rgba(255,255,255,0.06)" }}
-                      contentStyle={{
-                        background: "#0F2236",
-                        border: "1px solid #FFFFFF1A",
-                        color: "#fff",
-                      }}
-                    />
-                    <Bar
-                      dataKey="waarde"
-                      radius={[6, 6, 0, 0]}
-                      maxBarSize={88}
-                      isAnimationActive={!reduceMotion}
-                    >
-                      {chartData.map((entry, index) => (
-                        <Cell
-                          key={entry.label}
-                          fill={
-                            index === chartData.length - 1
-                              ? ACCENT_BRIGHT
-                              : BAR_MUTED
-                          }
-                        />
-                      ))}
-                    </Bar>
-                  </BarChart>
-                </ResponsiveContainer>
+            {stats.map((stat, i) => (
+              <div
+                key={stat.label}
+                className={`flex items-center justify-between gap-6 py-7 ${
+                  i < stats.length - 1 ? "border-b border-white/10" : ""
+                }`}
+              >
+                {/* Display number */}
+                <p
+                  className="font-heading text-5xl font-bold tabular-nums tracking-tight text-white sm:text-6xl"
+                  aria-label={`${stat.label}: ${stat.format(stat.to)}`}
+                >
+                  <Counter
+                    to={stat.to}
+                    format={stat.format}
+                    duration={1.6}
+                    delay={i * 0.12}
+                  />
+                </p>
+
+                {/* Label + context */}
+                <div className="text-right">
+                  <p className="font-heading text-base font-semibold text-white">
+                    {stat.label}
+                  </p>
+                  <p className="mt-0.5 text-sm text-white/45">{stat.context}</p>
+                </div>
               </div>
-              <figcaption className="sr-only">{summary}.</figcaption>
-            </figure>
+            ))}
           </motion.div>
         </div>
       </div>

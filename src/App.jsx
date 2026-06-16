@@ -11,8 +11,14 @@ import Footer from "./components/Footer";
 function App() {
   return (
     <>
+      {/* Continuous ambient background so sections blend without hard seams */}
+      <div aria-hidden="true" className="pointer-events-none fixed inset-0 -z-50">
+        <div className="absolute inset-0 bg-gradient-to-b from-ink via-[#0A1A2E] to-night" />
+        <div className="absolute left-[-15%] top-[18%] h-[55vh] w-[55vh] rounded-full bg-accent/10 blur-[160px]" />
+        <div className="absolute right-[-15%] top-[62%] h-[55vh] w-[55vh] rounded-full bg-accent-bright/[0.07] blur-[170px]" />
+      </div>
       <Navbar />
-      <main className="bg-bg text-ink">
+      <main className="text-white">
         <Hero />
         <Services />
         <Stats />

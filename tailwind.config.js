@@ -11,6 +11,9 @@ export default {
         accent: "#0B5FD8",
         "accent-bright": "#3B9EFF",
         line: "#E2E9F2",
+        // Dark theme depths (cohesive futuristic look matching the hero)
+        night: "#081325",
+        panel: "#0F2236",
       },
       borderRadius: {
         rsm: "8px",
