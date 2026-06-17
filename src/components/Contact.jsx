@@ -83,8 +83,8 @@ export default function Contact() {
                 href={`mailto:${EMAIL}`}
                 className="group inline-flex min-h-[44px] items-center gap-3 text-white transition-colors duration-150 hover:text-accent-bright"
               >
-                <span className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5">
-                  <Envelope size={20} weight="duotone" className="text-accent-bright" />
+                <span className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 transition-colors duration-150 group-hover:border-accent-bright/30">
+                  <Envelope size={20} weight="duotone" className="text-white/40 transition-colors duration-150 group-hover:text-accent-bright" />
                 </span>
                 <span className="font-medium">{EMAIL}</span>
               </a>
@@ -95,8 +95,8 @@ export default function Contact() {
                   href={`tel:${phone.tel}`}
                   className="group inline-flex min-h-[44px] items-center gap-3 text-white transition-colors duration-150 hover:text-accent-bright"
                 >
-                  <span className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5">
-                    <Phone size={20} weight="duotone" className="text-accent-bright" />
+                  <span className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 transition-colors duration-150 group-hover:border-accent-bright/30">
+                    <Phone size={20} weight="duotone" className="text-white/40 transition-colors duration-150 group-hover:text-accent-bright" />
                   </span>
                   <span className="font-medium">{phone.label}</span>
                 </a>
@@ -125,7 +125,7 @@ export default function Contact() {
                 onChange={handleChange}
                 aria-invalid={errors.name ? "true" : undefined}
                 aria-describedby={errors.name ? "name-error" : undefined}
-                placeholder="Gurpreet"
+                placeholder="Jouw naam"
                 className={`mt-1.5 ${fieldClass}`}
               />
               <FieldError id="name-error" message={errors.name} />
