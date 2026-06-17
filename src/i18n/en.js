@@ -34,7 +34,7 @@ const en = {
       },
       webapp: {
         title: "Web application",
-        desc: "Custom browser software — from customer portal to planning tool — built around your process.",
+        desc: "Custom browser software, from customer portal to planning tool, built around your process.",
       },
       maintenance: {
         title: "Maintenance & support",
