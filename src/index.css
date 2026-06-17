@@ -9,6 +9,11 @@
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
 }
 
+::selection {
+  background-color: oklch(0.45 0.18 250);
+  color: #fff;
+}
+
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 80px;
