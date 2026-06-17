@@ -82,11 +82,19 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 border-t border-white/10 pt-8">
+        <div className="mt-12 border-t border-white/10 pt-8 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-sm text-white/70">
             &copy; {new Date().getFullYear()} BlueStar Development. Alle rechten
             voorbehouden.
           </p>
+          <a
+            href="/algemene_voorwaarden_bluestar.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm text-white/70 transition-colors duration-150 hover:text-accent-bright"
+          >
+            Algemene voorwaarden
+          </a>
         </div>
       </div>
     </footer>
