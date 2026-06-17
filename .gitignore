@@ -3,3 +3,8 @@ dist/
 .DS_Store
 .env
 .env.local
+.vercel
+.playwright-cli/
+qa-*.mjs
+qa-*.png
+docs/superpowers/
