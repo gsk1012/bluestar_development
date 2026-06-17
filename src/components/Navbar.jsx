@@ -55,7 +55,14 @@ export default function Navbar() {
   });
 
   const closeMenu = () => setOpen(false);
-  const solid = scrolled || open;
+  // Frosted blur only when scrolled (header sits over static page content, cheap).
+  // When the menu opens at the top, the header sits over the animating hero video —
+  // blur there is expensive, so use a solid background instead.
+  const headerBg = scrolled
+    ? "border-white/10 bg-ink/80 backdrop-blur"
+    : open
+    ? "border-white/10 bg-ink"
+    : "border-transparent bg-transparent";
 
   const navLinks = [
     { label: t.nav.home, href: "#home" },
@@ -67,11 +74,7 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-40 transition-colors duration-300 ${
-        solid
-          ? "border-b border-white/10 bg-ink/80 backdrop-blur"
-          : "border-b border-transparent bg-transparent"
-      }`}
+      className={`fixed inset-x-0 top-0 z-40 border-b transition-colors duration-300 ${headerBg}`}
     >
       <nav className="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-6 sm:px-8">
         <a
@@ -154,11 +157,12 @@ export default function Navbar() {
       <AnimatePresence>
         {open && (
           <motion.div
-            initial={reduceMotion ? { opacity: 0 } : { clipPath: "inset(0% 0% 100% 0%)", opacity: 0 }}
-            animate={reduceMotion ? { opacity: 1 } : { clipPath: "inset(0% 0% 0% 0%)", opacity: 1 }}
-            exit={reduceMotion ? { opacity: 0 } : { clipPath: "inset(0% 0% 100% 0%)", opacity: 0 }}
-            transition={{ duration: 0.32, ease: [0.23, 1, 0.32, 1] }}
-            className="absolute right-4 top-[76px] z-50 w-[calc(100%-2rem)] max-w-xs rounded-rmd border border-white/10 bg-ink/95 p-3 shadow-xl shadow-black/40 backdrop-blur md:hidden overflow-hidden"
+            initial={reduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.96, y: -8 }}
+            animate={reduceMotion ? { opacity: 1 } : { opacity: 1, scale: 1, y: 0 }}
+            exit={reduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.96, y: -8 }}
+            transition={{ duration: 0.22, ease: [0.23, 1, 0.32, 1] }}
+            style={{ transformOrigin: "top right" }}
+            className="absolute right-4 top-[76px] z-50 w-[calc(100%-2rem)] max-w-xs rounded-rmd border border-white/10 bg-night p-3 shadow-xl shadow-black/40 md:hidden overflow-hidden"
           >
             <div className="flex flex-col">
               {navLinks.map((link, i) => (
