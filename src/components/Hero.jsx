@@ -22,7 +22,9 @@ function ShootingStars({ reduce }) {
       {SHOOTING_STARS.map(s => (
         <span
           key={s.id}
-          className="absolute"
+          // Keep only the first 8 below md — fewer infinite animations so the
+          // hamburger menu has GPU/CPU headroom to open smoothly on phones.
+          className={`absolute${s.id >= 8 ? " max-md:hidden" : ""}`}
           style={{
             left:       s.left,
             top:        s.top,
@@ -60,6 +62,21 @@ const fade = {
   show: { opacity: 1, y: 0, transition: { duration: 0.6, ease } },
 };
 
+// Static star image — used for reduced-motion AND on mobile (<768px), where the
+// blended/masked video is too expensive for phone GPUs and starves the menu.
+function StaticStar({ className = "" }) {
+  return (
+    <picture>
+      <source srcSet="/star.avif" type="image/avif" />
+      <img
+        src="/star.webp"
+        alt="BlueStar kristallen ster"
+        className={`relative z-[2] h-full w-full object-contain ${className}`}
+      />
+    </picture>
+  );
+}
+
 function StarVisual({ reduce }) {
   // Feather the navy backdrop and the video together. In the outer margin the
   // video is pure black (no star), so fading both there lets the real page show
@@ -92,45 +109,46 @@ function StarVisual({ reduce }) {
           />
 
           {reduce ? (
-            <picture>
-              <source srcSet="/star.avif" type="image/avif" />
-              <img
-                src="/star.webp"
-                alt="BlueStar kristallen ster"
-                className="relative z-[2] h-full w-full object-contain"
-              />
-            </picture>
+            <StaticStar />
           ) : (
             <>
-              {/* Solid navy sits directly behind the video inside the same
-                  stacking context, so `mixBlendMode: screen` blends the video's
-                  opaque black background down to the page navy (it disappears)
-                  while the bright star screens through. Masked to match the
-                  video so its edges feather out instead of showing a seam. */}
-              <div
-                aria-hidden="true"
-                className="absolute inset-0 z-0 bg-ink"
-                style={{ maskImage: starMask, WebkitMaskImage: starMask }}
-              />
-              <video
-                className="relative z-[2] h-full w-full object-contain"
-                style={{
-                  mixBlendMode: "screen",
-                  maskImage: starMask,
-                  WebkitMaskImage: starMask,
-                }}
-                autoPlay
-                loop
-                muted
-                playsInline
-                preload="metadata"
-                aria-label="Roterende kristallen ster"
-              >
-                {/* HD only on desktop — saves ~4.8 MB on mobile */}
-                <source src="/star-hd.mp4" type="video/mp4" media="(min-width: 1024px)" />
-                <source src="/star.mp4" type="video/mp4" />
-                <source src="/star.webm" type="video/webm" />
-              </video>
+              {/* Mobile (<md): static star. The blended+masked video below would
+                  keep a phone GPU saturated, leaving no headroom to animate the
+                  menu smoothly. The hamburger menu only exists <md, so this is
+                  exactly where the budget matters. */}
+              <StaticStar className="md:hidden" />
+
+              {/* Desktop (md+): the animated video. Solid navy sits directly
+                  behind it in the same stacking context, so `mixBlendMode: screen`
+                  blends the video's opaque black background down to the page navy
+                  (it disappears) while the bright star screens through. Masked to
+                  match the video so its edges feather out instead of a seam. */}
+              <div className="hidden h-full w-full md:block">
+                <div
+                  aria-hidden="true"
+                  className="absolute inset-0 z-0 bg-ink"
+                  style={{ maskImage: starMask, WebkitMaskImage: starMask }}
+                />
+                <video
+                  className="relative z-[2] h-full w-full object-contain"
+                  style={{
+                    mixBlendMode: "screen",
+                    maskImage: starMask,
+                    WebkitMaskImage: starMask,
+                  }}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  preload="metadata"
+                  aria-label="Roterende kristallen ster"
+                >
+                  {/* HD only on desktop — saves ~4.8 MB on mobile */}
+                  <source src="/star-hd.mp4" type="video/mp4" media="(min-width: 1024px)" />
+                  <source src="/star.mp4" type="video/mp4" />
+                  <source src="/star.webm" type="video/webm" />
+                </video>
+              </div>
             </>
           )}
         </motion.div>
