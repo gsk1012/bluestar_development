@@ -111,7 +111,7 @@ export default function Process() {
                   style={mobileOp ? { opacity: mobileOp } : undefined}
                   className="flex gap-5 md:flex-col md:items-center md:gap-0"
                 >
-                  <div className="relative z-10 flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/5">
+                  <div className="relative z-10 flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-white/10 bg-panel">
                     <Icon size={26} weight="duotone" className="text-accent-bright" />
                   </div>
                   <div className="md:mt-5 md:text-center">
