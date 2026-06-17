@@ -7,9 +7,9 @@ export const projects = [
     image: "/work/prince-schilder.png",
     highlights: [
       "Mobiel-first ontwerp",
-      "Contactformulier met directe e-mailkoppeling",
-      "Google Maps integratie",
-      "Snel live via Vercel",
+      "Offerte-aanvraagformulier",
+      "Diensten- en werkenoverzicht",
+      "Geanimeerde stats & testimonial",
     ],
   },
   {
@@ -19,9 +19,9 @@ export const projects = [
     image: "/work/gsk-portfolio.png",
     highlights: [
       "Donker futuristisch thema",
+      "Live GitHub-activiteit",
       "Soepele scroll-animaties",
       "Responsief op alle schermformaten",
-      "Laadtijd onder 1 seconde",
     ],
   },
 ];
