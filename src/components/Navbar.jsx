@@ -1,11 +1,4 @@
-import { useState } from "react";
-import {
-  motion,
-  AnimatePresence,
-  useReducedMotion,
-  useScroll,
-  useMotionValueEvent,
-} from "motion/react";
+import { useState, useEffect } from "react";
 import { List, X } from "@phosphor-icons/react";
 import { useLanguage } from "../i18n/LanguageContext";
 import { useMenu } from "../lib/menu";
@@ -50,19 +43,22 @@ export default function Navbar() {
   // while the menu is open (see lib/menu).
   const { menuOpen: open, setMenuOpen: setOpen } = useMenu();
   const [scrolled, setScrolled] = useState(false);
-  const reduceMotion = useReducedMotion();
-  const { scrollY } = useScroll();
 
-  useMotionValueEvent(scrollY, "change", (y) => {
-    setScrolled(y > 24);
-  });
+  // Plain passive scroll listener instead of motion's useScroll — the menu is
+  // intentionally free of the animation library (see the panel below), so the
+  // whole Navbar does zero JS-animation work.
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   const closeMenu = () => setOpen(false);
   // When the menu is open, always use a solid background — never backdrop-blur.
-  // The menu panel animates over the header, and a backdrop-filter re-samples the
-  // blurred backdrop every frame of that animation, which is a major source of
-  // menu lag on phones. Frosted blur only when scrolled AND the menu is closed
-  // (there it sits over static page content, so it's cheap).
+  // The menu panel sits over the header, and a backdrop-filter re-samples the
+  // blurred backdrop every animation frame. Frosted blur only when scrolled AND
+  // the menu is closed (there it sits over static page content, so it's cheap).
   const headerBg = open
     ? "border-white/10 bg-ink"
     : scrolled
@@ -121,81 +117,76 @@ export default function Navbar() {
 
         <div className="flex items-center gap-2 md:hidden">
           <LangToggle lang={lang} setLang={setLang} />
-          <motion.button
-          type="button"
-          onClick={() => setOpen((v) => !v)}
-          aria-label={open ? t.nav.menuClose : t.nav.menuOpen}
-          aria-expanded={open}
-          whileTap={{ scale: 0.9 }}
-          transition={{ duration: 0.15 }}
-          className="relative inline-flex h-11 w-11 items-center justify-center rounded-rsm text-white transition-colors duration-150 hover:bg-white/10"
-        >
-          <AnimatePresence mode="popLayout" initial={false}>
-            {open ? (
-              <motion.span
-                key="close"
-                initial={{ opacity: 0, rotate: -45, scale: 0.6 }}
-                animate={{ opacity: 1, rotate: 0, scale: 1 }}
-                exit={{ opacity: 0, rotate: 45, scale: 0.6 }}
-                transition={{ duration: 0.2, ease: [0.23, 1, 0.32, 1] }}
-                className="absolute"
-              >
-                <X size={22} weight="regular" />
-              </motion.span>
-            ) : (
-              <motion.span
-                key="open"
-                initial={{ opacity: 0, rotate: 45, scale: 0.6 }}
-                animate={{ opacity: 1, rotate: 0, scale: 1 }}
-                exit={{ opacity: 0, rotate: -45, scale: 0.6 }}
-                transition={{ duration: 0.2, ease: [0.23, 1, 0.32, 1] }}
-                className="absolute"
-              >
-                <List size={22} weight="regular" />
-              </motion.span>
-            )}
-          </AnimatePresence>
-        </motion.button>
+          <button
+            type="button"
+            onClick={() => setOpen((v) => !v)}
+            aria-label={open ? t.nav.menuClose : t.nav.menuOpen}
+            aria-expanded={open}
+            aria-controls="mobile-menu"
+            className="relative inline-flex h-11 w-11 items-center justify-center rounded-rsm text-white transition-[background-color,transform] duration-150 hover:bg-white/10 active:scale-90"
+          >
+            {/* Both icons stay mounted and cross-fade with CSS — no AnimatePresence. */}
+            <span
+              className={`absolute transition-[opacity,transform] duration-200 ease-out ${
+                open ? "opacity-100 rotate-0 scale-100" : "opacity-0 rotate-45 scale-50"
+              }`}
+            >
+              <X size={22} weight="regular" />
+            </span>
+            <span
+              className={`absolute transition-[opacity,transform] duration-200 ease-out ${
+                open ? "opacity-0 -rotate-45 scale-50" : "opacity-100 rotate-0 scale-100"
+              }`}
+            >
+              <List size={22} weight="regular" />
+            </span>
+          </button>
         </div>
       </nav>
 
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            initial={reduceMotion ? { opacity: 0 } : { opacity: 0, y: -10 }}
-            animate={reduceMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
-            exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: -10 }}
-            transition={{ duration: 0.2, ease: [0.23, 1, 0.32, 1] }}
-            className="absolute right-4 top-[76px] z-50 w-[calc(100%-2rem)] max-w-xs rounded-rmd border border-white/10 bg-night p-3 shadow-lg shadow-black/40 md:hidden overflow-hidden"
+      {/* Mobile menu — CSS-only open/close. The previous version animated with the
+          motion library, whose AnimatePresence + staggered children fired a ~50ms
+          main-thread scripting burst at the moment of opening (measured under CPU
+          throttle), which dropped the first few frames. Here the panel stays
+          mounted and animates opacity + transform via plain CSS transitions/
+          keyframes — the compositor handles it with no JS on open. `inert` keeps
+          the links out of tab order and pointer events while closed; reduced-
+          motion is handled globally in index.css. */}
+      <div
+        id="mobile-menu"
+        inert={!open ? true : undefined}
+        className={`absolute right-4 top-[76px] z-50 w-[calc(100%-2rem)] max-w-xs origin-top overflow-hidden rounded-rmd border border-white/10 bg-night p-3 shadow-lg shadow-black/40 transition-[opacity,transform] duration-200 ease-out will-change-[opacity,transform] md:hidden ${
+          open
+            ? "translate-y-0 opacity-100"
+            : "pointer-events-none -translate-y-2 opacity-0"
+        }`}
+      >
+        <div className="flex flex-col">
+          {navLinks.map((link, i) => (
+            <a
+              key={link.href}
+              href={link.href}
+              onClick={closeMenu}
+              style={open ? { animationDelay: `${60 + i * 45}ms` } : undefined}
+              className={`flex min-h-[44px] items-center rounded-rsm px-3 text-sm font-medium text-white/80 transition-colors duration-150 hover:bg-white/10 hover:text-white ${
+                open ? "animate-menu-item" : ""
+              }`}
+            >
+              {link.label}
+            </a>
+          ))}
+          <a
+            href="#contact"
+            onClick={closeMenu}
+            style={open ? { animationDelay: `${60 + navLinks.length * 45}ms` } : undefined}
+            className={`mt-2 inline-flex min-h-[44px] items-center justify-center rounded-full bg-accent px-5 text-sm font-medium text-white transition-colors duration-150 hover:bg-accent/90 active:scale-[0.97] ${
+              open ? "animate-menu-item" : ""
+            }`}
           >
-            <div className="flex flex-col">
-              {navLinks.map((link, i) => (
-                <motion.a
-                  key={link.href}
-                  href={link.href}
-                  onClick={closeMenu}
-                  initial={reduceMotion ? false : { opacity: 0, x: -10 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.24, delay: 0.06 + i * 0.045, ease: [0.23, 1, 0.32, 1] }}
-                  className="flex min-h-[44px] items-center rounded-rsm px-3 text-sm font-medium text-white/80 transition-colors duration-150 hover:bg-white/10 hover:text-white"
-                >
-                  {link.label}
-                </motion.a>
-              ))}
-              <motion.a
-                href="#contact"
-                onClick={closeMenu}
-                initial={reduceMotion ? false : { opacity: 0, y: 6 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.26, delay: 0.06 + navLinks.length * 0.045, ease: [0.23, 1, 0.32, 1] }}
-                className="mt-2 inline-flex min-h-[44px] items-center justify-center rounded-full bg-accent px-5 text-sm font-medium text-white transition-colors duration-150 hover:bg-accent/90 active:scale-[0.97]"
-              >
-                {t.nav.cta}
-              </motion.a>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            {t.nav.cta}
+          </a>
+        </div>
+      </div>
     </header>
   );
 }

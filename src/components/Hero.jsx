@@ -1,8 +1,6 @@
-import { useRef, useEffect } from "react";
 import { motion, useReducedMotion } from "motion/react";
 import { ArrowRight } from "@phosphor-icons/react";
 import { useLanguage } from "../i18n/LanguageContext";
-import { useMenu } from "../lib/menu";
 
 // Generated once at module level — stable across re-renders.
 // Stars are intentionally dim: they live in the background layer, not on top.
@@ -17,7 +15,7 @@ const SHOOTING_STARS = Array.from({ length: 20 }, (_, i) => ({
   delay:    (Math.random() * 36).toFixed(1),          // stagger across 36 s
 }));
 
-function ShootingStars({ reduce, paused }) {
+function ShootingStars({ reduce }) {
   if (reduce) return null;
   return (
     <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-[1] overflow-hidden">
@@ -30,7 +28,6 @@ function ShootingStars({ reduce, paused }) {
             top:        s.top,
             width:      `${s.tailLen}px`,
             height:     `${s.height}px`,
-            animationPlayState: paused ? "paused" : "running",
             // Muted cool-white gradient: transparent tail (left) → faint head (right).
             // After rotate(135deg) the bright end points toward bottom-left (direction of travel).
             // No box-shadow — keep it strictly background texture.
@@ -63,25 +60,12 @@ const fade = {
   show: { opacity: 1, y: 0, transition: { duration: 0.6, ease } },
 };
 
-function StarVisual({ reduce, paused }) {
+function StarVisual({ reduce }) {
   // Feather the navy backdrop and the video together. In the outer margin the
   // video is pure black (no star), so fading both there lets the real page show
   // through — no hard rectangle edge and no black creeping back in.
   const starMask =
     "radial-gradient(closest-side at 50% 48%, #000 56%, transparent 96%)";
-
-  // While the mobile menu is open we drop the blended/masked video out of
-  // compositing entirely (display:none, see below) so the GPU has nothing
-  // expensive to recomposite as the menu panel animates over the hero. Pause
-  // decoding too so a hidden video doesn't keep burning the decoder, and resume
-  // on close — the element stays mounted, so closing never reloads it.
-  const videoRef = useRef(null);
-  useEffect(() => {
-    const v = videoRef.current;
-    if (!v) return;
-    if (paused) v.pause();
-    else v.play().catch(() => {});
-  }, [paused]);
 
   return (
     <div className="absolute left-1/2 top-0 z-0 aspect-square w-[min(130vw,680px)] -translate-x-1/2 translate-y-[8%] sm:left-auto sm:right-0 sm:w-[min(100vw,680px)] sm:translate-x-[12%] sm:-translate-y-[3%] lg:w-[min(62vw,920px)] lg:translate-x-[15%] lg:translate-y-[0%]">
@@ -98,9 +82,9 @@ function StarVisual({ reduce, paused }) {
         className="relative h-full w-full"
       >
         <motion.div
-          animate={reduce || paused ? { y: 0 } : { y: [0, -16, 0] }}
+          animate={reduce ? { y: 0 } : { y: [0, -16, 0] }}
           transition={
-            reduce || paused
+            reduce
               ? { duration: 0.3, ease: "easeOut" }
               : { duration: 8, repeat: Infinity, ease: "easeInOut", delay: 2.6 }
           }
@@ -120,22 +104,6 @@ function StarVisual({ reduce, paused }) {
             />
           ) : (
             <>
-              {/* While the mobile menu is open the blend/mask/video stack below
-                  is removed from compositing (display:none) and this cheap static
-                  star is shown instead. `mixBlendMode: screen` can't be cached as
-                  an isolated GPU layer, so without this swap the menu panel
-                  animating over the hero re-rasterizes the blended region every
-                  frame — that was the menu lag. star-cut.* has its black
-                  background keyed out to alpha, so it composites cleanly over the
-                  page without any blend (a raw still would show a black box). */}
-              {paused && (
-                <img
-                  src="/star-cut.webp"
-                  alt=""
-                  aria-hidden="true"
-                  className="absolute inset-0 z-[2] h-full w-full object-contain"
-                />
-              )}
               {/* Solid navy sits directly behind the video inside the same
                   stacking context, so `mixBlendMode: screen` blends the video's
                   opaque black background down to the page navy (it disappears)
@@ -144,20 +112,14 @@ function StarVisual({ reduce, paused }) {
               <div
                 aria-hidden="true"
                 className="absolute inset-0 z-0 bg-ink"
-                style={{
-                  maskImage: starMask,
-                  WebkitMaskImage: starMask,
-                  display: paused ? "none" : undefined,
-                }}
+                style={{ maskImage: starMask, WebkitMaskImage: starMask }}
               />
               <video
-                ref={videoRef}
                 className="relative z-[2] h-full w-full object-contain"
                 style={{
                   mixBlendMode: "screen",
                   maskImage: starMask,
                   WebkitMaskImage: starMask,
-                  display: paused ? "none" : undefined,
                 }}
                 autoPlay
                 loop
@@ -182,7 +144,6 @@ function StarVisual({ reduce, paused }) {
 export default function Hero() {
   const reduce = useReducedMotion();
   const { t } = useLanguage();
-  const { menuOpen } = useMenu();
   const h = t.hero;
 
   return (
@@ -191,7 +152,7 @@ export default function Hero() {
       className="relative h-[100svh] overflow-hidden text-white"
     >
       {/* Rotating star, bleeding off the right edge */}
-      <StarVisual reduce={reduce} paused={menuOpen} />
+      <StarVisual reduce={reduce} />
 
       {/* Phone: bottom-up scrim — content sits at the bottom, star shows at the top */}
       <div
@@ -222,7 +183,7 @@ export default function Hero() {
       />
 
       {/* Shooting star particles */}
-      <ShootingStars reduce={reduce} paused={menuOpen} />
+      <ShootingStars reduce={reduce} />
 
       {/* Bottom fade into next section */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 bottom-0 z-[2] h-32 bg-gradient-to-b from-transparent to-ink" />
