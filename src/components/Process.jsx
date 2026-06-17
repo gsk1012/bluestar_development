@@ -45,7 +45,7 @@ export default function Process() {
           variants={fadeUp}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, amount: 0.4 }}
+          viewport={{ once: true, amount: 0.1 }}
           className="max-w-2xl"
         >
           <h2 className="font-heading text-3xl font-bold tracking-tight text-white text-balance sm:text-4xl">
@@ -77,7 +77,7 @@ export default function Process() {
                   : { scaleX: 0, scaleY: 0 }
               }
               whileInView={{ scaleX: 1, scaleY: 1 }}
-              viewport={{ once: true, amount: 0.4 }}
+              viewport={{ once: true, amount: 0.1 }}
               transition={reduceMotion ? { duration: 0 } : lineTransition}
             />
           </div>

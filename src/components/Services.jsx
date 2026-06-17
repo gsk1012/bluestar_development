@@ -77,7 +77,7 @@ export default function Services() {
           variants={tileVariant}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, amount: 0.5 }}
+          viewport={{ once: true, amount: 0.1 }}
           className="mb-10 max-w-xl lg:mb-12"
         >
           <h2 className="font-heading text-3xl font-bold tracking-tight text-white text-balance sm:text-4xl">

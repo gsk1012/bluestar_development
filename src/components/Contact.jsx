@@ -70,7 +70,7 @@ export default function Contact() {
             variants={fadeUp}
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true, amount: 0.4 }}
+            viewport={{ once: true, amount: 0.1 }}
           >
             <h2 className="font-heading text-3xl font-bold tracking-tight text-white text-balance sm:text-4xl">
               Klaar voor een nieuwe website?
@@ -110,7 +110,7 @@ export default function Contact() {
             variants={fadeUp}
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true, amount: 0.3 }}
+            viewport={{ once: true, amount: 0.1 }}
             noValidate
             onSubmit={handleSubmit}
             className="rounded-rlg border border-white/10 bg-white/5 p-6 sm:p-8"

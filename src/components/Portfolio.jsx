@@ -98,7 +98,7 @@ export default function Portfolio() {
         <motion.div
           initial={reduce ? false : { opacity: 0, y: 22 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.4 }}
+          viewport={{ once: true, amount: 0.1 }}
           transition={{ duration: 0.6, ease }}
           className="mb-10 lg:mb-14"
         >

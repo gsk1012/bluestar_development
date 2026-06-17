@@ -34,7 +34,7 @@ const stats = [
 function Counter({ to, format, duration = 1.6, delay = 0 }) {
   const reduce = useReducedMotion();
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.5 });
+  const isInView = useInView(ref, { once: true, amount: 0.1 });
   const count = useMotionValue(0);
   const display = useTransform(count, format);
 
@@ -65,7 +65,7 @@ export default function Stats() {
             variants={fadeUp}
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true, amount: 0.4 }}
+            viewport={{ once: true, amount: 0.1 }}
             className="lg:col-span-5"
           >
             <h2 className="font-heading text-3xl font-bold tracking-tight text-white text-balance sm:text-4xl">
@@ -88,7 +88,7 @@ export default function Stats() {
             variants={fadeUp}
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true, amount: 0.3 }}
+            viewport={{ once: true, amount: 0.1 }}
             className="lg:col-span-7"
           >
             {stats.map((stat, i) => (
