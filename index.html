@@ -41,8 +41,9 @@
     />
     <meta name="twitter:image" content="https://bluestardevelopment.nl/logo.png" />
 
-    <!-- Preload critical hero asset -->
-    <link rel="preload" as="image" href="/star.avif" type="image/avif" />
+    <!-- Preload the static star (transparent WebP): shown in reduced-motion
+         mode and swapped in instantly when the mobile menu opens. -->
+    <link rel="preload" as="image" href="/star-cut.webp" type="image/webp" />
 
     <!-- Preconnect for service section images (CloudFront CDN) -->
     <link rel="preconnect" href="https://d8j0ntlcm91z4.cloudfront.net" crossorigin />

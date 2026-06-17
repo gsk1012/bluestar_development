@@ -58,13 +58,15 @@ export default function Navbar() {
   });
 
   const closeMenu = () => setOpen(false);
-  // Frosted blur only when scrolled (header sits over static page content, cheap).
-  // When the menu opens at the top, the header sits over the animating hero video —
-  // blur there is expensive, so use a solid background instead.
-  const headerBg = scrolled
-    ? "border-white/10 bg-ink/80 backdrop-blur"
-    : open
+  // When the menu is open, always use a solid background — never backdrop-blur.
+  // The menu panel animates over the header, and a backdrop-filter re-samples the
+  // blurred backdrop every frame of that animation, which is a major source of
+  // menu lag on phones. Frosted blur only when scrolled AND the menu is closed
+  // (there it sits over static page content, so it's cheap).
+  const headerBg = open
     ? "border-white/10 bg-ink"
+    : scrolled
+    ? "border-white/10 bg-ink/80 backdrop-blur"
     : "border-transparent bg-transparent";
 
   const navLinks = [

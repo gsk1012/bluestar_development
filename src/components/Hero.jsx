@@ -70,9 +70,11 @@ function StarVisual({ reduce, paused }) {
   const starMask =
     "radial-gradient(closest-side at 50% 48%, #000 56%, transparent 96%)";
 
-  // Pause the video while the mobile menu is open. A playing, screen-blended,
-  // masked video recomposites every frame on the GPU; pausing freezes it on one
-  // frame the compositor can cache, freeing the budget for a smooth menu open.
+  // While the mobile menu is open we drop the blended/masked video out of
+  // compositing entirely (display:none, see below) so the GPU has nothing
+  // expensive to recomposite as the menu panel animates over the hero. Pause
+  // decoding too so a hidden video doesn't keep burning the decoder, and resume
+  // on close — the element stays mounted, so closing never reloads it.
   const videoRef = useRef(null);
   useEffect(() => {
     const v = videoRef.current;
@@ -111,16 +113,29 @@ function StarVisual({ reduce, paused }) {
           />
 
           {reduce ? (
-            <picture>
-              <source srcSet="/star.avif" type="image/avif" />
-              <img
-                src="/star.webp"
-                alt="BlueStar kristallen ster"
-                className="relative z-[2] h-full w-full object-contain"
-              />
-            </picture>
+            <img
+              src="/star-cut.webp"
+              alt="BlueStar kristallen ster"
+              className="relative z-[2] h-full w-full object-contain"
+            />
           ) : (
             <>
+              {/* While the mobile menu is open the blend/mask/video stack below
+                  is removed from compositing (display:none) and this cheap static
+                  star is shown instead. `mixBlendMode: screen` can't be cached as
+                  an isolated GPU layer, so without this swap the menu panel
+                  animating over the hero re-rasterizes the blended region every
+                  frame — that was the menu lag. star-cut.* has its black
+                  background keyed out to alpha, so it composites cleanly over the
+                  page without any blend (a raw still would show a black box). */}
+              {paused && (
+                <img
+                  src="/star-cut.webp"
+                  alt=""
+                  aria-hidden="true"
+                  className="absolute inset-0 z-[2] h-full w-full object-contain"
+                />
+              )}
               {/* Solid navy sits directly behind the video inside the same
                   stacking context, so `mixBlendMode: screen` blends the video's
                   opaque black background down to the page navy (it disappears)
@@ -129,7 +144,11 @@ function StarVisual({ reduce, paused }) {
               <div
                 aria-hidden="true"
                 className="absolute inset-0 z-0 bg-ink"
-                style={{ maskImage: starMask, WebkitMaskImage: starMask }}
+                style={{
+                  maskImage: starMask,
+                  WebkitMaskImage: starMask,
+                  display: paused ? "none" : undefined,
+                }}
               />
               <video
                 ref={videoRef}
@@ -138,6 +157,7 @@ function StarVisual({ reduce, paused }) {
                   mixBlendMode: "screen",
                   maskImage: starMask,
                   WebkitMaskImage: starMask,
+                  display: paused ? "none" : undefined,
                 }}
                 autoPlay
                 loop
