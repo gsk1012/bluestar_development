@@ -43,6 +43,7 @@ h3 {
   100% { opacity: 0; }
 }
 
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

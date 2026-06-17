@@ -90,45 +90,76 @@ export default function Navbar() {
           </a>
         </div>
 
-        <button
+        <motion.button
           type="button"
           onClick={() => setOpen((v) => !v)}
           aria-label={open ? "Menu sluiten" : "Menu openen"}
           aria-expanded={open}
-          className="inline-flex h-11 w-11 items-center justify-center rounded-rsm text-white transition-colors duration-150 hover:bg-white/10 active:scale-[0.97] md:hidden"
+          whileTap={{ scale: 0.9 }}
+          transition={{ duration: 0.15 }}
+          className="relative inline-flex h-11 w-11 items-center justify-center rounded-rsm text-white transition-colors duration-150 hover:bg-white/10 md:hidden"
         >
-          {open ? <X size={24} weight="regular" /> : <List size={24} weight="regular" />}
-        </button>
+          <AnimatePresence mode="popLayout" initial={false}>
+            {open ? (
+              <motion.span
+                key="close"
+                initial={{ opacity: 0, rotate: -45, scale: 0.6 }}
+                animate={{ opacity: 1, rotate: 0, scale: 1 }}
+                exit={{ opacity: 0, rotate: 45, scale: 0.6 }}
+                transition={{ duration: 0.2, ease: [0.23, 1, 0.32, 1] }}
+                className="absolute"
+              >
+                <X size={22} weight="regular" />
+              </motion.span>
+            ) : (
+              <motion.span
+                key="open"
+                initial={{ opacity: 0, rotate: 45, scale: 0.6 }}
+                animate={{ opacity: 1, rotate: 0, scale: 1 }}
+                exit={{ opacity: 0, rotate: -45, scale: 0.6 }}
+                transition={{ duration: 0.2, ease: [0.23, 1, 0.32, 1] }}
+                className="absolute"
+              >
+                <List size={22} weight="regular" />
+              </motion.span>
+            )}
+          </AnimatePresence>
+        </motion.button>
       </nav>
 
       <AnimatePresence>
         {open && (
           <motion.div
-            initial={reduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.97 }}
-            animate={reduceMotion ? { opacity: 1 } : { opacity: 1, scale: 1 }}
-            exit={reduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.97 }}
-            transition={{ duration: 0.2, ease: [0.23, 1, 0.32, 1] }}
-            style={{ transformOrigin: "top right" }}
-            className="absolute right-4 top-[76px] z-50 w-[calc(100%-2rem)] max-w-xs origin-top-right rounded-rmd border border-white/10 bg-ink/95 p-3 shadow-lg shadow-black/30 backdrop-blur md:hidden"
+            initial={reduceMotion ? { opacity: 0 } : { clipPath: "inset(0% 0% 100% 0%)", opacity: 0 }}
+            animate={reduceMotion ? { opacity: 1 } : { clipPath: "inset(0% 0% 0% 0%)", opacity: 1 }}
+            exit={reduceMotion ? { opacity: 0 } : { clipPath: "inset(0% 0% 100% 0%)", opacity: 0 }}
+            transition={{ duration: 0.32, ease: [0.23, 1, 0.32, 1] }}
+            className="absolute right-4 top-[76px] z-50 w-[calc(100%-2rem)] max-w-xs rounded-rmd border border-white/10 bg-ink/95 p-3 shadow-xl shadow-black/40 backdrop-blur md:hidden overflow-hidden"
           >
             <div className="flex flex-col">
-              {navLinks.map((link) => (
-                <a
+              {navLinks.map((link, i) => (
+                <motion.a
                   key={link.href}
                   href={link.href}
                   onClick={closeMenu}
+                  initial={reduceMotion ? false : { opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.24, delay: 0.06 + i * 0.045, ease: [0.23, 1, 0.32, 1] }}
                   className="flex min-h-[44px] items-center rounded-rsm px-3 text-sm font-medium text-white/80 transition-colors duration-150 hover:bg-white/10 hover:text-white"
                 >
                   {link.label}
-                </a>
+                </motion.a>
               ))}
-              <a
+              <motion.a
                 href="#contact"
                 onClick={closeMenu}
+                initial={reduceMotion ? false : { opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.26, delay: 0.06 + navLinks.length * 0.045, ease: [0.23, 1, 0.32, 1] }}
                 className="mt-2 inline-flex min-h-[44px] items-center justify-center rounded-full bg-accent px-5 text-sm font-medium text-white transition-colors duration-150 hover:bg-accent/90 active:scale-[0.97]"
               >
                 {CTA_LABEL}
-              </a>
+              </motion.a>
             </div>
           </motion.div>
         )}

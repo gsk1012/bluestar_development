@@ -1,5 +1,6 @@
 import { lazy, Suspense } from "react";
 import Navbar from "./components/Navbar";
+import CookieBanner from "./components/CookieBanner";
 import Hero from "./components/Hero";
 import Services from "./components/Services";
 import Stats from "./components/Stats";
@@ -36,6 +37,7 @@ function App() {
       <Suspense>
         <Footer />
       </Suspense>
+      <CookieBanner />
     </>
   );
 }
