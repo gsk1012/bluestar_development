@@ -10,9 +10,7 @@ const PHONES = [
   { label: "06 5335 6007", tel: "0653356007" },
 ];
 
-// Replace FORMSPREE_ID with the endpoint from formspree.io (e.g. "xwkgpqbe")
-const FORMSPREE_ID = "FORMSPREE_ID";
-const FORMSPREE_URL = `https://formspree.io/f/${FORMSPREE_ID}`;
+const FORMSPREE_URL = "https://formspree.io/f/xlgkkboy";
 
 const emptyForm = { name: "", email: "", message: "" };
 
@@ -46,7 +44,7 @@ export default function Contact() {
       const res = await fetch(FORMSPREE_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify(values),
+        body: JSON.stringify({ ...values, _subject: "Nieuw bericht via bluestardevelopment.nl" }),
       });
       if (res.ok) {
         setStatus("ok");
