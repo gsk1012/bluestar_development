@@ -8,7 +8,7 @@ import {
   animate,
   useInView,
 } from "motion/react";
-import { fadeUp } from "../lib/motion";
+import { fadeUp, vpOnce } from "../lib/motion";
 
 const stats = [
   {
@@ -65,7 +65,7 @@ export default function Stats() {
             variants={fadeUp}
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true, amount: 0.1 }}
+            viewport={vpOnce}
             className="lg:col-span-5"
           >
             <h2 className="font-heading text-3xl font-bold tracking-tight text-white text-balance sm:text-4xl">
@@ -88,7 +88,7 @@ export default function Stats() {
             variants={fadeUp}
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true, amount: 0.1 }}
+            viewport={vpOnce}
             className="lg:col-span-7"
           >
             {stats.map((stat, i) => (

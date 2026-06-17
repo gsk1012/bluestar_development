@@ -1,7 +1,7 @@
 "use client";
 import { motion, useReducedMotion } from "motion/react";
 import { Browser, ShoppingCart, Code, Wrench, CloudArrowUp } from "@phosphor-icons/react";
-import { staggerContainer } from "../lib/motion";
+import { staggerContainer, vpOnce } from "../lib/motion";
 
 const IMG_WEBSITE =
   "https://d8j0ntlcm91z4.cloudfront.net/user_3EullDUozCLP0n2estZw2O2QBZD/hf_20260616_220438_0522ab34-3f31-4dbd-8d62-0666d8ddba63.png";
@@ -15,12 +15,11 @@ const IMG_HOSTING =
   "https://d8j0ntlcm91z4.cloudfront.net/user_3EullDUozCLP0n2estZw2O2QBZD/hf_20260616_220812_7d92b2fb-51d8-4556-a35a-77529d06f622.png";
 
 const tileVariant = {
-  hidden: { opacity: 0, y: 28, scale: 0.97 },
+  hidden: { opacity: 0, y: 14 },
   show: {
     opacity: 1,
     y: 0,
-    scale: 1,
-    transition: { duration: 0.55, ease: [0.16, 1, 0.3, 1] },
+    transition: { duration: 0.4, ease: [0.16, 1, 0.3, 1] },
   },
 };
 
@@ -77,7 +76,7 @@ export default function Services() {
           variants={tileVariant}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, amount: 0.1 }}
+          viewport={vpOnce}
           className="mb-10 max-w-xl lg:mb-12"
         >
           <h2 className="font-heading text-3xl font-bold tracking-tight text-white text-balance sm:text-4xl">
@@ -94,7 +93,7 @@ export default function Services() {
           variants={staggerContainer}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, amount: 0.1 }}
+          viewport={vpOnce}
           className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3 md:grid-rows-[320px_220px] lg:gap-4"
         >
           {/* Hero tile: Website op maat — 2 cols wide */}

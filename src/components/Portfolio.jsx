@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion, useReducedMotion } from "motion/react";
+import { vpOnce } from "../lib/motion";
 import { projects } from "../data/projects";
 
 const ease = [0.23, 1, 0.32, 1];
@@ -10,10 +11,10 @@ function ProjectCard({ project, index, reduce }) {
 
   return (
     <motion.article
-      initial={reduce ? false : { opacity: 0, y: 32 }}
+      initial={reduce ? false : { opacity: 0, y: 14 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.1 }}
-      transition={{ duration: 0.7, ease }}
+      viewport={vpOnce}
+      transition={{ duration: 0.4, ease }}
       className="overflow-hidden rounded-rmd border border-white/10 bg-panel"
     >
       {/* Screenshot — full-width, fully visible, no gradient */}
@@ -96,10 +97,10 @@ export default function Portfolio() {
     <section id="portfolio" className="py-16 lg:py-24">
       <div className="mx-auto max-w-7xl px-6 sm:px-8">
         <motion.div
-          initial={reduce ? false : { opacity: 0, y: 22 }}
+          initial={reduce ? false : { opacity: 0, y: 14 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.1 }}
-          transition={{ duration: 0.6, ease }}
+          viewport={vpOnce}
+          transition={{ duration: 0.4, ease }}
           className="mb-10 lg:mb-14"
         >
           <h2 className="font-heading text-3xl font-bold tracking-tight text-balance text-white sm:text-4xl">

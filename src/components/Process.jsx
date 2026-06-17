@@ -5,7 +5,7 @@ import {
   Code,
   RocketLaunch,
 } from "@phosphor-icons/react";
-import { fadeUp, staggerContainer } from "../lib/motion";
+import { fadeUp, staggerContainer, vpOnce } from "../lib/motion";
 
 const steps = [
   {
@@ -36,7 +36,7 @@ const steps = [
 
 export default function Process() {
   const reduceMotion = useReducedMotion();
-  const lineTransition = { duration: 0.7, ease: [0.23, 1, 0.32, 1] };
+  const lineTransition = { duration: 0.5, ease: [0.23, 1, 0.32, 1] };
 
   return (
     <section id="aanpak" className="py-16 lg:py-24">
@@ -45,7 +45,7 @@ export default function Process() {
           variants={fadeUp}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, amount: 0.1 }}
+          viewport={vpOnce}
           className="max-w-2xl"
         >
           <h2 className="font-heading text-3xl font-bold tracking-tight text-white text-balance sm:text-4xl">
@@ -61,7 +61,7 @@ export default function Process() {
           variants={staggerContainer}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, amount: 0.25 }}
+          viewport={vpOnce}
           className="relative mt-12 lg:mt-16"
         >
           {/* Verbindingslijn: verticaal mobiel, horizontaal desktop */}
@@ -77,7 +77,7 @@ export default function Process() {
                   : { scaleX: 0, scaleY: 0 }
               }
               whileInView={{ scaleX: 1, scaleY: 1 }}
-              viewport={{ once: true, amount: 0.1 }}
+              viewport={vpOnce}
               transition={reduceMotion ? { duration: 0 } : lineTransition}
             />
           </div>

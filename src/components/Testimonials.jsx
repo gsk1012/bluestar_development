@@ -1,15 +1,14 @@
 "use client";
 import { motion, useReducedMotion } from "motion/react";
 import { testimonials } from "../data/testimonials";
-import { fadeUp, staggerContainer } from "../lib/motion";
+import { fadeUp, staggerContainer, vpOnce } from "../lib/motion";
 
 const tileVariant = {
-  hidden: { opacity: 0, y: 24, scale: 0.98 },
+  hidden: { opacity: 0, y: 14 },
   show: {
     opacity: 1,
     y: 0,
-    scale: 1,
-    transition: { duration: 0.55, ease: [0.16, 1, 0.3, 1] },
+    transition: { duration: 0.4, ease: [0.16, 1, 0.3, 1] },
   },
 };
 
@@ -60,7 +59,7 @@ export default function Testimonials() {
           variants={fadeUp}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, amount: 0.1 }}
+          viewport={vpOnce}
           className="max-w-xl"
         >
           <h2 className="font-heading text-3xl font-bold tracking-tight text-white text-balance sm:text-4xl">
@@ -76,7 +75,7 @@ export default function Testimonials() {
           variants={staggerContainer}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, amount: 0.1 }}
+          viewport={vpOnce}
           className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:mt-14 lg:grid-cols-3 lg:gap-5"
         >
           {testimonials.map((item) => (
