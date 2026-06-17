@@ -157,12 +157,11 @@ export default function Navbar() {
       <AnimatePresence>
         {open && (
           <motion.div
-            initial={reduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.96, y: -8 }}
-            animate={reduceMotion ? { opacity: 1 } : { opacity: 1, scale: 1, y: 0 }}
-            exit={reduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.96, y: -8 }}
-            transition={{ duration: 0.22, ease: [0.23, 1, 0.32, 1] }}
-            style={{ transformOrigin: "top right" }}
-            className="absolute right-4 top-[76px] z-50 w-[calc(100%-2rem)] max-w-xs rounded-rmd border border-white/10 bg-night p-3 shadow-xl shadow-black/40 md:hidden overflow-hidden"
+            initial={reduceMotion ? { opacity: 0 } : { opacity: 0, y: -10 }}
+            animate={reduceMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
+            exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: -10 }}
+            transition={{ duration: 0.2, ease: [0.23, 1, 0.32, 1] }}
+            className="absolute right-4 top-[76px] z-50 w-[calc(100%-2rem)] max-w-xs rounded-rmd border border-white/10 bg-night p-3 shadow-lg shadow-black/40 md:hidden overflow-hidden"
           >
             <div className="flex flex-col">
               {navLinks.map((link, i) => (
