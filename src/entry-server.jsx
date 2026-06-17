@@ -1,6 +1,7 @@
 import { renderToStaticMarkup } from 'react-dom/server'
 import { StrictMode } from 'react'
 import { LanguageProvider } from './i18n/LanguageContext'
+import { MenuProvider } from './lib/menu'
 import Navbar from './components/Navbar'
 import CookieBanner from './components/CookieBanner'
 import Hero from './components/Hero'
@@ -41,7 +42,9 @@ export function render() {
   return renderToStaticMarkup(
     <StrictMode>
       <LanguageProvider>
-        <ServerApp />
+        <MenuProvider>
+          <ServerApp />
+        </MenuProvider>
       </LanguageProvider>
     </StrictMode>
   )

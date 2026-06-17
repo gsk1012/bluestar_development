@@ -1,6 +1,8 @@
+import { useRef, useEffect } from "react";
 import { motion, useReducedMotion } from "motion/react";
 import { ArrowRight } from "@phosphor-icons/react";
 import { useLanguage } from "../i18n/LanguageContext";
+import { useMenu } from "../lib/menu";
 
 // Generated once at module level — stable across re-renders.
 // Stars are intentionally dim: they live in the background layer, not on top.
@@ -15,7 +17,7 @@ const SHOOTING_STARS = Array.from({ length: 20 }, (_, i) => ({
   delay:    (Math.random() * 36).toFixed(1),          // stagger across 36 s
 }));
 
-function ShootingStars({ reduce }) {
+function ShootingStars({ reduce, paused }) {
   if (reduce) return null;
   return (
     <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-[1] overflow-hidden">
@@ -28,6 +30,7 @@ function ShootingStars({ reduce }) {
             top:        s.top,
             width:      `${s.tailLen}px`,
             height:     `${s.height}px`,
+            animationPlayState: paused ? "paused" : "running",
             // Muted cool-white gradient: transparent tail (left) → faint head (right).
             // After rotate(135deg) the bright end points toward bottom-left (direction of travel).
             // No box-shadow — keep it strictly background texture.
@@ -60,12 +63,24 @@ const fade = {
   show: { opacity: 1, y: 0, transition: { duration: 0.6, ease } },
 };
 
-function StarVisual({ reduce }) {
+function StarVisual({ reduce, paused }) {
   // Feather the navy backdrop and the video together. In the outer margin the
   // video is pure black (no star), so fading both there lets the real page show
   // through — no hard rectangle edge and no black creeping back in.
   const starMask =
     "radial-gradient(closest-side at 50% 48%, #000 56%, transparent 96%)";
+
+  // Pause the video while the mobile menu is open. A playing, screen-blended,
+  // masked video recomposites every frame on the GPU; pausing freezes it on one
+  // frame the compositor can cache, freeing the budget for a smooth menu open.
+  const videoRef = useRef(null);
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v) return;
+    if (paused) v.pause();
+    else v.play().catch(() => {});
+  }, [paused]);
+
   return (
     <div className="absolute left-1/2 top-0 z-0 aspect-square w-[min(130vw,680px)] -translate-x-1/2 translate-y-[8%] sm:left-auto sm:right-0 sm:w-[min(100vw,680px)] sm:translate-x-[12%] sm:-translate-y-[3%] lg:w-[min(62vw,920px)] lg:translate-x-[15%] lg:translate-y-[0%]">
       <motion.div
@@ -81,8 +96,12 @@ function StarVisual({ reduce }) {
         className="relative h-full w-full"
       >
         <motion.div
-          animate={reduce ? {} : { y: [0, -16, 0] }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 2.6 }}
+          animate={reduce || paused ? { y: 0 } : { y: [0, -16, 0] }}
+          transition={
+            reduce || paused
+              ? { duration: 0.3, ease: "easeOut" }
+              : { duration: 8, repeat: Infinity, ease: "easeInOut", delay: 2.6 }
+          }
           className="relative h-full w-full"
         >
           {/* Glow halo behind the star */}
@@ -113,6 +132,7 @@ function StarVisual({ reduce }) {
                 style={{ maskImage: starMask, WebkitMaskImage: starMask }}
               />
               <video
+                ref={videoRef}
                 className="relative z-[2] h-full w-full object-contain"
                 style={{
                   mixBlendMode: "screen",
@@ -142,6 +162,7 @@ function StarVisual({ reduce }) {
 export default function Hero() {
   const reduce = useReducedMotion();
   const { t } = useLanguage();
+  const { menuOpen } = useMenu();
   const h = t.hero;
 
   return (
@@ -150,7 +171,7 @@ export default function Hero() {
       className="relative h-[100svh] overflow-hidden text-white"
     >
       {/* Rotating star, bleeding off the right edge */}
-      <StarVisual reduce={reduce} />
+      <StarVisual reduce={reduce} paused={menuOpen} />
 
       {/* Phone: bottom-up scrim — content sits at the bottom, star shows at the top */}
       <div
@@ -181,7 +202,7 @@ export default function Hero() {
       />
 
       {/* Shooting star particles */}
-      <ShootingStars reduce={reduce} />
+      <ShootingStars reduce={reduce} paused={menuOpen} />
 
       {/* Bottom fade into next section */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 bottom-0 z-[2] h-32 bg-gradient-to-b from-transparent to-ink" />

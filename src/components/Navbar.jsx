@@ -8,6 +8,7 @@ import {
 } from "motion/react";
 import { List, X } from "@phosphor-icons/react";
 import { useLanguage } from "../i18n/LanguageContext";
+import { useMenu } from "../lib/menu";
 
 function NavLink({ href, label, onClick }) {
   return (
@@ -45,7 +46,9 @@ function LangToggle({ lang, setLang }) {
 
 export default function Navbar() {
   const { lang, setLang, t } = useLanguage();
-  const [open, setOpen] = useState(false);
+  // Menu-open lives in shared context so the Hero can pause its star video
+  // while the menu is open (see lib/menu).
+  const { menuOpen: open, setMenuOpen: setOpen } = useMenu();
   const [scrolled, setScrolled] = useState(false);
   const reduceMotion = useReducedMotion();
   const { scrollY } = useScroll();
