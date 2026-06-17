@@ -1,4 +1,3 @@
-"use client";
 import { useRef, useEffect } from "react";
 import {
   motion,
@@ -60,7 +59,7 @@ export default function Stats() {
             <h2 className="font-heading text-3xl font-bold tracking-tight text-white text-balance sm:text-4xl">
               {s.heading}
             </h2>
-            <p className="mt-4 max-w-sm text-lg leading-relaxed text-white/65">
+            <p className="mt-4 max-w-sm text-lg leading-relaxed text-white/60">
               {s.body}
             </p>
             <a

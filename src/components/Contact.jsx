@@ -2,7 +2,7 @@ import { useState } from "react";
 import { motion } from "motion/react";
 import { Envelope, Phone } from "@phosphor-icons/react";
 import { validateContactForm } from "../lib/validation";
-import { fadeUp } from "../lib/motion";
+import { fadeUp, vpOnce } from "../lib/motion";
 import { useLanguage } from "../i18n/LanguageContext";
 
 const EMAIL = "info@bluestardevelopment.nl";
@@ -72,7 +72,7 @@ export default function Contact() {
             variants={fadeUp}
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true, amount: 0.1 }}
+            viewport={vpOnce}
           >
             <h2 className="font-heading text-3xl font-bold tracking-tight text-white text-balance sm:text-4xl">
               {c.heading}
@@ -111,7 +111,7 @@ export default function Contact() {
             variants={fadeUp}
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true, amount: 0.1 }}
+            viewport={vpOnce}
             noValidate
             onSubmit={handleSubmit}
             className="rounded-rlg border border-white/10 bg-white/5 p-6 sm:p-8"

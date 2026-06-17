@@ -113,7 +113,7 @@ export default function Navbar() {
 
         <div className="flex items-center gap-2 md:hidden">
           <LangToggle lang={lang} setLang={setLang} />
-        <motion.button
+          <motion.button
           type="button"
           onClick={() => setOpen((v) => !v)}
           aria-label={open ? t.nav.menuClose : t.nav.menuOpen}

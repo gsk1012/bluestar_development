@@ -1,4 +1,3 @@
-"use client";
 import { motion, useReducedMotion } from "motion/react";
 import { Browser, ShoppingCart, Code, Wrench, CloudArrowUp } from "@phosphor-icons/react";
 import { staggerContainer, vpOnce } from "../lib/motion";
