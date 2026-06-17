@@ -5,7 +5,7 @@ const navLinks = [
   { label: "Contact", href: "#contact" },
 ];
 
-const EMAIL = "gsinghkaur1012@gmail.com";
+const EMAIL = "info@bluestardevelopment.nl";
 const PHONES = [
   { label: "06 8647 7249", tel: "0686477249" },
   { label: "06 5335 6007", tel: "0653356007" },

@@ -4,7 +4,7 @@ import { Envelope, Phone } from "@phosphor-icons/react";
 import { validateContactForm } from "../lib/validation";
 import { fadeUp } from "../lib/motion";
 
-const EMAIL = "gsinghkaur1012@gmail.com";
+const EMAIL = "info@bluestardevelopment.nl";
 const PHONES = [
   { label: "06 8647 7249", tel: "0686477249" },
   { label: "06 5335 6007", tel: "0653356007" },
