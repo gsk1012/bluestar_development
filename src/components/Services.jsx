@@ -2,6 +2,7 @@
 import { motion, useReducedMotion } from "motion/react";
 import { Browser, ShoppingCart, Code, Wrench, CloudArrowUp } from "@phosphor-icons/react";
 import { staggerContainer, vpOnce } from "../lib/motion";
+import { useLanguage } from "../i18n/LanguageContext";
 
 const IMG_WEBSITE =
   "https://d8j0ntlcm91z4.cloudfront.net/user_3EullDUozCLP0n2estZw2O2QBZD/hf_20260616_220438_0522ab34-3f31-4dbd-8d62-0666d8ddba63.png";
@@ -62,6 +63,17 @@ function ImageTile({ img, title, desc, icon: Icon, className = "" }) {
 
 
 export default function Services() {
+  const { t } = useLanguage();
+  const s = t.services;
+
+  const tiles = [
+    { img: IMG_WEBSITE, key: "website", icon: Browser, className: "min-h-[260px] sm:col-span-2 md:col-span-2" },
+    { img: IMG_WEBSHOP, key: "webshop", icon: ShoppingCart, className: "min-h-[260px] sm:col-span-1 md:col-span-1" },
+    { img: IMG_WEBAPP, key: "webapp", icon: Code, className: "min-h-[220px] sm:col-span-1 md:col-span-1" },
+    { img: IMG_ONDERHOUD, key: "maintenance", icon: Wrench, className: "min-h-[220px] sm:col-span-1 md:col-span-1" },
+    { img: IMG_HOSTING, key: "hosting", icon: CloudArrowUp, className: "min-h-[220px] sm:col-span-2 md:col-span-1" },
+  ];
+
   return (
     <section id="diensten" className="relative isolate overflow-hidden py-16 lg:py-24">
       {/* ambient blob */}
@@ -71,7 +83,6 @@ export default function Services() {
       />
 
       <div className="mx-auto max-w-7xl px-6 sm:px-8">
-        {/* Header */}
         <motion.div
           variants={tileVariant}
           initial="hidden"
@@ -80,15 +91,13 @@ export default function Services() {
           className="mb-10 max-w-xl lg:mb-12"
         >
           <h2 className="font-heading text-3xl font-bold tracking-tight text-white text-balance sm:text-4xl">
-            Alles voor je online aanwezigheid
+            {s.heading}
           </h2>
           <p className="mt-3 text-lg leading-relaxed text-white/60">
-            Van een eerste bedrijfssite tot maatwerk software, met onderhoud en hosting die je
-            werk uit handen nemen.
+            {s.subheading}
           </p>
         </motion.div>
 
-        {/* Bento grid */}
         <motion.div
           variants={staggerContainer}
           initial="hidden"
@@ -96,50 +105,16 @@ export default function Services() {
           viewport={vpOnce}
           className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3 md:grid-rows-[320px_220px] lg:gap-4"
         >
-          {/* Hero tile: Website op maat — 2 cols wide */}
-          <ImageTile
-            img={IMG_WEBSITE}
-            title="Website op maat"
-            desc="Een snelle, vindbare bedrijfswebsite die past bij jouw merk en op elk scherm scherp blijft."
-            icon={Browser}
-            className="min-h-[260px] sm:col-span-2 md:col-span-2"
-          />
-
-          {/* Webshop */}
-          <ImageTile
-            img={IMG_WEBSHOP}
-            title="Webshop"
-            desc="Een complete online winkel met productbeheer, veilige betalingen en een soepel afrekenproces."
-            icon={ShoppingCart}
-            className="min-h-[260px] sm:col-span-1 md:col-span-1"
-          />
-
-          {/* Web-applicatie */}
-          <ImageTile
-            img={IMG_WEBAPP}
-            title="Web-applicatie"
-            desc="Maatwerk software in de browser, van klantportaal tot planningstool, gebouwd rond jouw proces."
-            icon={Code}
-            className="min-h-[220px] sm:col-span-1 md:col-span-1"
-          />
-
-          {/* Onderhoud & support */}
-          <ImageTile
-            img={IMG_ONDERHOUD}
-            title="Onderhoud & support"
-            desc="Updates, back-ups en snelle hulp bij vragen, zodat je site veilig en actueel blijft draaien."
-            icon={Wrench}
-            className="min-h-[220px] sm:col-span-1 md:col-span-1"
-          />
-
-          {/* Hosting */}
-          <ImageTile
-            img={IMG_HOSTING}
-            title="Hosting"
-            desc="Betrouwbare hosting met SSL en dagelijkse back-ups, zodat je site altijd snel bereikbaar is."
-            icon={CloudArrowUp}
-            className="min-h-[220px] sm:col-span-2 md:col-span-1"
-          />
+          {tiles.map(({ img, key, icon, className }) => (
+            <ImageTile
+              key={key}
+              img={img}
+              title={s.items[key].title}
+              desc={s.items[key].desc}
+              icon={icon}
+              className={className}
+            />
+          ))}
         </motion.div>
       </div>
     </section>

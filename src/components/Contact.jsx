@@ -3,6 +3,7 @@ import { motion } from "motion/react";
 import { Envelope, Phone } from "@phosphor-icons/react";
 import { validateContactForm } from "../lib/validation";
 import { fadeUp } from "../lib/motion";
+import { useLanguage } from "../i18n/LanguageContext";
 
 const EMAIL = "info@bluestardevelopment.nl";
 const PHONES = [
@@ -24,9 +25,12 @@ function FieldError({ id, message }) {
 }
 
 export default function Contact() {
+  const { t } = useLanguage();
+  const c = t.contact;
+
   const [values, setValues] = useState(emptyForm);
   const [errors, setErrors] = useState({});
-  const [status, setStatus] = useState(""); // "sending" | "ok" | "error" | ""
+  const [status, setStatus] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -44,7 +48,7 @@ export default function Contact() {
       const res = await fetch(FORMSPREE_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({ ...values, _subject: "Nieuw bericht via bluestardevelopment.nl" }),
+        body: JSON.stringify({ ...values, _subject: c.emailSubject }),
       });
       if (res.ok) {
         setStatus("ok");
@@ -71,11 +75,10 @@ export default function Contact() {
             viewport={{ once: true, amount: 0.1 }}
           >
             <h2 className="font-heading text-3xl font-bold tracking-tight text-white text-balance sm:text-4xl">
-              Klaar voor een nieuwe website?
+              {c.heading}
             </h2>
             <p className="mt-4 max-w-md text-lg leading-relaxed text-white/70">
-              Vertel ons over je plannen. We denken graag mee en sturen je een
-              vrijblijvend voorstel.
+              {c.body}
             </p>
 
             <div className="mt-8 flex flex-col gap-4">
@@ -115,7 +118,7 @@ export default function Contact() {
           >
             <div>
               <label htmlFor="name" className="block text-sm font-medium text-white">
-                Naam
+                {c.nameLabel}
               </label>
               <input
                 id="name"
@@ -125,7 +128,7 @@ export default function Contact() {
                 onChange={handleChange}
                 aria-invalid={errors.name ? "true" : undefined}
                 aria-describedby={errors.name ? "name-error" : undefined}
-                placeholder="Jouw naam"
+                placeholder={c.namePlaceholder}
                 className={`mt-1.5 ${fieldClass}`}
               />
               <FieldError id="name-error" message={errors.name} />
@@ -133,7 +136,7 @@ export default function Contact() {
 
             <div className="mt-5">
               <label htmlFor="email" className="block text-sm font-medium text-white">
-                E-mail
+                {c.emailLabel}
               </label>
               <input
                 id="email"
@@ -143,7 +146,7 @@ export default function Contact() {
                 onChange={handleChange}
                 aria-invalid={errors.email ? "true" : undefined}
                 aria-describedby={errors.email ? "email-error" : undefined}
-                placeholder="info@bluestardevelopment.nl"
+                placeholder={EMAIL}
                 className={`mt-1.5 ${fieldClass}`}
               />
               <FieldError id="email-error" message={errors.email} />
@@ -151,7 +154,7 @@ export default function Contact() {
 
             <div className="mt-5">
               <label htmlFor="message" className="block text-sm font-medium text-white">
-                Bericht
+                {c.messageLabel}
               </label>
               <textarea
                 id="message"
@@ -161,7 +164,7 @@ export default function Contact() {
                 onChange={handleChange}
                 aria-invalid={errors.message ? "true" : undefined}
                 aria-describedby={errors.message ? "message-error" : undefined}
-                placeholder="Vertel ons over je project. Wat voor site zoek je, wat is je deadline en heb je al een huisstijl?"
+                placeholder={c.messagePlaceholder}
                 className={`mt-1.5 resize-y ${fieldClass}`}
               />
               <FieldError id="message-error" message={errors.message} />
@@ -172,7 +175,7 @@ export default function Contact() {
               disabled={status === "sending"}
               className="mt-6 inline-flex h-12 w-full items-center justify-center rounded-full bg-accent px-6 text-sm font-medium text-white transition-colors duration-150 hover:bg-accent/90 active:scale-[0.97] disabled:opacity-60 sm:w-auto"
             >
-              {status === "sending" ? "Versturen…" : "Verstuur bericht"}
+              {status === "sending" ? c.sending : c.submit}
             </button>
 
             {status === "ok" && (
@@ -180,7 +183,7 @@ export default function Contact() {
                 role="status"
                 className="mt-4 rounded-rsm border border-white/10 bg-white/5 px-4 py-3 text-sm leading-relaxed text-white/80"
               >
-                Bedankt voor je bericht! We nemen zo snel mogelijk contact met je op.
+                {c.success}
               </p>
             )}
             {status === "error" && (
@@ -188,11 +191,11 @@ export default function Contact() {
                 role="alert"
                 className="mt-4 rounded-rsm border border-accent-bright/30 bg-accent-bright/5 px-4 py-3 text-sm leading-relaxed text-accent-bright"
               >
-                Er ging iets mis. Stuur je bericht naar{" "}
+                {c.error}{" "}
                 <a href={`mailto:${EMAIL}`} className="underline">
                   {EMAIL}
                 </a>{" "}
-                of bel ons direct.
+                {c.errorSuffix}
               </p>
             )}
           </motion.form>

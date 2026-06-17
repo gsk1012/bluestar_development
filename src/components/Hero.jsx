@@ -1,5 +1,6 @@
 import { motion, useReducedMotion } from "motion/react";
 import { ArrowRight } from "@phosphor-icons/react";
+import { useLanguage } from "../i18n/LanguageContext";
 
 // Generated once at module level — stable across re-renders.
 // Stars are intentionally dim: they live in the background layer, not on top.
@@ -140,6 +141,8 @@ function StarVisual({ reduce }) {
 
 export default function Hero() {
   const reduce = useReducedMotion();
+  const { t } = useLanguage();
+  const h = t.hero;
 
   return (
     <section
@@ -192,13 +195,13 @@ export default function Hero() {
           className="font-heading font-bold leading-[0.96] tracking-[-0.035em] text-[clamp(2.75rem,7.5vw,6.875rem)] lg:max-w-[66%]"
           >
           <motion.span variants={lineUp} className="block">
-            Websites die
+            {h.line1}
           </motion.span>
           <motion.span variants={lineUp} className="block">
-            je bedrijf
+            {h.line2}
           </motion.span>
           <motion.span variants={lineUp} className="block text-accent-bright">
-            laten groeien.
+            {h.line3}
           </motion.span>
         </motion.h1>
 
@@ -212,13 +215,13 @@ export default function Hero() {
             variants={fade}
             className="text-lg font-medium leading-snug text-white sm:text-xl"
           >
-            Snelle, vindbare websites en webshops op maat.
+            {h.sub1}
           </motion.p>
           <motion.p
             variants={fade}
             className="mt-2 max-w-md text-sm leading-relaxed text-white/60 sm:text-base"
           >
-            Gebouwd rond jouw merk en je klanten, van eerste schets tot live site.
+            {h.sub2}
           </motion.p>
 
           <motion.div
@@ -229,7 +232,7 @@ export default function Hero() {
               href="#contact"
               className="group inline-flex items-center gap-3 rounded-full bg-accent py-2 pl-6 pr-2 text-sm font-medium text-white transition-colors duration-150 hover:bg-accent/90 active:scale-[0.97]"
             >
-              Plan een gesprek
+              {h.cta}
               <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-ink/40 transition-transform duration-200 ease-out group-hover:translate-x-0.5">
                 <ArrowRight size={18} weight="bold" />
               </span>
@@ -238,7 +241,7 @@ export default function Hero() {
               href="#portfolio"
               className="inline-flex items-center rounded-full border border-white/20 px-6 py-3 text-sm font-medium text-white transition-colors duration-150 hover:bg-white/10 active:scale-[0.97]"
             >
-              Bekijk ons werk
+              {h.secondary}
             </a>
           </motion.div>
         </motion.div>

@@ -1,39 +1,9 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "motion/react";
+import { useLanguage } from "../i18n/LanguageContext";
 
 const STORAGE_KEY = "cookie_consent_v1";
 const EASE = [0.23, 1, 0.32, 1];
-
-const CATEGORIES = [
-  {
-    id: "necessary",
-    label: "Noodzakelijk",
-    description:
-      "Vereist voor de basisfunctionaliteit van de website, zoals beveiliging en sessiebeheer. Kunnen niet worden uitgeschakeld.",
-    required: true,
-  },
-  {
-    id: "functional",
-    label: "Functioneel",
-    description:
-      "Onthouden uw voorkeuren zoals taalinstellingen en ingevulde formuliergegevens voor een betere gebruikerservaring.",
-    required: false,
-  },
-  {
-    id: "analytics",
-    label: "Analytisch",
-    description:
-      "Meten anoniem hoe bezoekers de website gebruiken, zodat we de inhoud en prestaties kunnen verbeteren (bijv. Google Analytics).",
-    required: false,
-  },
-  {
-    id: "marketing",
-    label: "Marketing",
-    description:
-      "Worden gebruikt voor gepersonaliseerde advertenties en het bijhouden van campagnes op externe platforms zoals Google en Meta.",
-    required: false,
-  },
-];
 
 function loadConsent() {
   try {
@@ -81,6 +51,9 @@ function Toggle({ checked, onChange, disabled, id }) {
 }
 
 export default function CookieBanner() {
+  const { t } = useLanguage();
+  const ck = t.cookie;
+
   const [phase, setPhase] = useState("hidden");
   const [hasConsent, setHasConsent] = useState(false);
   const [prefs, setPrefs] = useState({
@@ -148,8 +121,8 @@ export default function CookieBanner() {
           <motion.button
             key="fab"
             onClick={() => setPhase("settings")}
-            aria-label="Cookie-instellingen aanpassen"
-            title="Cookie-instellingen"
+            aria-label={ck.fabAria}
+            title={ck.fabTitle}
             initial={reduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.6 }}
             animate={reduceMotion ? { opacity: 1 } : { opacity: 1, scale: 1 }}
             exit={reduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.6 }}
@@ -193,34 +166,33 @@ export default function CookieBanner() {
             key="banner"
             role="dialog"
             aria-modal="true"
-            aria-label="Cookiemelding"
+            aria-label={ck.dialogBanner}
             {...slideUp}
             transition={{ duration: 0.35, ease: EASE }}
             className="fixed bottom-0 left-0 right-0 z-50 p-0 md:p-4"
           >
             <div className="mx-auto max-w-4xl rounded-t-rlg md:rounded-rlg border border-white/10 bg-panel/95 backdrop-blur-md px-6 py-5 shadow-2xl">
               <p className="text-sm text-white/80 leading-relaxed">
-                We gebruiken cookies om de website goed te laten werken en uw
-                ervaring te verbeteren. U kunt uw keuze op elk moment aanpassen.
+                {ck.bannerText}
               </p>
               <div className="mt-4 flex flex-wrap items-center gap-3">
                 <button
                   onClick={acceptAll}
                   className="rounded-rmd px-5 py-2 text-sm font-medium bg-accent hover:bg-accent-bright text-white transition-colors duration-200"
                 >
-                  Alles accepteren
+                  {ck.acceptAll}
                 </button>
                 <button
                   onClick={declineAll}
                   className="rounded-rmd px-4 py-2 text-sm font-medium text-white/60 hover:text-white border border-white/10 hover:border-white/30 transition-all duration-200"
                 >
-                  Alleen noodzakelijk
+                  {ck.necessaryOnly}
                 </button>
                 <button
                   onClick={() => setPhase("settings")}
                   className="ml-auto text-sm text-accent-bright hover:text-white transition-colors duration-150 underline underline-offset-2"
                 >
-                  Instellingen aanpassen
+                  {ck.customise}
                 </button>
               </div>
             </div>
@@ -235,7 +207,7 @@ export default function CookieBanner() {
             key="settings"
             role="dialog"
             aria-modal="true"
-            aria-label="Cookie-instellingen"
+            aria-label={ck.dialogSettings}
             {...slideUp}
             transition={{ duration: 0.35, ease: EASE }}
             className="fixed inset-0 z-50 flex items-center justify-center p-4"
@@ -244,11 +216,11 @@ export default function CookieBanner() {
               {/* Header */}
               <div className="flex items-center justify-between px-6 pt-5 pb-4 border-b border-white/10">
                 <h2 className="font-heading text-base font-bold text-white">
-                  Cookie-instellingen
+                  {ck.settingsTitle}
                 </h2>
                 <button
                   onClick={() => setPhase("hidden")}
-                  aria-label="Sluiten"
+                  aria-label={ck.close}
                   className="text-white/50 hover:text-white transition-colors p-1 -mr-1 rounded"
                 >
                   <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
@@ -259,7 +231,7 @@ export default function CookieBanner() {
 
               {/* Categories */}
               <div className="px-6 py-4 flex flex-col gap-5 max-h-[60vh] overflow-y-auto">
-                {CATEGORIES.map((cat, i) => (
+                {ck.categories.map((cat, i) => (
                   <motion.div
                     key={cat.id}
                     initial={reduceMotion ? false : { opacity: 0, y: 8 }}
@@ -275,7 +247,7 @@ export default function CookieBanner() {
                         {cat.label}
                         {cat.required && (
                           <span className="ml-2 text-xs font-normal text-white/40">
-                            Altijd actief
+                            {ck.alwaysActive}
                           </span>
                         )}
                       </label>
@@ -299,26 +271,26 @@ export default function CookieBanner() {
               <motion.div
                 initial={reduceMotion ? false : { opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ duration: 0.2, delay: 0.08 + CATEGORIES.length * 0.055 }}
+                transition={{ duration: 0.2, delay: 0.08 + ck.categories.length * 0.055 }}
                 className="px-6 py-4 border-t border-white/10 flex flex-wrap gap-3"
               >
                 <button
                   onClick={saveCustom}
                   className="rounded-rmd px-5 py-2 text-sm font-medium bg-accent hover:bg-accent-bright text-white transition-colors duration-200"
                 >
-                  Keuze opslaan
+                  {ck.saveChoice}
                 </button>
                 <button
                   onClick={acceptAll}
                   className="rounded-rmd px-4 py-2 text-sm font-medium text-white/60 hover:text-white border border-white/10 hover:border-white/30 transition-all duration-200"
                 >
-                  Alles accepteren
+                  {ck.acceptAll}
                 </button>
                 <button
                   onClick={declineAll}
                   className="rounded-rmd px-4 py-2 text-sm font-medium text-white/60 hover:text-white border border-white/10 hover:border-white/30 transition-all duration-200"
                 >
-                  Alleen noodzakelijk
+                  {ck.necessaryOnly}
                 </button>
               </motion.div>
             </div>

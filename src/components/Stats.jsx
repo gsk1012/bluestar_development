@@ -9,26 +9,12 @@ import {
   useInView,
 } from "motion/react";
 import { fadeUp, vpOnce } from "../lib/motion";
+import { useLanguage } from "../i18n/LanguageContext";
 
-const stats = [
-  {
-    to: 100,
-    format: (v) => `${Math.round(v)}/100`,
-    label: "Prestatiescore",
-    context: "Google Lighthouse, maximale score",
-  },
-  {
-    to: 0.9,
-    format: (v) => `${v.toFixed(1).replace(".", ",")}s`,
-    label: "Gemiddelde laadtijd",
-    context: "vs. gemiddeld 4,2 seconden",
-  },
-  {
-    to: 100,
-    format: (v) => `${Math.round(v)}%`,
-    label: "Responsive op mobiel",
-    context: "op elk scherm en apparaat",
-  },
+const RAW_STATS = [
+  { to: 100,  makeFormat: ()    => (v) => `${Math.round(v)}/100` },
+  { to: 0.9,  makeFormat: (sep) => (v) => `${v.toFixed(1).replace(".", sep)}s` },
+  { to: 100,  makeFormat: ()    => (v) => `${Math.round(v)}%` },
 ];
 
 function Counter({ to, format, duration = 1.6, delay = 0 }) {
@@ -56,6 +42,9 @@ function Counter({ to, format, duration = 1.6, delay = 0 }) {
 }
 
 export default function Stats() {
+  const { t } = useLanguage();
+  const s = t.stats;
+
   return (
     <section id="cijfers" className="py-16 lg:py-24">
       <div className="mx-auto max-w-7xl px-6 sm:px-8">
@@ -69,17 +58,16 @@ export default function Stats() {
             className="lg:col-span-5"
           >
             <h2 className="font-heading text-3xl font-bold tracking-tight text-white text-balance sm:text-4xl">
-              Snelheid die je merkt en Google waardeert
+              {s.heading}
             </h2>
             <p className="mt-4 max-w-sm text-lg leading-relaxed text-white/65">
-              Een snelle site houdt bezoekers vast en scoort beter in
-              zoekresultaten. Onze sites laden gemiddeld in 0,9 seconden.
+              {s.body}
             </p>
             <a
               href="#contact"
               className="mt-8 inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-semibold text-white transition-colors duration-200 hover:bg-accent-bright active:scale-[0.98]"
             >
-              Plan een gesprek
+              {s.cta}
             </a>
           </motion.div>
 
@@ -91,35 +79,37 @@ export default function Stats() {
             viewport={vpOnce}
             className="lg:col-span-7"
           >
-            {stats.map((stat, i) => (
-              <div
-                key={stat.label}
-                className={`flex items-center justify-between gap-6 py-7 ${
-                  i < stats.length - 1 ? "border-b border-white/10" : ""
-                }`}
-              >
-                {/* Display number */}
-                <p
-                  className="font-heading text-5xl font-bold tabular-nums tracking-tight text-white sm:text-6xl"
-                  aria-label={`${stat.label}: ${stat.format(stat.to)}`}
+            {s.items.map((item, i) => {
+              const raw = RAW_STATS[i];
+              const fmt = raw.makeFormat(s.decimalSep);
+              return (
+                <div
+                  key={item.label}
+                  className={`flex items-center justify-between gap-6 py-7 ${
+                    i < s.items.length - 1 ? "border-b border-white/10" : ""
+                  }`}
                 >
-                  <Counter
-                    to={stat.to}
-                    format={stat.format}
-                    duration={1.6}
-                    delay={i * 0.12}
-                  />
-                </p>
-
-                {/* Label + context */}
-                <div className="text-right">
-                  <p className="font-heading text-base font-semibold text-white">
-                    {stat.label}
+                  <p
+                    className="font-heading text-5xl font-bold tabular-nums tracking-tight text-white sm:text-6xl"
+                    aria-label={`${item.label}: ${fmt(raw.to)}`}
+                  >
+                    <Counter
+                      to={raw.to}
+                      format={fmt}
+                      duration={1.6}
+                      delay={i * 0.12}
+                    />
                   </p>
-                  <p className="mt-0.5 text-sm text-white/45">{stat.context}</p>
+
+                  <div className="text-right">
+                    <p className="font-heading text-base font-semibold text-white">
+                      {item.label}
+                    </p>
+                    <p className="mt-0.5 text-sm text-white/45">{item.context}</p>
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </motion.div>
         </div>
       </div>

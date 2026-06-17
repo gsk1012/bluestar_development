@@ -1,9 +1,4 @@
-const navLinks = [
-  { label: "Diensten", href: "#diensten" },
-  { label: "Werk", href: "#portfolio" },
-  { label: "Aanpak", href: "#aanpak" },
-  { label: "Contact", href: "#contact" },
-];
+import { useLanguage } from "../i18n/LanguageContext";
 
 const EMAIL = "info@bluestardevelopment.nl";
 const PHONES = [
@@ -12,6 +7,9 @@ const PHONES = [
 ];
 
 export default function Footer() {
+  const { t } = useLanguage();
+  const f = t.footer;
+
   return (
     <footer className="text-white">
       <div className="mx-auto max-w-7xl px-6 sm:px-8 py-16">
@@ -33,16 +31,16 @@ export default function Footer() {
               </span>
             </div>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-white/70">
-              Snelle, vindbare websites en webshops op maat voor ondernemers.
+              {f.tagline}
             </p>
           </div>
 
-          <nav aria-label="Footernavigatie">
+          <nav aria-label={f.navigation}>
             <h2 className="font-heading text-sm font-bold uppercase tracking-wide text-white">
-              Navigatie
+              {f.navigation}
             </h2>
             <ul className="mt-4 flex flex-col gap-3">
-              {navLinks.map((link) => (
+              {f.navLinks.map((link) => (
                 <li key={link.href}>
                   <a
                     href={link.href}
@@ -57,7 +55,7 @@ export default function Footer() {
 
           <div>
             <h2 className="font-heading text-sm font-bold uppercase tracking-wide text-white">
-              Contact
+              {f.contact}
             </h2>
             <ul className="mt-4 flex flex-col gap-3">
               <li>
@@ -84,8 +82,7 @@ export default function Footer() {
 
         <div className="mt-12 border-t border-white/10 pt-8 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-sm text-white/70">
-            &copy; {new Date().getFullYear()} BlueStar Development. Alle rechten
-            voorbehouden.
+            &copy; {new Date().getFullYear()} BlueStar Development. {f.copyright}
           </p>
           <a
             href="/algemene_voorwaarden_bluestar.pdf"
@@ -93,7 +90,7 @@ export default function Footer() {
             rel="noopener noreferrer"
             className="text-sm text-white/70 transition-colors duration-150 hover:text-accent-bright"
           >
-            Algemene voorwaarden
+            {f.terms}
           </a>
         </div>
       </div>

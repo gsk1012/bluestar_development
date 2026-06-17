@@ -7,33 +7,9 @@ import {
   RocketLaunch,
 } from "@phosphor-icons/react";
 import { fadeUp, staggerContainer, vpOnce } from "../lib/motion";
+import { useLanguage } from "../i18n/LanguageContext";
 
-const steps = [
-  {
-    number: "1",
-    title: "Kennismaking",
-    description: "We bespreken je doelen, merk en wat je klanten nodig hebben.",
-    icon: ChatCircleDots,
-  },
-  {
-    number: "2",
-    title: "Ontwerp",
-    description: "Een helder ontwerp dat past bij je merk en je bezoekers stuurt.",
-    icon: PencilRuler,
-  },
-  {
-    number: "3",
-    title: "Bouw",
-    description: "We bouwen een snelle, vindbare site die op elk scherm werkt.",
-    icon: Code,
-  },
-  {
-    number: "4",
-    title: "Lancering en onderhoud",
-    description: "Live zetten en daarna blijven we zorgen voor updates en support.",
-    icon: RocketLaunch,
-  },
-];
+const ICONS = [ChatCircleDots, PencilRuler, Code, RocketLaunch];
 
 function useIsMobile() {
   const [is, setIs] = useState(() =>
@@ -49,6 +25,8 @@ function useIsMobile() {
 }
 
 export default function Process() {
+  const { t } = useLanguage();
+  const pr = t.process;
   const reduceMotion = useReducedMotion();
   const isMobile = useIsMobile();
   const stepsRef = useRef(null);
@@ -58,10 +36,8 @@ export default function Process() {
     offset: ["start 0.8", "end 0.4"],
   });
 
-  // Mobile: line scaleY follows scroll (top-down)
   const lineScaleY = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
-  // Mobile: per-step opacity — step 0 always full, steps 1-3 scroll-driven
   const op1 = useTransform(scrollYProgress, [0.28, 0.45], [0.2, 1]);
   const op2 = useTransform(scrollYProgress, [0.48, 0.65], [0.2, 1]);
   const op3 = useTransform(scrollYProgress, [0.66, 0.82], [0.2, 1]);
@@ -80,11 +56,10 @@ export default function Process() {
           className="max-w-2xl"
         >
           <h2 className="font-heading text-3xl font-bold tracking-tight text-white text-balance sm:text-4xl">
-            Zo werken we
+            {pr.heading}
           </h2>
           <p className="mt-3 text-lg leading-relaxed text-white/70">
-            Van eerste gesprek tot een live website. Een duidelijk traject in
-            vier stappen, zonder verrassingen.
+            {pr.subheading}
           </p>
         </motion.div>
 
@@ -126,12 +101,12 @@ export default function Process() {
           </div>
 
           <ol className="relative grid gap-10 md:grid-cols-4 md:gap-6">
-            {steps.map((step, i) => {
-              const Icon = step.icon;
+            {pr.steps.map((step, i) => {
+              const Icon = ICONS[i];
               const mobileOp = isMobile && !reduceMotion ? mobileOpacities[i] : undefined;
               return (
                 <motion.li
-                  key={step.number}
+                  key={step.title}
                   variants={isMobile ? undefined : fadeUp}
                   style={mobileOp ? { opacity: mobileOp } : undefined}
                   className="flex gap-5 md:flex-col md:items-center md:gap-0"
@@ -141,7 +116,7 @@ export default function Process() {
                   </div>
                   <div className="md:mt-5 md:text-center">
                     <p className="font-heading text-2xl font-bold tabular-nums text-accent-bright">
-                      {step.number}
+                      {i + 1}
                     </p>
                     <h3 className="mt-1 font-heading text-lg font-bold tracking-tight text-white">
                       {step.title}

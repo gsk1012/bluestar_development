@@ -7,16 +7,7 @@ import {
   useMotionValueEvent,
 } from "motion/react";
 import { List, X } from "@phosphor-icons/react";
-
-const navLinks = [
-  { label: "Home", href: "#home" },
-  { label: "Diensten", href: "#diensten" },
-  { label: "Werk", href: "#portfolio" },
-  { label: "Aanpak", href: "#aanpak" },
-  { label: "Contact", href: "#contact" },
-];
-
-const CTA_LABEL = "Plan een gesprek";
+import { useLanguage } from "../i18n/LanguageContext";
 
 function NavLink({ href, label, onClick }) {
   return (
@@ -31,7 +22,29 @@ function NavLink({ href, label, onClick }) {
   );
 }
 
+function LangToggle({ lang, setLang }) {
+  return (
+    <div className="flex items-center gap-0.5 rounded-full border border-white/15 bg-white/5 p-0.5 text-xs font-medium">
+      {["nl", "en"].map((l) => (
+        <button
+          key={l}
+          onClick={() => setLang(l)}
+          aria-pressed={lang === l}
+          className={`rounded-full px-2.5 py-1 uppercase tracking-wide transition-colors duration-150 ${
+            lang === l
+              ? "bg-accent text-white"
+              : "text-white/50 hover:text-white"
+          }`}
+        >
+          {l}
+        </button>
+      ))}
+    </div>
+  );
+}
+
 export default function Navbar() {
+  const { lang, setLang, t } = useLanguage();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const reduceMotion = useReducedMotion();
@@ -42,8 +55,15 @@ export default function Navbar() {
   });
 
   const closeMenu = () => setOpen(false);
-  // When the mobile menu is open over the dark hero, treat the bar as "solid" for contrast.
   const solid = scrolled || open;
+
+  const navLinks = [
+    { label: t.nav.home, href: "#home" },
+    { label: t.nav.services, href: "#diensten" },
+    { label: t.nav.work, href: "#portfolio" },
+    { label: t.nav.approach, href: "#aanpak" },
+    { label: t.nav.contact, href: "#contact" },
+  ];
 
   return (
     <header
@@ -58,7 +78,7 @@ export default function Navbar() {
           href="#home"
           onClick={closeMenu}
           className="flex items-center gap-2.5"
-          aria-label="BlueStar Development, naar boven"
+          aria-label={t.nav.logoAria}
         >
           <img
             src="/logo-mark.webp"
@@ -81,23 +101,26 @@ export default function Navbar() {
           ))}
         </div>
 
-        <div className="hidden md:block">
+        <div className="hidden md:flex items-center gap-3">
+          <LangToggle lang={lang} setLang={setLang} />
           <a
             href="#contact"
             className="inline-flex h-11 items-center rounded-full bg-accent px-5 text-sm font-medium text-white transition-colors duration-150 hover:bg-accent/90 active:scale-[0.97]"
           >
-            {CTA_LABEL}
+            {t.nav.cta}
           </a>
         </div>
 
+        <div className="flex items-center gap-2 md:hidden">
+          <LangToggle lang={lang} setLang={setLang} />
         <motion.button
           type="button"
           onClick={() => setOpen((v) => !v)}
-          aria-label={open ? "Menu sluiten" : "Menu openen"}
+          aria-label={open ? t.nav.menuClose : t.nav.menuOpen}
           aria-expanded={open}
           whileTap={{ scale: 0.9 }}
           transition={{ duration: 0.15 }}
-          className="relative inline-flex h-11 w-11 items-center justify-center rounded-rsm text-white transition-colors duration-150 hover:bg-white/10 md:hidden"
+          className="relative inline-flex h-11 w-11 items-center justify-center rounded-rsm text-white transition-colors duration-150 hover:bg-white/10"
         >
           <AnimatePresence mode="popLayout" initial={false}>
             {open ? (
@@ -125,6 +148,7 @@ export default function Navbar() {
             )}
           </AnimatePresence>
         </motion.button>
+        </div>
       </nav>
 
       <AnimatePresence>
@@ -158,7 +182,7 @@ export default function Navbar() {
                 transition={{ duration: 0.26, delay: 0.06 + navLinks.length * 0.045, ease: [0.23, 1, 0.32, 1] }}
                 className="mt-2 inline-flex min-h-[44px] items-center justify-center rounded-full bg-accent px-5 text-sm font-medium text-white transition-colors duration-150 hover:bg-accent/90 active:scale-[0.97]"
               >
-                {CTA_LABEL}
+                {t.nav.cta}
               </motion.a>
             </div>
           </motion.div>
