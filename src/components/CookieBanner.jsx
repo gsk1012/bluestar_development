@@ -175,7 +175,7 @@ export default function CookieBanner() {
               <p className="text-sm text-white/80 leading-relaxed">
                 {ck.bannerText}
               </p>
-              <div className="mt-4 flex flex-wrap items-center gap-3">
+              <div className="mt-4 flex flex-wrap justify-center gap-3 sm:justify-start">
                 <button
                   onClick={acceptAll}
                   className="rounded-rmd px-5 py-2 text-sm font-medium bg-accent hover:bg-accent-bright text-white transition-colors duration-200"
@@ -187,12 +187,6 @@ export default function CookieBanner() {
                   className="rounded-rmd px-4 py-2 text-sm font-medium text-white/60 hover:text-white border border-white/10 hover:border-white/30 transition-all duration-200"
                 >
                   {ck.necessaryOnly}
-                </button>
-                <button
-                  onClick={() => setPhase("settings")}
-                  className="ml-auto text-sm text-accent-bright hover:text-white transition-colors duration-150 underline underline-offset-2"
-                >
-                  {ck.customise}
                 </button>
               </div>
             </div>
