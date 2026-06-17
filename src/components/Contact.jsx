@@ -81,7 +81,7 @@ export default function Contact() {
             <div className="mt-8 flex flex-col gap-4">
               <a
                 href={`mailto:${EMAIL}`}
-                className="group inline-flex min-h-[44px] items-center gap-3 text-white transition-colors duration-150 hover:text-accent-bright"
+                className="group inline-flex min-h-[44px] self-start items-center gap-3 text-white transition-colors duration-150 hover:text-accent-bright"
               >
                 <span className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 transition-colors duration-150 group-hover:border-accent-bright/30">
                   <Envelope size={20} weight="duotone" className="text-white/40 transition-colors duration-150 group-hover:text-accent-bright" />
@@ -93,7 +93,7 @@ export default function Contact() {
                 <a
                   key={phone.tel}
                   href={`tel:${phone.tel}`}
-                  className="group inline-flex min-h-[44px] items-center gap-3 text-white transition-colors duration-150 hover:text-accent-bright"
+                  className="group inline-flex min-h-[44px] self-start items-center gap-3 text-white transition-colors duration-150 hover:text-accent-bright"
                 >
                   <span className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 transition-colors duration-150 group-hover:border-accent-bright/30">
                     <Phone size={20} weight="duotone" className="text-white/40 transition-colors duration-150 group-hover:text-accent-bright" />
