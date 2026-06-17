@@ -1,6 +1,5 @@
 import { renderToStaticMarkup } from 'react-dom/server'
 import { StrictMode } from 'react'
-import { MotionConfig } from 'motion/react'
 import { LanguageProvider } from './i18n/LanguageContext'
 import Navbar from './components/Navbar'
 import CookieBanner from './components/CookieBanner'
@@ -41,11 +40,9 @@ function ServerApp() {
 export function render() {
   return renderToStaticMarkup(
     <StrictMode>
-      <MotionConfig reducedMotion="user">
-        <LanguageProvider>
-          <ServerApp />
-        </LanguageProvider>
-      </MotionConfig>
+      <LanguageProvider>
+        <ServerApp />
+      </LanguageProvider>
     </StrictMode>
   )
 }
