@@ -1,6 +1,23 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
+function preloadFonts() {
+  return {
+    name: 'preload-fonts',
+    transformIndexHtml: {
+      order: 'post',
+      handler(html, ctx) {
+        if (!ctx.bundle) return html;
+        const preloads = Object.values(ctx.bundle)
+          .filter(c => c.type === 'asset' && c.fileName.endsWith('.woff2'))
+          .map(c => `<link rel="preload" as="font" type="font/woff2" crossorigin href="/${c.fileName}">`)
+          .join('\n    ');
+        return html.replace('</head>', `    ${preloads}\n  </head>`);
+      },
+    },
+  };
+}
+
 function inlineCss() {
   return {
     name: 'inline-css',
@@ -22,7 +39,7 @@ function inlineCss() {
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react(), inlineCss()],
+  plugins: [react(), preloadFonts(), inlineCss()],
   server: { port: 5713, strictPort: true },
   preview: { port: 5713, strictPort: true },
 })
