@@ -163,7 +163,6 @@ const nl = {
       { label: "Diensten", href: "#diensten" },
       { label: "Werk", href: "#portfolio" },
       { label: "Aanpak", href: "#aanpak" },
-      { label: "Contact", href: "#contact" },
     ],
   },
   cookie: {

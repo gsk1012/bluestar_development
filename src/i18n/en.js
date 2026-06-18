@@ -159,7 +159,6 @@ const en = {
       { label: "Services", href: "#diensten" },
       { label: "Work", href: "#portfolio" },
       { label: "Approach", href: "#aanpak" },
-      { label: "Contact", href: "#contact" },
     ],
   },
   cookie: {
