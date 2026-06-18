@@ -176,7 +176,7 @@ export default function Navbar() {
       <div
         id="mobile-menu"
         inert={!open ? true : undefined}
-        className={`absolute right-4 top-[76px] z-50 w-[calc(100%-2rem)] max-w-xs origin-top overflow-hidden rounded-rmd border border-white/10 bg-night p-3 shadow-lg shadow-black/40 transition-[opacity,transform] duration-200 ease-out will-change-[opacity,transform] md:hidden [@media(orientation:landscape)_and_(max-height:600px)]:block ${
+        className={`absolute right-4 top-[76px] z-50 w-[calc(100%-2rem)] max-w-xs origin-top overflow-hidden rounded-rmd border border-white/10 bg-night p-3 shadow-lg shadow-black/40 transition-[opacity,transform] duration-200 ease-out will-change-[opacity,transform] md:hidden [@media(orientation:landscape)_and_(max-height:600px)]:block [@media(orientation:landscape)_and_(max-height:600px)]:max-h-[calc(100svh-88px)] [@media(orientation:landscape)_and_(max-height:600px)]:overflow-y-auto ${
           open
             ? "translate-y-0 opacity-100"
             : "pointer-events-none -translate-y-2 opacity-0"
