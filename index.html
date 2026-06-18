@@ -4,8 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Favicon / icons -->
-    <link rel="icon" type="image/png" href="/logo-mark.png" />
+    <!-- Favicon / icons — favicon-64 is een 64px crop (~2–4 KB) i.p.v. de oude
+         105 KB logo-mark.png. WebP met PNG-fallback voor oudere browsers. -->
+    <link rel="icon" type="image/webp" href="/favicon-64.webp" />
+    <link rel="icon" type="image/png" href="/favicon-64.png" />
     <link rel="apple-touch-icon" href="/logo-mark.webp" />
 
     <!-- Primary meta -->
@@ -45,9 +47,6 @@
          fetchpriority=high wins against competing resources.
          media query avoids wasting bandwidth on desktop (video plays there). -->
     <link rel="preload" as="image" href="/star-cut.webp" type="image/webp" fetchpriority="high" media="(max-width: 639px)" />
-
-    <!-- Preconnect for service section images (CloudFront CDN) -->
-    <link rel="preconnect" href="https://d8j0ntlcm91z4.cloudfront.net" crossorigin />
 
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json">

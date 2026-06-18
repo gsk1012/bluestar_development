@@ -3,16 +3,13 @@ import { Browser, ShoppingCart, Code, Wrench, CloudArrowUp } from "@phosphor-ico
 import { fadeUp, vpOnce } from "../lib/motion";
 import { useLanguage } from "../i18n/LanguageContext";
 
-const IMG_WEBSITE =
-  "https://d8j0ntlcm91z4.cloudfront.net/user_3EullDUozCLP0n2estZw2O2QBZD/hf_20260616_220438_0522ab34-3f31-4dbd-8d62-0666d8ddba63.png";
-const IMG_WEBSHOP =
-  "https://d8j0ntlcm91z4.cloudfront.net/user_3EullDUozCLP0n2estZw2O2QBZD/hf_20260616_220440_ccdd52aa-a965-431b-a9f0-45e872d6576b.png";
-const IMG_WEBAPP =
-  "https://d8j0ntlcm91z4.cloudfront.net/user_3EullDUozCLP0n2estZw2O2QBZD/hf_20260616_220444_d299d33b-bdbd-4083-acb5-7234e6b3858f.png";
-const IMG_ONDERHOUD =
-  "https://d8j0ntlcm91z4.cloudfront.net/user_3EullDUozCLP0n2estZw2O2QBZD/hf_20260616_220815_e88b9c0a-a5c6-47a8-82ea-6fd853de4efc.png";
-const IMG_HOSTING =
-  "https://d8j0ntlcm91z4.cloudfront.net/user_3EullDUozCLP0n2estZw2O2QBZD/hf_20260616_220812_7d92b2fb-51d8-4556-a35a-77529d06f622.png";
+// Decoratieve tegel-achtergronden — geoptimaliseerd (resized + WebP) en lokaal
+// geserveerd. Oorspronkelijk 1–2 MB PNG's per stuk; nu < 60 KB per tegel.
+const IMG_WEBSITE = "/services/website.webp";
+const IMG_WEBSHOP = "/services/webshop.webp";
+const IMG_WEBAPP = "/services/webapp.webp";
+const IMG_ONDERHOUD = "/services/onderhoud.webp";
+const IMG_HOSTING = "/services/hosting.webp";
 
 // Tiles stagger in one-by-one after the heading has landed.
 const gridContainer = {

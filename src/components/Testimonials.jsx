@@ -3,10 +3,12 @@ import { motion, useReducedMotion } from "motion/react";
 import { fadeUp, staggerContainer, vpOnce } from "../lib/motion";
 import { useLanguage } from "../i18n/LanguageContext";
 
+// Portretfoto's — geoptimaliseerd (resized + WebP), lokaal geserveerd.
+// Oorspronkelijk 3,4–4,5 MB PNG's per stuk; nu < 25 KB elk.
 const PHOTOS = [
-  "https://d8j0ntlcm91z4.cloudfront.net/user_3EullDUozCLP0n2estZw2O2QBZD/hf_20260616_222451_8fd50b66-2234-4ec0-81dd-19f515b0bd03.png",
-  "https://d8j0ntlcm91z4.cloudfront.net/user_3EullDUozCLP0n2estZw2O2QBZD/hf_20260616_222453_2ef4a52e-21af-4a9d-a222-25b70c12871f.png",
-  "https://d8j0ntlcm91z4.cloudfront.net/user_3EullDUozCLP0n2estZw2O2QBZD/hf_20260616_222455_1e3d7670-8c12-43ba-b2e3-c7f9dc532646.png",
+  "/testimonials/1.webp",
+  "/testimonials/2.webp",
+  "/testimonials/3.webp",
 ];
 
 function TestimonialCard({ item, photo }) {

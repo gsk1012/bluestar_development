@@ -71,9 +71,13 @@ function StarVisual({ reduce }) {
           expensive blur. Matches how the reference sites go static on mobile. */}
       <motion.div
         className="absolute inset-0 sm:hidden"
-        initial={reduce ? false : { opacity: 0, scale: 0.92 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
+        // The star IS the mobile LCP element. Fading opacity from 0 delayed the
+        // LCP paint by ~1s (Chrome only counts it once it becomes visible), so we
+        // reveal with a transform-only scale settle instead — transforms don't
+        // delay the paint, the star is at full opacity from the first frame.
+        initial={reduce ? false : { scale: 0.94 }}
+        animate={{ scale: 1 }}
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
       >
         <div
           aria-hidden="true"
@@ -82,7 +86,7 @@ function StarVisual({ reduce }) {
         <img
           src="/star-cut.webp"
           alt="BlueStar kristallen ster"
-          fetchpriority="high"
+          fetchPriority="high"
           decoding="async"
           className="relative z-[2] h-full w-full object-contain"
         />
