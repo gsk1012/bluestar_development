@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef } from "react";
 import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
 import {
   ChatCircleDots,
@@ -11,37 +11,22 @@ import { useLanguage } from "../i18n/LanguageContext";
 
 const ICONS = [ChatCircleDots, PencilRuler, Code, RocketLaunch];
 
-function useIsMobile() {
-  const [is, setIs] = useState(() =>
-    typeof window !== "undefined" ? window.innerWidth < 768 : false
-  );
-  useEffect(() => {
-    const mq = window.matchMedia("(max-width: 767px)");
-    const h = (e) => setIs(e.matches);
-    mq.addEventListener("change", h);
-    return () => mq.removeEventListener("change", h);
-  }, []);
-  return is;
-}
-
 export default function Process() {
   const { t } = useLanguage();
   const pr = t.process;
   const reduceMotion = useReducedMotion();
-  const isMobile = useIsMobile();
   const stepsRef = useRef(null);
 
+  // Only the vertical progress line follows the scroll — and it does so via a
+  // GPU-composited scaleY transform (no per-frame repaint). The step cards fade
+  // in once with a whileInView stagger, just like every other section, so the
+  // page stays smooth while scrolling on mobile.
   const { scrollYProgress } = useScroll({
     target: stepsRef,
     offset: ["start 0.8", "end 0.4"],
   });
 
   const lineScaleY = useTransform(scrollYProgress, [0, 1], [0, 1]);
-
-  const op1 = useTransform(scrollYProgress, [0.28, 0.45], [0.2, 1]);
-  const op2 = useTransform(scrollYProgress, [0.48, 0.65], [0.2, 1]);
-  const op3 = useTransform(scrollYProgress, [0.66, 0.82], [0.2, 1]);
-  const mobileOpacities = [undefined, op1, op2, op3];
 
   const lineTransition = { duration: 0.5, ease: [0.23, 1, 0.32, 1] };
 
@@ -65,10 +50,10 @@ export default function Process() {
 
         <motion.div
           ref={stepsRef}
-          variants={isMobile ? undefined : staggerContainer}
-          initial={isMobile ? undefined : "hidden"}
-          whileInView={isMobile ? undefined : "show"}
-          viewport={isMobile ? undefined : vpOnce}
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="show"
+          viewport={vpOnce}
           className="relative mt-12 lg:mt-16"
         >
           {/* Mobile: scroll-driven vertical line */}
@@ -103,12 +88,10 @@ export default function Process() {
           <ol className="relative grid gap-10 md:grid-cols-4 md:gap-6">
             {pr.steps.map((step, i) => {
               const Icon = ICONS[i];
-              const mobileOp = isMobile && !reduceMotion ? mobileOpacities[i] : undefined;
               return (
                 <motion.li
                   key={step.title}
-                  variants={isMobile ? undefined : fadeUp}
-                  style={mobileOp ? { opacity: mobileOp } : undefined}
+                  variants={fadeUp}
                   className="flex gap-5 md:flex-col md:items-center md:gap-0"
                 >
                   <div className="relative z-10 flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-white/10 bg-panel">

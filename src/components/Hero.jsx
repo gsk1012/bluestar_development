@@ -18,7 +18,7 @@ const SHOOTING_STARS = Array.from({ length: 20 }, (_, i) => ({
 function ShootingStars({ reduce }) {
   if (reduce) return null;
   return (
-    <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-[1] overflow-hidden">
+    <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-[1] hidden overflow-hidden sm:block">
       {SHOOTING_STARS.map(s => (
         <span
           key={s.id}
@@ -69,6 +69,28 @@ function StarVisual({ reduce }) {
 
   return (
     <div className="absolute left-1/2 top-0 z-0 aspect-square w-[min(130vw,680px)] -translate-x-1/2 translate-y-[8%] sm:left-auto sm:right-0 sm:w-[min(100vw,680px)] sm:translate-x-[12%] sm:-translate-y-[3%] lg:w-[min(62vw,920px)] lg:translate-x-[15%] lg:translate-y-[0%]">
+      {/* Mobile (<640px): a static crystal still. No video, blend-mode, mask or
+          infinite loops — the single biggest source of compositing jank on
+          phones. A modest, pre-rasterised glow keeps the brand glow without an
+          expensive blur. Matches how the reference sites go static on mobile. */}
+      <motion.div
+        className="absolute inset-0 sm:hidden"
+        initial={reduce ? false : { opacity: 0, scale: 0.92 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
+      >
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-[20%] z-[1] rounded-full bg-accent/25 blur-[70px]"
+        />
+        <img
+          src="/star-cut.webp"
+          alt="BlueStar kristallen ster"
+          className="relative z-[2] h-full w-full object-contain"
+        />
+      </motion.div>
+
+      {/* Tablet/desktop (≥640px): the full animated treatment. */}
       <motion.div
         style={{ transformOrigin: "92% 4%" }}
         animate={reduce
@@ -79,7 +101,7 @@ function StarVisual({ reduce }) {
           duration: 2.0,
           ease: [0.14, 0.8, 0.28, 1],
         }}
-        className="relative h-full w-full"
+        className="absolute inset-0 hidden sm:block"
       >
         <motion.div
           animate={reduce ? { y: 0 } : { y: [0, -16, 0] }}
@@ -128,10 +150,12 @@ function StarVisual({ reduce }) {
                 preload="metadata"
                 aria-label="Roterende kristallen ster"
               >
-                {/* HD only on desktop — saves ~4.8 MB on mobile */}
+                {/* HD on desktop, SD on tablet. Below 640px no source matches,
+                    so phones download zero video bytes (the static still shows
+                    instead). */}
                 <source src="/star-hd.mp4" type="video/mp4" media="(min-width: 1024px)" />
-                <source src="/star.mp4" type="video/mp4" />
-                <source src="/star.webm" type="video/webm" />
+                <source src="/star.mp4" type="video/mp4" media="(min-width: 640px)" />
+                <source src="/star.webm" type="video/webm" media="(min-width: 640px)" />
               </video>
             </>
           )}
