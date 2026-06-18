@@ -4,6 +4,7 @@ const en = {
     services: "Services",
     work: "Work",
     approach: "Approach",
+    faq: "FAQ",
     contact: "Contact",
     cta: "Schedule a call",
     menuOpen: "Open menu",
@@ -213,6 +214,7 @@ const en = {
       { label: "Services", href: "#diensten" },
       { label: "Work", href: "#portfolio" },
       { label: "Approach", href: "#aanpak" },
+      { label: "FAQ", href: "#faq" },
     ],
   },
   cookie: {

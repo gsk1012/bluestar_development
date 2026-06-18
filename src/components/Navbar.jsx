@@ -74,6 +74,7 @@ export default function Navbar() {
     { label: t.nav.services, href: "#diensten" },
     { label: t.nav.work, href: "#portfolio" },
     { label: t.nav.approach, href: "#aanpak" },
+    { label: t.nav.faq, href: "#faq" },
     { label: t.nav.contact, href: "#contact" },
   ];
 
