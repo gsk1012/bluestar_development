@@ -64,7 +64,7 @@ function StarVisual({ reduce }) {
     "radial-gradient(closest-side at 50% 48%, #000 56%, transparent 96%)";
 
   return (
-    <div className="absolute left-1/2 top-0 z-0 aspect-square w-[min(130vw,680px)] -translate-x-1/2 translate-y-[8%] sm:left-auto sm:right-0 sm:w-[min(100vw,680px)] sm:translate-x-[12%] sm:-translate-y-[3%] lg:w-[min(62vw,920px)] lg:translate-x-[15%] lg:translate-y-[0%]">
+    <div className="absolute left-1/2 top-0 z-0 aspect-square w-[min(130vw,680px)] -translate-x-1/2 translate-y-[8%] sm:left-auto sm:right-0 sm:w-[min(100vw,680px)] sm:translate-x-[12%] sm:-translate-y-[3%] lg:w-[min(62vw,920px)] lg:translate-x-[15%] lg:translate-y-[0%] [@media(orientation:landscape)_and_(max-height:600px)]:opacity-40 [@media(orientation:landscape)_and_(max-height:600px)]:w-[min(60vh,380px)] [@media(orientation:landscape)_and_(max-height:600px)]:translate-y-[5%]">
       {/* Mobile (<640px): a static crystal still. No video, blend-mode, mask or
           infinite loops — the single biggest source of compositing jank on
           phones. A modest, pre-rasterised glow keeps the brand glow without an
@@ -216,10 +216,10 @@ export default function Hero() {
       <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 bottom-0 z-[2] h-32 bg-gradient-to-b from-transparent to-ink" />
 
       {/* Content */}
-      <div className="relative z-10 mx-auto flex h-full max-w-7xl flex-col justify-end px-6 pb-14 pt-20 sm:justify-center sm:px-8 lg:pb-20 lg:pt-24">
+      <div className="relative z-10 mx-auto flex h-full max-w-7xl flex-col justify-end px-6 pb-14 pt-20 sm:justify-center sm:px-8 lg:pb-20 lg:pt-24 [@media(orientation:landscape)_and_(max-height:600px)]:justify-end [@media(orientation:landscape)_and_(max-height:600px)]:pt-16 [@media(orientation:landscape)_and_(max-height:600px)]:pb-5">
         {/* CSS keyframe reveal — runs on the compositor thread, never blocked by JS.
             `backwards` fill-mode keeps each line below the clip until its delay fires. */}
-        <h1 className="font-heading font-bold leading-[0.96] tracking-[-0.035em] text-[clamp(2.75rem,7.5vw,6.875rem)] lg:max-w-[66%]">
+        <h1 className="font-heading font-bold leading-[0.96] tracking-[-0.035em] text-[clamp(2.75rem,7.5vw,6.875rem)] lg:max-w-[66%] [@media(orientation:landscape)_and_(max-height:600px)]:text-[clamp(1.6rem,4.5vw,2.25rem)]">
           {[
             { text: h.line1, accent: false },
             { text: h.line2, accent: false },
@@ -240,7 +240,7 @@ export default function Hero() {
           variants={subContainer}
           initial="hidden"
           animate="show"
-          className="mt-10 max-w-xl lg:mt-12"
+          className="mt-10 max-w-xl lg:mt-12 [@media(orientation:landscape)_and_(max-height:600px)]:mt-3"
         >
           <motion.p
             variants={fade}
@@ -250,14 +250,14 @@ export default function Hero() {
           </motion.p>
           <motion.p
             variants={fade}
-            className="mt-2 max-w-md text-sm leading-relaxed text-white/60 sm:text-base"
+            className="mt-2 max-w-md text-sm leading-relaxed text-white/60 sm:text-base [@media(orientation:landscape)_and_(max-height:600px)]:hidden"
           >
             {h.sub2}
           </motion.p>
 
           <motion.div
             variants={fade}
-            className="mt-7 flex flex-wrap items-center gap-4"
+            className="mt-7 flex flex-wrap items-center gap-4 [@media(orientation:landscape)_and_(max-height:600px)]:mt-4"
           >
             <a
               href="#contact"
