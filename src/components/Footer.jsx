@@ -84,7 +84,7 @@ export default function Footer() {
           <p className="text-sm text-white/70">
             &copy; {new Date().getFullYear()} BlueStar Development. {f.copyright}
           </p>
-          <div className="flex flex-wrap gap-x-5 gap-y-2">
+          <div className="flex flex-wrap gap-x-8 gap-y-2">
             <a
               href="/algemene_voorwaarden_bluestar.pdf"
               target="_blank"
