@@ -75,10 +75,10 @@ function StarVisual({ reduce }) {
         // LCP paint by ~1s (Chrome only counts it once it becomes visible), so we
         // reveal with a transform-only scale settle instead — transforms don't
         // delay the paint, the star is at full opacity from the first frame.
-        initial={reduce ? false : { scale: 0.94 }}
-        animate={{ scale: 1 }}
-        // Delay until after text has painted — avoids competing with text GPU layers
-        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
+        // No scale animation on mobile — the star is a large element and animating
+        // it simultaneously with text caused dropped frames. Desktop keeps the effect.
+        initial={false}
+        animate={{ opacity: 1 }}
       >
         <div
           aria-hidden="true"
@@ -217,8 +217,8 @@ export default function Hero() {
 
       {/* Content */}
       <div className="relative z-10 mx-auto flex h-full max-w-7xl flex-col justify-end px-6 pb-14 pt-20 sm:justify-center sm:px-8 lg:pb-20 lg:pt-24">
-        {/* Each line: overflow-hidden wrapper clips the text below it, the inner
-            span slides up from 105% — the same mask-reveal Prince Schilder uses. */}
+        {/* CSS keyframe reveal — runs on the compositor thread, never blocked by JS.
+            `backwards` fill-mode keeps each line below the clip until its delay fires. */}
         <h1 className="font-heading font-bold leading-[0.96] tracking-[-0.035em] text-[clamp(2.75rem,7.5vw,6.875rem)] lg:max-w-[66%]">
           {[
             { text: h.line1, accent: false },
@@ -226,15 +226,12 @@ export default function Hero() {
             { text: h.line3, accent: true },
           ].map(({ text, accent }, i) => (
             <span key={i} className="block overflow-hidden pb-[0.06em]">
-              <motion.span
-                className={`block${accent ? " text-accent-bright" : ""}`}
-                style={{ willChange: "transform" }}
-                initial={reduce ? { opacity: 0 } : { y: "105%" }}
-                animate={{ y: "0%", opacity: 1 }}
-                transition={{ duration: 0.9, ease, delay: reduce ? 0 : i * 0.11 }}
+              <span
+                className={`block hero-line${accent ? " text-accent-bright" : ""}${reduce ? " [animation:none]" : ""}`}
+                style={{ animationDelay: `${i * 0.11}s` }}
               >
                 {text}
-              </motion.span>
+              </span>
             </span>
           ))}
         </h1>

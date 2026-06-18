@@ -43,6 +43,18 @@ h3 {
   100% { opacity: 0; }
 }
 
+/* Hero headline reveal — pure CSS so it runs on the compositor thread and never
+   drops frames during JS hydration. `backwards` fill-mode keeps each line hidden
+   during its stagger delay, just like the menu animation below. */
+@keyframes hero-line-up {
+  from { transform: translateY(105%); }
+  to   { transform: translateY(0%); }
+}
+
+.hero-line {
+  animation: hero-line-up 0.85s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+}
+
 /* Mobile menu item reveal — CSS-driven so opening the menu does no JS animation
    work. `backwards` fill keeps each item hidden during its staggered delay. */
 @keyframes menu-item-in {
