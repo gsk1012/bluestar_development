@@ -1,6 +1,6 @@
 /* eslint-disable react-refresh/only-export-components */
 import { renderToStaticMarkup } from 'react-dom/server'
-import { StaticRouter } from 'react-router-dom/server'
+import { StaticRouter } from 'react-router'
 import { StrictMode } from 'react'
 import { LanguageProvider } from './i18n/LanguageContext'
 import { MenuProvider } from './lib/menu'
