@@ -2,10 +2,9 @@ import { motion, useReducedMotion } from "motion/react";
 import { ArrowRight } from "@phosphor-icons/react";
 import { useLanguage } from "../i18n/LanguageContext";
 
-// 10 stars instead of 20 — halves the CSS-animation count (was 40 threads: 20×2).
-// On mobile all these run simultaneously with the hero text animation, causing
-// dropped frames. Fewer stars keep the effect but free up compositor budget.
-const SHOOTING_STARS = Array.from({ length: 10 }, (_, i) => ({
+// 20 stars total. First 10 show on all screens, last 10 are desktop-only
+// (hidden sm:block). Mobile gets 10 to avoid competing with text animation GPU layers.
+const SHOOTING_STARS = Array.from({ length: 20 }, (_, i) => ({
   id: i,
   left:     `${(15 + Math.random() * 90).toFixed(2)}%`,
   top:      `${(Math.random() * 72).toFixed(2)}%`,
@@ -13,6 +12,7 @@ const SHOOTING_STARS = Array.from({ length: 10 }, (_, i) => ({
   height:   (Math.random() * 0.5 + 0.9).toFixed(2),
   duration: (Math.random() * 7 + 5.5).toFixed(1),
   delay:    (Math.random() * 36).toFixed(1),
+  desktopOnly: i >= 10,
 }));
 
 function ShootingStars({ reduce }) {
@@ -22,7 +22,7 @@ function ShootingStars({ reduce }) {
       {SHOOTING_STARS.map(s => (
         <span
           key={s.id}
-          className="absolute"
+          className={s.desktopOnly ? "absolute hidden sm:block" : "absolute"}
           style={{
             left:       s.left,
             top:        s.top,
