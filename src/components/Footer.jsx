@@ -80,18 +80,36 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 border-t border-white/10 pt-8 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-12 border-t border-white/10 pt-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-sm text-white/70">
             &copy; {new Date().getFullYear()} BlueStar Development. {f.copyright}
           </p>
-          <a
-            href="/algemene_voorwaarden_bluestar.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-sm text-white/70 transition-colors duration-150 hover:text-accent-bright"
-          >
-            {f.terms}
-          </a>
+          <div className="flex flex-wrap gap-x-5 gap-y-2">
+            <a
+              href="/algemene_voorwaarden_bluestar.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm text-white/70 transition-colors duration-150 hover:text-accent-bright"
+            >
+              {f.terms}
+            </a>
+            <a
+              href="/privacybeleid_bluestar.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm text-white/70 transition-colors duration-150 hover:text-accent-bright"
+            >
+              {f.privacy}
+            </a>
+            <a
+              href="/disclaimer_bluestar.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm text-white/70 transition-colors duration-150 hover:text-accent-bright"
+            >
+              {f.disclaimer}
+            </a>
+          </div>
         </div>
       </div>
     </footer>

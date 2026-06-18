@@ -155,6 +155,8 @@ const en = {
     contact: "Contact",
     copyright: "All rights reserved.",
     terms: "Terms and conditions",
+    privacy: "Privacy policy",
+    disclaimer: "Disclaimer",
     navLinks: [
       { label: "Services", href: "#diensten" },
       { label: "Work", href: "#portfolio" },
@@ -163,7 +165,9 @@ const en = {
   },
   cookie: {
     bannerText:
-      "We use cookies to keep the website running properly and to improve your experience. You can change your choice at any time.",
+      "We use cookies to keep the website running properly and to improve your experience. Read our",
+    privacyLabel: "privacy policy",
+    bannerTextSuffix: "for more information. You can change your choice at any time.",
     acceptAll: "Accept all",
     necessaryOnly: "Necessary only",
     customise: "Customise settings",

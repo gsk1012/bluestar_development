@@ -159,6 +159,8 @@ const nl = {
     contact: "Contact",
     copyright: "Alle rechten voorbehouden.",
     terms: "Algemene voorwaarden",
+    privacy: "Privacybeleid",
+    disclaimer: "Disclaimer",
     navLinks: [
       { label: "Diensten", href: "#diensten" },
       { label: "Werk", href: "#portfolio" },
@@ -167,7 +169,9 @@ const nl = {
   },
   cookie: {
     bannerText:
-      "We gebruiken cookies om de website goed te laten werken en uw ervaring te verbeteren. U kunt uw keuze op elk moment aanpassen.",
+      "We gebruiken cookies om de website goed te laten werken en uw ervaring te verbeteren. Lees ons",
+    privacyLabel: "privacybeleid",
+    bannerTextSuffix: "voor meer informatie. U kunt uw keuze op elk moment aanpassen.",
     acceptAll: "Alles accepteren",
     necessaryOnly: "Alleen noodzakelijk",
     customise: "Instellingen aanpassen",
