@@ -5,6 +5,14 @@ import { fileURLToPath } from 'node:url'
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const root = path.resolve(__dirname, '..')
 
+const BLOG_SLUGS = [
+  'core-web-vitals-uitgelegd',
+  'wcag-toegankelijkheid-website',
+  'ssg-vs-ssr-razendsnel-website',
+  'wat-is-een-lighthouse-score',
+  'waarom-wij-react-gebruiken',
+]
+
 async function prerender() {
   const serverEntry = path.join(root, 'dist/server/entry-server.js')
 
@@ -14,18 +22,34 @@ async function prerender() {
   }
 
   const { render } = await import(serverEntry)
-  const appHtml = render()
-
   const templatePath = path.join(root, 'dist/index.html')
   const template = fs.readFileSync(templatePath, 'utf-8')
 
-  const html = template.replace(
-    '<div id="root"></div>',
-    `<div id="root">${appHtml}</div>`
-  )
+  function renderPage(url, outFile) {
+    const appHtml = render(url)
+    const html = template.replace(
+      '<div id="root"></div>',
+      `<div id="root">${appHtml}</div>`
+    )
+    const dir = path.dirname(outFile)
+    fs.mkdirSync(dir, { recursive: true })
+    fs.writeFileSync(outFile, html)
+    console.log(`✓ Pre-rendered: ${url}`)
+  }
 
-  fs.writeFileSync(templatePath, html)
-  console.log('✓ Pre-rendered: /')
+  // Homepage
+  renderPage('/', path.join(root, 'dist/index.html'))
+
+  // Blog overzicht
+  renderPage('/blog', path.join(root, 'dist/blog/index.html'))
+
+  // Individuele blogposts
+  for (const slug of BLOG_SLUGS) {
+    renderPage(
+      `/blog/${slug}`,
+      path.join(root, `dist/blog/${slug}/index.html`)
+    )
+  }
 
   fs.rmSync(path.join(root, 'dist/server'), { recursive: true, force: true })
   console.log('✓ Cleaned up dist/server/')

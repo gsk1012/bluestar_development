@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useLanguage } from "../i18n/LanguageContext";
 
 const EMAIL = "info@bluestardevelopment.nl";
@@ -42,12 +43,21 @@ export default function Footer() {
             <ul className="mt-4 flex flex-col gap-3">
               {f.navLinks.map((link) => (
                 <li key={link.href}>
-                  <a
-                    href={link.href}
-                    className="inline-flex min-h-[44px] items-center text-sm text-white/70 transition-colors duration-150 hover:text-accent-bright"
-                  >
-                    {link.label}
-                  </a>
+                  {link.external ? (
+                    <Link
+                      to={link.href}
+                      className="inline-flex min-h-[44px] items-center text-sm text-white/70 transition-colors duration-150 hover:text-accent-bright"
+                    >
+                      {link.label}
+                    </Link>
+                  ) : (
+                    <a
+                      href={link.href}
+                      className="inline-flex min-h-[44px] items-center text-sm text-white/70 transition-colors duration-150 hover:text-accent-bright"
+                    >
+                      {link.label}
+                    </a>
+                  )}
                 </li>
               ))}
             </ul>

@@ -1,17 +1,22 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { List, X } from "@phosphor-icons/react";
 import { useLanguage } from "../i18n/LanguageContext";
 import { useMenu } from "../lib/menu";
 
-function NavLink({ href, label, onClick }) {
+function NavLink({ href, label, onClick, external }) {
+  const cls = "group relative inline-flex items-center px-1 py-2 text-sm font-medium text-white/80 transition-colors duration-150 hover:text-white";
+  const underline = <span className="pointer-events-none absolute inset-x-1 -bottom-0.5 h-0.5 origin-left scale-x-0 rounded-full bg-accent-bright transition-transform duration-150 ease-out group-hover:scale-x-100" />;
+  if (external) {
+    return (
+      <Link to={href} onClick={onClick} className={cls}>
+        {label}{underline}
+      </Link>
+    );
+  }
   return (
-    <a
-      href={href}
-      onClick={onClick}
-      className="group relative inline-flex items-center px-1 py-2 text-sm font-medium text-white/80 transition-colors duration-150 hover:text-white"
-    >
-      {label}
-      <span className="pointer-events-none absolute inset-x-1 -bottom-0.5 h-0.5 origin-left scale-x-0 rounded-full bg-accent-bright transition-transform duration-150 ease-out group-hover:scale-x-100" />
+    <a href={href} onClick={onClick} className={cls}>
+      {label}{underline}
     </a>
   );
 }
@@ -75,6 +80,7 @@ export default function Navbar() {
     { label: t.nav.work, href: "#portfolio" },
     { label: t.nav.approach, href: "#aanpak" },
     { label: t.nav.faq, href: "#faq" },
+    { label: t.nav.blog, href: "/blog", external: true },
     { label: t.nav.contact, href: "#contact" },
   ];
 
@@ -93,8 +99,8 @@ export default function Navbar() {
       className={`fixed inset-x-0 top-0 z-40 border-b transition-colors duration-300 ${headerBg}`}
     >
       <nav className="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-6 sm:px-8">
-        <a
-          href="#home"
+        <Link
+          to="/"
           onClick={closeMenu}
           className="flex items-center gap-2.5"
           aria-label={t.nav.logoAria}
@@ -112,7 +118,7 @@ export default function Navbar() {
               Development
             </span>
           </span>
-        </a>
+        </Link>
 
         <div className="hidden items-center gap-7 md:flex">
           {navLinks.map((link) => (
@@ -177,19 +183,19 @@ export default function Navbar() {
         }`}
       >
         <div className="flex flex-col">
-          {navLinks.map((link, i) => (
-            <a
-              key={link.href}
-              href={link.href}
-              onClick={closeMenu}
-              style={open ? { animationDelay: `${60 + i * 45}ms` } : undefined}
-              className={`flex min-h-[44px] items-center rounded-rsm px-3 text-sm font-medium text-white/80 transition-colors duration-150 hover:bg-white/10 hover:text-white ${
-                open ? "animate-menu-item" : ""
-              }`}
-            >
-              {link.label}
-            </a>
-          ))}
+          {navLinks.map((link, i) => {
+            const cls = `flex min-h-[44px] items-center rounded-rsm px-3 text-sm font-medium text-white/80 transition-colors duration-150 hover:bg-white/10 hover:text-white ${open ? "animate-menu-item" : ""}`;
+            const style = open ? { animationDelay: `${60 + i * 45}ms` } : undefined;
+            return link.external ? (
+              <Link key={link.href} to={link.href} onClick={closeMenu} style={style} className={cls}>
+                {link.label}
+              </Link>
+            ) : (
+              <a key={link.href} href={link.href} onClick={closeMenu} style={style} className={cls}>
+                {link.label}
+              </a>
+            );
+          })}
           <a
             href="#contact"
             onClick={closeMenu}
