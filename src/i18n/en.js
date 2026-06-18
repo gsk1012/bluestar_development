@@ -16,7 +16,7 @@ const en = {
     line1: "Websites that",
     line2: "grow your",
     line3: "business.",
-    sub1: "Fast, findable websites and webshops built to order.",
+    sub1: "Looking for a website? Fast, findable websites and webshops built to order.",
     sub2: "Built around your brand and your customers, from first sketch to live site.",
     cta: "Schedule a call",
     secondary: "View our work",

@@ -16,7 +16,7 @@ const nl = {
     line1: "Websites die",
     line2: "je bedrijf",
     line3: "laten groeien.",
-    sub1: "Snelle, vindbare websites en webshops op maat.",
+    sub1: "Website laten maken? Snelle, vindbare websites en webshops op maat.",
     sub2: "Gebouwd rond jouw merk en je klanten, van eerste schets tot live site.",
     cta: "Plan een gesprek",
     secondary: "Bekijk ons werk",

@@ -18,7 +18,7 @@ function PostCard({ post, featured = false, lang = "nl" }) {
     >
       <Link
         to={`/blog/${post.slug}`}
-        aria-label={`Lees: ${post.title}`}
+        aria-label={lang === "en" ? `Read: ${post.title}` : `Lees: ${post.title}`}
         tabIndex={-1}
         className={`block overflow-hidden ${featured ? "" : ""}`}
       >
@@ -108,7 +108,7 @@ export default function Blog() {
             className="max-w-2xl"
           >
             <h1 className="font-heading text-4xl font-bold tracking-tight text-white sm:text-5xl">
-              Blog
+              {lang === "en" ? "Web development tips" : "Webdevelopment tips"}
             </h1>
             <p className="mt-4 text-lg leading-relaxed text-white/60">
               {lang === "en"

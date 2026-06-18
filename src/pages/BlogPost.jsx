@@ -53,6 +53,19 @@ export default function BlogPost() {
     if (metaDesc) metaDesc.setAttribute('content', post.metaDescription);
 
     const canonical = `${BASE}/blog/${post.slug}`;
+
+    // Canonical tag
+    const CANONICAL_ID = 'blog-post-canonical';
+    let canonicalEl = document.getElementById(CANONICAL_ID);
+    if (!canonicalEl) {
+      canonicalEl = document.createElement('link');
+      canonicalEl.rel = 'canonical';
+      canonicalEl.id = CANONICAL_ID;
+      document.head.appendChild(canonicalEl);
+    }
+    canonicalEl.setAttribute('href', canonical);
+
+    // JSON-LD schema
     const SCHEMA_ID = 'blog-post-schema';
     let schemaEl = document.getElementById(SCHEMA_ID);
     if (!schemaEl) {
@@ -63,28 +76,51 @@ export default function BlogPost() {
     }
     schemaEl.textContent = JSON.stringify({
       '@context': 'https://schema.org',
-      '@type': 'BlogPosting',
-      '@id': `${canonical}#article`,
-      headline: post.title,
-      description: post.metaDescription,
-      image: `${BASE}${post.image}`,
-      datePublished: post.publishedAt,
-      dateModified: post.publishedAt,
-      author: { '@type': 'Organization', name: 'BlueStar Development', '@id': `${BASE}/#organization` },
-      publisher: {
-        '@type': 'Organization',
-        name: 'BlueStar Development',
-        logo: { '@type': 'ImageObject', url: `${BASE}/logo.png` },
-      },
-      url: canonical,
-      inLanguage: lang === 'en' ? 'en-GB' : 'nl-NL',
-      isPartOf: { '@id': `${BASE}/#website` },
+      '@graph': [
+        {
+          '@type': 'BlogPosting',
+          '@id': `${canonical}#article`,
+          headline: post.title,
+          description: post.metaDescription,
+          image: {
+            '@type': 'ImageObject',
+            url: `${BASE}${post.image}`,
+            description: post.imageAlt,
+          },
+          datePublished: post.publishedAt,
+          dateModified: post.publishedAt,
+          author: { '@type': 'Organization', name: 'BlueStar Development', '@id': `${BASE}/#organization` },
+          publisher: {
+            '@type': 'Organization',
+            name: 'BlueStar Development',
+            logo: { '@type': 'ImageObject', url: `${BASE}/logo.png` },
+          },
+          url: canonical,
+          inLanguage: lang === 'en' ? 'en-GB' : 'nl-NL',
+          isPartOf: { '@id': `${BASE}/#website` },
+          mainEntityOfPage: { '@type': 'WebPage', '@id': canonical },
+          keywords: post.category,
+          speakable: {
+            '@type': 'SpeakableSpecification',
+            cssSelector: ['h1', 'h2', 'p'],
+          },
+        },
+        {
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'Home', item: `${BASE}/` },
+            { '@type': 'ListItem', position: 2, name: 'Blog', item: `${BASE}/blog` },
+            { '@type': 'ListItem', position: 3, name: post.title, item: canonical },
+          ],
+        },
+      ],
     });
 
     return () => {
       document.title = prevTitle;
       if (metaDesc) metaDesc.setAttribute('content', prevDesc);
       document.getElementById(SCHEMA_ID)?.remove();
+      document.getElementById(CANONICAL_ID)?.remove();
     };
   }, [post?.slug, post?.title, lang]);
 

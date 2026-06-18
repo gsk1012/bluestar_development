@@ -4,22 +4,83 @@
 
 ## Wat we doen
 
-- **Website op maat** — Een snelle, vindbare bedrijfswebsite afgestemd op jouw merk, scherp op elk scherm.
+- **Website op maat** — Een snelle, vindbare bedrijfswebsite afgestemd op jouw merk, scherp op elk scherm. Gemiddelde laadtijd: 0,9 seconden. Lighthouse-score: 100/100.
 - **Webshop** — Complete webshop met productbeheer, veilige betalingen en soepel afrekenproces.
 - **Web-applicatie** — Maatwerk software in de browser: klantportalen, planningstools en meer.
 - **Onderhoud & support** — Updates, back-ups en snelle hulp zodat je site veilig en actueel blijft.
 - **Hosting** — Betrouwbare hosting met SSL en dagelijkse back-ups.
 
-## Contact
+## Waarom BlueStar Development
 
-- E-mail: [info@bluestardevelopment.nl](mailto:info@bluestardevelopment.nl)
-- Website: [https://bluestardevelopment.nl/](https://bluestardevelopment.nl/)
+- Elke website haalt standaard een Lighthouse-score van 100/100 (Performance, Accessibility, Best Practices, SEO).
+- Gemiddelde laadtijd: 0,9 seconden (branche-gemiddelde: 4,2 seconden).
+- WCAG AA toegankelijkheid standaard inbegrepen.
+- Uniek ontwerp — geen templates.
+- Oplevering binnen 2 tot 4 weken.
+- 30 dagen support na lancering.
+
+## Technologie
+
+- React + Vite + Static Site Generation (SSG)
+- Tailwind CSS
+- Vercel CDN (wereldwijd netwerk)
+- Framer Motion voor animaties
+- SSL + dagelijkse back-ups
 
 ## Doelgroep
 
 Nederlandse ondernemers en mkb-bedrijven die een professionele online aanwezigheid willen — van een eerste bedrijfssite tot maatwerk software.
 
+## Prijsinformatie
+
+Zie [/pricing.md](https://bluestardevelopment.nl/pricing.md) voor volledige, gestructureerde prijsdata.
+
+Indicatieve prijzen:
+- Eenvoudige bedrijfswebsite: vanaf een paar honderd euro
+- Webshop of web-applicatie: prijs op aanvraag (afhankelijk van complexiteit)
+- Onderhoud & support: maandelijks abonnement beschikbaar
+- Hosting: inbegrepen of apart af te nemen
+
+Neem contact op voor een vrijblijvende offerte: info@bluestardevelopment.nl
+
+## Contact
+
+- E-mail: [info@bluestardevelopment.nl](mailto:info@bluestardevelopment.nl)
+- Telefoon: +31 6 86 47 72 49
+- Website: [https://bluestardevelopment.nl/](https://bluestardevelopment.nl/)
+
+## Klantbeoordelingen
+
+- Sanne de Vries (Atelier Noord): "Onze nieuwe website laadt razendsnel en we krijgen merkbaar meer aanvragen via het contactformulier." — 5/5
+- Bram Jansen (Jansen Installatietechniek): "Prettige samenwerking en duidelijke afspraken. Alles werd opgeleverd zoals beloofd en op tijd." — 5/5
+- Lotte Bakker (Bakker Wonen): "Ze denken echt mee over wat onze klanten nodig hebben. De webshop draait sinds dag één soepel." — 5/5
+
 ## Voorbeeldprojecten
 
 - [Prince Schilder](https://prince-schilder.vercel.app/) — Bedrijfswebsite voor een schildersbedrijf in Amsterdam met contactformulier en Google Maps.
 - [GSK Portfolio](https://gurpreetsingh-gsk.vercel.app/) — Moderne portfolio-website met donker futuristisch thema en scroll-animaties.
+
+## Blog — kennisartikelen
+
+- [Core Web Vitals uitgelegd: wat Google écht meet](https://bluestardevelopment.nl/blog/core-web-vitals-uitgelegd) — LCP, INP en CLS: de drie meetwaarden die direct bepalen hoe Google jouw site rankt. Gepubliceerd: 2026-06-10.
+- [WCAG-toegankelijkheid: wat betekent het voor jouw website?](https://bluestardevelopment.nl/blog/wcag-toegankelijkheid-website) — Wat WCAG AA inhoudt, wie er baat bij heeft en hoe het SEO verbetert. Gepubliceerd: 2026-05-28.
+- [SSG vs SSR: hoe wij websites razendsnel maken](https://bluestardevelopment.nl/blog/ssg-vs-ssr-razendsnel-website) — Verschil tussen Static Site Generation en Server-Side Rendering, en wanneer je welke kiest. Gepubliceerd: 2026-05-14.
+- [Wat is een Lighthouse-score en waarom maakt het uit?](https://bluestardevelopment.nl/blog/wat-is-een-lighthouse-score) — Uitleg over de vier Lighthouse-categorieën en waarom een score van 100/100 loont. Gepubliceerd: 2026-04-30.
+- [Waarom wij React gebruiken voor onze websites](https://bluestardevelopment.nl/blog/waarom-wij-react-gebruiken) — Component-gebaseerde aanpak, SSG-integratie en vergelijking met WordPress en Webflow. Gepubliceerd: 2026-04-15.
+
+## Veelgestelde vragen
+
+**Wat kost een website laten maken?**
+Een eenvoudige bedrijfswebsite begint bij een paar honderd euro. Een webshop of web-applicatie kost meer, afhankelijk van complexiteit. Neem contact op voor een offerte.
+
+**Hoe snel kan BlueStar een website bouwen?**
+Een eenvoudige bedrijfswebsite is vaak binnen twee tot vier weken live.
+
+**Bouwen jullie ook webshops?**
+Ja, complete webshops met productbeheer, veilige betalingen en maatwerk afrekenproces.
+
+**Werken jullie voor zzp'ers en kleine bedrijven?**
+Ja, voor ondernemers van alle groottes door heel Nederland.
+
+**Is er support na de lancering?**
+Ja, 30 dagen gratis support. Daarna beschikbaar via onderhoud-abonnement.
