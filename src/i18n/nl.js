@@ -120,22 +120,21 @@ const nl = {
   testimonials: {
     heading: "Wat klanten over ons zeggen",
     subheading:
-      "Van bedrijfswebsite tot webshop - resultaten die het werk voor zichzelf laten spreken.",
+      "Van bedrijfswebsite tot portfolio - resultaten die het werk voor zichzelf laten spreken.",
     items: [
       {
-        quote: `"Onze nieuwe website laadt razendsnel en we krijgen merkbaar meer aanvragen via het contactformulier."`,
-        name: "Sanne de Vries",
-        role: "Eigenaar, Atelier Noord",
+        quote:
+          "Sinds de nieuwe site krijgen we veel meer aanvragen. Klanten vinden ons nu makkelijker en de eerste indruk is meteen professioneel.",
+        name: "Gurdeep Singh",
+        role: "Eigenaar, Prince Schilder",
+        photoNote: "Foto ter illustratie, niet de opdrachtgever.",
       },
       {
-        quote: `"Prettige samenwerking en duidelijke afspraken. Alles werd opgeleverd zoals beloofd en op tijd."`,
-        name: "Bram Jansen",
-        role: "Directeur, Jansen Installatietechniek",
-      },
-      {
-        quote: `"Ze denken echt mee over wat onze klanten nodig hebben. De webshop draait sinds dag één soepel."`,
-        name: "Lotte Bakker",
-        role: "Marketing, Bakker Wonen",
+        quote:
+          "Het ontwerp is strak en modern, precies wat ik zocht. Alles wat ik wilde laten zien staat er exact zoals ik het voor ogen had.",
+        name: "Gurpreet Singh",
+        role: "Opdrachtgever, GSK Portfolio",
+        photoNote: "Foto ter illustratie, niet de opdrachtgever.",
       },
     ],
   },

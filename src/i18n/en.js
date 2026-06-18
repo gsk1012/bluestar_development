@@ -116,22 +116,21 @@ const en = {
   },
   testimonials: {
     heading: "What clients say about us",
-    subheading: "From business website to webshop — results that speak for themselves.",
+    subheading: "From business website to portfolio - results that speak for themselves.",
     items: [
       {
-        quote: `"Our new website loads blazing fast and we're noticeably getting more enquiries through the contact form."`,
-        name: "Sanne de Vries",
-        role: "Owner, Atelier Noord",
+        quote:
+          "Since the new site we get far more enquiries. Customers find us more easily and the first impression is immediately professional.",
+        name: "Gurdeep Singh",
+        role: "Owner, Prince Schilder",
+        photoNote: "Illustrative photo, not the client.",
       },
       {
-        quote: `"Great collaboration and clear agreements. Everything was delivered as promised and on time."`,
-        name: "Bram Jansen",
-        role: "Director, Jansen Installatietechniek",
-      },
-      {
-        quote: `"They really think along with what our customers need. The webshop has been running smoothly since day one."`,
-        name: "Lotte Bakker",
-        role: "Marketing, Bakker Wonen",
+        quote:
+          "The design is sharp and modern, exactly what I was looking for. Everything I wanted to showcase is there just as I envisioned it.",
+        name: "Gurpreet Singh",
+        role: "Client, GSK Portfolio",
+        photoNote: "Illustrative photo, not the client.",
       },
     ],
   },
