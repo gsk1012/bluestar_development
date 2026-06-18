@@ -20,6 +20,12 @@ function saveConsent(prefs) {
     STORAGE_KEY,
     JSON.stringify({ ...prefs, savedAt: Date.now() })
   );
+  if (typeof window.gtag === "function") {
+    window.gtag("consent", "update", {
+      analytics_storage: prefs.analytics ? "granted" : "denied",
+      ad_storage: prefs.marketing ? "granted" : "denied",
+    });
+  }
 }
 
 function Toggle({ checked, onChange, disabled, id }) {
@@ -69,13 +75,20 @@ export default function CookieBanner() {
     if (!stored) {
       setPhase("banner");
     } else {
-      setHasConsent(true);
-      setPrefs({
+      const prefs = {
         necessary: true,
         functional: stored.functional ?? false,
         analytics: stored.analytics ?? false,
         marketing: stored.marketing ?? false,
-      });
+      };
+      setHasConsent(true);
+      setPrefs(prefs);
+      if (typeof window.gtag === "function") {
+        window.gtag("consent", "update", {
+          analytics_storage: prefs.analytics ? "granted" : "denied",
+          ad_storage: prefs.marketing ? "granted" : "denied",
+        });
+      }
     }
   }, []);
 
