@@ -40,6 +40,8 @@ function ImageTile({ img, title, desc, icon: Icon, className = "" }) {
         src={img}
         alt=""
         aria-hidden
+        loading="lazy"
+        decoding="async"
         className={`absolute inset-0 h-full w-full object-cover opacity-55 ${
           reduce ? "" : "transition-transform duration-700 group-hover:scale-105"
         }`}

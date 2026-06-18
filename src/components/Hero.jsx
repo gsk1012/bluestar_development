@@ -82,6 +82,8 @@ function StarVisual({ reduce }) {
         <img
           src="/star-cut.webp"
           alt="BlueStar kristallen ster"
+          fetchpriority="high"
+          decoding="async"
           className="relative z-[2] h-full w-full object-contain"
         />
       </motion.div>
@@ -143,7 +145,7 @@ function StarVisual({ reduce }) {
                 loop
                 muted
                 playsInline
-                preload="metadata"
+                preload="none"
                 aria-label="Roterende kristallen ster"
               >
                 {/* HD on desktop, SD on tablet. Below 640px no source matches,
