@@ -2,17 +2,17 @@ import { motion, useReducedMotion } from "motion/react";
 import { ArrowRight } from "@phosphor-icons/react";
 import { useLanguage } from "../i18n/LanguageContext";
 
-// Generated once at module level — stable across re-renders.
-// Stars are intentionally dim: they live in the background layer, not on top.
-// Two animations per star: ease-in-out movement + independent linear opacity curve.
-const SHOOTING_STARS = Array.from({ length: 20 }, (_, i) => ({
+// 10 stars instead of 20 — halves the CSS-animation count (was 40 threads: 20×2).
+// On mobile all these run simultaneously with the hero text animation, causing
+// dropped frames. Fewer stars keep the effect but free up compositor budget.
+const SHOOTING_STARS = Array.from({ length: 10 }, (_, i) => ({
   id: i,
   left:     `${(15 + Math.random() * 90).toFixed(2)}%`,
   top:      `${(Math.random() * 72).toFixed(2)}%`,
-  tailLen:  (Math.random() * 55 + 22).toFixed(0),   // 22–77 px — short keeps them subtle
-  height:   (Math.random() * 0.5 + 0.9).toFixed(2), // 0.9–1.4 px hairline stroke
-  duration: (Math.random() * 7 + 5.5).toFixed(1),   // 5.5–12.5 s per streak
-  delay:    (Math.random() * 36).toFixed(1),          // stagger across 36 s
+  tailLen:  (Math.random() * 55 + 22).toFixed(0),
+  height:   (Math.random() * 0.5 + 0.9).toFixed(2),
+  duration: (Math.random() * 7 + 5.5).toFixed(1),
+  delay:    (Math.random() * 36).toFixed(1),
 }));
 
 function ShootingStars({ reduce }) {
@@ -77,7 +77,8 @@ function StarVisual({ reduce }) {
         // delay the paint, the star is at full opacity from the first frame.
         initial={reduce ? false : { scale: 0.94 }}
         animate={{ scale: 1 }}
-        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        // Delay until after text has painted — avoids competing with text GPU layers
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
       >
         <div
           aria-hidden="true"
@@ -227,6 +228,7 @@ export default function Hero() {
             <span key={i} className="block overflow-hidden pb-[0.06em]">
               <motion.span
                 className={`block${accent ? " text-accent-bright" : ""}`}
+                style={{ willChange: "transform" }}
                 initial={reduce ? { opacity: 0 } : { y: "105%" }}
                 animate={{ y: "0%", opacity: 1 }}
                 transition={{ duration: 0.9, ease, delay: reduce ? 0 : i * 0.11 }}
