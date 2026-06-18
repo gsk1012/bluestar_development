@@ -1,16 +1,16 @@
 // Shared Motion variants used across all sections for consistent reveal animation.
 export const fadeUp = {
-  hidden: { opacity: 0, y: 12 },
+  hidden: { opacity: 0, y: 28 },
   show: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.4, ease: [0.23, 1, 0.32, 1] },
+    transition: { duration: 0.65, ease: [0.16, 1, 0.3, 1] },
   },
 }
 
 export const staggerContainer = {
   hidden: {},
-  show: { transition: { staggerChildren: 0.05 } },
+  show: { transition: { staggerChildren: 0.09 } },
 }
 
 // Shared viewport options: trigger early, animate once.

@@ -43,21 +43,17 @@ function ShootingStars({ reduce }) {
   );
 }
 
-const ease = [0.23, 1, 0.32, 1];
+const ease = [0.16, 1, 0.3, 1];
 
-const container = {
+// Sub-content (paragraphs + CTA) — staggered fade-up after the headline lands.
+const subContainer = {
   hidden: {},
-  show: { transition: { staggerChildren: 0.09, delayChildren: 0.05 } },
-};
-
-const lineUp = {
-  hidden: { opacity: 0, y: 28 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.7, ease } },
+  show: { transition: { staggerChildren: 0.1, delayChildren: 0.42 } },
 };
 
 const fade = {
   hidden: { opacity: 0, y: 18 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease } },
+  show: { opacity: 1, y: 0, transition: { duration: 0.75, ease } },
 };
 
 function StarVisual({ reduce }) {
@@ -214,25 +210,29 @@ export default function Hero() {
 
       {/* Content */}
       <div className="relative z-10 mx-auto flex h-full max-w-7xl flex-col justify-end px-6 pb-14 pt-20 sm:justify-center sm:px-8 lg:pb-20 lg:pt-24">
-        <motion.h1
-          variants={container}
-          initial="hidden"
-          animate="show"
-          className="font-heading font-bold leading-[0.96] tracking-[-0.035em] text-[clamp(2.75rem,7.5vw,6.875rem)] lg:max-w-[66%]"
-          >
-          <motion.span variants={lineUp} className="block">
-            {h.line1}
-          </motion.span>
-          <motion.span variants={lineUp} className="block">
-            {h.line2}
-          </motion.span>
-          <motion.span variants={lineUp} className="block text-accent-bright">
-            {h.line3}
-          </motion.span>
-        </motion.h1>
+        {/* Each line: overflow-hidden wrapper clips the text below it, the inner
+            span slides up from 105% — the same mask-reveal Prince Schilder uses. */}
+        <h1 className="font-heading font-bold leading-[0.96] tracking-[-0.035em] text-[clamp(2.75rem,7.5vw,6.875rem)] lg:max-w-[66%]">
+          {[
+            { text: h.line1, accent: false },
+            { text: h.line2, accent: false },
+            { text: h.line3, accent: true },
+          ].map(({ text, accent }, i) => (
+            <span key={i} className="block overflow-hidden pb-[0.06em]">
+              <motion.span
+                className={`block${accent ? " text-accent-bright" : ""}`}
+                initial={reduce ? { opacity: 0 } : { y: "105%" }}
+                animate={{ y: "0%", opacity: 1 }}
+                transition={{ duration: 0.9, ease, delay: reduce ? 0 : i * 0.11 }}
+              >
+                {text}
+              </motion.span>
+            </span>
+          ))}
+        </h1>
 
         <motion.div
-          variants={container}
+          variants={subContainer}
           initial="hidden"
           animate="show"
           className="mt-10 max-w-xl lg:mt-12"
