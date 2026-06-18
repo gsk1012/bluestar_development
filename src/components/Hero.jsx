@@ -70,7 +70,7 @@ function StarVisual({ reduce }) {
           phones. A modest, pre-rasterised glow keeps the brand glow without an
           expensive blur. Matches how the reference sites go static on mobile. */}
       <motion.div
-        className="absolute inset-0 sm:hidden"
+        className="absolute inset-0 sm:hidden [@media(orientation:landscape)_and_(max-height:600px)]:block"
         // The star IS the mobile LCP element. Fading opacity from 0 delayed the
         // LCP paint by ~1s (Chrome only counts it once it becomes visible), so we
         // reveal with a transform-only scale settle instead — transforms don't
@@ -104,7 +104,7 @@ function StarVisual({ reduce }) {
           duration: 2.0,
           ease: [0.14, 0.8, 0.28, 1],
         }}
-        className="absolute inset-0 hidden sm:block"
+        className="absolute inset-0 hidden sm:block [@media(orientation:landscape)_and_(max-height:600px)]:hidden"
       >
         <motion.div
           animate={reduce ? { y: 0 } : { y: [0, -16, 0] }}
