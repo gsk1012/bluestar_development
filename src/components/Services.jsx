@@ -1,6 +1,6 @@
-import { useReducedMotion } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
 import { Browser, ShoppingCart, Code, Wrench, CloudArrowUp } from "@phosphor-icons/react";
-import { useReveal } from "../lib/useReveal";
+import { fadeUp, vpOnce } from "../lib/motion";
 import { useLanguage } from "../i18n/LanguageContext";
 
 // Decoratieve tegel-achtergronden — geoptimaliseerd (resized + WebP) en lokaal
@@ -11,12 +11,27 @@ const IMG_WEBAPP = "/services/webapp.webp";
 const IMG_ONDERHOUD = "/services/onderhoud.webp";
 const IMG_HOSTING = "/services/hosting.webp";
 
-function ImageTile({ img, title, desc, icon: Icon, className = "", index }) {
+// Tiles stagger in one-by-one after the heading has landed.
+const gridContainer = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.12, delayChildren: 0.1 } },
+};
+
+const tileVariant = {
+  hidden: { opacity: 0, y: 28 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.65, ease: [0.16, 1, 0.3, 1] },
+  },
+};
+
+function ImageTile({ img, title, desc, icon: Icon, className = "" }) {
   const reduce = useReducedMotion();
   return (
-    <div
-      className={`reveal-item group relative overflow-hidden rounded-rmd ${className}`}
-      style={{ '--i': index }}
+    <motion.div
+      variants={tileVariant}
+      className={`group relative overflow-hidden rounded-rmd ${className}`}
     >
       <img
         src={img}
@@ -28,9 +43,13 @@ function ImageTile({ img, title, desc, icon: Icon, className = "", index }) {
           reduce ? "" : "transition-transform duration-700 group-hover:scale-105"
         }`}
       />
+      {/* gradient vignette */}
       <div className="absolute inset-0 bg-gradient-to-t from-night via-night/50 to-night/10" />
+      {/* subtle top-left corner glow on hover */}
       <div className="pointer-events-none absolute -left-8 -top-8 h-40 w-40 rounded-full bg-accent-bright/0 blur-3xl transition-all duration-500 group-hover:bg-accent-bright/20" />
+      {/* ring */}
       <div className="absolute inset-0 rounded-rmd ring-1 ring-white/10 transition-all duration-300 group-hover:ring-accent-bright/30" />
+      {/* content */}
       <div className="relative flex h-full flex-col justify-end p-6 lg:p-8">
         <Icon
           size={26}
@@ -42,15 +61,14 @@ function ImageTile({ img, title, desc, icon: Icon, className = "", index }) {
         </h3>
         <p className="mt-1.5 max-w-xs text-sm leading-relaxed text-white/55">{desc}</p>
       </div>
-    </div>
+    </motion.div>
   );
 }
+
 
 export default function Services() {
   const { t } = useLanguage();
   const s = t.services;
-  const [headingRef, headingVisible] = useReveal({ threshold: 0.4 });
-  const [gridRef, gridVisible] = useReveal();
 
   const tiles = [
     { img: IMG_WEBSITE, key: "website", icon: Browser, className: "min-h-[260px] sm:col-span-2 md:col-span-2" },
@@ -62,16 +80,24 @@ export default function Services() {
 
   return (
     <section id="diensten" className="relative isolate overflow-hidden py-16 lg:py-24">
+      {/* ambient glow — baked gradient, no blur filter */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 -z-10"
-        style={{ background: "radial-gradient(38vh 38vh at 100% 18%, rgba(11,95,216,0.14), transparent 70%)" }}
+        style={{
+          background:
+            "radial-gradient(38vh 38vh at 100% 18%, rgba(11,95,216,0.14), transparent 70%)",
+        }}
       />
 
       <div className="mx-auto max-w-7xl px-6 sm:px-8">
-        <div
-          ref={headingRef}
-          className={`reveal mb-10 max-w-xl lg:mb-12${headingVisible ? ' in-view' : ''}`}
+        {/* Heading fades in first, then the grid follows */}
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.4 }}
+          className="mb-10 max-w-xl lg:mb-12"
         >
           <h2 className="font-heading text-3xl font-bold tracking-tight text-white text-balance sm:text-4xl">
             {s.heading}
@@ -79,13 +105,16 @@ export default function Services() {
           <p className="mt-3 text-lg leading-relaxed text-white/60">
             {s.subheading}
           </p>
-        </div>
+        </motion.div>
 
-        <div
-          ref={gridRef}
-          className={`reveal-group grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3 md:grid-rows-[320px_220px] lg:gap-4${gridVisible ? ' in-view' : ''}`}
+        <motion.div
+          variants={gridContainer}
+          initial="hidden"
+          whileInView="show"
+          viewport={vpOnce}
+          className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3 md:grid-rows-[320px_220px] lg:gap-4"
         >
-          {tiles.map(({ img, key, icon, className }, i) => (
+          {tiles.map(({ img, key, icon, className }) => (
             <ImageTile
               key={key}
               img={img}
@@ -93,10 +122,9 @@ export default function Services() {
               desc={s.items[key].desc}
               icon={icon}
               className={className}
-              index={i}
             />
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { useReveal } from "../lib/useReveal";
+import { motion } from "motion/react";
+import { fadeUp, staggerContainer, vpOnce } from "../lib/motion";
 import { projects } from "../data/projects";
 import { useLanguage } from "../i18n/LanguageContext";
 
@@ -10,9 +11,9 @@ function ProjectCard({ project, translated, index }) {
   const p = t.portfolio;
 
   return (
-    <article
-      className="reveal-item overflow-hidden rounded-rmd border border-white/10 bg-panel"
-      style={{ '--i': index }}
+    <motion.article
+      variants={fadeUp}
+      className="overflow-hidden rounded-rmd border border-white/10 bg-panel"
     >
       <a
         href={project.url}
@@ -80,22 +81,23 @@ function ProjectCard({ project, translated, index }) {
           {p.viewProject}
         </a>
       </div>
-    </article>
+    </motion.article>
   );
 }
 
 export default function Portfolio() {
   const { t } = useLanguage();
   const p = t.portfolio;
-  const [headingRef, headingVisible] = useReveal({ threshold: 0.4 });
-  const [gridRef, gridVisible] = useReveal();
 
   return (
     <section id="portfolio" className="py-16 lg:py-24">
       <div className="mx-auto max-w-7xl px-6 sm:px-8">
-        <div
-          ref={headingRef}
-          className={`reveal mb-10 lg:mb-14${headingVisible ? ' in-view' : ''}`}
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.4 }}
+          className="mb-10 lg:mb-14"
         >
           <h2 className="font-heading text-3xl font-bold tracking-tight text-balance text-white sm:text-4xl">
             {p.heading}
@@ -103,11 +105,14 @@ export default function Portfolio() {
           <p className="mt-3 max-w-lg text-lg leading-relaxed text-white/60">
             {p.subheading}
           </p>
-        </div>
+        </motion.div>
 
-        <div
-          ref={gridRef}
-          className={`reveal-group grid gap-5 lg:grid-cols-2 lg:gap-6${gridVisible ? ' in-view' : ''}`}
+        <motion.div
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="show"
+          viewport={vpOnce}
+          className="grid gap-5 lg:grid-cols-2 lg:gap-6"
         >
           {projects.map((project, i) => (
             <ProjectCard
@@ -117,7 +122,7 @@ export default function Portfolio() {
               index={i}
             />
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

@@ -43,7 +43,18 @@ function ShootingStars({ reduce }) {
   );
 }
 
+const ease = [0.16, 1, 0.3, 1];
 
+// Sub-content (paragraphs + CTA) — staggered fade-up after the headline lands.
+const subContainer = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.1, delayChildren: 0.42 } },
+};
+
+const fade = {
+  hidden: { opacity: 0, y: 18 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.75, ease } },
+};
 
 function StarVisual({ reduce }) {
   // Feather the navy backdrop and the video together. In the outer margin the
@@ -225,23 +236,28 @@ export default function Hero() {
           ))}
         </h1>
 
-        <div className="mt-10 max-w-xl lg:mt-12">
-          <p
-            className="hero-sub text-lg font-medium leading-snug text-white sm:text-xl"
-            style={{ animationDelay: '0.42s' }}
+        <motion.div
+          variants={subContainer}
+          initial="hidden"
+          animate="show"
+          className="mt-10 max-w-xl lg:mt-12"
+        >
+          <motion.p
+            variants={fade}
+            className="text-lg font-medium leading-snug text-white sm:text-xl"
           >
             {h.sub1}
-          </p>
-          <p
-            className="hero-sub mt-2 max-w-md text-sm leading-relaxed text-white/60 sm:text-base"
-            style={{ animationDelay: '0.52s' }}
+          </motion.p>
+          <motion.p
+            variants={fade}
+            className="mt-2 max-w-md text-sm leading-relaxed text-white/60 sm:text-base"
           >
             {h.sub2}
-          </p>
+          </motion.p>
 
-          <div
-            className="hero-sub mt-7 flex flex-wrap items-center gap-4"
-            style={{ animationDelay: '0.62s' }}
+          <motion.div
+            variants={fade}
+            className="mt-7 flex flex-wrap items-center gap-4"
           >
             <a
               href="#contact"
@@ -258,8 +274,8 @@ export default function Hero() {
             >
               {h.secondary}
             </a>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );

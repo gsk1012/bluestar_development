@@ -43,55 +43,16 @@ h3 {
   100% { opacity: 0; }
 }
 
-/* Hero headline reveal */
+/* Hero headline reveal — pure CSS so it runs on the compositor thread and never
+   drops frames during JS hydration. `backwards` fill-mode keeps each line hidden
+   during its stagger delay, just like the menu animation below. */
 @keyframes hero-line-up {
   from { transform: translateY(105%); }
   to   { transform: translateY(0%); }
 }
+
 .hero-line {
   animation: hero-line-up 0.85s cubic-bezier(0.16, 1, 0.3, 1) backwards;
-}
-
-/* Hero sub-content (paragraphs + CTAs) */
-@keyframes hero-sub-in {
-  from { opacity: 0; transform: translateY(18px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-.hero-sub {
-  animation: hero-sub-in 0.75s cubic-bezier(0.16, 1, 0.3, 1) backwards;
-}
-
-/* Section scroll-reveals — CSS-only, compositor thread, no JS per frame.
-   .reveal       = single element fade-up when .in-view is added by IntersectionObserver.
-   .reveal-group = parent; children with .reveal-item stagger via --i custom property. */
-@keyframes reveal-up {
-  from { opacity: 0; transform: translateY(28px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-.reveal { opacity: 0; }
-.reveal.in-view {
-  animation: reveal-up 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-.reveal-item { opacity: 0; }
-.reveal-group.in-view .reveal-item {
-  animation: reveal-up 0.65s cubic-bezier(0.16, 1, 0.3, 1) backwards;
-  animation-delay: calc(var(--i, 0) * 0.09s);
-}
-
-/* Process desktop horizontal line */
-@keyframes scale-x-in {
-  from { transform: scaleX(0); }
-  to   { transform: scaleX(1); }
-}
-.reveal-group.in-view .reveal-line {
-  animation: scale-x-in 0.8s cubic-bezier(0.23, 1, 0.32, 1) 0.1s forwards;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .reveal, .reveal-item { opacity: 1 !important; animation: none !important; }
-  .hero-sub, .hero-line { opacity: 1 !important; animation: none !important; }
 }
 
 /* Mobile menu item reveal — CSS-driven so opening the menu does no JS animation

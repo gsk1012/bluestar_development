@@ -1,5 +1,6 @@
-import { useReducedMotion } from "motion/react";
-import { useReveal } from "../lib/useReveal";
+"use client";
+import { motion, useReducedMotion } from "motion/react";
+import { fadeUp, staggerContainer, vpOnce } from "../lib/motion";
 import { useLanguage } from "../i18n/LanguageContext";
 
 // Portretfoto's — geoptimaliseerd (resized + WebP), lokaal geserveerd.
@@ -10,12 +11,12 @@ const PHOTOS = [
   "/testimonials/3.webp",
 ];
 
-function TestimonialCard({ item, photo, index }) {
+function TestimonialCard({ item, photo }) {
   const reduce = useReducedMotion();
   return (
-    <figure
-      className="reveal-item group relative aspect-[3/4] overflow-hidden rounded-rmd"
-      style={{ '--i': index }}
+    <motion.figure
+      variants={fadeUp}
+      className="group relative aspect-[3/4] overflow-hidden rounded-rmd"
     >
       <img
         src={photo}
@@ -40,22 +41,23 @@ function TestimonialCard({ item, photo, index }) {
           <span className="mt-0.5 block text-xs text-white/50">{item.role}</span>
         </figcaption>
       </div>
-    </figure>
+    </motion.figure>
   );
 }
 
 export default function Testimonials() {
   const { t } = useLanguage();
   const te = t.testimonials;
-  const [headingRef, headingVisible] = useReveal();
-  const [gridRef, gridVisible] = useReveal();
 
   return (
     <section id="reviews" className="py-16 lg:py-24">
       <div className="mx-auto max-w-7xl px-6 sm:px-8">
-        <div
-          ref={headingRef}
-          className={`reveal max-w-xl${headingVisible ? ' in-view' : ''}`}
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="show"
+          viewport={vpOnce}
+          className="max-w-xl"
         >
           <h2 className="font-heading text-3xl font-bold tracking-tight text-white text-balance sm:text-4xl">
             {te.heading}
@@ -63,16 +65,19 @@ export default function Testimonials() {
           <p className="mt-3 text-lg leading-relaxed text-white/60">
             {te.subheading}
           </p>
-        </div>
+        </motion.div>
 
-        <div
-          ref={gridRef}
-          className={`reveal-group mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:mt-14 lg:grid-cols-3 lg:gap-5${gridVisible ? ' in-view' : ''}`}
+        <motion.div
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="show"
+          viewport={vpOnce}
+          className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:mt-14 lg:grid-cols-3 lg:gap-5"
         >
           {te.items.map((item, i) => (
-            <TestimonialCard key={item.name} item={item} photo={PHOTOS[i]} index={i} />
+            <TestimonialCard key={item.name} item={item} photo={PHOTOS[i]} />
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
