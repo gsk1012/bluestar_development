@@ -18,7 +18,7 @@ const SHOOTING_STARS = Array.from({ length: 20 }, (_, i) => ({
 function ShootingStars({ reduce }) {
   if (reduce) return null;
   return (
-    <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-[1] hidden overflow-hidden sm:block">
+    <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-[1] overflow-hidden">
       {SHOOTING_STARS.map(s => (
         <span
           key={s.id}
