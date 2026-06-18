@@ -49,6 +49,7 @@ export default function Process() {
         </motion.div>
 
         <motion.div
+          key={pr.heading}
           ref={stepsRef}
           variants={staggerContainer}
           initial="hidden"

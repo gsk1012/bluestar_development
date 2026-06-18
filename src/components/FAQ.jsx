@@ -115,6 +115,7 @@ export default function FAQ() {
             </motion.div>
 
             <motion.div
+              key={faq.heading}
               variants={staggerContainer}
               initial="hidden"
               whileInView="show"
