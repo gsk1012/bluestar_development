@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
 import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
 import {
   ChatCircleDots,
@@ -6,7 +6,7 @@ import {
   Code,
   RocketLaunch,
 } from "@phosphor-icons/react";
-import { fadeUp, staggerContainer, vpOnce } from "../lib/motion";
+import { useReveal } from "../lib/useReveal";
 import { useLanguage } from "../i18n/LanguageContext";
 
 const ICONS = [ChatCircleDots, PencilRuler, Code, RocketLaunch];
@@ -15,30 +15,36 @@ export default function Process() {
   const { t } = useLanguage();
   const pr = t.process;
   const reduceMotion = useReducedMotion();
-  const stepsRef = useRef(null);
 
-  // Only the vertical progress line follows the scroll — and it does so via a
-  // GPU-composited scaleY transform (no per-frame repaint). The step cards fade
-  // in once with a whileInView stagger, just like every other section, so the
-  // page stays smooth while scrolling on mobile.
+  // Scroll-driven vertical line (mobile) — must stay on a motion element.
+  const stepsRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: stepsRef,
     offset: ["start 0.8", "end 0.4"],
   });
-
   const lineScaleY = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
-  const lineTransition = { duration: 0.5, ease: [0.23, 1, 0.32, 1] };
+  // CSS reveal for heading and steps container.
+  const [headingRef, headingVisible] = useReveal({ threshold: 0.3 });
+
+  // Merge stepsRef + reveal into one callback ref.
+  const [stepsVisible, setStepsVisible] = useState(false);
+  const stepsCallbackRef = (el) => {
+    stepsRef.current = el;
+    if (!el || stepsVisible) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setStepsVisible(true); obs.disconnect(); } },
+      { threshold: 0.05 }
+    );
+    obs.observe(el);
+  };
 
   return (
     <section id="aanpak" className="py-16 lg:py-24">
       <div className="mx-auto max-w-7xl px-6 sm:px-8">
-        <motion.div
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="show"
-          viewport={vpOnce}
-          className="max-w-2xl"
+        <div
+          ref={headingRef}
+          className={`reveal max-w-2xl${headingVisible ? ' in-view' : ''}`}
         >
           <h2 className="font-heading text-3xl font-bold tracking-tight text-white text-balance sm:text-4xl">
             {pr.heading}
@@ -46,15 +52,11 @@ export default function Process() {
           <p className="mt-3 text-lg leading-relaxed text-white/70">
             {pr.subheading}
           </p>
-        </motion.div>
+        </div>
 
-        <motion.div
-          ref={stepsRef}
-          variants={staggerContainer}
-          initial="hidden"
-          whileInView="show"
-          viewport={vpOnce}
-          className="relative mt-12 lg:mt-16"
+        <div
+          ref={stepsCallbackRef}
+          className={`reveal-group relative mt-12 lg:mt-16${stepsVisible ? ' in-view' : ''}`}
         >
           {/* Mobile: scroll-driven vertical line */}
           <div
@@ -71,28 +73,22 @@ export default function Process() {
             )}
           </div>
 
-          {/* Desktop: whileInView horizontal line */}
+          {/* Desktop: CSS reveal horizontal line */}
           <div
             aria-hidden="true"
             className="hidden md:block absolute left-7 right-7 top-7 h-px bg-white/10"
           >
-            <motion.span
-              className="absolute inset-0 origin-left bg-accent-bright/40"
-              initial={reduceMotion ? undefined : { scaleX: 0 }}
-              whileInView={{ scaleX: 1 }}
-              viewport={vpOnce}
-              transition={lineTransition}
-            />
+            <span className="reveal-line absolute inset-0 origin-left bg-accent-bright/40" />
           </div>
 
           <ol className="relative grid gap-10 md:grid-cols-4 md:gap-6">
             {pr.steps.map((step, i) => {
               const Icon = ICONS[i];
               return (
-                <motion.li
+                <li
                   key={step.title}
-                  variants={fadeUp}
-                  className="flex gap-5 md:flex-col md:items-center md:gap-0"
+                  className="reveal-item flex gap-5 md:flex-col md:items-center md:gap-0"
+                  style={{ '--i': i }}
                 >
                   <div className="relative z-10 flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-white/10 bg-panel">
                     <Icon size={26} weight="duotone" className="text-accent-bright" />
@@ -108,11 +104,11 @@ export default function Process() {
                       {step.description}
                     </p>
                   </div>
-                </motion.li>
+                </li>
               );
             })}
           </ol>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

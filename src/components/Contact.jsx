@@ -1,8 +1,7 @@
 import { useState } from "react";
-import { motion } from "motion/react";
 import { Envelope, Phone } from "@phosphor-icons/react";
 import { validateContactForm } from "../lib/validation";
-import { fadeUp, vpOnce } from "../lib/motion";
+import { useReveal } from "../lib/useReveal";
 import { useLanguage } from "../i18n/LanguageContext";
 
 const EMAIL = "info@bluestardevelopment.nl";
@@ -27,6 +26,8 @@ function FieldError({ id, message }) {
 export default function Contact() {
   const { t } = useLanguage();
   const c = t.contact;
+  const [leftRef, leftVisible] = useReveal();
+  const [formRef, formVisible] = useReveal();
 
   const [values, setValues] = useState(emptyForm);
   const [errors, setErrors] = useState({});
@@ -68,12 +69,7 @@ export default function Contact() {
     <section id="contact" className="py-16 lg:py-24">
       <div className="mx-auto max-w-7xl px-6 sm:px-8">
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
-          <motion.div
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="show"
-            viewport={vpOnce}
-          >
+          <div ref={leftRef} className={`reveal${leftVisible ? ' in-view' : ''}`}>
             <h2 className="font-heading text-3xl font-bold tracking-tight text-white text-balance sm:text-4xl">
               {c.heading}
             </h2>
@@ -105,16 +101,13 @@ export default function Contact() {
                 </a>
               ))}
             </div>
-          </motion.div>
+          </div>
 
-          <motion.form
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="show"
-            viewport={vpOnce}
+          <form
+            ref={formRef}
+            className={`reveal rounded-rlg border border-white/10 bg-white/5 p-6 sm:p-8${formVisible ? ' in-view' : ''}`}
             noValidate
             onSubmit={handleSubmit}
-            className="rounded-rlg border border-white/10 bg-white/5 p-6 sm:p-8"
           >
             <div>
               <label htmlFor="name" className="block text-sm font-medium text-white">
@@ -198,7 +191,7 @@ export default function Contact() {
                 {c.errorSuffix}
               </p>
             )}
-          </motion.form>
+          </form>
         </div>
       </div>
     </section>

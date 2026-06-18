@@ -7,7 +7,7 @@ import {
   animate,
   useInView,
 } from "motion/react";
-import { fadeUp, vpOnce } from "../lib/motion";
+import { useReveal } from "../lib/useReveal";
 import { useLanguage } from "../i18n/LanguageContext";
 
 const RAW_STATS = [
@@ -43,19 +43,15 @@ function Counter({ to, format, duration = 1.6, delay = 0 }) {
 export default function Stats() {
   const { t } = useLanguage();
   const s = t.stats;
+  const [leftRef, leftVisible] = useReveal();
+  const [rightRef, rightVisible] = useReveal();
 
   return (
     <section id="cijfers" className="py-16 lg:py-24">
       <div className="mx-auto max-w-7xl px-6 sm:px-8">
         <div className="grid items-start gap-12 lg:grid-cols-12 lg:gap-16">
           {/* Left: headline + body */}
-          <motion.div
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="show"
-            viewport={vpOnce}
-            className="lg:col-span-5"
-          >
+          <div ref={leftRef} className={`reveal lg:col-span-5${leftVisible ? ' in-view' : ''}`}>
             <h2 className="font-heading text-3xl font-bold tracking-tight text-white text-balance sm:text-4xl">
               {s.heading}
             </h2>
@@ -68,16 +64,10 @@ export default function Stats() {
             >
               {s.cta}
             </a>
-          </motion.div>
+          </div>
 
           {/* Right: animated stat rows */}
-          <motion.div
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="show"
-            viewport={vpOnce}
-            className="lg:col-span-7"
-          >
+          <div ref={rightRef} className={`reveal lg:col-span-7${rightVisible ? ' in-view' : ''}`}>
             {s.items.map((item, i) => {
               const raw = RAW_STATS[i];
               const fmt = raw.makeFormat(s.decimalSep);
@@ -109,7 +99,7 @@ export default function Stats() {
                 </div>
               );
             })}
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

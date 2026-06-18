@@ -43,18 +43,7 @@ function ShootingStars({ reduce }) {
   );
 }
 
-const ease = [0.16, 1, 0.3, 1];
 
-// Sub-content (paragraphs + CTA) — staggered fade-up after the headline lands.
-const subContainer = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.1, delayChildren: 0.42 } },
-};
-
-const fade = {
-  hidden: { opacity: 0, y: 18 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.75, ease } },
-};
 
 function StarVisual({ reduce }) {
   // Feather the navy backdrop and the video together. In the outer margin the
@@ -236,28 +225,23 @@ export default function Hero() {
           ))}
         </h1>
 
-        <motion.div
-          variants={subContainer}
-          initial="hidden"
-          animate="show"
-          className="mt-10 max-w-xl lg:mt-12"
-        >
-          <motion.p
-            variants={fade}
-            className="text-lg font-medium leading-snug text-white sm:text-xl"
+        <div className="mt-10 max-w-xl lg:mt-12">
+          <p
+            className="hero-sub text-lg font-medium leading-snug text-white sm:text-xl"
+            style={{ animationDelay: '0.42s' }}
           >
             {h.sub1}
-          </motion.p>
-          <motion.p
-            variants={fade}
-            className="mt-2 max-w-md text-sm leading-relaxed text-white/60 sm:text-base"
+          </p>
+          <p
+            className="hero-sub mt-2 max-w-md text-sm leading-relaxed text-white/60 sm:text-base"
+            style={{ animationDelay: '0.52s' }}
           >
             {h.sub2}
-          </motion.p>
+          </p>
 
-          <motion.div
-            variants={fade}
-            className="mt-7 flex flex-wrap items-center gap-4"
+          <div
+            className="hero-sub mt-7 flex flex-wrap items-center gap-4"
+            style={{ animationDelay: '0.62s' }}
           >
             <a
               href="#contact"
@@ -274,8 +258,8 @@ export default function Hero() {
             >
               {h.secondary}
             </a>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </div>
     </section>
   );
