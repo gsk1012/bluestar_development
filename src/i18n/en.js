@@ -149,6 +149,58 @@ const en = {
     errorSuffix: "or call us directly.",
     emailSubject: "New message via bluestardevelopment.nl",
   },
+  faq: {
+    heading: "Frequently asked questions",
+    subheading: "Everything you want to know before making a decision.",
+    includedCard: {
+      eyebrow: "Always included",
+      heading: "What's in every project",
+      body: "No hidden costs, no surprises afterwards. These are the things we include as standard in every project.",
+      items: [
+        "Lighthouse score 100/100",
+        "Responsive on every screen and device",
+        "SSL certificate and daily backups",
+        "Live within 2 to 4 weeks",
+        "30 days support after launch",
+        "Full handover of files and access",
+        "Unique design, no templates",
+        "Optimised for search engines (SEO)",
+        "Accessible for all users (WCAG AA)",
+      ],
+    },
+    items: [
+      {
+        question: "How much does a website cost?",
+        answer:
+          "The price depends on the scope and complexity of the project. A simple business website starts at a few hundred euros, while an extensive webshop or web application costs more. Contact us for a no-obligation custom quote.",
+      },
+      {
+        question: "How quickly can BlueStar Development build a website?",
+        answer:
+          "The turnaround time depends on the scope. A simple business website is often live within two to four weeks. Schedule a call for a concrete timeline.",
+      },
+      {
+        question: "Do you also build webshops?",
+        answer:
+          "Yes. BlueStar Development builds complete webshops with product management, secure payments and a smooth checkout process, fully tailored to your brand.",
+      },
+      {
+        question: "Do you work with small businesses and freelancers?",
+        answer:
+          "Absolutely. We work with entrepreneurs of all sizes, from freelancers and small businesses to growing SMEs. We scale the solution to match your needs and budget.",
+      },
+      {
+        question: "Are you available after launch?",
+        answer:
+          "Yes. We offer maintenance and support after delivery. Think updates, backups, technical help and adjustments as your business grows.",
+      },
+      {
+        question: "Which area do you work in?",
+        answer:
+          "We work for entrepreneurs throughout the Netherlands. We manage most projects remotely, but a personal meeting is always possible.",
+      },
+    ],
+  },
   footer: {
     tagline: "Fast, findable websites and webshops built to order for entrepreneurs.",
     navigation: "Navigation",

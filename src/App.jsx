@@ -1,4 +1,5 @@
 import { lazy, Suspense } from "react";
+import { Analytics } from "@vercel/analytics/react";
 import Navbar from "./components/Navbar";
 import CookieBanner from "./components/CookieBanner";
 import Hero from "./components/Hero";
@@ -10,6 +11,7 @@ import Stats from "./components/Stats";
 const Portfolio    = lazy(() => import("./components/Portfolio"));
 const Process      = lazy(() => import("./components/Process"));
 const Testimonials = lazy(() => import("./components/Testimonials"));
+const FAQ          = lazy(() => import("./components/FAQ"));
 const Contact      = lazy(() => import("./components/Contact"));
 const Footer       = lazy(() => import("./components/Footer"));
 
@@ -40,6 +42,7 @@ function App() {
           <Portfolio />
           <Process />
           <Testimonials />
+          <FAQ />
           <Contact />
         </Suspense>
       </main>
@@ -47,6 +50,7 @@ function App() {
         <Footer />
       </Suspense>
       <CookieBanner />
+      <Analytics />
     </>
   );
 }

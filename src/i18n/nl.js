@@ -153,6 +153,58 @@ const nl = {
     errorSuffix: "of bel ons direct.",
     emailSubject: "Nieuw bericht via bluestardevelopment.nl",
   },
+  faq: {
+    heading: "Veelgestelde vragen",
+    subheading: "Alles wat je wilt weten voor je een beslissing neemt.",
+    includedCard: {
+      eyebrow: "Standaard inbegrepen",
+      heading: "Dit zit altijd in elk project",
+      body: "Geen verborgen kosten, geen verrassingen achteraf. Dit zijn de zaken die we bij elk project standaard meenemen.",
+      items: [
+        "Lighthouse-score 100/100",
+        "Responsief op elk scherm en apparaat",
+        "SSL-certificaat en dagelijkse back-ups",
+        "Live binnen 2 tot 4 weken",
+        "30 dagen support na lancering",
+        "Volledige overdracht van bestanden en toegangen",
+        "Uniek ontwerp, geen templates",
+        "Geoptimaliseerd voor zoekmachines (SEO)",
+        "Toegankelijk voor alle gebruikers (WCAG AA)",
+      ],
+    },
+    items: [
+      {
+        question: "Wat kost een website laten maken?",
+        answer:
+          "De prijs hangt af van de wensen en complexiteit van het project. Een eenvoudige bedrijfswebsite begint al bij een paar honderd euro, terwijl een uitgebreide webshop of web-applicatie meer kost. Neem contact op voor een vrijblijvende offerte op maat.",
+      },
+      {
+        question: "Hoe snel kan BlueStar Development een website bouwen?",
+        answer:
+          "De doorlooptijd hangt af van de omvang. Een eenvoudige bedrijfswebsite is vaak binnen twee tot vier weken live. Plan een gesprek voor een concrete planning.",
+      },
+      {
+        question: "Bouwen jullie ook webshops?",
+        answer:
+          "Ja. BlueStar Development bouwt complete webshops met productbeheer, veilige betalingen en een soepel afrekenproces, volledig op maat van jouw merk.",
+      },
+      {
+        question: "Werken jullie ook voor kleine bedrijven en zzp'ers?",
+        answer:
+          "Absoluut. We werken voor ondernemers van alle groottes, van zzp'ers en kleine bedrijven tot groeiende mkb-bedrijven. We schalen de oplossing mee met jouw behoeften en budget.",
+      },
+      {
+        question: "Blijven jullie beschikbaar na de lancering?",
+        answer:
+          "Ja. We bieden onderhoud en support na oplevering. Denk aan updates, back-ups, technische hulp en aanpassingen als je bedrijf groeit.",
+      },
+      {
+        question: "In welk gebied werken jullie?",
+        answer:
+          "We werken voor ondernemers door heel Nederland. Projecten begeleiden we grotendeels op afstand, maar een persoonlijk gesprek is altijd mogelijk.",
+      },
+    ],
+  },
   footer: {
     tagline: "Snelle, vindbare websites en webshops op maat voor ondernemers.",
     navigation: "Navigatie",

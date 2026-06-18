@@ -10,6 +10,7 @@ import Stats from './components/Stats'
 import Portfolio from './components/Portfolio'
 import Process from './components/Process'
 import Testimonials from './components/Testimonials'
+import FAQ from './components/FAQ'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 
@@ -39,6 +40,7 @@ function ServerApp() {
         <Portfolio />
         <Process />
         <Testimonials />
+        <FAQ />
         <Contact />
       </main>
       <Footer />
