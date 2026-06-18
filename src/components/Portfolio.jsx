@@ -1,12 +1,10 @@
 import { useState } from "react";
-import { motion, useReducedMotion } from "motion/react";
-import { vpOnce } from "../lib/motion";
+import { motion } from "motion/react";
+import { fadeUp, staggerContainer, vpOnce } from "../lib/motion";
 import { projects } from "../data/projects";
 import { useLanguage } from "../i18n/LanguageContext";
 
-const ease = [0.23, 1, 0.32, 1];
-
-function ProjectCard({ project, translated, index, reduce }) {
+function ProjectCard({ project, translated, index }) {
   const [imgFailed, setImgFailed] = useState(false);
   const num = String(index + 1).padStart(2, "0");
   const { t } = useLanguage();
@@ -14,10 +12,7 @@ function ProjectCard({ project, translated, index, reduce }) {
 
   return (
     <motion.article
-      initial={reduce ? false : { opacity: 0, y: 14 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={vpOnce}
-      transition={{ duration: 0.4, ease }}
+      variants={fadeUp}
       className="overflow-hidden rounded-rmd border border-white/10 bg-panel"
     >
       <a
@@ -91,7 +86,6 @@ function ProjectCard({ project, translated, index, reduce }) {
 }
 
 export default function Portfolio() {
-  const reduce = useReducedMotion();
   const { t } = useLanguage();
   const p = t.portfolio;
 
@@ -99,10 +93,10 @@ export default function Portfolio() {
     <section id="portfolio" className="py-16 lg:py-24">
       <div className="mx-auto max-w-7xl px-6 sm:px-8">
         <motion.div
-          initial={reduce ? false : { opacity: 0, y: 14 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={vpOnce}
-          transition={{ duration: 0.4, ease }}
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.4 }}
           className="mb-10 lg:mb-14"
         >
           <h2 className="font-heading text-3xl font-bold tracking-tight text-balance text-white sm:text-4xl">
@@ -113,17 +107,22 @@ export default function Portfolio() {
           </p>
         </motion.div>
 
-        <div className="grid gap-5 lg:grid-cols-2 lg:gap-6">
+        <motion.div
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="show"
+          viewport={vpOnce}
+          className="grid gap-5 lg:grid-cols-2 lg:gap-6"
+        >
           {projects.map((project, i) => (
             <ProjectCard
               key={project.url}
               project={project}
               translated={p.projects[i]}
               index={i}
-              reduce={reduce}
             />
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

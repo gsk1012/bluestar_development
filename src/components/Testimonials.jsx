@@ -9,20 +9,11 @@ const PHOTOS = [
   "https://d8j0ntlcm91z4.cloudfront.net/user_3EullDUozCLP0n2estZw2O2QBZD/hf_20260616_222455_1e3d7670-8c12-43ba-b2e3-c7f9dc532646.png",
 ];
 
-const tileVariant = {
-  hidden: { opacity: 0, y: 14 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.4, ease: [0.16, 1, 0.3, 1] },
-  },
-};
-
 function TestimonialCard({ item, photo }) {
   const reduce = useReducedMotion();
   return (
     <motion.figure
-      variants={tileVariant}
+      variants={fadeUp}
       className="group relative aspect-[3/4] overflow-hidden rounded-rmd"
     >
       <img
