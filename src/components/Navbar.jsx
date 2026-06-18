@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { List, X } from "@phosphor-icons/react";
 import { useLanguage } from "../i18n/LanguageContext";
 import { useMenu } from "../lib/menu";
@@ -48,6 +48,8 @@ function LangToggle({ lang, setLang }) {
 
 export default function Navbar() {
   const { lang, setLang, t } = useLanguage();
+  const { pathname } = useLocation();
+  const onHome = pathname === "/";
   // Menu-open lives in shared context so the Hero can pause its star video
   // while the menu is open (see lib/menu).
   const { menuOpen: open, setMenuOpen: setOpen } = useMenu();
@@ -74,14 +76,15 @@ export default function Navbar() {
     ? "border-white/10 bg-ink/80 backdrop-blur"
     : "border-transparent bg-transparent";
 
+  const anchor = (hash) => onHome ? hash : `/${hash}`;
   const navLinks = [
-    { label: t.nav.home, href: "#home" },
-    { label: t.nav.services, href: "#diensten" },
-    { label: t.nav.work, href: "#portfolio" },
-    { label: t.nav.approach, href: "#aanpak" },
-    { label: t.nav.faq, href: "#faq" },
+    { label: t.nav.home, href: anchor("#home") },
+    { label: t.nav.services, href: anchor("#diensten") },
+    { label: t.nav.work, href: anchor("#portfolio") },
+    { label: t.nav.approach, href: anchor("#aanpak") },
+    { label: t.nav.faq, href: anchor("#faq") },
     { label: t.nav.blog, href: "/blog", external: true },
-    { label: t.nav.contact, href: "#contact" },
+    { label: t.nav.contact, href: anchor("#contact") },
   ];
 
   return (
@@ -129,7 +132,7 @@ export default function Navbar() {
         <div className="hidden md:flex items-center gap-3 [@media(orientation:landscape)_and_(max-height:600px)]:hidden">
           <LangToggle lang={lang} setLang={setLang} />
           <a
-            href="#contact"
+            href={anchor("#contact")}
             className="inline-flex h-11 items-center rounded-full bg-accent px-5 text-sm font-medium text-white transition-colors duration-150 hover:bg-accent/90 active:scale-[0.97]"
           >
             {t.nav.cta}
@@ -197,7 +200,7 @@ export default function Navbar() {
             );
           })}
           <a
-            href="#contact"
+            href={anchor("#contact")}
             onClick={closeMenu}
             style={open ? { animationDelay: `${60 + navLinks.length * 45}ms` } : undefined}
             className={`mt-2 inline-flex min-h-[44px] items-center justify-center rounded-full bg-accent px-5 text-sm font-medium text-white transition-colors duration-150 hover:bg-accent/90 active:scale-[0.97] ${
