@@ -80,7 +80,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 border-t border-white/10 pt-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-12 border-t border-white/10 pt-8 flex flex-col gap-6 sm:flex-row sm:gap-3 sm:items-center sm:justify-between">
           <p className="text-sm text-white/70">
             &copy; {new Date().getFullYear()} BlueStar Development. {f.copyright}
           </p>
