@@ -64,7 +64,7 @@ function StarVisual({ reduce }) {
     "radial-gradient(closest-side at 50% 48%, #000 56%, transparent 96%)";
 
   return (
-    <div className="absolute left-1/2 top-0 z-0 aspect-square w-[min(130vw,680px)] -translate-x-1/2 translate-y-[8%] sm:left-auto sm:right-0 sm:w-[min(100vw,680px)] sm:translate-x-[12%] sm:-translate-y-[3%] lg:w-[min(62vw,920px)] lg:translate-x-[15%] lg:translate-y-[0%] [@media(orientation:landscape)_and_(max-height:600px)]:opacity-40 [@media(orientation:landscape)_and_(max-height:600px)]:w-[min(60vh,380px)] [@media(orientation:landscape)_and_(max-height:600px)]:translate-y-[5%]">
+    <div className="absolute left-1/2 top-0 z-0 aspect-square w-[min(130vw,680px)] -translate-x-1/2 translate-y-[8%] sm:left-auto sm:right-0 sm:w-[min(100vw,680px)] sm:translate-x-[12%] sm:-translate-y-[3%] lg:w-[min(62vw,920px)] lg:translate-x-[15%] lg:translate-y-[0%] [@media(orientation:landscape)_and_(max-height:600px)]:w-[min(95vh,460px)] [@media(orientation:landscape)_and_(max-height:600px)]:translate-y-[10%] [@media(orientation:landscape)_and_(max-height:600px)]:translate-x-[5%]">
       {/* Mobile (<640px): a static crystal still. No video, blend-mode, mask or
           infinite loops — the single biggest source of compositing jank on
           phones. A modest, pre-rasterised glow keeps the brand glow without an

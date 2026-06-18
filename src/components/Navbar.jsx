@@ -120,13 +120,13 @@ export default function Navbar() {
           </span>
         </Link>
 
-        <div className="hidden items-center gap-7 md:flex">
+        <div className="hidden items-center gap-7 md:flex [@media(orientation:landscape)_and_(max-height:600px)]:hidden">
           {navLinks.map((link) => (
             <NavLink key={link.href} href={link.href} label={link.label} />
           ))}
         </div>
 
-        <div className="hidden md:flex items-center gap-3">
+        <div className="hidden md:flex items-center gap-3 [@media(orientation:landscape)_and_(max-height:600px)]:hidden">
           <LangToggle lang={lang} setLang={setLang} />
           <a
             href="#contact"
@@ -136,7 +136,7 @@ export default function Navbar() {
           </a>
         </div>
 
-        <div className="flex items-center gap-2 md:hidden">
+        <div className="flex items-center gap-2 md:hidden [@media(orientation:landscape)_and_(max-height:600px)]:flex">
           <LangToggle lang={lang} setLang={setLang} />
           <button
             type="button"
