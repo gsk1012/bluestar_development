@@ -74,6 +74,16 @@ export default function Navbar() {
   ];
 
   return (
+    <>
+      {/* Tap-outside-to-close backdrop — sits behind the header (z-30 < z-40)
+          so any tap below the menu panel closes it. */}
+      {open && (
+        <div
+          aria-hidden="true"
+          className="fixed inset-0 z-30 md:hidden"
+          onClick={closeMenu}
+        />
+      )}
     <header
       className={`fixed inset-x-0 top-0 z-40 border-b transition-colors duration-300 ${headerBg}`}
     >
@@ -188,5 +198,6 @@ export default function Navbar() {
         </div>
       </div>
     </header>
+    </>
   );
 }
