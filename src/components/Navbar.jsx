@@ -18,16 +18,20 @@ function NavLink({ href, label, onClick }) {
 
 function LangToggle({ lang, setLang }) {
   return (
-    <div className="flex items-center gap-0.5 rounded-full border border-white/15 bg-white/5 p-0.5 text-xs font-medium">
+    <div className="relative flex items-center rounded-full border border-white/15 bg-white/5 p-0.5 text-xs font-medium">
+      {/* Sliding pill — GPU-accelerated transform, no layout shift */}
+      <span
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-y-0.5 left-0.5 w-8 rounded-full bg-accent transition-transform duration-[180ms] ease-out"
+        style={{ transform: lang === "en" ? "translateX(100%)" : "translateX(0)" }}
+      />
       {["nl", "en"].map((l) => (
         <button
           key={l}
           onClick={() => setLang(l)}
           aria-pressed={lang === l}
-          className={`rounded-full px-2.5 py-1 uppercase tracking-wide transition-colors duration-150 ${
-            lang === l
-              ? "bg-accent text-white"
-              : "text-white/50 hover:text-white"
+          className={`relative z-10 w-8 rounded-full py-1 text-center uppercase tracking-wide transition-colors duration-150 ${
+            lang === l ? "text-white" : "text-white/50 hover:text-white"
           }`}
         >
           {l}
