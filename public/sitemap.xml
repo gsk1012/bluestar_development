@@ -1,15 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://bluestardevelopment.nl/</loc>
     <lastmod>2026-06-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
-    <image:image>
-      <image:loc>https://bluestardevelopment.nl/logo.png</image:loc>
-      <image:title>BlueStar Development logo</image:title>
-    </image:image>
   </url>
   <url>
     <loc>https://bluestardevelopment.nl/blog</loc>
@@ -22,54 +17,29 @@
     <lastmod>2026-06-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://bluestardevelopment.nl/blog/core-web-vitals.webp</image:loc>
-      <image:title>Core Web Vitals uitgelegd: wat Google écht meet</image:title>
-      <image:caption>Dashboard met prestatiecijfers op een scherm</image:caption>
-    </image:image>
   </url>
   <url>
     <loc>https://bluestardevelopment.nl/blog/wcag-toegankelijkheid-website</loc>
     <lastmod>2026-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://bluestardevelopment.nl/blog/wcag-toegankelijkheid.webp</image:loc>
-      <image:title>WCAG-toegankelijkheid: wat betekent het voor jouw website?</image:title>
-      <image:caption>Persoon die een website gebruikt op een laptop</image:caption>
-    </image:image>
   </url>
   <url>
     <loc>https://bluestardevelopment.nl/blog/ssg-vs-ssr-razendsnel-website</loc>
     <lastmod>2026-05-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://bluestardevelopment.nl/blog/ssg-vs-ssr.webp</image:loc>
-      <image:title>SSG vs SSR: hoe wij websites razendsnel maken</image:title>
-      <image:caption>Code op een scherm met snelheidsindicatoren</image:caption>
-    </image:image>
   </url>
   <url>
     <loc>https://bluestardevelopment.nl/blog/wat-is-een-lighthouse-score</loc>
     <lastmod>2026-04-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://bluestardevelopment.nl/blog/lighthouse-score.webp</image:loc>
-      <image:title>Wat is een Lighthouse-score en waarom maakt het uit?</image:title>
-      <image:caption>Google Lighthouse rapport op een laptop scherm</image:caption>
-    </image:image>
   </url>
   <url>
     <loc>https://bluestardevelopment.nl/blog/waarom-wij-react-gebruiken</loc>
     <lastmod>2026-04-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://bluestardevelopment.nl/blog/waarom-react.webp</image:loc>
-      <image:title>Waarom wij React gebruiken voor onze websites</image:title>
-      <image:caption>Code editor met React code op een scherm</image:caption>
-    </image:image>
   </url>
 </urlset>
