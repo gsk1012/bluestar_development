@@ -4,9 +4,7 @@ import { Plus, Minus, CheckCircle, Star } from "@phosphor-icons/react";
 import { fadeUp, staggerContainer, vpOnce } from "../lib/motion";
 import { useLanguage } from "../i18n/LanguageContext";
 
-function FAQItem({ item, index }) {
-  const [open, setOpen] = useState(false);
-
+function FAQItem({ item, index, open, onToggle }) {
   return (
     <motion.div variants={fadeUp} className="border-b border-white/10">
       <button
@@ -14,7 +12,7 @@ function FAQItem({ item, index }) {
         aria-expanded={open}
         aria-controls={`faq-answer-${index}`}
         id={`faq-question-${index}`}
-        onClick={() => setOpen((v) => !v)}
+        onClick={onToggle}
         className="flex w-full items-center justify-between gap-4 py-5 text-left"
       >
         <span className="font-heading text-base font-semibold text-white sm:text-lg">
@@ -93,6 +91,7 @@ function IncludedCard({ card }) {
 export default function FAQ() {
   const { t } = useLanguage();
   const faq = t.faq;
+  const [openIndex, setOpenIndex] = useState(null);
 
   return (
     <section id="faq" className="py-16 lg:py-24">
@@ -123,7 +122,13 @@ export default function FAQ() {
               className="mt-10"
             >
               {faq.items.map((item, i) => (
-                <FAQItem key={item.question} item={item} index={i} />
+                <FAQItem
+                  key={item.question}
+                  item={item}
+                  index={i}
+                  open={openIndex === i}
+                  onToggle={() => setOpenIndex(openIndex === i ? null : i)}
+                />
               ))}
             </motion.div>
           </div>
