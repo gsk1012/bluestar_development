@@ -1,6 +1,6 @@
 import { motion, useReducedMotion } from "motion/react";
 import { Browser, ShoppingCart, Code, Wrench, CloudArrowUp } from "@phosphor-icons/react";
-import { staggerContainer, vpOnce } from "../lib/motion";
+import { fadeUp, vpOnce } from "../lib/motion";
 import { useLanguage } from "../i18n/LanguageContext";
 
 const IMG_WEBSITE =
@@ -14,12 +14,18 @@ const IMG_ONDERHOUD =
 const IMG_HOSTING =
   "https://d8j0ntlcm91z4.cloudfront.net/user_3EullDUozCLP0n2estZw2O2QBZD/hf_20260616_220812_7d92b2fb-51d8-4556-a35a-77529d06f622.png";
 
+// Tiles stagger in one-by-one after the heading has landed.
+const gridContainer = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.12, delayChildren: 0.1 } },
+};
+
 const tileVariant = {
-  hidden: { opacity: 0, y: 14 },
+  hidden: { opacity: 0, y: 28 },
   show: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.4, ease: [0.16, 1, 0.3, 1] },
+    transition: { duration: 0.65, ease: [0.16, 1, 0.3, 1] },
   },
 };
 
@@ -75,18 +81,23 @@ export default function Services() {
 
   return (
     <section id="diensten" className="relative isolate overflow-hidden py-16 lg:py-24">
-      {/* ambient blob */}
+      {/* ambient glow — baked gradient, no blur filter */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute right-[-5%] top-[10%] -z-10 h-[35vh] w-[35vh] rounded-full bg-accent/15 blur-[130px]"
+        className="pointer-events-none absolute inset-0 -z-10"
+        style={{
+          background:
+            "radial-gradient(38vh 38vh at 100% 18%, rgba(11,95,216,0.14), transparent 70%)",
+        }}
       />
 
       <div className="mx-auto max-w-7xl px-6 sm:px-8">
+        {/* Heading fades in first, then the grid follows */}
         <motion.div
-          variants={tileVariant}
+          variants={fadeUp}
           initial="hidden"
           whileInView="show"
-          viewport={vpOnce}
+          viewport={{ once: true, amount: 0.4 }}
           className="mb-10 max-w-xl lg:mb-12"
         >
           <h2 className="font-heading text-3xl font-bold tracking-tight text-white text-balance sm:text-4xl">
@@ -98,7 +109,7 @@ export default function Services() {
         </motion.div>
 
         <motion.div
-          variants={staggerContainer}
+          variants={gridContainer}
           initial="hidden"
           whileInView="show"
           viewport={vpOnce}
