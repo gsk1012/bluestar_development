@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams, Link, Navigate } from "react-router-dom";
 import { motion } from "motion/react";
 import { ArrowLeft, Clock, Tag } from "@phosphor-icons/react";
@@ -35,11 +35,58 @@ function Section({ heading, body }) {
   );
 }
 
+const BASE = 'https://bluestardevelopment.nl';
+
 export default function BlogPost() {
   const { slug } = useParams();
   const { lang } = useLanguage();
   const [modalOpen, setModalOpen] = useState(false);
   const post = getLocalizedPostBySlug(slug, lang);
+
+  useEffect(() => {
+    if (!post) return;
+    const prevTitle = document.title;
+    const metaDesc = document.querySelector('meta[name="description"]');
+    const prevDesc = metaDesc?.getAttribute('content') ?? '';
+
+    document.title = `${post.title} — BlueStar Development`;
+    if (metaDesc) metaDesc.setAttribute('content', post.metaDescription);
+
+    const canonical = `${BASE}/blog/${post.slug}`;
+    const SCHEMA_ID = 'blog-post-schema';
+    let schemaEl = document.getElementById(SCHEMA_ID);
+    if (!schemaEl) {
+      schemaEl = document.createElement('script');
+      schemaEl.type = 'application/ld+json';
+      schemaEl.id = SCHEMA_ID;
+      document.head.appendChild(schemaEl);
+    }
+    schemaEl.textContent = JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'BlogPosting',
+      '@id': `${canonical}#article`,
+      headline: post.title,
+      description: post.metaDescription,
+      image: `${BASE}${post.image}`,
+      datePublished: post.publishedAt,
+      dateModified: post.publishedAt,
+      author: { '@type': 'Organization', name: 'BlueStar Development', '@id': `${BASE}/#organization` },
+      publisher: {
+        '@type': 'Organization',
+        name: 'BlueStar Development',
+        logo: { '@type': 'ImageObject', url: `${BASE}/logo.png` },
+      },
+      url: canonical,
+      inLanguage: lang === 'en' ? 'en-GB' : 'nl-NL',
+      isPartOf: { '@id': `${BASE}/#website` },
+    });
+
+    return () => {
+      document.title = prevTitle;
+      if (metaDesc) metaDesc.setAttribute('content', prevDesc);
+      document.getElementById(SCHEMA_ID)?.remove();
+    };
+  }, [post?.slug, post?.title, lang]);
 
   if (!post) return <Navigate to="/blog" replace />;
 

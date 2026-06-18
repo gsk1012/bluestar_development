@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "motion/react";
 import { ArrowRight } from "@phosphor-icons/react";
@@ -76,6 +77,24 @@ function PostCard({ post, featured = false, lang = "nl" }) {
 export default function Blog() {
   const { lang } = useLanguage();
   const [featured, ...rest] = getLocalizedPosts(lang);
+
+  useEffect(() => {
+    const prevTitle = document.title;
+    const prevDesc = document.querySelector('meta[name="description"]')?.getAttribute('content') ?? '';
+    document.title = lang === 'en'
+      ? 'Blog | Web development tips for entrepreneurs — BlueStar Development'
+      : 'Blog | Webdevelopment tips voor ondernemers — BlueStar Development';
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) {
+      metaDesc.setAttribute('content', lang === 'en'
+        ? 'Technical insights on how modern websites are built, how Google evaluates them, and why that matters for your business.'
+        : 'Technische inzichten over hoe moderne websites worden gebouwd, hoe Google ze beoordeelt en waarom dat voor jou als ondernemer uitmaakt.');
+    }
+    return () => {
+      document.title = prevTitle;
+      if (metaDesc) metaDesc.setAttribute('content', prevDesc);
+    };
+  }, [lang]);
 
   return (
     <>
