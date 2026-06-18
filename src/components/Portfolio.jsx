@@ -55,11 +55,7 @@ function ProjectCard({ project, translated, index }) {
       variants={fadeUp}
       className="overflow-hidden rounded-rmd border border-white/10 bg-panel"
     >
-      <a
-        href={project.url}
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label={`${p.viewTabAriaPrefix} ${translated.title} ${p.viewTabAriaSuffix}`}
+      <div
         className="group block overflow-hidden"
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
@@ -124,7 +120,7 @@ function ProjectCard({ project, translated, index }) {
             </div>
           )}
         </div>
-      </a>
+      </div>
 
       <div className="flex flex-col gap-4 border-t border-white/10 px-6 py-6 lg:px-7 lg:py-6">
         <div>
