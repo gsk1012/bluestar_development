@@ -64,6 +64,7 @@ ${innerHtml}
 }
 
 // Bulletproof-achtige knop (tabel + link) voor Outlook-vriendelijkheid.
+// Let op: href/label/valueHtml worden NIET ge-escaped — callers moeten reeds-veilige (ge-escapete of literale) waarden doorgeven.
 function button(href, label) {
   return `<table role="presentation" cellpadding="0" cellspacing="0"><tr><td style="border-radius:999px; background:${BRAND.accent};"><a href="${href}" style="display:inline-block; padding:12px 28px; font-family:Arial,Helvetica,sans-serif; font-size:14px; font-weight:bold; color:#ffffff; text-decoration:none; border-radius:999px;">${label}</a></td></tr></table>`;
 }
@@ -74,6 +75,7 @@ export function renderSubmissionEmail({ name, email, message, source, subject, n
   const sourceLabel = source === "blog" ? "Blog / pop-up" : "Website / contactsectie";
   const finalSubject = subject || "Nieuw bericht via bluestardevelopment.nl";
 
+  // Let op: href/label/valueHtml worden NIET ge-escaped — callers moeten reeds-veilige (ge-escapete of literale) waarden doorgeven.
   const row = (label, valueHtml) => `
 <tr>
 <td style="padding:6px 0; font-size:12px; text-transform:uppercase; letter-spacing:0.5px; color:${BRAND.inkSoft}; width:120px; vertical-align:top;">${label}</td>

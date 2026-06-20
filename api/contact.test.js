@@ -55,6 +55,22 @@ describe("contact handler", () => {
     const teamMail = sendMail.mock.calls[0][0];
     expect(teamMail.to).toBe("info@bluestardevelopment.nl");
     expect(teamMail.replyTo).toBe("sanne@voorbeeld.nl");
+    expect(teamMail.from).toContain("info@bluestardevelopment.nl");
+  });
+
+  it("crasht niet op een body die naar null parsed en geeft 400", async () => {
+    const res = mockRes();
+    await handler({ method: "POST", body: "null" }, res);
+    expect(res.statusCode).toBe(400);
+    expect(sendMail).not.toHaveBeenCalled();
+  });
+
+  it("begrenst een te lang subject tot 200 tekens", async () => {
+    sendMail.mockResolvedValue({});
+    const res = mockRes();
+    await handler({ method: "POST", body: { name: "Sanne", email: "sanne@voorbeeld.nl", message: "Hallo!", subject: "x".repeat(500) } }, res);
+    expect(res.statusCode).toBe(200);
+    expect(sendMail.mock.calls[0][0].subject.length).toBeLessThanOrEqual(200);
   });
 
   it("slaagt nog steeds als de bevestigingsmail faalt", async () => {

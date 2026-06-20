@@ -7,15 +7,16 @@ import { sendMail } from "./_lib/mailer.js";
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {
-    return res.status(405).json({ ok: false, error: "Method not allowed" });
+    return res.status(405).json({ ok: false, error: "Methode niet toegestaan." });
   }
 
   let data;
   try {
-    data = typeof req.body === "string" ? JSON.parse(req.body) : req.body || {};
+    data = typeof req.body === "string" ? JSON.parse(req.body) : req.body;
   } catch {
     return res.status(400).json({ ok: false, error: "Ongeldige aanvraag." });
   }
+  if (!data || typeof data !== "object" || Array.isArray(data)) data = {};
 
   // Honeypot: bots vullen dit verborgen veld — doe alsof het lukte, verstuur niets.
   if (data.company) {
@@ -27,6 +28,12 @@ export default async function handler(req, res) {
     return res.status(400).json({ ok: false, error: "Ongeldige invoer.", errors });
   }
 
+  // Subject komt van de client — strip controltekens en begrens de lengte.
+  const safeSubject =
+    typeof data.subject === "string"
+      ? data.subject.replace(/[\r\n]+/g, " ").trim().slice(0, 200)
+      : undefined;
+
   const from = process.env.SMTP_USER;
   const to = process.env.CONTACT_TO || "info@bluestardevelopment.nl";
 
@@ -36,7 +43,7 @@ export default async function handler(req, res) {
       email: data.email,
       message: data.message,
       source: data.source,
-      subject: data.subject,
+      subject: safeSubject,
     });
 
     await sendMail({
