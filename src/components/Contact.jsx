@@ -11,8 +11,6 @@ const PHONES = [
   { label: "06 5335 6007", tel: "0653356007" },
 ];
 
-const FORMSPREE_URL = "https://formspree.io/f/xlgkkboy";
-
 const emptyForm = { name: "", email: "", message: "" };
 
 function FieldError({ id, message }) {
@@ -45,10 +43,15 @@ export default function Contact() {
 
     setStatus("sending");
     try {
-      const res = await fetch(FORMSPREE_URL, {
+      const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({ ...values, _subject: c.emailSubject }),
+        body: JSON.stringify({
+          ...values,
+          subject: c.emailSubject,
+          source: "website",
+          company: e.target.company?.value || "",
+        }),
       });
       if (res.ok) {
         setStatus("ok");
@@ -116,6 +119,15 @@ export default function Contact() {
             onSubmit={handleSubmit}
             className="rounded-rlg border border-white/10 bg-white/5 p-6 sm:p-8"
           >
+            {/* Honeypot tegen spam — onzichtbaar voor mensen, vaak ingevuld door bots */}
+            <input
+              type="text"
+              name="company"
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+              className="absolute left-[-9999px] h-0 w-0 opacity-0"
+            />
             <div>
               <label htmlFor="name" className="block text-sm font-medium text-white">
                 {c.nameLabel}

@@ -8,7 +8,6 @@ const PHONES = [
   { label: "06 8647 7249", tel: "0686477249" },
   { label: "06 5335 6007", tel: "0653356007" },
 ];
-const FORMSPREE_URL = "https://formspree.io/f/xlgkkboy";
 const emptyForm = { name: "", email: "", message: "" };
 
 const fieldClass =
@@ -66,10 +65,15 @@ export default function ContactModal({ open, onClose }) {
     if (Object.keys(nextErrors).length > 0) return;
     setStatus("sending");
     try {
-      const res = await fetch(FORMSPREE_URL, {
+      const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({ ...values, _subject: "Nieuw bericht via blog – bluestardevelopment.nl" }),
+        body: JSON.stringify({
+          ...values,
+          subject: "Nieuw bericht via blog – bluestardevelopment.nl",
+          source: "blog",
+          company: e.target.company?.value || "",
+        }),
       });
       setStatus(res.ok ? "ok" : "error");
       if (res.ok) setValues(emptyForm);
@@ -169,6 +173,15 @@ export default function ContactModal({ open, onClose }) {
               </div>
             ) : (
               <form noValidate onSubmit={handleSubmit} className="mt-5 flex flex-col gap-4">
+                {/* Honeypot tegen spam — onzichtbaar voor mensen, vaak ingevuld door bots */}
+                <input
+                  type="text"
+                  name="company"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  aria-hidden="true"
+                  className="absolute left-[-9999px] h-0 w-0 opacity-0"
+                />
                 <div>
                   <label htmlFor="modal-name" className="block text-sm font-medium text-white">
                     Naam
