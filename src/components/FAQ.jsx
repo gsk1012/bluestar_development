@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { motion, AnimatePresence } from "motion/react";
-import { Plus, Minus, CheckCircle, Star } from "@phosphor-icons/react";
+import { motion } from "motion/react";
+import { Plus, CheckCircle, Star } from "@phosphor-icons/react";
 import { fadeUp, staggerContainer, vpOnce } from "../lib/motion";
 import { useLanguage } from "../i18n/LanguageContext";
 
@@ -13,34 +13,47 @@ function FAQItem({ item, index, open, onToggle }) {
         aria-controls={`faq-answer-${index}`}
         id={`faq-question-${index}`}
         onClick={onToggle}
+        style={{ touchAction: "manipulation" }}
         className="flex w-full items-center justify-between gap-4 py-5 text-left"
       >
         <span className="font-heading text-base font-semibold text-white sm:text-lg">
           {item.question}
         </span>
-        <span className="shrink-0 text-accent-bright">
-          {open ? <Minus size={20} weight="bold" /> : <Plus size={20} weight="bold" />}
+        <span
+          className="shrink-0 text-accent-bright"
+          style={{
+            transform: open ? "rotate(45deg)" : "rotate(0deg)",
+            transition: "transform 0.28s cubic-bezier(0.16, 1, 0.3, 1)",
+          }}
+        >
+          <Plus size={20} weight="bold" />
         </span>
       </button>
-      <AnimatePresence initial={false}>
-        {open && (
-          <motion.div
-            id={`faq-answer-${index}`}
-            role="region"
-            aria-labelledby={`faq-question-${index}`}
-            key="answer"
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
-            className="overflow-hidden"
+
+      {/* CSS grid trick: animates height natively without JS measurement */}
+      <div
+        id={`faq-answer-${index}`}
+        role="region"
+        aria-labelledby={`faq-question-${index}`}
+        style={{
+          display: "grid",
+          gridTemplateRows: open ? "1fr" : "0fr",
+          transition: "grid-template-rows 0.28s cubic-bezier(0.16, 1, 0.3, 1)",
+        }}
+      >
+        <div className="overflow-hidden">
+          <p
+            className="pb-5 text-sm leading-relaxed text-white/60 sm:text-base"
+            style={{
+              opacity: open ? 1 : 0,
+              transition: "opacity 0.22s cubic-bezier(0.16, 1, 0.3, 1)",
+              transitionDelay: open ? "0.06s" : "0s",
+            }}
           >
-            <p className="pb-5 text-sm leading-relaxed text-white/60 sm:text-base">
-              {item.answer}
-            </p>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            {item.answer}
+          </p>
+        </div>
+      </div>
     </motion.div>
   );
 }
