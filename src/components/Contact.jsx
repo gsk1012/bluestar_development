@@ -8,7 +8,6 @@ import { useLanguage } from "../i18n/LanguageContext";
 const EMAIL = "info@bluestardevelopment.nl";
 const PHONES = [
   { label: "06 8647 7249", tel: "0686477249" },
-  { label: "06 5335 6007", tel: "0653356007" },
 ];
 
 const emptyForm = { name: "", email: "", message: "" };

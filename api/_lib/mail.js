@@ -12,7 +12,7 @@ const BRAND = {
 };
 
 const EMAIL = "info@bluestardevelopment.nl";
-const PHONES = ["06 8647 7249", "06 5335 6007"];
+const PHONES = ["06 8647 7249"];
 
 export function escapeHtml(value) {
   return String(value ?? "")
