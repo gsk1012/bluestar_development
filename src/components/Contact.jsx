@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { motion } from "motion/react";
-import { Envelope, Phone } from "@phosphor-icons/react";
+import { AnimatePresence, motion } from "motion/react";
+import { Envelope, Phone, CheckCircle } from "@phosphor-icons/react";
 import { validateContactForm } from "../lib/validation";
 import { fadeUp, vpOnce } from "../lib/motion";
 import { useLanguage } from "../i18n/LanguageContext";
@@ -190,26 +190,46 @@ export default function Contact() {
               {status === "sending" ? c.sending : c.submit}
             </button>
 
-            {status === "ok" && (
-              <p
-                role="status"
-                className="mt-4 rounded-rsm border border-white/10 bg-white/5 px-4 py-3 text-sm leading-relaxed text-white/80"
-              >
-                {c.success}
-              </p>
-            )}
-            {status === "error" && (
-              <p
-                role="alert"
-                className="mt-4 rounded-rsm border border-accent-bright/30 bg-accent-bright/5 px-4 py-3 text-sm leading-relaxed text-accent-bright"
-              >
-                {c.error}{" "}
-                <a href={`mailto:${EMAIL}`} className="underline">
-                  {EMAIL}
-                </a>{" "}
-                {c.errorSuffix}
-              </p>
-            )}
+            <AnimatePresence>
+              {status === "ok" && (
+                <motion.div
+                  key="success"
+                  role="status"
+                  initial={{ opacity: 0, y: 10, scale: 0.97 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: -6, scale: 0.97 }}
+                  transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
+                  className="mt-4 flex items-start gap-3 rounded-rsm border border-white/10 bg-white/5 px-4 py-3"
+                >
+                  <motion.span
+                    initial={{ opacity: 0, scale: 0.6 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.14, duration: 0.35, ease: [0.23, 1, 0.32, 1] }}
+                    className="mt-0.5 shrink-0"
+                  >
+                    <CheckCircle size={18} weight="duotone" className="text-accent-bright" />
+                  </motion.span>
+                  <p className="text-sm leading-relaxed text-white/80">{c.success}</p>
+                </motion.div>
+              )}
+              {status === "error" && (
+                <motion.p
+                  key="error"
+                  role="alert"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -6 }}
+                  transition={{ duration: 0.25, ease: [0.23, 1, 0.32, 1] }}
+                  className="mt-4 rounded-rsm border border-accent-bright/30 bg-accent-bright/5 px-4 py-3 text-sm leading-relaxed text-accent-bright"
+                >
+                  {c.error}{" "}
+                  <a href={`mailto:${EMAIL}`} className="underline">
+                    {EMAIL}
+                  </a>{" "}
+                  {c.errorSuffix}
+                </motion.p>
+              )}
+            </AnimatePresence>
           </motion.form>
         </div>
       </div>

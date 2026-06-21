@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import { X, Envelope, Phone } from "@phosphor-icons/react";
+import { X, Envelope, Phone, CheckCircle } from "@phosphor-icons/react";
 import { validateContactForm } from "../lib/validation";
 
 const EMAIL = "info@bluestardevelopment.nl";
@@ -155,103 +155,127 @@ export default function ContactModal({ open, onClose }) {
               ))}
             </div>
 
-            {status === "ok" ? (
-              <div className="mt-6 rounded-rmd border border-white/10 bg-white/5 px-5 py-6 text-center">
-                <p className="font-heading text-base font-semibold text-white">
-                  Bedankt voor je bericht!
-                </p>
-                <p className="mt-1.5 text-sm text-white/55">
-                  We nemen zo snel mogelijk contact met je op.
-                </p>
-                <button
-                  type="button"
-                  onClick={handleClose}
-                  className="mt-5 inline-flex h-10 items-center rounded-full border border-white/15 px-5 text-sm font-medium text-white/70 transition-colors duration-150 hover:border-white/30 hover:text-white"
+            <AnimatePresence mode="wait" initial={false}>
+              {status === "ok" ? (
+                <motion.div
+                  key="success"
+                  initial={{ opacity: 0, y: 14, scale: 0.97 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: -8, scale: 0.97 }}
+                  transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
+                  className="mt-6 rounded-rmd border border-white/10 bg-white/5 px-5 py-6 text-center"
                 >
-                  Sluiten
-                </button>
-              </div>
-            ) : (
-              <form noValidate onSubmit={handleSubmit} className="mt-5 flex flex-col gap-4">
-                {/* Honeypot tegen spam — onzichtbaar voor mensen, vaak ingevuld door bots */}
-                <input
-                  type="text"
-                  name="company"
-                  tabIndex={-1}
-                  autoComplete="off"
-                  aria-hidden="true"
-                  className="absolute left-[-9999px] h-0 w-0 opacity-0"
-                />
-                <div>
-                  <label htmlFor="modal-name" className="block text-sm font-medium text-white">
-                    Naam
-                  </label>
-                  <input
-                    id="modal-name"
-                    name="name"
-                    type="text"
-                    value={values.name}
-                    onChange={handleChange}
-                    placeholder="Jouw naam"
-                    aria-invalid={errors.name ? "true" : undefined}
-                    aria-describedby={errors.name ? "modal-name-error" : undefined}
-                    className={`mt-1.5 ${fieldClass}`}
-                  />
-                  <FieldError id="modal-name-error" message={errors.name} />
-                </div>
-
-                <div>
-                  <label htmlFor="modal-email" className="block text-sm font-medium text-white">
-                    E-mail
-                  </label>
-                  <input
-                    id="modal-email"
-                    name="email"
-                    type="email"
-                    value={values.email}
-                    onChange={handleChange}
-                    placeholder={EMAIL}
-                    aria-invalid={errors.email ? "true" : undefined}
-                    aria-describedby={errors.email ? "modal-email-error" : undefined}
-                    className={`mt-1.5 ${fieldClass}`}
-                  />
-                  <FieldError id="modal-email-error" message={errors.email} />
-                </div>
-
-                <div>
-                  <label htmlFor="modal-message" className="block text-sm font-medium text-white">
-                    Bericht
-                  </label>
-                  <textarea
-                    id="modal-message"
-                    name="message"
-                    rows={3}
-                    value={values.message}
-                    onChange={handleChange}
-                    placeholder="Vertel kort wat je nodig hebt..."
-                    aria-invalid={errors.message ? "true" : undefined}
-                    aria-describedby={errors.message ? "modal-message-error" : undefined}
-                    className={`mt-1.5 resize-none ${fieldClass}`}
-                  />
-                  <FieldError id="modal-message-error" message={errors.message} />
-                </div>
-
-                {status === "error" && (
-                  <p role="alert" className="rounded-rsm border border-accent-bright/30 bg-accent-bright/5 px-4 py-3 text-xs text-accent-bright">
-                    Er ging iets mis. Mail ons direct op{" "}
-                    <a href={`mailto:${EMAIL}`} className="underline">{EMAIL}</a>.
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.6 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.14, duration: 0.38, ease: [0.23, 1, 0.32, 1] }}
+                    className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full border border-accent/20 bg-accent/10"
+                  >
+                    <CheckCircle size={24} weight="duotone" className="text-accent-bright" />
+                  </motion.div>
+                  <p className="font-heading text-base font-semibold text-white">
+                    Bedankt voor je bericht!
                   </p>
-                )}
-
-                <button
-                  type="submit"
-                  disabled={status === "sending"}
-                  className="mt-1 inline-flex h-12 w-full items-center justify-center rounded-full bg-accent text-sm font-medium text-white transition-colors duration-150 hover:bg-accent/90 active:scale-[0.97] disabled:opacity-60"
+                  <p className="mt-1.5 text-sm text-white/55">
+                    We nemen zo snel mogelijk contact met je op.
+                  </p>
+                  <button
+                    type="button"
+                    onClick={handleClose}
+                    className="mt-5 inline-flex h-10 items-center rounded-full border border-white/15 px-5 text-sm font-medium text-white/70 transition-colors duration-150 hover:border-white/30 hover:text-white active:scale-[0.97]"
+                  >
+                    Sluiten
+                  </button>
+                </motion.div>
+              ) : (
+                <motion.form
+                  key="form"
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.18, ease: [0.4, 0, 1, 1] }}
+                  noValidate
+                  onSubmit={handleSubmit}
+                  className="mt-5 flex flex-col gap-4"
                 >
-                  {status === "sending" ? "Versturen..." : "Verstuur bericht"}
-                </button>
-              </form>
-            )}
+                  {/* Honeypot tegen spam — onzichtbaar voor mensen, vaak ingevuld door bots */}
+                  <input
+                    type="text"
+                    name="company"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    aria-hidden="true"
+                    className="absolute left-[-9999px] h-0 w-0 opacity-0"
+                  />
+                  <div>
+                    <label htmlFor="modal-name" className="block text-sm font-medium text-white">
+                      Naam
+                    </label>
+                    <input
+                      id="modal-name"
+                      name="name"
+                      type="text"
+                      value={values.name}
+                      onChange={handleChange}
+                      placeholder="Jouw naam"
+                      aria-invalid={errors.name ? "true" : undefined}
+                      aria-describedby={errors.name ? "modal-name-error" : undefined}
+                      className={`mt-1.5 ${fieldClass}`}
+                    />
+                    <FieldError id="modal-name-error" message={errors.name} />
+                  </div>
+
+                  <div>
+                    <label htmlFor="modal-email" className="block text-sm font-medium text-white">
+                      E-mail
+                    </label>
+                    <input
+                      id="modal-email"
+                      name="email"
+                      type="email"
+                      value={values.email}
+                      onChange={handleChange}
+                      placeholder={EMAIL}
+                      aria-invalid={errors.email ? "true" : undefined}
+                      aria-describedby={errors.email ? "modal-email-error" : undefined}
+                      className={`mt-1.5 ${fieldClass}`}
+                    />
+                    <FieldError id="modal-email-error" message={errors.email} />
+                  </div>
+
+                  <div>
+                    <label htmlFor="modal-message" className="block text-sm font-medium text-white">
+                      Bericht
+                    </label>
+                    <textarea
+                      id="modal-message"
+                      name="message"
+                      rows={3}
+                      value={values.message}
+                      onChange={handleChange}
+                      placeholder="Vertel kort wat je nodig hebt..."
+                      aria-invalid={errors.message ? "true" : undefined}
+                      aria-describedby={errors.message ? "modal-message-error" : undefined}
+                      className={`mt-1.5 resize-none ${fieldClass}`}
+                    />
+                    <FieldError id="modal-message-error" message={errors.message} />
+                  </div>
+
+                  {status === "error" && (
+                    <p role="alert" className="rounded-rsm border border-accent-bright/30 bg-accent-bright/5 px-4 py-3 text-xs text-accent-bright">
+                      Er ging iets mis. Mail ons direct op{" "}
+                      <a href={`mailto:${EMAIL}`} className="underline">{EMAIL}</a>.
+                    </p>
+                  )}
+
+                  <button
+                    type="submit"
+                    disabled={status === "sending"}
+                    className="mt-1 inline-flex h-12 w-full items-center justify-center rounded-full bg-accent text-sm font-medium text-white transition-colors duration-150 hover:bg-accent/90 active:scale-[0.97] disabled:opacity-60"
+                  >
+                    {status === "sending" ? "Versturen..." : "Verstuur bericht"}
+                  </button>
+                </motion.form>
+              )}
+            </AnimatePresence>
           </motion.div>
         </>
       )}
