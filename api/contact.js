@@ -1,6 +1,7 @@
 // api/contact.js
 // Vercel serverless functie: ontvangt contactformulier-inzendingen en mailt
 // ze via Google Workspace (SMTP). Vervangt Formspree.
+import { waitUntil } from "@vercel/functions";
 import { validateSubmission } from "./_lib/validate.js";
 import { renderSubmissionEmail, renderConfirmationEmail } from "./_lib/mail.js";
 import { sendMail } from "./_lib/mailer.js";
@@ -37,6 +38,18 @@ export default async function handler(req, res) {
   const from = process.env.SMTP_USER;
   const to = process.env.CONTACT_TO || "info@bluestardevelopment.nl";
 
+  // Verstuur de mails op de achtergrond, zodat de bezoeker niet op SMTP hoeft te
+  // wachten. waitUntil houdt de serverless functie in leven tot de verzending klaar
+  // is; de pagina krijgt direct een 200.
+  waitUntil(deliverEmails({ data, from, to, safeSubject }));
+
+  return res.status(200).json({ ok: true });
+}
+
+// Verstuurt de inzending naar het team en een bevestiging naar de bezoeker.
+// Best-effort: een fout wordt gelogd (zichtbaar in de Vercel-logs) maar laat de
+// rest doorgaan, want de bezoeker heeft al een bevestiging op de pagina gekregen.
+async function deliverEmails({ data, from, to, safeSubject }) {
   try {
     const submission = renderSubmissionEmail({
       name: data.name,
@@ -45,7 +58,6 @@ export default async function handler(req, res) {
       source: data.source,
       subject: safeSubject,
     });
-
     await sendMail({
       from: `"Bluestar Website" <${from}>`,
       to,
@@ -56,10 +68,8 @@ export default async function handler(req, res) {
     });
   } catch (err) {
     console.error("Inzending versturen mislukt:", err);
-    return res.status(500).json({ ok: false, error: "Verzenden mislukt." });
   }
 
-  // Bevestigingsmail naar de bezoeker — best-effort, mag de respons niet breken.
   try {
     const confirmation = renderConfirmationEmail({
       name: data.name,
@@ -75,6 +85,4 @@ export default async function handler(req, res) {
   } catch (err) {
     console.error("Bevestigingsmail mislukt:", err);
   }
-
-  return res.status(200).json({ ok: true });
 }
