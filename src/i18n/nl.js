@@ -153,6 +153,21 @@ const nl = {
     error: "Er ging iets mis. Stuur je bericht naar",
     errorSuffix: "of bel ons direct.",
     emailSubject: "Nieuw bericht via bluestardevelopment.nl",
+    nextStepsHeading: "Wat gebeurt er daarna?",
+    nextSteps: [
+      {
+        title: "Reactie binnen 24 uur",
+        body: "We lezen je bericht en bevestigen ontvangst dezelfde werkdag nog.",
+      },
+      {
+        title: "Kort kennismakingsgesprek",
+        body: "We plannen 20 minuten om je wensen, planning en budget door te nemen.",
+      },
+      {
+        title: "Voorstel op maat",
+        body: "Je ontvangt een heldere offerte. Geen verplichting, geen kleine lettertjes.",
+      },
+    ],
   },
   faq: {
     heading: "Veelgestelde vragen",

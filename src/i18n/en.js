@@ -149,6 +149,21 @@ const en = {
     error: "Something went wrong. Send your message to",
     errorSuffix: "or call us directly.",
     emailSubject: "New message via bluestardevelopment.nl",
+    nextStepsHeading: "What happens next?",
+    nextSteps: [
+      {
+        title: "Reply within 24 hours",
+        body: "We read your message and confirm receipt the same working day.",
+      },
+      {
+        title: "Short intro call",
+        body: "We schedule 20 minutes to go through your needs, timeline, and budget.",
+      },
+      {
+        title: "A proposal built for you",
+        body: "You receive a clear quote. No obligation, no fine print.",
+      },
+    ],
   },
   faq: {
     heading: "Frequently asked questions",

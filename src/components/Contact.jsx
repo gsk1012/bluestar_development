@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import { Envelope, Phone, CheckCircle } from "@phosphor-icons/react";
+import { Envelope, Phone, CheckCircle, Clock, Handshake, FileText } from "@phosphor-icons/react";
 import { validateContactForm } from "../lib/validation";
 import { fadeUp, vpOnce } from "../lib/motion";
 import { useLanguage } from "../i18n/LanguageContext";
@@ -9,6 +9,7 @@ const EMAIL = "info@bluestardevelopment.nl";
 const PHONES = [
   { label: "06 8647 7249", tel: "0686477249" },
 ];
+const STEP_ICONS = [Clock, Handshake, FileText];
 
 const emptyForm = { name: "", email: "", message: "" };
 
@@ -106,6 +107,28 @@ export default function Contact() {
                   <span className="font-medium">{phone.label}</span>
                 </a>
               ))}
+            </div>
+
+            <div className="mt-10 border-t border-white/10 pt-10">
+              <p className="text-xs font-semibold uppercase tracking-widest text-white/40">
+                {c.nextStepsHeading}
+              </p>
+              <ol className="mt-5 flex flex-col gap-5">
+                {c.nextSteps.map((step, i) => {
+                  const Icon = STEP_ICONS[i];
+                  return (
+                    <li key={i} className="flex items-start gap-4">
+                      <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/5">
+                        <Icon size={16} weight="duotone" className="text-accent-bright" />
+                      </span>
+                      <div>
+                        <p className="text-sm font-semibold text-white">{step.title}</p>
+                        <p className="mt-0.5 text-sm leading-relaxed text-white/55">{step.body}</p>
+                      </div>
+                    </li>
+                  );
+                })}
+              </ol>
             </div>
           </motion.div>
 
