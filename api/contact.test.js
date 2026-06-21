@@ -5,6 +5,15 @@ import handler from "./contact.js";
 
 vi.mock("./_lib/mailer.js", () => ({ sendMail: vi.fn() }));
 
+// Vang de achtergrondtaken op die de handler via waitUntil inplant,
+// zodat we ze in de test kunnen afwachten.
+const bg = vi.hoisted(() => ({ tasks: [] }));
+vi.mock("@vercel/functions", () => ({
+  waitUntil: (p) => {
+    bg.tasks.push(p);
+  },
+}));
+
 function mockRes() {
   return {
     statusCode: 0,
@@ -14,10 +23,16 @@ function mockRes() {
   };
 }
 
+// Wacht tot de op de achtergrond ingeplande mails klaar zijn.
+async function flushBackground() {
+  await Promise.allSettled(bg.tasks);
+}
+
 const valid = { name: "Sanne", email: "sanne@voorbeeld.nl", message: "Hallo!" };
 
 beforeEach(() => {
   vi.clearAllMocks();
+  bg.tasks.length = 0;
   process.env.SMTP_USER = "info@bluestardevelopment.nl";
   delete process.env.CONTACT_TO;
 });
@@ -27,6 +42,7 @@ describe("contact handler", () => {
     const res = mockRes();
     await handler({ method: "GET" }, res);
     expect(res.statusCode).toBe(405);
+    expect(bg.tasks.length).toBe(0);
     expect(sendMail).not.toHaveBeenCalled();
   });
 
@@ -35,6 +51,7 @@ describe("contact handler", () => {
     await handler({ method: "POST", body: { ...valid, company: "bot" } }, res);
     expect(res.statusCode).toBe(200);
     expect(res.payload).toEqual({ ok: true });
+    expect(bg.tasks.length).toBe(0);
     expect(sendMail).not.toHaveBeenCalled();
   });
 
@@ -42,15 +59,20 @@ describe("contact handler", () => {
     const res = mockRes();
     await handler({ method: "POST", body: { ...valid, email: "fout" } }, res);
     expect(res.statusCode).toBe(400);
+    expect(bg.tasks.length).toBe(0);
     expect(sendMail).not.toHaveBeenCalled();
   });
 
-  it("verstuurt inzending + bevestiging bij geldige invoer", async () => {
+  it("antwoordt direct 200 en verstuurt de mails op de achtergrond", async () => {
     sendMail.mockResolvedValue({});
     const res = mockRes();
     await handler({ method: "POST", body: { ...valid, source: "website" } }, res);
+    // Pagina krijgt meteen antwoord — een achtergrondtaak is ingepland.
     expect(res.statusCode).toBe(200);
     expect(res.payload).toEqual({ ok: true });
+    expect(bg.tasks.length).toBe(1);
+    // Pas daarna worden de mails op de achtergrond verstuurd.
+    await flushBackground();
     expect(sendMail).toHaveBeenCalledTimes(2);
     const teamMail = sendMail.mock.calls[0][0];
     expect(teamMail.to).toBe("info@bluestardevelopment.nl");
@@ -62,6 +84,7 @@ describe("contact handler", () => {
     const res = mockRes();
     await handler({ method: "POST", body: "null" }, res);
     expect(res.statusCode).toBe(400);
+    expect(bg.tasks.length).toBe(0);
     expect(sendMail).not.toHaveBeenCalled();
   });
 
@@ -70,14 +93,17 @@ describe("contact handler", () => {
     const res = mockRes();
     await handler({ method: "POST", body: { name: "Sanne", email: "sanne@voorbeeld.nl", message: "Hallo!", subject: "x".repeat(500) } }, res);
     expect(res.statusCode).toBe(200);
+    await flushBackground();
     expect(sendMail.mock.calls[0][0].subject.length).toBeLessThanOrEqual(200);
   });
 
-  it("slaagt nog steeds als de bevestigingsmail faalt", async () => {
+  it("antwoordt 200 ook als de bevestigingsmail op de achtergrond faalt", async () => {
     sendMail.mockResolvedValueOnce({}).mockRejectedValueOnce(new Error("smtp"));
     const res = mockRes();
     await handler({ method: "POST", body: valid }, res);
     expect(res.statusCode).toBe(200);
     expect(res.payload).toEqual({ ok: true });
+    await flushBackground();
+    expect(sendMail).toHaveBeenCalledTimes(2);
   });
 });
