@@ -46,8 +46,9 @@ function FAQItem({ item, index, open, onToggle }) {
             className="pb-5 text-sm leading-relaxed text-white/60 sm:text-base"
             style={{
               opacity: open ? 1 : 0,
-              transition: "opacity 0.22s cubic-bezier(0.16, 1, 0.3, 1)",
-              transitionDelay: open ? "0.06s" : "0s",
+              transform: open ? "translateY(0)" : "translateY(8px)",
+              transition: "opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
+              transitionDelay: open ? "0.14s" : "0s",
             }}
           >
             {item.answer}
