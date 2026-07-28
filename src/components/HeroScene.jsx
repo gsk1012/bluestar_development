@@ -191,19 +191,6 @@ export default function HeroScene() {
               <circle r="4.6" fill="url(#orb)" />
             </g>
           ))}
-
-          {/* Beam from the loop down into the lit block */}
-          <line
-            x1={iso(134, 130, RAIL.z)[0]}
-            y1={iso(134, 130, RAIL.z)[1]}
-            x2={iso(134, 130, SCREEN.z1)[0]}
-            y2={iso(134, 130, SCREEN.z1)[1]}
-            stroke="#3B9EFF"
-            strokeOpacity="0.35"
-            strokeWidth="1"
-            strokeDasharray="4 5"
-            className={reduce ? undefined : "scene-beam"}
-          />
         </svg>
       </div>
     </div>

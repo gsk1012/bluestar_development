@@ -68,14 +68,6 @@ h3 {
   animation: scene-orb 16s linear infinite;
 }
 
-@keyframes scene-beam {
-  to { stroke-dashoffset: -18; }
-}
-
-.scene-beam {
-  animation: scene-beam 1.2s linear infinite;
-}
-
 @keyframes scene-float {
   0%, 100% { transform: translateY(0); }
   50%      { transform: translateY(-12px); }
