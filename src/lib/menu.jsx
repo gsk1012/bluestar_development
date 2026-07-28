@@ -1,10 +1,7 @@
 import { createContext, useContext, useState } from "react";
 
-// Shared "is the mobile menu open" signal. Navbar owns it; Hero reads it to
-// pause the blended/masked star video while the menu is open — that video
-// recomposites every frame on the GPU and starves the menu animation on
-// phones. Pausing it lets the compositor cache a static frame so the menu
-// opens smoothly. The rotating star resumes the moment the menu closes.
+// Shared "is the mobile menu open" signal, owned by Navbar. It lives in context
+// rather than Navbar state so other sections can react to the menu opening.
 const MenuContext = createContext(null);
 
 export function MenuProvider({ children }) {

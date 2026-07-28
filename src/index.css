@@ -55,6 +55,82 @@ h3 {
   animation: hero-line-up 0.85s cubic-bezier(0.16, 1, 0.3, 1) backwards;
 }
 
+/* ── Hero isometric scene ───────────────────────────────────────────────────
+   Orbs ride a closed `offset-path` loop, so the animation closes on itself
+   exactly — no crossfade or trimming needed the way a video loop would. Both
+   offset-distance and the dash offset are compositor properties. */
+@keyframes scene-orb {
+  to { offset-distance: 100%; }
+}
+
+.scene-orb {
+  transform-box: view-box;
+  animation: scene-orb 16s linear infinite;
+}
+
+@keyframes scene-beam {
+  to { stroke-dashoffset: -18; }
+}
+
+.scene-beam {
+  animation: scene-beam 1.2s linear infinite;
+}
+
+@keyframes scene-float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-12px); }
+}
+
+/* Phones stay still: a large moving layer is the costliest thing that can run
+   on a phone GPU during first paint. */
+@media (min-width: 640px) {
+  .scene-float {
+    animation: scene-float 10s ease-in-out infinite;
+  }
+}
+
+/* ── Hero globe ─────────────────────────────────────────────────────────────
+   Each meridian is a full circle squashed horizontally along a cosine, so it
+   narrows to an edge-on line and opens out the other side the way it would on a
+   turning sphere. The stops trace cos() in 30° steps; linear interpolation
+   between them is close enough that the spin reads as even.
+
+   scaleX is a compositor transform, so eight of these cost nothing per frame. */
+@keyframes globe-spin {
+  0%     { transform: scaleX(1); }
+  8.33%  { transform: scaleX(0.866); }
+  16.66% { transform: scaleX(0.5); }
+  25%    { transform: scaleX(0.001); }
+  33.33% { transform: scaleX(-0.5); }
+  41.66% { transform: scaleX(-0.866); }
+  50%    { transform: scaleX(-1); }
+  58.33% { transform: scaleX(-0.866); }
+  66.66% { transform: scaleX(-0.5); }
+  75%    { transform: scaleX(-0.001); }
+  83.33% { transform: scaleX(0.5); }
+  91.66% { transform: scaleX(0.866); }
+  100%   { transform: scaleX(1); }
+}
+
+.globe-meridian {
+  transform-origin: 200px 200px;
+  transform-box: view-box;
+  animation: globe-spin 30s linear infinite;
+}
+
+@keyframes globe-float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-14px); }
+}
+
+/* Phones stay still: a large moving layer is the costliest thing that can run
+   on a phone GPU during first paint. */
+@media (min-width: 640px) {
+  .globe-float {
+    animation: globe-float 9s ease-in-out infinite;
+  }
+}
+
 /* Mobile menu item reveal — CSS-driven so opening the menu does no JS animation
    work. `backwards` fill keeps each item hidden during its staggered delay. */
 @keyframes menu-item-in {

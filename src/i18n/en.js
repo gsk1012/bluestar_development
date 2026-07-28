@@ -14,8 +14,10 @@ const en = {
   },
   hero: {
     line1: "Websites that",
-    line2: "grow your",
-    line3: "business.",
+    line2: "make your",
+    // See nl.js — fixed prefix plus one rotating word, full stop included.
+    line3prefix: "business ",
+    line3words: ["grow.", "stand out.", "sell."],
     sub1: "Looking for a website? Fast, findable websites and webshops built to order.",
     sub2: "Built around your brand and your customers, from first sketch to live site.",
     cta: "Schedule a call",

@@ -15,7 +15,11 @@ const nl = {
   hero: {
     line1: "Websites die",
     line2: "je bedrijf",
-    line3: "laten groeien.",
+    // Last line = a fixed prefix plus one rotating word. Keep the trailing full
+    // stop on each word: it is the last thing on the line, so a word swap can
+    // change the width without shifting anything else.
+    line3prefix: "laten ",
+    line3words: ["groeien.", "opvallen.", "verkopen."],
     sub1: "Website laten maken? Snelle, vindbare websites en webshops op maat.",
     sub2: "Gebouwd rond jouw merk en je klanten, van eerste schets tot live site.",
     cta: "Plan een gesprek",
