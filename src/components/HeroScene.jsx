@@ -78,7 +78,7 @@ export default function HeroScene() {
   return (
     <div
       aria-hidden="true"
-      className="pointer-events-none absolute left-1/2 top-0 z-0 w-[min(104vw,430px)] -translate-x-1/2 translate-y-[40%] sm:left-auto sm:right-0 sm:top-1/2 sm:w-[min(72vw,540px)] sm:-translate-y-1/2 sm:translate-x-[2%] lg:w-[min(50vw,740px)] lg:translate-x-[-4%] [@media(orientation:landscape)_and_(max-height:600px)]:w-[min(52vh,340px)]"
+      className="pointer-events-none absolute left-1/2 top-0 z-0 w-[min(104vw,430px)] -translate-x-1/2 translate-y-[30%] sm:left-auto sm:right-0 sm:top-1/2 sm:w-[min(72vw,540px)] sm:-translate-y-1/2 sm:translate-x-[2%] lg:w-[min(50vw,740px)] lg:translate-x-[-4%] [@media(orientation:landscape)_and_(max-height:600px)]:w-[min(52vh,340px)]"
     >
       {/* Pre-rasterised brand glow behind the lit block */}
       <div className="absolute inset-[26%] rounded-full bg-accent/25 blur-[70px] sm:bg-accent/30 sm:blur-[110px]" />
