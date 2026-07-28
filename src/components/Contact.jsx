@@ -65,7 +65,7 @@ export default function Contact() {
   };
 
   const fieldClass =
-    "w-full rounded-rsm border border-white/10 bg-white/5 px-4 py-3 text-white placeholder-white/40 transition-colors duration-150 focus:border-accent-bright focus:outline-none focus:ring-1 focus:ring-accent-bright";
+    "w-full rounded-rsm border border-white/10 bg-white/5 px-4 py-3 text-white placeholder-white/50 transition-colors duration-150 focus:border-accent-bright focus:outline-none focus:ring-1 focus:ring-accent-bright";
 
   return (
     <section id="contact" className="py-16 lg:py-24">
@@ -158,8 +158,8 @@ export default function Contact() {
                   >
                     <CheckCircle size={24} weight="duotone" className="text-accent-bright" />
                   </motion.div>
-                  <p className="font-heading text-base font-semibold text-white">{c.success}</p>
-                  <p className="mt-1.5 text-sm text-white/55">We nemen zo snel mogelijk contact met je op.</p>
+                  <p className="font-heading text-base font-semibold text-white">{c.successTitle}</p>
+                  <p className="mt-1.5 text-sm text-white/55">{c.successBody}</p>
                 </motion.div>
               ) : (
                 <motion.form
@@ -208,7 +208,7 @@ export default function Contact() {
                       onChange={handleChange}
                       aria-invalid={errors.email ? "true" : undefined}
                       aria-describedby={errors.email ? "email-error" : undefined}
-                      placeholder={EMAIL}
+                      placeholder={c.emailPlaceholder}
                       className={`mt-1.5 ${fieldClass}`}
                     />
                     <FieldError id="email-error" message={errors.email} />

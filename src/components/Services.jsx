@@ -59,7 +59,7 @@ function ImageTile({ img, title, desc, icon: Icon, className = "" }) {
         <h3 className="font-heading text-xl font-bold tracking-tight text-white lg:text-2xl">
           {title}
         </h3>
-        <p className="mt-1.5 max-w-xs text-sm leading-relaxed text-white/55">{desc}</p>
+        <p className="mt-1.5 max-w-xs text-sm leading-relaxed text-white/70">{desc}</p>
       </div>
     </motion.div>
   );

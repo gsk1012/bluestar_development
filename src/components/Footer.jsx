@@ -11,9 +11,9 @@ export default function Footer() {
   const f = t.footer;
 
   return (
-    <footer className="text-white">
+    <footer className="border-t border-white/10 text-white">
       <div className="mx-auto max-w-7xl px-6 sm:px-8 py-16">
-        <div className="grid gap-10 md:grid-cols-3">
+        <div className="grid gap-10 md:grid-cols-[1.5fr_1fr_1fr] md:gap-8">
           <div>
             <div className="flex items-center gap-2.5">
               <img
@@ -39,20 +39,20 @@ export default function Footer() {
             <h2 className="font-heading text-sm font-bold uppercase tracking-wide text-white">
               {f.navigation}
             </h2>
-            <ul className="mt-4 flex flex-col gap-3">
+            <ul className="mt-4 flex flex-col gap-0.5">
               {f.navLinks.map((link) => (
                 <li key={link.href}>
                   {link.external ? (
                     <Link
                       to={link.href}
-                      className="inline-flex min-h-[44px] items-center text-sm text-white/70 transition-colors duration-150 hover:text-accent-bright"
+                      className="inline-flex min-h-[44px] items-center text-sm text-white/70 transition-colors duration-150 hover:text-accent-bright md:min-h-0 md:py-1.5"
                     >
                       {link.label}
                     </Link>
                   ) : (
                     <a
                       href={link.href}
-                      className="inline-flex min-h-[44px] items-center text-sm text-white/70 transition-colors duration-150 hover:text-accent-bright"
+                      className="inline-flex min-h-[44px] items-center text-sm text-white/70 transition-colors duration-150 hover:text-accent-bright md:min-h-0 md:py-1.5"
                     >
                       {link.label}
                     </a>
@@ -66,11 +66,11 @@ export default function Footer() {
             <h2 className="font-heading text-sm font-bold uppercase tracking-wide text-white">
               {f.contact}
             </h2>
-            <ul className="mt-4 flex flex-col gap-3">
+            <ul className="mt-4 flex flex-col gap-0.5">
               <li>
                 <a
                   href={`mailto:${EMAIL}`}
-                  className="inline-flex min-h-[44px] items-center text-sm text-white/70 transition-colors duration-150 hover:text-accent-bright"
+                  className="inline-flex min-h-[44px] items-center text-sm text-white/70 transition-colors duration-150 hover:text-accent-bright md:min-h-0 md:py-1.5"
                 >
                   {EMAIL}
                 </a>
@@ -79,7 +79,7 @@ export default function Footer() {
                 <li key={phone.tel}>
                   <a
                     href={`tel:${phone.tel}`}
-                    className="inline-flex min-h-[44px] items-center text-sm text-white/70 transition-colors duration-150 hover:text-accent-bright"
+                    className="inline-flex min-h-[44px] items-center text-sm text-white/70 transition-colors duration-150 hover:text-accent-bright md:min-h-0 md:py-1.5"
                   >
                     {phone.label}
                   </a>

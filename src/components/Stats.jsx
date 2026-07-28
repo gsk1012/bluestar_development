@@ -64,7 +64,7 @@ export default function Stats() {
             </p>
             <a
               href="#contact"
-              className="mt-8 inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-semibold text-white transition-colors duration-200 hover:bg-accent-bright active:scale-[0.98]"
+              className="mt-8 inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-semibold text-white transition-colors duration-150 hover:bg-accent/90 active:scale-[0.97]"
             >
               {s.cta}
             </a>

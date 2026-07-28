@@ -106,15 +106,6 @@ export default function Testimonials() {
       />
 
       <div className="relative mx-auto max-w-6xl px-6 sm:px-8">
-        {/* groot, zacht aanhalingsteken-motief — balanceert de titel en vult de
-            rechterbovenhoek. Bewust heel licht, puur decoratief. */}
-        <Quotes
-          aria-hidden="true"
-          weight="fill"
-          size={320}
-          className="pointer-events-none absolute -right-4 top-0 z-0 hidden text-accent-bright/[0.08] lg:block"
-        />
-
         <motion.div
           variants={fadeUp}
           initial="hidden"
