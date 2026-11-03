@@ -178,7 +178,7 @@ const postData = [
         },
         {
           heading: "Wat betekent dit voor jouw website?",
-          body: `Als je een bedrijfswebsite of landingspagina wil laten bouwen, is SSG vrijwel altijd de juiste techniek. Je hoeft geen dure serverinfrastructuur te onderhouden, en de site laadt sneller dan bij SSR.\n\nBij BlueStar Development bouwen we standaard met SSG voor marketingwebsites en bedrijfssites. Voor webshops of applicaties die dynamische data vereisen, schakelen we over naar een hybride aanpak of SSR waar nodig.\n\nWil je weten welke aanpak voor jouw project het beste is? Neem contact op voor een vrijblijvend gesprek.`,
+          body: `Als je een bedrijfswebsite of landingspagina wil laten bouwen, is SSG vrijwel altijd de juiste techniek. Je hoeft geen dure serverinfrastructuur te onderhouden, en de site laadt sneller dan bij SSR.\n\nBij BlueStar Development bouwen we standaard met SSG voor marketingwebsites en bedrijfssites. Voor web-applicaties die dynamische data vereisen, schakelen we over naar een hybride aanpak of SSR waar nodig.\n\nWil je weten welke aanpak voor jouw project het beste is? Neem contact op voor een vrijblijvend gesprek.`,
         },
       ],
     },
@@ -209,7 +209,7 @@ const postData = [
         },
         {
           heading: "What does this mean for your website?",
-          body: `If you want a business website or landing page built, SSG is almost always the right technique. You do not need to maintain expensive server infrastructure, and the site loads faster than with SSR.\n\nAt BlueStar Development we build with SSG as standard for marketing websites and business sites. For webshops or applications that require dynamic data, we switch to a hybrid approach or SSR where needed.\n\nWant to know which approach suits your project best? Get in touch for a no-obligation conversation.`,
+          body: `If you want a business website or landing page built, SSG is almost always the right technique. You do not need to maintain expensive server infrastructure, and the site loads faster than with SSR.\n\nAt BlueStar Development we build with SSG as standard for marketing websites and business sites. For web applications that require dynamic data, we switch to a hybrid approach or SSR where needed.\n\nWant to know which approach suits your project best? Get in touch for a no-obligation conversation.`,
         },
       ],
     },
