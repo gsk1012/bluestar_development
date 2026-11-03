@@ -34,17 +34,6 @@ const en = {
     termLabel: "Turnaround",
     ctaPrefix: "Discuss your",
     intentMessage: "I'd like to know more about",
-    // Text inside the small illustrations: sample UI, not real data.
-    demo: {
-      url: "yourbusiness.com",
-      cta: "Quote",
-      appTitle: "Planning this week",
-      log: ["Updates installed", "Backup checked", "Security patch"],
-      logMeta: "just now",
-      status: "Online",
-      ssl: "SSL active",
-      backup: "Last night's backup",
-    },
     items: {
       website: {
         title: "Custom website",

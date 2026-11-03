@@ -36,17 +36,6 @@ const nl = {
     termLabel: "Doorlooptijd",
     ctaPrefix: "Bespreek je",
     intentMessage: "Ik wil graag meer weten over",
-    // Tekst in de kleine illustraties: voorbeeld-UI, geen echte gegevens.
-    demo: {
-      url: "jouwbedrijf.nl",
-      cta: "Offerte",
-      appTitle: "Planning deze week",
-      log: ["Updates geïnstalleerd", "Back-up gecontroleerd", "Beveiligingspatch"],
-      logMeta: "zojuist",
-      status: "Online",
-      ssl: "SSL actief",
-      backup: "Back-up van vannacht",
-    },
     items: {
       website: {
         title: "Website op maat",
