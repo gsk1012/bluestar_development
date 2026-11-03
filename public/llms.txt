@@ -1,11 +1,10 @@
 # BlueStar Development
 
-> BlueStar Development bouwt snelle, vindbare websites, webshops en web-applicaties op maat voor ondernemers in Nederland.
+> BlueStar Development bouwt snelle, vindbare websites en web-applicaties op maat voor ondernemers in Nederland.
 
 ## Wat we doen
 
 - **Website op maat** — Een snelle, vindbare bedrijfswebsite afgestemd op jouw merk, scherp op elk scherm. Gemiddelde laadtijd: 0,9 seconden. Lighthouse-score: 100/100.
-- **Webshop** — Complete webshop met productbeheer, veilige betalingen en soepel afrekenproces.
 - **Web-applicatie** — Maatwerk software in de browser: klantportalen, planningstools en meer.
 - **Onderhoud & support** — Updates, back-ups en snelle hulp zodat je site veilig en actueel blijft.
 - **Hosting** — Betrouwbare hosting met SSL en dagelijkse back-ups.
@@ -23,7 +22,7 @@
 
 - React + Vite + Static Site Generation (SSG)
 - Tailwind CSS
-- Vercel CDN (wereldwijd netwerk)
+- CDN (wereldwijd netwerk)
 - Framer Motion voor animaties
 - SSL + dagelijkse back-ups
 
@@ -36,8 +35,8 @@ Nederlandse ondernemers en mkb-bedrijven die een professionele online aanwezighe
 Zie [/pricing.md](https://bluestardevelopment.nl/pricing.md) voor volledige, gestructureerde prijsdata.
 
 Indicatieve prijzen:
-- Eenvoudige bedrijfswebsite: vanaf een paar honderd euro
-- Webshop of web-applicatie: prijs op aanvraag (afhankelijk van complexiteit)
+- Website op maat: vanaf €495 (excl. btw)
+- Web-applicatie: prijs op aanvraag (afhankelijk van complexiteit)
 - Onderhoud & support: maandelijks abonnement beschikbaar
 - Hosting: inbegrepen of apart af te nemen
 
@@ -53,7 +52,6 @@ Neem contact op voor een vrijblijvende offerte: info@bluestardevelopment.nl
 
 - Sanne de Vries (Atelier Noord): "Onze nieuwe website laadt razendsnel en we krijgen merkbaar meer aanvragen via het contactformulier." — 5/5
 - Bram Jansen (Jansen Installatietechniek): "Prettige samenwerking en duidelijke afspraken. Alles werd opgeleverd zoals beloofd en op tijd." — 5/5
-- Lotte Bakker (Bakker Wonen): "Ze denken echt mee over wat onze klanten nodig hebben. De webshop draait sinds dag één soepel." — 5/5
 
 ## Voorbeeldprojecten
 
@@ -71,13 +69,10 @@ Neem contact op voor een vrijblijvende offerte: info@bluestardevelopment.nl
 ## Veelgestelde vragen
 
 **Wat kost een website laten maken?**
-Een eenvoudige bedrijfswebsite begint bij een paar honderd euro. Een webshop of web-applicatie kost meer, afhankelijk van complexiteit. Neem contact op voor een offerte.
+Een bedrijfswebsite op maat begint bij €495 (excl. btw). Een web-applicatie is op aanvraag, afhankelijk van complexiteit. Neem contact op voor een offerte.
 
 **Hoe snel kan BlueStar een website bouwen?**
 Een eenvoudige bedrijfswebsite is vaak binnen twee tot vier weken live.
-
-**Bouwen jullie ook webshops?**
-Ja, complete webshops met productbeheer, veilige betalingen en maatwerk afrekenproces.
 
 **Werken jullie voor zzp'ers en kleine bedrijven?**
 Ja, voor ondernemers van alle groottes door heel Nederland.

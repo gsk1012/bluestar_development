@@ -14,7 +14,7 @@
     <title>Website laten maken | BlueStar Development</title>
     <meta
       name="description"
-      content="Website laten maken bij BlueStar Development. Wij bouwen snelle websites, webshops en web-applicaties op maat. Plan vandaag nog een vrijblijvend gesprek."
+      content="Website laten maken bij BlueStar Development. Wij bouwen snelle websites en web-applicaties op maat. Plan vandaag nog een vrijblijvend gesprek."
     />
     <meta name="author" content="BlueStar Development" />
     <link rel="canonical" href="https://bluestardevelopment.nl/" />
@@ -31,7 +31,7 @@
     <meta property="og:title" content="Website laten maken | BlueStar Development" />
     <meta
       property="og:description"
-      content="Snelle websites, webshops en web-applicaties op maat. Plan een vrijblijvend gesprek met BlueStar Development."
+      content="Snelle websites en web-applicaties op maat. Plan een vrijblijvend gesprek met BlueStar Development."
     />
     <meta property="og:image" content="https://bluestardevelopment.nl/logo.png" />
     <meta property="og:image:width" content="1200" />
@@ -43,11 +43,13 @@
     <meta name="twitter:title" content="Website laten maken | BlueStar Development" />
     <meta
       name="twitter:description"
-      content="Snelle websites, webshops en web-applicaties op maat. Plan een vrijblijvend gesprek met BlueStar Development."
+      content="Snelle websites en web-applicaties op maat. Plan een vrijblijvend gesprek met BlueStar Development."
     />
     <meta name="twitter:image" content="https://bluestardevelopment.nl/logo.png" />
 
-    <!-- Nothing to preload for the hero: it is text only, and the headline
+    <!-- The hero is SVG drawn from code; its LCP element is the headline text. -->
+    <meta name="theme-color" content="#ffffff" />
+    <!-- Nothing else to preload: the headline
          ships in the prerendered HTML. -->
 
     <!-- JSON-LD Structured Data -->
@@ -60,7 +62,7 @@
           "@id": "https://bluestardevelopment.nl/#website",
           "url": "https://bluestardevelopment.nl/",
           "name": "BlueStar Development",
-          "description": "Snelle websites, webshops en web-applicaties op maat voor ondernemers.",
+          "description": "Snelle websites en web-applicaties op maat voor ondernemers.",
           "inLanguage": "nl-NL"
         },
         {
@@ -73,7 +75,7 @@
             "url": "https://bluestardevelopment.nl/logo.png"
           },
           "image": "https://bluestardevelopment.nl/logo.png",
-          "description": "BlueStar Development bouwt snelle, vindbare websites, webshops en web-applicaties op maat voor ondernemers in Nederland.",
+          "description": "BlueStar Development bouwt snelle, vindbare websites en web-applicaties op maat voor ondernemers in Nederland.",
           "telephone": "+31686477249",
           "email": "info@bluestardevelopment.nl",
           "areaServed": {
@@ -92,14 +94,6 @@
                   "@type": "Service",
                   "name": "Website op maat",
                   "description": "Een snelle, vindbare bedrijfswebsite die past bij jouw merk en op elk scherm scherp blijft."
-                }
-              },
-              {
-                "@type": "Offer",
-                "itemOffered": {
-                  "@type": "Service",
-                  "name": "Webshop",
-                  "description": "Een complete online winkel met productbeheer, veilige betalingen en een soepel afrekenproces."
                 }
               },
               {
@@ -149,13 +143,6 @@
               "datePublished": "2026-04-02",
               "reviewBody": "Prettige samenwerking en duidelijke afspraken. Alles werd opgeleverd zoals beloofd en op tijd.",
               "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" }
-            },
-            {
-              "@type": "Review",
-              "author": { "@type": "Person", "name": "Lotte Bakker" },
-              "datePublished": "2026-05-10",
-              "reviewBody": "Ze denken echt mee over wat onze klanten nodig hebben. De webshop draait sinds dag één soepel.",
-              "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" }
             }
           ]
         },
@@ -164,7 +151,7 @@
           "@id": "https://bluestardevelopment.nl/#webpage",
           "url": "https://bluestardevelopment.nl/",
           "name": "Website laten maken | BlueStar Development",
-          "description": "Website laten maken bij BlueStar Development. Wij bouwen snelle websites, webshops en web-applicaties op maat.",
+          "description": "Website laten maken bij BlueStar Development. Wij bouwen snelle websites en web-applicaties op maat.",
           "inLanguage": "nl-NL",
           "isPartOf": { "@id": "https://bluestardevelopment.nl/#website" },
           "about": { "@id": "https://bluestardevelopment.nl/#organization" },
@@ -192,7 +179,7 @@
               "name": "Wat kost een website laten maken?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "De prijs hangt af van de wensen en complexiteit van het project. Een eenvoudige bedrijfswebsite begint al bij een paar honderd euro, terwijl een uitgebreide webshop of web-applicatie meer kost. Neem contact op voor een vrijblijvende offerte op maat."
+                "text": "De prijs hangt af van de wensen en complexiteit van het project. Een bedrijfswebsite op maat begint bij €495 (excl. btw), een web-applicatie is op aanvraag. Neem contact op voor een vrijblijvende offerte op maat."
               }
             },
             {
@@ -201,14 +188,6 @@
               "acceptedAnswer": {
                 "@type": "Answer",
                 "text": "De doorlooptijd hangt af van de omvang. Een eenvoudige bedrijfswebsite is vaak binnen twee tot vier weken live. Plan een gesprek voor een concrete planning."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Bouwen jullie ook webshops?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Ja. BlueStar Development bouwt complete webshops met productbeheer, veilige betalingen en een soepel afrekenproces, volledig op maat van jouw merk."
               }
             },
             {
@@ -255,6 +234,14 @@
     </script>
   </head>
   <body>
+    <!--
+      THESIS: een webbureau dat zich toont als zakelijk werkblad, niet als donkere tech-demo; weigert de gradient-hero met glow en draaiende 3D.
+      OWN-WORLD: witte grond, bone-banden (#EEEDE7) met rechte naden en diagonale witte banen; indigo #4038F5 als werkkleur; één terracotta vlak; chevron uitsluitend als clip-path-uitsnede; lichte koppen (300) met één vette indigo zinsnede; registers met haarlijnen; pilvormige bediening.
+      STORY: de bezoeker ziet echt opgeleverd werk, begrijpt diensten, prijzen en werkwijze, en stuurt een bericht dat al voor de helft is ingevuld.
+      FIRST VIEWPORT: indigo avondlucht over de volle breedte met één ster; gecentreerde witte kop in drie regels ("Websites die" vet), witte pilknop "Plan een gesprek" plus omlijnde pil "Bekijk ons werk"; onderaan een grachtengevelrij in drie vlakke indigo lagen waarin de ramen één voor één aangaan; rechte naad naar de bone-band.
+      FORM: door de gebruiker vastgelegd (RegelRecht-wereld uit het HvA Public Lab-project), geen seed-roll; code-led.
+      FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance
+    -->
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

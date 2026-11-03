@@ -5,9 +5,10 @@ import Navbar from "./components/Navbar";
 import CookieBanner from "./components/CookieBanner";
 import Hero from "./components/Hero";
 import Services from "./components/Services";
-import Stats from "./components/Stats";
 
 const Portfolio    = lazy(() => import("./components/Portfolio"));
+const Why          = lazy(() => import("./components/Why"));
+const Pricing      = lazy(() => import("./components/Pricing"));
 const Process      = lazy(() => import("./components/Process"));
 const Testimonials = lazy(() => import("./components/Testimonials"));
 const FAQ          = lazy(() => import("./components/FAQ"));
@@ -25,30 +26,16 @@ function ScrollToTop() {
   return null;
 }
 
-function Background() {
-  return (
-    <div aria-hidden="true" className="pointer-events-none fixed inset-0 -z-50">
-      <div className="absolute inset-0 bg-gradient-to-b from-ink via-[#0A1A2E] to-night" />
-      <div
-        className="absolute inset-0"
-        style={{
-          background:
-            "radial-gradient(45vh 45vh at 4% 28%, rgba(11,95,216,0.13), transparent 70%), radial-gradient(48vh 48vh at 96% 66%, rgba(59,158,255,0.09), transparent 70%)",
-        }}
-      />
-    </div>
-  );
-}
-
 function HomePage() {
   return (
     <>
       <Navbar />
-      <main className="text-white">
+      <main>
         <Hero />
         <Services />
-        <Stats />
         <Suspense>
+          <Why />
+          <Pricing />
           <Portfolio />
           <Process />
           <Testimonials />
@@ -69,7 +56,6 @@ function App() {
   return (
     <BrowserRouter>
       <ScrollToTop />
-      <Background />
       <Suspense>
         <Routes>
           <Route path="/" element={<HomePage />} />

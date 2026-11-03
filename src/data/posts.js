@@ -170,7 +170,7 @@ const postData = [
         },
         {
           heading: "Wat is Static Site Generation (SSG)?",
-          body: `Bij SSG worden alle pagina's van tevoren gebouwd, bij het deployen van de website. De HTML-bestanden liggen klaar op een CDN (Content Delivery Network) en worden direct naar de bezoeker gestuurd, zonder serververwerking.\n\nHet resultaat: pagina's laden razendsnel, want er is geen server die werk moet doen. Ze worden geserveerd vanuit een datacenter dichtbij de bezoeker.\n\nWij bouwen onze websites met React en Vite, gecombineerd met SSG. De pagina's worden statisch gegenereerd bij elke deploy en geserveerd via het wereldwijde CDN van Vercel. Dat is waarom onze sites Lighthouse-scores van 100/100 halen.`,
+          body: `Bij SSG worden alle pagina's van tevoren gebouwd, bij het deployen van de website. De HTML-bestanden liggen klaar op een CDN (Content Delivery Network) en worden direct naar de bezoeker gestuurd, zonder serververwerking.\n\nHet resultaat: pagina's laden razendsnel, want er is geen server die werk moet doen. Ze worden geserveerd vanuit een datacenter dichtbij de bezoeker.\n\nWij bouwen onze websites met React en Vite, gecombineerd met SSG. De pagina's worden statisch gegenereerd bij elke deploy en geserveerd via een wereldwijd CDN. Dat is waarom onze sites Lighthouse-scores van 100/100 halen.`,
         },
         {
           heading: "Wanneer kies je voor welke aanpak?",
@@ -201,7 +201,7 @@ const postData = [
         },
         {
           heading: "What is Static Site Generation (SSG)?",
-          body: `With SSG, all pages are built in advance, at the time the website is deployed. The HTML files sit ready on a CDN (Content Delivery Network) and are sent directly to the visitor, without any server processing.\n\nThe result: pages load blazing fast because no server has to do any work. They are served from a data centre close to the visitor.\n\nWe build our websites with React and Vite, combined with SSG. Pages are statically generated at every deploy and served via Vercel's global CDN. That is why our sites achieve Lighthouse scores of 100/100.`,
+          body: `With SSG, all pages are built in advance, at the time the website is deployed. The HTML files sit ready on a CDN (Content Delivery Network) and are sent directly to the visitor, without any server processing.\n\nThe result: pages load blazing fast because no server has to do any work. They are served from a data centre close to the visitor.\n\nWe build our websites with React and Vite, combined with SSG. Pages are statically generated at every deploy and served via a global CDN. That is why our sites achieve Lighthouse scores of 100/100.`,
         },
         {
           heading: "When do you choose which approach?",

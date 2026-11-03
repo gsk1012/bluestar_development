@@ -2,138 +2,862 @@
 @tailwind components;
 @tailwind utilities;
 
+/*
+ * BlueStar Development — een witte pagina met bone-banden en rechte naden.
+ * Indigo is de werkkleur (klikbaar, gekozen, benadrukt), terracotta komt als
+ * vlak precies één keer voor (het manifestblok). De chevron bestaat alleen als
+ * uitsnede uit een gekleurd vlak, nooit als icoon. Er is één schema: licht.
+ */
 :root {
-  --r-sm: 8px;
-  --r-md: 14px;
-  --r-lg: 22px;
-  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
-}
+  color-scheme: light;
 
-::selection {
-  background-color: oklch(0.45 0.18 250);
-  color: #fff;
+  --color-ground: #ffffff;
+  --color-bone: #eeede7;
+  --color-line: #e1ddda;
+  --color-line-strong: #c8c3bd;
+
+  --color-ink: #363636;
+  --color-ink-soft: #5b5b5b;
+  --color-dark: #2b2b2b;
+
+  --color-brand: #4038f5;
+  --color-brand-deep: #3229d6;
+  --color-on-dark-soft: #cfcbfa;
+
+  --color-accent: #e6744a;
+  --color-accent-strong: #d0603a;
+  --color-accent-text: #a8421d;
+  --color-accent-soft: #ffd0bb;
+  --color-accent-tint: #fbe7dd;
+  /* Wit haalt op terracotta de contrasteis niet, dit diepbruin wel. */
+  --color-on-accent: #2c1408;
+
+  --shadow-soft: 0 1px 2px rgb(54 54 54 / 0.05), 0 14px 36px -14px rgb(54 54 54 / 0.16);
+  --shadow-lift: 0 2px 4px rgb(54 54 54 / 0.06), 0 30px 60px -24px rgb(54 54 54 / 0.28);
+  --shadow-button: 0 8px 20px -10px rgb(64 56 245 / 0.55);
+
+  /* Eén buitenmaatse hoek: het manifestblok (rechtsboven) en het contactblok (linksboven). */
+  --radius-big: clamp(5rem, 12vw, 13.5rem);
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --container: 76rem;
+  --gutter: clamp(1.25rem, 4vw, 2.5rem);
+  --section-gap: clamp(4.5rem, 9vw, 7.5rem);
+  /* Hoogte van de zwevende balk plus de ruimte erboven: alles wat onder de
+     balk moet beginnen (hero, blogpagina's, scroll-ankers) rekent hiermee. */
+  --header-height: 5.5rem;
 }
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 80px;
+  scroll-padding-top: calc(var(--header-height) + 1rem);
+  -webkit-text-size-adjust: 100%;
+  scrollbar-color: var(--color-line-strong) var(--color-ground);
+}
+
+/* Terwijl het volschermmenu open staat, scrollt de pagina eronder niet mee. */
+html.has-open-menu {
+  overflow: hidden;
 }
 
 body {
-  @apply bg-ink text-white font-body;
+  margin: 0;
+  font-family: "Bricolage Grotesque Variable", "Segoe UI", system-ui, -apple-system, sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  color: var(--color-ink);
+  background: var(--color-ground);
+  -webkit-font-smoothing: antialiased;
+  font-optical-sizing: auto;
+  overflow-x: clip;
 }
 
+::selection {
+  background: var(--color-accent-soft);
+  color: var(--color-ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Grote koppen staan licht; nadruk krijgt precies één vette of indigo zinsnede. */
 h1,
-h2,
-h3 {
-  @apply font-heading;
+h2 {
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
   text-wrap: balance;
+  color: inherit;
 }
 
-/* Two separate keyframes so movement and opacity can have different timing curves. */
-@keyframes star-move {
-  from { transform: translate(0, 0) rotate(135deg); }
-  to   { transform: translate(-60vw, 60dvh) rotate(135deg); }
+h2 {
+  font-size: clamp(2rem, 1.3rem + 2.2vw, 3.25rem);
 }
 
-@keyframes star-fade {
-  0%   { opacity: 0; }
-  5%   { opacity: 0.32; }
-  72%  { opacity: 0.18; }
-  100% { opacity: 0; }
+h3 {
+  font-weight: 700;
+  letter-spacing: -0.012em;
+  line-height: 1.25;
 }
 
-/* Hero headline reveal — pure CSS so it runs on the compositor thread and never
-   drops frames during JS hydration. `backwards` fill-mode keeps each line hidden
-   during its stagger delay, just like the menu animation below. */
-@keyframes hero-line-up {
-  from { transform: translateY(105%); }
-  to   { transform: translateY(0%); }
+.accent {
+  font-weight: 700;
+  color: var(--color-brand);
 }
 
-.hero-line {
-  animation: hero-line-up 0.85s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+.tabular {
+  font-variant-numeric: tabular-nums;
 }
 
-/* ── Hero isometric scene ───────────────────────────────────────────────────
-   Orbs ride a closed `offset-path` loop, so the animation closes on itself
-   exactly — no crossfade or trimming needed the way a video loop would. Both
-   offset-distance and the dash offset are compositor properties. */
-@keyframes scene-orb {
-  to { offset-distance: 100%; }
+/* ── Layout ──────────────────────────────────────────────────────────────── */
+
+.wrap {
+  width: 100%;
+  max-width: calc(var(--container) + 2 * var(--gutter));
+  margin-inline: auto;
+  padding-inline: var(--gutter);
 }
 
-.scene-orb {
-  transform-box: view-box;
-  animation: scene-orb 16s linear infinite;
+.section {
+  padding-block: var(--section-gap);
 }
 
-@keyframes scene-float {
-  0%, 100% { transform: translateY(0); }
-  50%      { transform: translateY(-12px); }
+.lead {
+  font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.25rem);
+  line-height: 1.55;
+  color: var(--color-ink-soft);
 }
 
-/* Phones stay still: a large moving layer is the costliest thing that can run
-   on a phone GPU during first paint. */
-@media (min-width: 640px) {
-  .scene-float {
-    animation: scene-float 10s ease-in-out infinite;
+/* ── Knoppen en links ────────────────────────────────────────────────────── */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
+  min-height: 3.125rem;
+  padding: 0 1.5rem;
+  border-radius: 999px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    background-color 180ms var(--ease-out),
+    transform 180ms var(--ease-out),
+    box-shadow 180ms var(--ease-out);
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn-primary {
+  background: var(--color-brand);
+  color: #fff;
+  box-shadow: var(--shadow-button);
+}
+
+.btn-primary:hover {
+  background: var(--color-brand-deep);
+  transform: translateY(-2px);
+}
+
+.btn-primary:disabled {
+  opacity: 0.45;
+  box-shadow: none;
+  transform: none;
+  cursor: progress;
+}
+
+.btn-large {
+  min-height: 3.625rem;
+  padding: 0 1.875rem;
+}
+
+/* Op een donker of indigo vlak keert de knop om. */
+.btn-light {
+  background: #fff;
+  color: var(--color-brand);
+}
+
+.btn-light:hover {
+  background: var(--color-accent-soft);
+  color: var(--color-on-accent);
+  transform: translateY(-2px);
+}
+
+/* De enige secundaire actie: een tekstlink, geen omlijnde knop. */
+.text-link {
+  font-weight: 600;
+  color: var(--color-brand);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.25em;
+  transition: text-decoration-thickness 180ms var(--ease-out);
+}
+
+.text-link:hover {
+  text-decoration-thickness: 2px;
+}
+
+/* ── Merk ────────────────────────────────────────────────────────────────── */
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+}
+
+.brand__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  height: 2.5rem;
+  aspect-ratio: 474 / 345;
+  border-radius: 0.375rem;
+}
+
+.brand__icon img {
+  display: block;
+  height: 100%;
+  width: auto;
+}
+
+.brand__text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  color: var(--color-ink);
+  text-transform: uppercase;
+  line-height: 0.95;
+}
+
+.brand__name {
+  font-size: 1.125rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+
+.brand__sub {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.135em;
+  color: var(--color-brand);
+}
+
+.brand--inverse .brand__icon {
+  padding: 0.3rem 0.4rem;
+  background: #fff;
+}
+
+.brand--inverse .brand__text,
+.brand--inverse .brand__sub {
+  color: #fff;
+}
+
+/* ── Koptekst ────────────────────────────────────────────────────────────── */
+
+.site-nav__pill {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  height: 4.25rem;
+  padding: 0 0.625rem 0 1.375rem;
+  border-radius: 999px;
+  background: var(--color-ground);
+  box-shadow: var(--shadow-lift);
+}
+
+@media (max-width: 640px) {
+  .site-nav__pill {
+    height: 3.75rem;
+    padding: 0 0.5rem 0 1rem;
   }
 }
 
-/* ── Hero globe ─────────────────────────────────────────────────────────────
-   Each meridian is a full circle squashed horizontally along a cosine, so it
-   narrows to an edge-on line and opens out the other side the way it would on a
-   turning sphere. The stops trace cos() in 30° steps; linear interpolation
-   between them is close enough that the spin reads as even.
-
-   scaleX is a compositor transform, so eight of these cost nothing per frame. */
-@keyframes globe-spin {
-  0%     { transform: scaleX(1); }
-  8.33%  { transform: scaleX(0.866); }
-  16.66% { transform: scaleX(0.5); }
-  25%    { transform: scaleX(0.001); }
-  33.33% { transform: scaleX(-0.5); }
-  41.66% { transform: scaleX(-0.866); }
-  50%    { transform: scaleX(-1); }
-  58.33% { transform: scaleX(-0.866); }
-  66.66% { transform: scaleX(-0.5); }
-  75%    { transform: scaleX(-0.001); }
-  83.33% { transform: scaleX(0.5); }
-  91.66% { transform: scaleX(0.866); }
-  100%   { transform: scaleX(1); }
+.nav-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  height: 100%;
+  padding-inline: 0.875rem;
+  font-weight: 500;
+  color: var(--color-ink);
+  text-decoration: none;
+  transition: color 180ms var(--ease-out);
 }
 
-.globe-meridian {
-  transform-origin: 200px 200px;
-  transform-box: view-box;
-  animation: globe-spin 30s linear infinite;
+/* De streep loopt tegen de onderrand van de balk, niet vlak onder de letters. */
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0.875rem;
+  right: 0.875rem;
+  bottom: 1rem;
+  height: 2px;
+  background: var(--color-brand);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 480ms var(--ease-out);
 }
 
-@keyframes globe-float {
-  0%, 100% { transform: translateY(0); }
-  50%      { transform: translateY(-14px); }
+.nav-link:hover {
+  color: var(--color-brand);
 }
 
-/* Phones stay still: a large moving layer is the costliest thing that can run
-   on a phone GPU during first paint. */
-@media (min-width: 640px) {
-  .globe-float {
-    animation: globe-float 9s ease-in-out infinite;
+.nav-link:hover::after {
+  transform: scaleX(1);
+}
+
+.mobile-nav {
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.97);
+  transition:
+    opacity 400ms var(--ease-out),
+    transform 400ms var(--ease-out),
+    visibility 0s linear 400ms;
+}
+
+.mobile-nav.is-open {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition:
+    opacity 400ms var(--ease-out),
+    transform 400ms var(--ease-out),
+    visibility 0s linear;
+}
+
+.mobile-nav.is-open .mobile-nav__item {
+  animation: rise 520ms var(--ease-out) backwards;
+}
+
+/* ── Hero ────────────────────────────────────────────────────────────────── */
+
+/*
+ * Een indigo avondlucht boven een grachtengevelrij in drie lagen. De lagen zijn
+ * vlakke tinten, geen verloop: hoe verder weg, hoe dichter bij de lucht. De
+ * ramen gaan één voor één aan (elk raam een bedrijf dat online gaat) en de
+ * voorste laag sluit met een rechte naad aan op de bone-band eronder.
+ */
+.hero {
+  --sky: var(--color-brand);
+  --skyline-far: #3830e4;
+  --skyline-mid: #2a22c2;
+  --skyline-near: #1c168a;
+  --window: var(--color-accent-soft);
+
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  min-height: clamp(42rem, 100svh, 60rem);
+  overflow: hidden;
+  background: var(--sky);
+  color: #fff;
+}
+
+/* Het tekstblok staat in het midden van de lucht boven de verlichte huizen:
+   de onderste ~24% van de hero (de lagen met ramen) telt niet mee, zodat er
+   geen raam achter de tekst valt. */
+.hero__content {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: calc(var(--header-height) + clamp(1.5rem, 4vh, 3rem));
+  padding-bottom: calc(clamp(42rem, 100svh, 60rem) * 0.24);
+  text-align: center;
+}
+
+.hero__content > * {
+  animation: rise 800ms var(--ease-out) both;
+}
+
+.hero__content > :nth-child(2) {
+  animation-delay: 120ms;
+}
+
+.hero__content > :nth-child(3) {
+  animation-delay: 220ms;
+}
+
+.hero__content > :nth-child(4) {
+  animation-delay: 320ms;
+}
+
+.hero__title {
+  font-size: clamp(2.75rem, 1.4rem + 3.8vw, 4.75rem);
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+}
+
+.hero__star {
+  position: absolute;
+  top: 16%;
+  right: 17%;
+  z-index: 1;
+  width: clamp(1.25rem, 2vw, 1.75rem);
+  color: #fff;
+  animation: star-twinkle 5s ease-in-out 1.2s infinite;
+}
+
+@keyframes star-twinkle {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.55;
+    transform: scale(0.82);
   }
 }
 
-/* Mobile menu item reveal — CSS-driven so opening the menu does no JS animation
-   work. `backwards` fill keeps each item hidden during its staggered delay. */
-@keyframes menu-item-in {
-  from { opacity: 0; transform: translateX(-8px); }
-  to   { opacity: 1; transform: translateX(0); }
+.skyline {
+  position: absolute;
+  inset: auto 0 0;
+  z-index: 1;
+  height: 48%;
+  pointer-events: none;
 }
 
-.animate-menu-item {
-  animation: menu-item-in 0.24s var(--ease-out) backwards;
+.skyline__layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
 }
 
+.skyline__layer--mid {
+  height: 80%;
+  top: auto;
+}
+
+.skyline__layer--near {
+  height: 58%;
+  top: auto;
+}
+
+/* Elk pand rijst bij het laden zijn eigen hoogte op vanaf de grond. */
+.skyline__house {
+  transform-box: fill-box;
+  animation: house-rise 900ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes house-rise {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: none;
+  }
+}
+
+.skyline__window {
+  fill: var(--window);
+  opacity: 0;
+  animation: window-on 420ms var(--ease-out) forwards;
+}
+
+@keyframes window-on {
+  to {
+    opacity: 1;
+  }
+}
+
+/* De lagen bewegen bij scrollen met verschillende snelheden, als bergkammen. */
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .skyline__layer--far,
+    .skyline__layer--mid,
+    .skyline__layer--near,
+    .hero__content {
+      animation-timeline: scroll(root);
+      animation-range: 0 100vh;
+      animation-fill-mode: both;
+      animation-timing-function: linear;
+    }
+
+    .skyline__layer--far {
+      animation-name: drift-far;
+    }
+
+    .skyline__layer--mid {
+      animation-name: drift-mid;
+    }
+
+    .skyline__layer--near {
+      animation-name: drift-near;
+    }
+  }
+}
+
+@keyframes drift-far {
+  to {
+    transform: translateY(26%);
+  }
+}
+
+@keyframes drift-mid {
+  to {
+    transform: translateY(14%);
+  }
+}
+
+@keyframes drift-near {
+  to {
+    transform: translateY(4%);
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Op mobiel is de hero zo hoog als nodig: de tekst begint direct onder de
+   balk en de skyline sluit eronder aan, in plaats van een schermvullend vlak
+   met veel lege lucht. */
+@media (max-width: 640px) {
+  .hero {
+    min-height: 0;
+  }
+
+  .hero__content {
+    justify-content: flex-start;
+    padding-top: calc(var(--header-height) + 2.25rem);
+    padding-bottom: 12rem;
+  }
+
+  .skyline {
+    height: 18rem;
+  }
+
+  /* Alle lagen op dezelfde schaal, anders worden de voorste huizen op een
+     smal scherm kleiner dan de achterste. */
+  .skyline__layer--mid,
+  .skyline__layer--near {
+    height: 100%;
+  }
+
+  .hero__star {
+    top: calc(var(--header-height) + 0.75rem);
+    right: 10%;
+  }
+}
+
+/* ── Bone-band met diagonale witte banen ─────────────────────────────────── */
+
+.band {
+  position: relative;
+  background: var(--color-bone);
+}
+
+.band__lanes {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.band__lane {
+  position: absolute;
+  left: -30vw;
+  width: 160vw;
+  background: var(--color-ground);
+  transform: rotate(-22deg);
+}
+
+.band__lane--one {
+  top: 8%;
+  height: 12rem;
+}
+
+.band__lane--two {
+  top: 56%;
+  height: 7rem;
+  opacity: 0.7;
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .band__lane--one {
+      animation: lane-one linear both;
+      animation-timeline: view();
+      animation-range: entry 0% exit 100%;
+    }
+
+    .band__lane--two {
+      animation: lane-two linear both;
+      animation-timeline: view();
+      animation-range: entry 0% exit 100%;
+    }
+  }
+}
+
+@keyframes lane-one {
+  from {
+    transform: rotate(-22deg) translate(-6%, 3rem);
+  }
+  to {
+    transform: rotate(-22deg) translate(6%, -3rem);
+  }
+}
+
+@keyframes lane-two {
+  from {
+    transform: rotate(-22deg) translate(8%, 4rem);
+  }
+  to {
+    transform: rotate(-22deg) translate(-8%, -4rem);
+  }
+}
+
+/* Pijlpunt op de naad met de volgende sectie, in de kleur van deze band. */
+.band--arrow::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  z-index: 1;
+  width: clamp(3.5rem, 12vw, 4.5rem);
+  height: clamp(1.875rem, 6vw, 2.25rem);
+  transform: translate(-50%, 100%);
+  background: var(--color-bone);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  pointer-events: none;
+}
+
+@media (max-width: 900px) {
+  .band__lane--one {
+    top: 18%;
+    height: 8rem;
+  }
+
+  .band__lane--two {
+    top: 62%;
+    height: 5rem;
+  }
+}
+
+/* ── Diensten: bento met illustraties ────────────────────────────────────── */
+
+.svc-art {
+  height: 12.5rem;
+}
+
+@media (max-width: 640px) {
+  .svc-art {
+    height: 11rem;
+  }
+}
+
+/* Eindstand is de standaard; alleen een "armed" raster (nog onder de vouw)
+   verbergt de onderdelen, en "play" laat ze in volgorde verschijnen. */
+.svc-grid[data-phase="armed"] .svc-pop,
+.svc-grid[data-phase="armed"] .svc-tick {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+.svc-grid[data-phase="armed"] .svc-tick {
+  transform: scale(0.4);
+}
+
+.svc-grid[data-phase="armed"] .svc-bar {
+  transform: scaleY(0);
+}
+
+.svc-grid[data-phase="play"] .svc-pop,
+.svc-grid[data-phase="play"] .svc-tick,
+.svc-grid[data-phase="play"] .svc-bar {
+  transition:
+    opacity 520ms var(--ease-out),
+    transform 620ms var(--ease-out);
+  transition-delay: calc(150ms + var(--d, 0) * 110ms);
+}
+
+.svc-bar {
+  transform-origin: bottom;
+}
+
+.svc-pulse {
+  animation: svc-pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes svc-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+
+/* ── MacBook uit code ─────────────────────────────────────────────────────── */
+
+.laptop {
+  padding-inline: 7%;
+}
+
+.laptop__lid {
+  padding: 2.4% 2.4% 3%;
+  border-radius: 1.25rem 1.25rem 0.375rem 0.375rem;
+  background: #1d1d1f;
+  box-shadow: inset 0 0 0 1px #3a3a3c;
+}
+
+/* Containerquery-eenheden: de schermhoogte is 62,5cqw (16:10), zodat de
+   volledige pagina precies tot de onderkant kan scrollen. */
+.laptop__screen {
+  position: relative;
+  container-type: inline-size;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  background: #0b0b0b;
+}
+
+.laptop__shot,
+.laptop__scroll {
+  position: absolute;
+  inset: 0 0 auto;
+  width: 100%;
+}
+
+.laptop__shot {
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+
+.laptop__scroll {
+  opacity: 0;
+  transform: translateY(0);
+  transition:
+    opacity 400ms var(--ease-out),
+    transform 9s cubic-bezier(0.45, 0, 0.55, 1);
+}
+
+.laptop:hover .laptop__scroll {
+  opacity: 1;
+  transform: translateY(calc(-100% + 62.5cqw));
+}
+
+.laptop__notch {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 13%;
+  height: 4.2%;
+  transform: translateX(-50%);
+  border-radius: 0 0 0.5rem 0.5rem;
+  background: #1d1d1f;
+}
+
+.laptop__base {
+  position: relative;
+  height: clamp(0.75rem, 1.6vw, 1.25rem);
+  margin-inline: -7.5%;
+  border-radius: 0.125rem 0.125rem 1rem 1rem;
+  background: #c7c8cc;
+  box-shadow:
+    inset 0 1px 0 #e4e5e8,
+    inset 0 -2px 0 #a3a4a9,
+    0 18px 30px -16px rgb(43 43 43 / 0.45);
+}
+
+.laptop__thumb {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 16%;
+  height: 40%;
+  transform: translateX(-50%);
+  border-radius: 0 0 0.5rem 0.5rem;
+  background: #aeb0b5;
+}
+
+/* ── Register: lijsten met haarlijnen in plaats van kaartjes ────────────── */
+
+.register > li {
+  border-top: 1px solid var(--color-line-strong);
+}
+
+.register > li:last-child {
+  border-bottom: 1px solid var(--color-line-strong);
+}
+
+/* ── Werkwijze: de bovenlijn van elke stap tekent zich als de sectie in beeld komt ── */
+
+.step-line {
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 900ms var(--ease-out);
+  transition-delay: calc(var(--i, 0) * 160ms);
+}
+
+.is-inview .step-line {
+  transform: scaleX(1);
+}
+
+/* ── Velden ──────────────────────────────────────────────────────────────── */
+
+.field {
+  display: block;
+  width: 100%;
+  min-height: 3.25rem;
+  padding: 0 1.125rem;
+  border: 1px solid var(--color-line-strong);
+  border-radius: 999px;
+  background: var(--color-ground);
+  color: var(--color-ink);
+  font: inherit;
+  transition:
+    border-color 180ms var(--ease-out),
+    box-shadow 180ms var(--ease-out);
+}
+
+textarea.field {
+  min-height: 9rem;
+  padding: 0.875rem 1.125rem;
+  border-radius: 24px;
+  resize: vertical;
+}
+
+.field::placeholder {
+  color: #767676;
+}
+
+.field:focus {
+  outline: none;
+  border-color: var(--color-brand);
+  box-shadow: 0 0 0 4px rgb(64 56 245 / 0.2);
+}
+
+.field[aria-invalid="true"] {
+  border-color: var(--color-accent-strong);
+}
+
+/* ── Reduced motion ──────────────────────────────────────────────────────── */
 
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -141,7 +865,27 @@ h3 {
   *::after {
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
+    animation-delay: 0ms !important;
     transition-duration: 0.001ms !important;
+    transition-delay: 0ms !important;
     scroll-behavior: auto !important;
+  }
+}
+
+/* ── Typemachine-cursor in de herokop ────────────────────────────────────── */
+
+.typewriter-caret {
+  display: inline-block;
+  width: 0.06em;
+  height: 0.9em;
+  margin-left: 0.06em;
+  vertical-align: -0.08em;
+  background: currentColor;
+  animation: typewriter-blink 1s steps(1) infinite;
+}
+
+@keyframes typewriter-blink {
+  50% {
+    opacity: 0;
   }
 }

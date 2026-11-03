@@ -1,154 +1,70 @@
 import { Link } from "react-router-dom";
-import { motion } from "motion/react";
 import { ArrowRight } from "@phosphor-icons/react";
 import { getLatestLocalizedPosts } from "../data/posts";
-import { fadeUp, staggerContainer, vpOnce } from "../lib/motion";
 import { useLanguage } from "../i18n/LanguageContext";
+import Heading from "./Heading";
+import BlogCover from "./BlogCover";
 
-// Nieuwste post groot, de twee daarna als compacte rijen ernaast — hiërarchie
-// in plaats van drie identieke kaarten. De hele rij is klikbaar (groot doelvlak).
-function FeaturedPostCard({ post, lang }) {
+// Drie nieuwste artikelen als gelijke kaarten naast elkaar. De hele kaart is
+// klikbaar (groot doelvlak); de titel is de link, zodat schermlezers één
+// duidelijke linktekst per kaart horen.
+function PostCard({ post, b }) {
   return (
-    <motion.article
-      variants={fadeUp}
-      className="group flex h-full flex-col overflow-hidden rounded-rmd border border-white/10 bg-panel transition-colors duration-200 hover:border-white/20"
-    >
-      <Link
-        to={`/blog/${post.slug}`}
-        className="block overflow-hidden"
-        aria-label={`${lang === "en" ? "Read" : "Lees"}: ${post.title}`}
-        tabIndex={-1}
-      >
-        <img
-          src={post.image}
-          alt={post.imageAlt}
-          loading="lazy"
-          decoding="async"
-          sizes="(min-width: 1024px) 58vw, calc(100vw - 3rem)"
-          className="aspect-[16/9] w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03] motion-reduce:transform-none"
-        />
-      </Link>
-
-      <div className="flex flex-1 flex-col gap-3 p-6 lg:p-7">
-        <div className="flex items-center gap-3 text-xs text-white/40">
-          <span className="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-accent-bright">
-            {post.category}
+    <article className="group relative flex flex-col overflow-hidden rounded-card bg-ground shadow-soft transition-transform duration-300 ease-out hover:-translate-y-1">
+      <BlogCover post={post} className="aspect-[2/1] w-full" />
+      <div className="flex flex-1 flex-col p-6 lg:p-7">
+        <h3 className="text-xl leading-snug">
+          <Link
+            to={`/blog/${post.slug}`}
+            className="transition-colors duration-150 after:absolute after:inset-0 group-hover:text-brand"
+          >
+            {post.title}
+          </Link>
+        </h3>
+        <p className="mb-6 mt-3 line-clamp-3 text-[0.9375rem] text-ink-soft">{post.excerpt}</p>
+        <div className="mt-auto flex items-center justify-between gap-4 border-t border-line pt-4 text-sm text-ink-soft">
+          <span>
+            {post.readingTime} {b.readingTime}
           </span>
-          <span>{post.readingTime} min {lang === "en" ? "read" : "leestijd"}</span>
+          <span className="inline-flex items-center gap-1.5 font-semibold text-brand">
+            {b.readMore}
+            <ArrowRight
+              size={15}
+              weight="bold"
+              aria-hidden="true"
+              className="transition-transform duration-200 group-hover:translate-x-0.5"
+            />
+          </span>
         </div>
-
-        <Link to={`/blog/${post.slug}`} className="group/title">
-          <h3 className="font-heading text-xl font-bold leading-snug tracking-tight text-white transition-colors duration-150 group-hover/title:text-accent-bright lg:text-2xl">
-            {post.title}
-          </h3>
-        </Link>
-
-        <p className="text-sm leading-relaxed text-white/55 line-clamp-2 lg:text-base">
-          {post.excerpt}
-        </p>
-
-        <Link
-          to={`/blog/${post.slug}`}
-          className="mt-auto inline-flex items-center gap-2 pt-2 text-sm font-medium text-accent-bright transition-opacity duration-150 hover:opacity-80"
-        >
-          {lang === "en" ? "Read more" : "Lees verder"}
-          <ArrowRight size={15} weight="bold" />
-        </Link>
       </div>
-    </motion.article>
-  );
-}
-
-function CompactPostRow({ post, lang }) {
-  return (
-    <motion.article variants={fadeUp} className="group flex-1">
-      <Link
-        to={`/blog/${post.slug}`}
-        className="flex h-full gap-5 overflow-hidden rounded-rmd border border-white/10 bg-panel p-4 transition-colors duration-200 hover:border-white/20"
-        aria-label={`${lang === "en" ? "Read" : "Lees"}: ${post.title}`}
-      >
-        <div className="w-28 shrink-0 self-stretch overflow-hidden rounded-rsm sm:w-36">
-          <img
-            src={post.image}
-            alt=""
-            aria-hidden="true"
-            loading="lazy"
-            decoding="async"
-            sizes="9rem"
-            className="h-full min-h-[6rem] w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04] motion-reduce:transform-none"
-          />
-        </div>
-
-        <div className="flex min-w-0 flex-col justify-center py-1">
-          <div className="flex items-center gap-3 text-xs text-white/40">
-            <span className="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-accent-bright">
-              {post.category}
-            </span>
-            <span>{post.readingTime} min {lang === "en" ? "read" : "leestijd"}</span>
-          </div>
-          <h3 className="mt-2.5 font-heading text-base font-bold leading-snug tracking-tight text-white transition-colors duration-150 line-clamp-2 group-hover:text-accent-bright">
-            {post.title}
-          </h3>
-        </div>
-      </Link>
-    </motion.article>
+    </article>
   );
 }
 
 export default function BlogPreview() {
-  const { lang } = useLanguage();
-  const posts = getLatestLocalizedPosts(4, lang);
-  const [featured, ...rest] = posts;
+  const { lang, t } = useLanguage();
+  const b = t.blog;
+  const posts = getLatestLocalizedPosts(3, lang);
 
   return (
-    <section id="blog" className="py-16 lg:py-24">
-      <div className="mx-auto max-w-7xl px-6 sm:px-8">
-        <motion.div
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="show"
-          viewport={vpOnce}
-          className="max-w-xl"
-        >
-          <h2 className="font-heading text-3xl font-bold tracking-tight text-balance text-white sm:text-4xl">
-            {lang === "en" ? "From our blog" : "Uit ons blog"}
-          </h2>
-          <p className="mt-3 text-lg leading-relaxed text-white/60">
-            {lang === "en"
-              ? "Technical insights for business owners who want to understand how the web really works."
-              : "Technische inzichten voor ondernemers die begrijpen waarom het web werkt zoals het werkt."}
-          </p>
-        </motion.div>
-
-        <motion.div
-          variants={staggerContainer}
-          initial="hidden"
-          whileInView="show"
-          viewport={vpOnce}
-          className="mt-10 grid gap-5 lg:mt-12 lg:grid-cols-12 lg:gap-6"
-        >
-          {featured && (
-            <div className="lg:col-span-7">
-              <FeaturedPostCard post={featured} lang={lang} />
-            </div>
-          )}
-
-          <div className="flex flex-col gap-5 lg:col-span-5 lg:gap-6">
-            {rest.map((post) => (
-              <CompactPostRow key={post.slug} post={post} lang={lang} />
-            ))}
-
-            <motion.div variants={fadeUp}>
-              <Link
-                to="/blog"
-                className="inline-flex items-center gap-2 rounded-full border border-white/20 px-5 py-2.5 text-sm font-medium text-white/70 transition-colors duration-150 hover:border-white/40 hover:bg-white/5 hover:text-white active:scale-[0.97]"
-              >
-                {lang === "en" ? "View all posts" : "Bekijk alle blogs"}
-                <ArrowRight size={15} weight="bold" />
-              </Link>
-            </motion.div>
+    <section id="blog" className="band section">
+      <div className="wrap">
+        <div className="flex flex-wrap items-end justify-between gap-6">
+          <div className="max-w-[46rem]">
+            <Heading parts={b.heading} />
+            <p className="lead mt-4">{b.subheading}</p>
           </div>
-        </motion.div>
+          <Link to="/blog" className="text-link inline-flex items-center gap-1.5">
+            {b.viewAll}
+            <ArrowRight size={16} weight="bold" />
+          </Link>
+        </div>
+
+        <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {posts.map((post) => (
+            <PostCard key={post.slug} post={post} b={b} />
+          ))}
+        </div>
       </div>
     </section>
   );

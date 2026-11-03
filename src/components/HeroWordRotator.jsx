@@ -1,54 +1,65 @@
 import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "motion/react";
 
-const HOLD_MS = 2800;
-const ease = [0.16, 1, 0.3, 1];
-
-// Far enough to clear the headline's clip box before the word becomes visible.
-// The <h1> already wraps every line in `overflow-hidden`, so this component
-// needs no clip box of its own — adding one would break baseline alignment,
-// since an inline-block with clipped overflow takes its bottom edge as its
-// baseline instead of the text's.
-const OFFSET = "130%";
+const TYPE_MS = 90;
+const DELETE_MS = 45;
+const HOLD_MS = 1900;
+const GAP_MS = 350;
 
 /**
- * The last word of the hero headline, swapped on a timer using the same clipped
- * slide-up the headline lines use on entry, so the page keeps one motion
- * vocabulary rather than introducing a second one.
+ * Het laatste woord van de herokop, getypt met een typemachine-effect: het
+ * woord wordt letter voor letter getypt, blijft even staan, wordt gewist en
+ * wordt vervangen door het volgende.
  *
- * The word is the last thing on its line, so a swap is free to change the
- * element's width: nothing follows it to be pushed around.
+ * Het woord is het laatste op de regel, dus de breedte mag meebewegen zonder
+ * dat er iets verschuift. De cursor houdt de regelhoogte vast als het woord
+ * leeg is. Schermlezers krijgen alleen het eerste woord.
  *
- * @param {string[]} words - rotated in order; the first is the resting word.
- * @param {boolean} reduce - when true, renders the first word and never swaps.
+ * @param {string[]} words - in volgorde getypt; het eerste is het rustwoord.
+ * @param {boolean} reduce - bij true staat het eerste woord er statisch.
  */
 export default function HeroWordRotator({ words, reduce }) {
   const [i, setI] = useState(0);
+  const [len, setLen] = useState(words[0].length);
+  const [deleting, setDeleting] = useState(false);
+
+  const animate = !reduce && words.length > 1;
 
   useEffect(() => {
-    if (reduce || words.length < 2) return;
-    const id = setInterval(() => setI(n => (n + 1) % words.length), HOLD_MS);
-    return () => clearInterval(id);
-  }, [reduce, words.length]);
+    if (!animate) return;
+    const word = words[i];
+    let delay;
+    let next;
 
-  if (reduce || words.length < 2) return <span>{words[0]}</span>;
+    if (!deleting && len < word.length) {
+      delay = TYPE_MS;
+      next = () => setLen(len + 1);
+    } else if (!deleting) {
+      delay = HOLD_MS;
+      next = () => setDeleting(true);
+    } else if (len > 0) {
+      delay = DELETE_MS;
+      next = () => setLen(len - 1);
+    } else {
+      delay = GAP_MS;
+      next = () => {
+        setDeleting(false);
+        setI((i + 1) % words.length);
+      };
+    }
+
+    const id = setTimeout(next, delay);
+    return () => clearTimeout(id);
+  }, [animate, words, i, len, deleting]);
+
+  if (!animate) return <span>{words[0]}</span>;
 
   return (
-    // `popLayout` pulls the outgoing word out of flow, so the element's width
-    // tracks the incoming word instead of the widest one.
-    <span className="relative inline-block">
-      <AnimatePresence mode="popLayout" initial={false}>
-        <motion.span
-          key={words[i]}
-          initial={{ y: OFFSET }}
-          animate={{ y: "0%" }}
-          exit={{ y: `-${OFFSET}` }}
-          transition={{ duration: 0.62, ease }}
-          className="inline-block"
-        >
-          {words[i]}
-        </motion.span>
-      </AnimatePresence>
-    </span>
+    <>
+      <span className="sr-only">{words[0]}</span>
+      <span aria-hidden="true">
+        {words[i].slice(0, len)}
+        <span className="typewriter-caret" />
+      </span>
+    </>
   );
 }

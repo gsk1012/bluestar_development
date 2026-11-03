@@ -1,18 +1,17 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useParams, Link, Navigate } from "react-router-dom";
-import { motion } from "motion/react";
-import { ArrowLeft, Clock, Tag } from "@phosphor-icons/react";
+import { ArrowLeft } from "@phosphor-icons/react";
 import { getLocalizedPostBySlug, getLocalizedPosts } from "../data/posts";
-import { fadeUp } from "../lib/motion";
 import { useLanguage } from "../i18n/LanguageContext";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import ContactModal from "../components/ContactModal";
+import Heading from "../components/Heading";
+import BlogCover from "../components/BlogCover";
 
 function Section({ heading, body }) {
   return (
     <div className="mt-10">
-      <h2 className="font-heading text-xl font-bold tracking-tight text-white sm:text-2xl">
+      <h2 className="text-[1.5rem] font-bold tracking-[-0.012em] sm:text-[1.75rem]">
         {heading}
       </h2>
       <div className="mt-4 space-y-4">
@@ -20,12 +19,12 @@ function Section({ heading, body }) {
           // Bold tekst: **tekst** → <strong>
           const rendered = paragraph.replace(
             /\*\*(.*?)\*\*/g,
-            (_, match) => `<strong class="font-semibold text-white">${match}</strong>`
+            (_, match) => `<strong class="font-semibold text-ink">${match}</strong>`
           );
           return (
             <p
               key={i}
-              className="text-base leading-relaxed text-white/70"
+              className="text-[1.0625rem] leading-[1.7] text-ink-soft"
               dangerouslySetInnerHTML={{ __html: rendered }}
             />
           );
@@ -39,8 +38,8 @@ const BASE = 'https://bluestardevelopment.nl';
 
 export default function BlogPost() {
   const { slug } = useParams();
-  const { lang } = useLanguage();
-  const [modalOpen, setModalOpen] = useState(false);
+  const { lang, t } = useLanguage();
+  const b = t.blog;
   const post = getLocalizedPostBySlug(slug, lang);
 
   useEffect(() => {
@@ -131,142 +130,68 @@ export default function BlogPost() {
   return (
     <>
       <Navbar />
-      <main className="min-h-screen pt-[72px] text-white">
-        {/* Hero afbeelding */}
-        <div className="relative h-[40vh] min-h-[280px] max-h-[480px] overflow-hidden sm:h-[50vh]">
-          <img
-            src={post.image}
-            alt={post.imageAlt}
-            className="h-full w-full object-cover"
-            fetchPriority="high"
-            decoding="async"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/60 to-transparent" />
-        </div>
-
-        <div className="mx-auto max-w-3xl px-6 py-12 sm:px-8 lg:py-16">
-          {/* Terug-link */}
-          <motion.div variants={fadeUp} initial="hidden" animate="show">
-            <Link
-              to="/blog"
-              className="inline-flex items-center gap-2 text-sm text-white/50 transition-colors duration-150 hover:text-white"
-            >
+      <main className="min-h-screen bg-ground">
+        <header className="bg-bone pt-[var(--header-height)]">
+          <div className="mx-auto max-w-3xl px-[var(--gutter)] pb-14 pt-12 lg:pt-16">
+            <Link to="/blog" className="text-link inline-flex items-center gap-1.5 text-[0.9375rem]">
               <ArrowLeft size={15} weight="bold" />
-              {lang === "en" ? "Back to blog" : "Terug naar blog"}
+              {b.back}
             </Link>
-          </motion.div>
 
-          {/* Meta */}
-          <motion.div
-            variants={fadeUp}
-            initial="hidden"
-            animate="show"
-            className="mt-6 flex flex-wrap items-center gap-4 text-sm text-white/40"
-          >
-            <span className="flex items-center gap-1.5">
-              <Tag size={14} weight="duotone" className="text-accent-bright" />
-              <span className="text-accent-bright">{post.category}</span>
-            </span>
-            <time dateTime={post.publishedAt}>
-              {new Date(post.publishedAt).toLocaleDateString(lang === "en" ? "en-GB" : "nl-NL", {
-                day: "numeric",
-                month: "long",
-                year: "numeric",
-              })}
-            </time>
-            <span className="flex items-center gap-1.5">
-              <Clock size={14} weight="duotone" />
-              {post.readingTime} min {lang === "en" ? "read" : "leestijd"}
-            </span>
-          </motion.div>
+            <h1 className="mt-6 text-[clamp(2.25rem,1.5rem+2.4vw,3.5rem)] font-light">{post.title}</h1>
 
-          {/* Titel */}
-          <motion.h1
-            variants={fadeUp}
-            initial="hidden"
-            animate="show"
-            className="mt-4 font-heading text-3xl font-bold leading-tight tracking-tight text-white text-balance sm:text-4xl lg:text-5xl"
-          >
-            {post.title}
-          </motion.h1>
-
-          {/* Inleiding */}
-          <motion.p
-            variants={fadeUp}
-            initial="hidden"
-            animate="show"
-            className="mt-6 text-lg leading-relaxed text-white/60"
-          >
-            {post.excerpt}
-          </motion.p>
-
-          {/* Scheidingslijn */}
-          <div className="mt-10 border-t border-white/10" />
-
-          {/* Secties */}
-          <motion.div variants={fadeUp} initial="hidden" animate="show">
-            {post.sections.map((section) => (
-              <Section key={section.heading} heading={section.heading} body={section.body} />
-            ))}
-          </motion.div>
-
-          {/* CTA */}
-          <motion.div
-            variants={fadeUp}
-            initial="hidden"
-            animate="show"
-            className="mt-16 rounded-rlg border border-white/10 bg-white/5 p-8 text-center"
-          >
-            <h2 className="font-heading text-2xl font-bold text-white">
-              {lang === "en" ? "Ready for a fast website?" : "Klaar voor een snelle website?"}
-            </h2>
-            <p className="mt-3 text-white/60">
-              {lang === "en"
-                ? "We build sites that score on speed, accessibility and findability. Schedule a no-obligation call."
-                : "Wij bouwen sites die scoren op snelheid, toegankelijkheid en vindbaarheid. Plan een vrijblijvend gesprek."}
+            <p className="mt-5 text-[0.9375rem] text-ink-soft">
+              <span className="font-semibold text-brand">{post.category}</span> ·{" "}
+              <time dateTime={post.publishedAt}>
+                {new Date(post.publishedAt).toLocaleDateString(lang === "en" ? "en-GB" : "nl-NL", {
+                  day: "numeric",
+                  month: "long",
+                  year: "numeric",
+                })}
+              </time>{" "}
+              · {post.readingTime} {b.readingTime}
             </p>
-            <button
-              type="button"
-              onClick={() => setModalOpen(true)}
-              className="mt-6 inline-flex h-12 items-center rounded-full bg-accent px-8 text-sm font-medium text-white transition-colors duration-150 hover:bg-accent/90 active:scale-[0.97]"
-            >
-              {lang === "en" ? "Schedule a call" : "Plan een gesprek"}
-            </button>
-          </motion.div>
 
-          <ContactModal open={modalOpen} onClose={() => setModalOpen(false)} />
+            <p className="lead mt-6">{post.excerpt}</p>
+          </div>
+        </header>
+
+        <div className="mx-auto max-w-3xl px-[var(--gutter)]">
+          <BlogCover post={post} className="-mt-6 aspect-[16/9] w-full rounded-card" />
+
+          {post.sections.map((section) => (
+            <Section key={section.heading} heading={section.heading} body={section.body} />
+          ))}
+
+          <aside className="mt-16 rounded-[14px_var(--radius-big)_14px_14px] bg-brand px-[clamp(1.75rem,4vw,3rem)] py-[clamp(2rem,4vw,3rem)] text-white">
+            <Heading parts={b.ctaHeading} className="text-[clamp(1.75rem,1.3rem+1.4vw,2.5rem)] [&_.accent]:text-white" />
+            <p className="mt-3 max-w-lg text-on-dark-soft">{b.ctaBody}</p>
+            {/* Gewone link: de homepage is voorgerenderd, dus de browser springt zelf naar #contact. */}
+            <a href="/#contact" className="btn btn-light mt-7">
+              {b.ctaButton}
+            </a>
+          </aside>
         </div>
 
-        {/* Meer artikelen */}
         {otherPosts.length > 0 && (
-          <div className="border-t border-white/10">
-            <div className="mx-auto max-w-7xl px-6 py-12 sm:px-8 lg:py-16">
-              <h2 className="font-heading text-2xl font-bold tracking-tight text-white">
-                {lang === "en" ? "More articles" : "Meer artikelen"}
-              </h2>
-              <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:gap-6">
-                {otherPosts.map((p) => (
-                  <Link
-                    key={p.slug}
-                    to={`/blog/${p.slug}`}
-                    className="group flex gap-5 overflow-hidden rounded-rmd border border-white/10 bg-panel p-5 transition-colors duration-150 hover:border-white/20"
-                  >
-                    <img
-                      src={p.image}
-                      alt={p.imageAlt}
-                      loading="lazy"
-                      className="h-20 w-28 shrink-0 rounded-rsm object-cover"
-                    />
-                    <div className="flex flex-col gap-1.5">
-                      <span className="text-xs text-accent-bright">{p.category}</span>
-                      <h3 className="font-heading text-sm font-bold leading-snug text-white transition-colors duration-150 group-hover:text-accent-bright">
-                        {p.title}
-                      </h3>
-                      <span className="text-xs text-white/40">{p.readingTime} min {lang === "en" ? "read" : "leestijd"}</span>
-                    </div>
-                  </Link>
-                ))}
-              </div>
+          <div className="wrap section">
+            <h2 className="text-[clamp(1.75rem,1.3rem+1.4vw,2.5rem)]">{b.more}</h2>
+            <div className="mt-8 grid gap-6 sm:grid-cols-2">
+              {otherPosts.map((p) => (
+                <Link
+                  key={p.slug}
+                  to={`/blog/${p.slug}`}
+                  className="group flex gap-5 rounded-card border border-line bg-ground p-4 shadow-soft"
+                >
+                  <BlogCover post={p} size="sm" className="h-24 w-28 shrink-0 rounded-inner sm:w-36" />
+                  <div className="flex min-w-0 flex-col justify-center">
+                    <h3 className="leading-snug transition-colors duration-150 group-hover:text-brand">{p.title}</h3>
+                    <p className="mt-1.5 text-sm text-ink-soft">
+                      <span className="font-semibold text-brand">{p.category}</span> · {p.readingTime} {b.readingTime}
+                    </p>
+                  </div>
+                </Link>
+              ))}
             </div>
           </div>
         )}

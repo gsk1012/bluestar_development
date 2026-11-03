@@ -1,59 +1,37 @@
 import { Link } from "react-router-dom";
 import { useLanguage } from "../i18n/LanguageContext";
+import BrandMark from "./BrandMark";
 
 const EMAIL = "info@bluestardevelopment.nl";
-const PHONES = [
-  { label: "06 8647 7249", tel: "0686477249" },
-];
+const PHONES = [{ label: "06 8647 7249", tel: "0686477249" }];
+
+const linkCls =
+  "inline-flex min-h-[44px] items-center text-ink-soft transition-colors duration-150 hover:text-brand md:min-h-0 md:py-1";
 
 export default function Footer() {
   const { t } = useLanguage();
   const f = t.footer;
 
   return (
-    <footer className="border-t border-white/10 text-white">
-      <div className="mx-auto max-w-7xl px-6 sm:px-8 py-16">
-        <div className="grid gap-10 md:grid-cols-[1.5fr_1fr_1fr] md:gap-8">
+    <footer className="bg-bone">
+      <div className="wrap py-16">
+        <div className="grid gap-10 md:grid-cols-[1.6fr_1fr_1fr] md:gap-8">
           <div>
-            <div className="flex items-center gap-2.5">
-              <img
-                src="/logo-mark.webp"
-                alt="BlueStar Development logo"
-                className="h-10 w-10 object-contain"
-              />
-              <span className="flex flex-col leading-none">
-                <span className="font-heading text-lg font-bold text-white">
-                  BlueStar
-                </span>
-                <span className="text-xs uppercase tracking-wide text-white/60">
-                  Development
-                </span>
-              </span>
-            </div>
-            <p className="mt-4 max-w-xs text-sm leading-relaxed text-white/70">
-              {f.tagline}
-            </p>
+            <BrandMark ariaLabel={t.nav.logoAria} />
+            <p className="mt-5 max-w-xs text-ink-soft">{f.tagline}</p>
           </div>
 
           <nav aria-label={f.navigation}>
-            <h2 className="font-heading text-sm font-bold uppercase tracking-wide text-white">
-              {f.navigation}
-            </h2>
-            <ul className="mt-4 flex flex-col gap-0.5">
+            <h2 className="text-[0.9375rem] font-semibold tracking-normal">{f.navigation}</h2>
+            <ul className="mt-3 flex flex-col">
               {f.navLinks.map((link) => (
                 <li key={link.href}>
                   {link.external ? (
-                    <Link
-                      to={link.href}
-                      className="inline-flex min-h-[44px] items-center text-sm text-white/70 transition-colors duration-150 hover:text-accent-bright md:min-h-0 md:py-1.5"
-                    >
+                    <Link to={link.href} className={linkCls}>
                       {link.label}
                     </Link>
                   ) : (
-                    <a
-                      href={link.href}
-                      className="inline-flex min-h-[44px] items-center text-sm text-white/70 transition-colors duration-150 hover:text-accent-bright md:min-h-0 md:py-1.5"
-                    >
+                    <a href={link.href} className={linkCls}>
                       {link.label}
                     </a>
                   )}
@@ -63,24 +41,16 @@ export default function Footer() {
           </nav>
 
           <div>
-            <h2 className="font-heading text-sm font-bold uppercase tracking-wide text-white">
-              {f.contact}
-            </h2>
-            <ul className="mt-4 flex flex-col gap-0.5">
+            <h2 className="text-[0.9375rem] font-semibold tracking-normal">{f.contact}</h2>
+            <ul className="mt-3 flex flex-col">
               <li>
-                <a
-                  href={`mailto:${EMAIL}`}
-                  className="inline-flex min-h-[44px] items-center text-sm text-white/70 transition-colors duration-150 hover:text-accent-bright md:min-h-0 md:py-1.5"
-                >
+                <a href={`mailto:${EMAIL}`} className={linkCls}>
                   {EMAIL}
                 </a>
               </li>
               {PHONES.map((phone) => (
                 <li key={phone.tel}>
-                  <a
-                    href={`tel:${phone.tel}`}
-                    className="inline-flex min-h-[44px] items-center text-sm text-white/70 transition-colors duration-150 hover:text-accent-bright md:min-h-0 md:py-1.5"
-                  >
+                  <a href={`tel:${phone.tel}`} className={`tabular ${linkCls}`}>
                     {phone.label}
                   </a>
                 </li>
@@ -89,35 +59,26 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 border-t border-white/10 pt-8 flex flex-col gap-6 sm:flex-row sm:gap-3 sm:items-center sm:justify-between">
-          <p className="text-sm text-white/70">
+        <div className="mt-12 flex flex-col gap-5 border-t border-line-strong pt-8 text-[0.9375rem] sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-ink-soft">
             &copy; {new Date().getFullYear()} BlueStar Development. {f.copyright}
           </p>
-          <div className="flex flex-wrap gap-x-8 gap-y-2">
-            <a
-              href="/algemene_voorwaarden_bluestar.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm text-white/70 transition-colors duration-150 hover:text-accent-bright"
-            >
-              {f.terms}
-            </a>
-            <a
-              href="/privacybeleid_bluestar.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm text-white/70 transition-colors duration-150 hover:text-accent-bright"
-            >
-              {f.privacy}
-            </a>
-            <a
-              href="/disclaimer_bluestar.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm text-white/70 transition-colors duration-150 hover:text-accent-bright"
-            >
-              {f.disclaimer}
-            </a>
+          <div className="flex flex-wrap gap-x-7 gap-y-2">
+            {[
+              ["/algemene_voorwaarden_bluestar.pdf", f.terms],
+              ["/privacybeleid_bluestar.pdf", f.privacy],
+              ["/disclaimer_bluestar.pdf", f.disclaimer],
+            ].map(([href, label]) => (
+              <a
+                key={href}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-ink-soft transition-colors duration-150 hover:text-brand"
+              >
+                {label}
+              </a>
+            ))}
           </div>
         </div>
       </div>

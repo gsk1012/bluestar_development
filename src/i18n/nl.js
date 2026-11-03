@@ -1,3 +1,5 @@
+// Koppen met nadruk zijn arrays: elk oneven deel (index 1, 3, …) wordt de ene
+// vette indigo zinsnede. Zie components/Heading.jsx.
 const nl = {
   nav: {
     home: "Home",
@@ -10,71 +12,163 @@ const nl = {
     cta: "Plan een gesprek",
     menuOpen: "Menu openen",
     menuClose: "Menu sluiten",
-    logoAria: "BlueStar Development, naar boven",
+    logoAria: "BlueStar Development, naar de homepage",
+    langLabel: "Taal",
   },
   hero: {
     line1: "Websites die",
     line2: "je bedrijf",
-    // Last line = a fixed prefix plus one rotating word. Keep the trailing full
-    // stop on each word: it is the last thing on the line, so a word swap can
-    // change the width without shifting anything else.
+    // Laatste regel = vast voorvoegsel plus één wisselend woord. De punt hoort
+    // bij elk woord: het is het laatste op de regel, dus een wissel mag de
+    // breedte veranderen zonder dat er iets anders verschuift.
     line3prefix: "laten ",
     line3words: ["groeien.", "opvallen.", "verkopen."],
-    sub1: "Website laten maken? Snelle, vindbare websites en webshops op maat.",
+    sub1: "Website laten maken? Snelle, vindbare websites en web-applicaties op maat.",
     sub2: "Gebouwd rond jouw merk en je klanten, van eerste schets tot live site.",
     cta: "Plan een gesprek",
     secondary: "Bekijk ons werk",
+    callPrefix: "Liever direct bellen?",
   },
   services: {
-    heading: "Alles voor je online aanwezigheid",
+    heading: ["Alles voor je ", "online aanwezigheid"],
     subheading:
-      "Van een eerste bedrijfssite tot maatwerk software, met onderhoud en hosting die je werk uit handen nemen.",
+      "Een goede website is meer dan een mooi ontwerp. Hij moet snel laden, gevonden worden in Google en bezoekers laten doen wat jij wilt: bellen, mailen of een offerte aanvragen. Daarom regelen we alles onder één dak, van ontwerp en bouw tot hosting en onderhoud. Jij hebt één aanspreekpunt en hoeft je nergens zorgen over te maken.",
+    termLabel: "Doorlooptijd",
+    ctaPrefix: "Bespreek je",
+    intentMessage: "Ik wil graag meer weten over",
+    // Tekst in de kleine illustraties: voorbeeld-UI, geen echte gegevens.
+    demo: {
+      url: "jouwbedrijf.nl",
+      cta: "Offerte",
+      appTitle: "Planning deze week",
+      log: ["Updates geïnstalleerd", "Back-up gecontroleerd", "Beveiligingspatch"],
+      logMeta: "zojuist",
+      status: "Online",
+      ssl: "SSL actief",
+      backup: "Back-up van vannacht",
+    },
     items: {
       website: {
         title: "Website op maat",
-        desc: "Een snelle, vindbare bedrijfswebsite die past bij jouw merk en op elk scherm scherp blijft.",
-      },
-      webshop: {
-        title: "Webshop",
-        desc: "Een complete online winkel met productbeheer, veilige betalingen en een soepel afrekenproces.",
+        desc: "Snel, vindbaar en gebouwd rond jouw merk.",
+        term: "2 tot 4 weken",
+        ctaNoun: "website",
       },
       webapp: {
         title: "Web-applicatie",
-        desc: "Maatwerk software in de browser, van klantportaal tot planningstool, gebouwd rond jouw proces.",
+        desc: "Maatwerk software in de browser, rond jouw werkproces.",
+        term: "Afhankelijk van de omvang",
+        ctaNoun: "web-applicatie",
       },
       maintenance: {
         title: "Onderhoud & support",
-        desc: "Updates, back-ups en snelle hulp bij vragen, zodat je site veilig en actueel blijft draaien.",
+        desc: "Updates, back-ups en hulp, zodat je site veilig blijft.",
+        term: "Doorlopend, per maand",
+        ctaNoun: "onderhoud",
       },
       hosting: {
         title: "Hosting",
-        desc: "Betrouwbare hosting met SSL en dagelijkse back-ups, zodat je site altijd snel bereikbaar is.",
+        desc: "Snel en veilig online, standaard inbegrepen.",
+        term: "Direct bij livegang",
+        ctaNoun: "hosting",
       },
     },
   },
-  stats: {
-    heading: "Snelheid die je merkt en Google waardeert",
-    body: "Een snelle site houdt bezoekers vast en scoort beter in zoekresultaten. Onze sites laden gemiddeld in 0,9 seconden.",
-    cta: "Plan een gesprek",
-    decimalSep: ",",
-    items: [
-      { label: "Prestatiescore", context: "Google Lighthouse, maximale score" },
-      { label: "Gemiddelde laadtijd", context: "vs. gemiddeld 4,2 seconden" },
-      { label: "Responsive op mobiel", context: "op elk scherm en apparaat" },
+  why: {
+    heading: ["Waarom ", "BlueStar", "?"],
+    body:
+      "Een website laten maken voelt vaak als een gok: wat kost het, hoe lang duurt het en wie werkt er eigenlijk aan? Bij ons spreek je vooraf af wat je krijgt en wanneer, en heb je één aanspreekpunt van de eerste schets tot ver na de livegang.",
+    imageAlt: "Homepage van Prince Schilder, een bedrijfswebsite die BlueStar Development bouwde.",
+    imageCaption: "Prince Schilder: eigen ontwerp, geen template.",
+    facts: [
+      { value: "2–4 weken", label: "tot je site live staat" },
+      { value: "30 dagen", label: "gratis support na lancering" },
+      { value: "100/100", label: "Lighthouse-score, standaard" },
+      { value: "1", label: "vast aanspreekpunt" },
     ],
   },
-  portfolio: {
-    heading: "Werk waar we trots op zijn",
+  pricing: {
+    heading: ["Wat kost een ", "website laten maken", "?"],
     subheading:
-      "Een greep uit de sites die we bouwden, snel, vindbaar en helemaal afgestemd op het merk.",
+      "De kosten hangen af van wat je nodig hebt. Een bedrijfswebsite op maat begint bij €495; maatwerk software prijzen we pas na een kort gesprek over je wensen, zodat je nooit betaalt voor iets wat je niet gebruikt. In elke prijs zitten een uniek ontwerp, een Lighthouse-score van 100/100, toegankelijkheid volgens WCAG AA, SSL en 30 dagen support na de lancering. Geen verborgen kosten: je weet vooraf precies waar je aan toe bent.",
+    from: "vanaf",
+    termLabel: "Doorlooptijd",
+    intentMessage: "Ik wil graag een offerte voor",
+    plans: [
+      {
+        key: "maintenance",
+        title: "Onderhoud & support",
+        suits: "Voor ondernemers die hun site veilig en actueel willen houden.",
+        from: true,
+        price: "€49",
+        unit: "per maand",
+        term: "Doorlopend, per maand",
+        features: [
+          "Software-updates",
+          "Beveiligingspatches",
+          "Controle van de back-ups",
+          "Technische hulp bij vragen",
+        ],
+        cta: "Onderhoud aanvragen",
+      },
+      {
+        key: "website",
+        featured: true,
+        title: "Website op maat",
+        suits: "Voor zzp'ers, kleine bedrijven en mkb dat professioneel online wil.",
+        from: true,
+        price: "€495",
+        unit: "eenmalig",
+        term: "2 tot 4 weken",
+        features: [
+          "Uniek ontwerp, geen templates",
+          "Responsief op elk scherm",
+          "Lighthouse-score 100/100",
+          "Geoptimaliseerd voor zoekmachines",
+          "Toegankelijk volgens WCAG AA",
+          "SSL-certificaat en dagelijkse back-ups",
+          "30 dagen support na lancering",
+          "Volledige overdracht van bestanden",
+        ],
+        cta: "Offerte aanvragen",
+      },
+      {
+        key: "webapp",
+        title: "Web-applicatie",
+        suits: "Voor bedrijven die maatwerksoftware nodig hebben.",
+        from: false,
+        price: "Op aanvraag",
+        unit: "offerte op maat",
+        term: "Na een scopinggesprek",
+        features: [
+          "Klantportalen",
+          "Planningstools",
+          "Interne dashboards",
+          "Gebouwd rond jouw werkproces",
+        ],
+        cta: "Plan een scopinggesprek",
+      },
+    ],
+    hostingTitle: "Hosting is altijd inbegrepen",
+    hostingBody: "Elke site draait op een snel CDN met SSL en dagelijkse back-ups. Alleen hosting afnemen kan ook, op aanvraag.",
+    extrasTitle: "Optioneel extra",
+    extras: ["Meertaligheid (NL + EN)", "Blog of kenniscentrum", "Animaties op maat"],
+    vatNote: "Alle prijzen zijn exclusief btw.",
+  },
+  portfolio: {
+    heading: ["Werk waar we ", "trots", " op zijn"],
+    subheading:
+      "Elk project begint bij het bedrijf erachter: wie zijn de klanten, wat zoeken ze en wat moeten ze kunnen doen? Daar ontwerpen we de site omheen, steeds met een eigen ontwerp in plaats van een template. Beweeg over een screenshot om door de hele pagina te scrollen.",
     viewProject: "Bekijk project",
     imageUnavailable: "Afbeelding niet beschikbaar",
     viewTabAriaPrefix: "Bekijk",
     viewTabAriaSuffix: "in een nieuw tabblad",
     screenshotAlt: "Screenshot van de website",
+    scrollHint: "Beweeg erover om te scrollen",
     projects: [
       {
         title: "Prince Schilder",
+        kind: "Bedrijfswebsite",
         description:
           "Professionele bedrijfswebsite voor een schildersbedrijf in Amsterdam.",
         highlights: [
@@ -86,6 +180,7 @@ const nl = {
       },
       {
         title: "GSK Portfolio",
+        kind: "Portfolio",
         description:
           "Strakke, moderne portfolio-website om werk en vaardigheden te presenteren.",
         highlights: [
@@ -98,9 +193,9 @@ const nl = {
     ],
   },
   process: {
-    heading: "Zo werken we",
+    heading: ["Zo ", "werken", " we"],
     subheading:
-      "Van eerste gesprek tot een live website. Een duidelijk traject in vier stappen, zonder verrassingen.",
+      "Een nieuwe website hoort geen gok te zijn. Daarom werken we in vier duidelijke stappen, met vaste afspraken over wat je krijgt en wanneer. Je ziet het ontwerp voordat we gaan bouwen en je kunt bij elke stap bijsturen. Na de lancering blijven we bereikbaar voor updates, vragen en aanpassingen.",
     steps: [
       {
         title: "Kennismaking",
@@ -122,9 +217,9 @@ const nl = {
     ],
   },
   testimonials: {
-    heading: "Wat klanten over ons zeggen",
+    heading: ["Wat klanten ", "over ons", " zeggen"],
     subheading:
-      "Van bedrijfswebsite tot portfolio - resultaten die het werk voor zichzelf laten spreken.",
+      "We bouwen voor ondernemers die een site willen die gewoon werkt, zonder gedoe. Wat telt is het resultaat: meer aanvragen, een professionele eerste indruk en een samenwerking zonder verrassingen. Dit vertellen opdrachtgevers erover.",
     items: [
       {
         quote:
@@ -143,8 +238,9 @@ const nl = {
     ],
   },
   contact: {
-    heading: "Klaar voor een nieuwe website?",
+    heading: ["Klaar voor een ", "nieuwe website", "?"],
     body: "Vertel ons over je plannen. We denken graag mee en sturen je een vrijblijvend voorstel.",
+    directLabel: "Of neem direct contact op",
     nameLabel: "Naam",
     namePlaceholder: "Jouw naam",
     emailLabel: "E-mail",
@@ -159,56 +255,23 @@ const nl = {
     error: "Er ging iets mis. Stuur je bericht naar",
     errorSuffix: "of bel ons direct.",
     emailSubject: "Nieuw bericht via bluestardevelopment.nl",
-    nextStepsHeading: "Wat gebeurt er daarna?",
-    nextSteps: [
-      {
-        title: "Reactie binnen 24 uur",
-        body: "We lezen je bericht en bevestigen ontvangst dezelfde werkdag nog.",
-      },
-      {
-        title: "Kort kennismakingsgesprek",
-        body: "We plannen 20 minuten om je wensen, planning en budget door te nemen.",
-      },
-      {
-        title: "Voorstel op maat",
-        body: "Je ontvangt een heldere offerte. Geen verplichting, geen kleine lettertjes.",
-      },
-    ],
   },
   faq: {
-    heading: "Veelgestelde vragen",
-    subheading: "Alles wat je wilt weten voor je een beslissing neemt.",
-    includedCard: {
-      eyebrow: "Standaard inbegrepen",
-      heading: "Dit zit altijd in elk project",
-      body: "Geen verborgen kosten, geen verrassingen achteraf. Dit zijn de zaken die we bij elk project standaard meenemen.",
-      items: [
-        "Lighthouse-score 100/100",
-        "Responsief op elk scherm en apparaat",
-        "SSL-certificaat en dagelijkse back-ups",
-        "Live binnen 2 tot 4 weken",
-        "30 dagen support na lancering",
-        "Volledige overdracht van bestanden en toegangen",
-        "Uniek ontwerp, geen templates",
-        "Geoptimaliseerd voor zoekmachines (SEO)",
-        "Toegankelijk voor alle gebruikers (WCAG AA)",
-      ],
-    },
+    heading: ["Veelgestelde ", "vragen"],
+    subheading:
+      "Twijfel je nog, of wil je eerst weten hoe het werkt? Hier staan de vragen die ondernemers ons het vaakst stellen, over prijs, planning en wat er na de lancering gebeurt.",
+    notFound: "Staat je vraag er niet bij?",
+    notFoundLink: "Neem contact op",
     items: [
       {
         question: "Wat kost een website laten maken?",
         answer:
-          "De prijs hangt af van de wensen en complexiteit van het project. Een eenvoudige bedrijfswebsite begint al bij een paar honderd euro, terwijl een uitgebreide webshop of web-applicatie meer kost. Neem contact op voor een vrijblijvende offerte op maat.",
+          "De prijs hangt af van de wensen en complexiteit van het project. Een bedrijfswebsite op maat begint bij €495 (excl. btw), een web-applicatie is op aanvraag. Neem contact op voor een vrijblijvende offerte op maat.",
       },
       {
         question: "Hoe snel kan BlueStar Development een website bouwen?",
         answer:
           "De doorlooptijd hangt af van de omvang. Een eenvoudige bedrijfswebsite is vaak binnen twee tot vier weken live. Plan een gesprek voor een concrete planning.",
-      },
-      {
-        question: "Bouwen jullie ook webshops?",
-        answer:
-          "Ja. BlueStar Development bouwt complete webshops met productbeheer, veilige betalingen en een soepel afrekenproces, volledig op maat van jouw merk.",
       },
       {
         question: "Werken jullie ook voor kleine bedrijven en zzp'ers?",
@@ -227,8 +290,26 @@ const nl = {
       },
     ],
   },
+  blog: {
+    heading: ["Uit ons ", "blog"],
+    subheading:
+      "Hoe snel moet een website zijn? Wat meet Google precies, en wat betekent toegankelijkheid voor jouw site? In ons blog leggen we het uit in gewone taal, zodat je betere keuzes maakt voor je eigen website.",
+    pageHeading: ["Webdevelopment ", "tips"],
+    pageSubheading:
+      "Technische inzichten over hoe moderne websites worden gebouwd, hoe Google ze beoordeelt, en waarom dat voor jou uitmaakt.",
+    read: "Lees",
+    readMore: "Lees verder",
+    readingTime: "min leestijd",
+    viewAll: "Bekijk alle blogs",
+    back: "Terug naar blog",
+    more: "Meer artikelen",
+    ctaHeading: ["Klaar voor een ", "snelle website", "?"],
+    ctaBody:
+      "Wij bouwen sites die scoren op snelheid, toegankelijkheid en vindbaarheid. Plan een vrijblijvend gesprek.",
+    ctaButton: "Plan een gesprek",
+  },
   footer: {
-    tagline: "Snelle, vindbare websites en webshops op maat voor ondernemers.",
+    tagline: "Snelle, vindbare websites en web-applicaties op maat voor ondernemers.",
     navigation: "Navigatie",
     contact: "Contact",
     copyright: "Alle rechten voorbehouden.",

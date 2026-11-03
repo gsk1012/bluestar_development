@@ -1,6 +1,6 @@
 # Prijzen — BlueStar Development
 
-BlueStar Development bouwt snelle, vindbare websites, webshops en web-applicaties op maat voor Nederlandse ondernemers.
+BlueStar Development bouwt snelle, vindbare websites en web-applicaties op maat voor Nederlandse ondernemers.
 
 Elke prijs is inclusief uniek ontwerp, Lighthouse 100/100, WCAG AA, SSL en 30 dagen support na lancering. Geen verborgen kosten.
 
@@ -23,7 +23,7 @@ Elke prijs is inclusief uniek ontwerp, Lighthouse 100/100, WCAG AA, SSL en 30 da
 - Geoptimaliseerd voor zoekmachines (SEO)
 - 30 dagen gratis support na lancering
 - Volledige overdracht van bestanden en toegangen
-- Hosting via Vercel CDN (wereldwijd netwerk)
+- Hosting via CDN (wereldwijd netwerk)
 
 ### Optioneel extra
 
@@ -34,26 +34,9 @@ Elke prijs is inclusief uniek ontwerp, Lighthouse 100/100, WCAG AA, SSL en 30 da
 
 ---
 
-## Webshop
-
-- **Prijs:** Op aanvraag (afhankelijk van productcatalogus en functionaliteit)
-- **Doorlooptijd:** 4 tot 8 weken
-- **Geschikt voor:** Ondernemers die producten of diensten online willen verkopen
-
-### Standaard inbegrepen
-
-- Alles uit Website op maat
-- Productbeheer (toevoegen, bewerken, verwijderen)
-- Veilige betalingen (Stripe / Mollie)
-- Soepel afrekenproces
-- Voorraadbeheerfunctionaliteit
-- Bestelbevestigingen per e-mail
-
----
-
 ## Web-applicatie
 
-- **Prijs:** Op aanvraag (scoping-gesprek vereist)
+- **Prijs:** Op aanvraag
 - **Doorlooptijd:** Afhankelijk van complexiteit
 - **Geschikt voor:** Bedrijven die maatwerksoftware nodig hebben (klantportalen, planningstools, interne dashboards)
 
@@ -68,7 +51,7 @@ Elke prijs is inclusief uniek ontwerp, Lighthouse 100/100, WCAG AA, SSL en 30 da
 
 ## Hosting
 
-- **Prijs:** Inbegrepen bij elk project (via Vercel CDN)
+- **Prijs:** Inbegrepen bij elk project (via CDN)
 - **Optioneel los:** Op aanvraag
 
 ---

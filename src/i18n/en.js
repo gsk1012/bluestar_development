@@ -1,3 +1,5 @@
+// Headings with emphasis are arrays: every odd part (index 1, 3, …) becomes
+// the one bold indigo phrase. See components/Heading.jsx.
 const en = {
   nav: {
     home: "Home",
@@ -10,7 +12,8 @@ const en = {
     cta: "Schedule a call",
     menuOpen: "Open menu",
     menuClose: "Close menu",
-    logoAria: "BlueStar Development, go to top",
+    logoAria: "BlueStar Development, go to homepage",
+    langLabel: "Language",
   },
   hero: {
     line1: "Websites that",
@@ -18,61 +21,152 @@ const en = {
     // See nl.js — fixed prefix plus one rotating word, full stop included.
     line3prefix: "business ",
     line3words: ["grow.", "stand out.", "sell."],
-    sub1: "Looking for a website? Fast, findable websites and webshops built to order.",
+    sub1: "Looking for a website? Fast, findable websites and web applications built to order.",
     sub2: "Built around your brand and your customers, from first sketch to live site.",
     cta: "Schedule a call",
     secondary: "View our work",
+    callPrefix: "Rather call directly?",
   },
   services: {
-    heading: "Everything for your online presence",
+    heading: ["Everything for your ", "online presence"],
     subheading:
-      "From a first business site to custom software, with maintenance and hosting that take the work off your hands.",
+      "A good website is more than a nice design. It has to load fast, be found on Google and get visitors to do what you want: call, email or request a quote. That's why we handle everything under one roof, from design and build to hosting and maintenance. You have one point of contact and nothing to worry about.",
+    termLabel: "Turnaround",
+    ctaPrefix: "Discuss your",
+    intentMessage: "I'd like to know more about",
+    // Text inside the small illustrations: sample UI, not real data.
+    demo: {
+      url: "yourbusiness.com",
+      cta: "Quote",
+      appTitle: "Planning this week",
+      log: ["Updates installed", "Backup checked", "Security patch"],
+      logMeta: "just now",
+      status: "Online",
+      ssl: "SSL active",
+      backup: "Last night's backup",
+    },
     items: {
       website: {
         title: "Custom website",
-        desc: "A fast, findable business website that matches your brand and looks sharp on every screen.",
-      },
-      webshop: {
-        title: "Webshop",
-        desc: "A complete online store with product management, secure payments and a smooth checkout process.",
+        desc: "Fast, findable and built around your brand.",
+        term: "2 to 4 weeks",
+        ctaNoun: "website",
       },
       webapp: {
         title: "Web application",
-        desc: "Custom browser software, from customer portal to planning tool, built around your process.",
+        desc: "Custom browser software, built around your workflow.",
+        term: "Depends on scope",
+        ctaNoun: "web application",
       },
       maintenance: {
         title: "Maintenance & support",
-        desc: "Updates, backups and quick help with questions, so your site stays safe and up to date.",
+        desc: "Updates, backups and help, so your site stays safe.",
+        term: "Ongoing, monthly",
+        ctaNoun: "maintenance",
       },
       hosting: {
         title: "Hosting",
-        desc: "Reliable hosting with SSL and daily backups, so your site is always fast and accessible.",
+        desc: "Fast and secure online, included as standard.",
+        term: "From launch day",
+        ctaNoun: "hosting",
       },
     },
   },
-  stats: {
-    heading: "Speed you feel and Google rewards",
-    body: "A fast site keeps visitors engaged and ranks better in search results. Our sites load in an average of 0.9 seconds.",
-    cta: "Schedule a call",
-    decimalSep: ".",
-    items: [
-      { label: "Performance score", context: "Google Lighthouse, maximum score" },
-      { label: "Average load time", context: "vs. average 4.2 seconds" },
-      { label: "Mobile responsive", context: "on every screen and device" },
+  why: {
+    heading: ["Why ", "BlueStar", "?"],
+    body:
+      "Having a website built often feels like a gamble: what will it cost, how long will it take and who is actually working on it? With us you agree up front what you get and when, with one point of contact from first sketch to well after launch.",
+    imageAlt: "Homepage of Prince Schilder, a business website built by BlueStar Development.",
+    imageCaption: "Prince Schilder: its own design, no template.",
+    facts: [
+      { value: "2–4 weeks", label: "until your site is live" },
+      { value: "30 days", label: "free support after launch" },
+      { value: "100/100", label: "Lighthouse score, as standard" },
+      { value: "1", label: "dedicated point of contact" },
     ],
   },
-  portfolio: {
-    heading: "Work we're proud of",
+  pricing: {
+    heading: ["What does a ", "website", " cost?"],
     subheading:
-      "A selection of the sites we've built — fast, findable and completely tailored to the brand.",
+      "The cost depends on what you need. A custom business website starts at €495; custom software is priced after a short conversation about your needs, so you never pay for something you won't use. Every price includes a unique design, a Lighthouse score of 100/100, accessibility to WCAG AA, SSL and 30 days of support after launch. No hidden costs: you know exactly where you stand up front.",
+    from: "from",
+    termLabel: "Turnaround",
+    intentMessage: "I'd like a quote for",
+    plans: [
+      {
+        key: "maintenance",
+        title: "Maintenance & support",
+        suits: "For business owners who want to keep their site safe and current.",
+        from: true,
+        price: "€49",
+        unit: "per month",
+        term: "Ongoing, monthly",
+        features: [
+          "Software updates",
+          "Security patches",
+          "Backup checks",
+          "Technical help with questions",
+        ],
+        cta: "Request maintenance",
+      },
+      {
+        key: "website",
+        featured: true,
+        title: "Custom website",
+        suits: "For freelancers, small businesses and SMEs that want a professional presence.",
+        from: true,
+        price: "€495",
+        unit: "one-off",
+        term: "2 to 4 weeks",
+        features: [
+          "Unique design, no templates",
+          "Responsive on every screen",
+          "Lighthouse score 100/100",
+          "Optimised for search engines",
+          "Accessible to WCAG AA",
+          "SSL certificate and daily backups",
+          "30 days support after launch",
+          "Full handover of files",
+        ],
+        cta: "Request a quote",
+      },
+      {
+        key: "webapp",
+        title: "Web application",
+        suits: "For businesses that need custom software.",
+        from: false,
+        price: "On request",
+        unit: "tailored quote",
+        term: "After a scoping call",
+        features: [
+          "Customer portals",
+          "Planning tools",
+          "Internal dashboards",
+          "Built around your workflow",
+        ],
+        cta: "Book a scoping call",
+      },
+    ],
+    hostingTitle: "Hosting is always included",
+    hostingBody: "Every site runs on a fast CDN with SSL and daily backups. Hosting on its own is also possible, on request.",
+    extrasTitle: "Optional extras",
+    extras: ["Multilingual (NL + EN)", "Blog or knowledge base", "Custom animations"],
+    vatNote: "All prices exclude VAT.",
+  },
+  portfolio: {
+    heading: ["Work we're ", "proud", " of"],
+    subheading:
+      "Every project starts with the business behind it: who are the customers, what are they looking for and what should they be able to do? We design the site around that, always with its own design instead of a template. Hover over a screenshot to scroll through the whole page.",
     viewProject: "View project",
     imageUnavailable: "Image not available",
     viewTabAriaPrefix: "View",
     viewTabAriaSuffix: "in a new tab",
     screenshotAlt: "Screenshot of the website",
+    scrollHint: "Hover to scroll",
     projects: [
       {
         title: "Prince Schilder",
+        kind: "Business website",
         description: "Professional business website for a painting company in Amsterdam.",
         highlights: [
           "Mobile-first design",
@@ -83,6 +177,7 @@ const en = {
       },
       {
         title: "GSK Portfolio",
+        kind: "Portfolio",
         description: "A sleek, modern portfolio site to showcase work and skills.",
         highlights: [
           "Dark futuristic theme",
@@ -94,9 +189,9 @@ const en = {
     ],
   },
   process: {
-    heading: "How we work",
+    heading: ["How we ", "work"],
     subheading:
-      "From first conversation to a live website. A clear four-step process, with no surprises.",
+      "A new website shouldn't be a gamble. That's why we work in four clear steps, with firm agreements on what you get and when. You see the design before we start building, and you can steer at every step. After launch we stay available for updates, questions and changes.",
     steps: [
       {
         title: "Introduction",
@@ -117,8 +212,9 @@ const en = {
     ],
   },
   testimonials: {
-    heading: "What clients say about us",
-    subheading: "From business website to portfolio - results that speak for themselves.",
+    heading: ["What clients ", "say about us"],
+    subheading:
+      "We build for business owners who want a site that simply works, without hassle. What counts is the result: more enquiries, a professional first impression and a collaboration without surprises. Here's what clients say about it.",
     items: [
       {
         quote:
@@ -137,8 +233,9 @@ const en = {
     ],
   },
   contact: {
-    heading: "Ready for a new website?",
+    heading: ["Ready for a ", "new website", "?"],
     body: "Tell us about your plans. We're happy to think along and send you a no-obligation proposal.",
+    directLabel: "Or get in touch directly",
     nameLabel: "Name",
     namePlaceholder: "Your name",
     emailLabel: "Email",
@@ -153,56 +250,23 @@ const en = {
     error: "Something went wrong. Send your message to",
     errorSuffix: "or call us directly.",
     emailSubject: "New message via bluestardevelopment.nl",
-    nextStepsHeading: "What happens next?",
-    nextSteps: [
-      {
-        title: "Reply within 24 hours",
-        body: "We read your message and confirm receipt the same working day.",
-      },
-      {
-        title: "Short intro call",
-        body: "We schedule 20 minutes to go through your needs, timeline, and budget.",
-      },
-      {
-        title: "A proposal built for you",
-        body: "You receive a clear quote. No obligation, no fine print.",
-      },
-    ],
   },
   faq: {
-    heading: "Frequently asked questions",
-    subheading: "Everything you want to know before making a decision.",
-    includedCard: {
-      eyebrow: "Always included",
-      heading: "What's in every project",
-      body: "No hidden costs, no surprises afterwards. These are the things we include as standard in every project.",
-      items: [
-        "Lighthouse score 100/100",
-        "Responsive on every screen and device",
-        "SSL certificate and daily backups",
-        "Live within 2 to 4 weeks",
-        "30 days support after launch",
-        "Full handover of files and access",
-        "Unique design, no templates",
-        "Optimised for search engines (SEO)",
-        "Accessible for all users (WCAG AA)",
-      ],
-    },
+    heading: ["Frequently asked ", "questions"],
+    subheading:
+      "Still in doubt, or want to know how it works first? These are the questions business owners ask us most, about price, planning and what happens after launch.",
+    notFound: "Can't find your question?",
+    notFoundLink: "Get in touch",
     items: [
       {
         question: "How much does a website cost?",
         answer:
-          "The price depends on the scope and complexity of the project. A simple business website starts at a few hundred euros, while an extensive webshop or web application costs more. Contact us for a no-obligation custom quote.",
+          "The price depends on the scope and complexity of the project. A custom business website starts at €495 (excl. VAT); a web application is priced on request. Contact us for a no-obligation custom quote.",
       },
       {
         question: "How quickly can BlueStar Development build a website?",
         answer:
           "The turnaround time depends on the scope. A simple business website is often live within two to four weeks. Schedule a call for a concrete timeline.",
-      },
-      {
-        question: "Do you also build webshops?",
-        answer:
-          "Yes. BlueStar Development builds complete webshops with product management, secure payments and a smooth checkout process, fully tailored to your brand.",
       },
       {
         question: "Do you work with small businesses and freelancers?",
@@ -221,8 +285,26 @@ const en = {
       },
     ],
   },
+  blog: {
+    heading: ["From our ", "blog"],
+    subheading:
+      "How fast should a website be? What exactly does Google measure, and what does accessibility mean for your site? Our blog explains it in plain language, so you make better choices for your own website.",
+    pageHeading: ["Web development ", "tips"],
+    pageSubheading:
+      "Technical insights on how modern websites are built, how Google evaluates them, and why that matters for you.",
+    read: "Read",
+    readMore: "Read more",
+    readingTime: "min read",
+    viewAll: "View all posts",
+    back: "Back to blog",
+    more: "More articles",
+    ctaHeading: ["Ready for a ", "fast website", "?"],
+    ctaBody:
+      "We build sites that score on speed, accessibility and findability. Schedule a no-obligation call.",
+    ctaButton: "Schedule a call",
+  },
   footer: {
-    tagline: "Fast, findable websites and webshops built to order for entrepreneurs.",
+    tagline: "Fast, findable websites and web applications built to order for entrepreneurs.",
     navigation: "Navigation",
     contact: "Contact",
     copyright: "All rights reserved.",
