@@ -69,13 +69,20 @@ export default function Navbar() {
 
   const closeMenu = () => setOpen(false);
   const anchor = (hash) => (onHome ? hash : `/${hash}`);
+  // Het contactformulier staat onder bijna elke pagina; alleen de blog en de
+  // juridische pagina's hebben het niet.
+  const noContact =
+    pathname.startsWith("/blog") || ["/privacybeleid", "/algemene-voorwaarden", "/disclaimer"].includes(pathname);
+  const contactHref = noContact ? "/#contact" : "#contact";
   const navLinks = [
     { label: t.nav.services, href: anchor("#diensten") },
-    { label: t.nav.work, href: anchor("#portfolio") },
-    { label: t.nav.approach, href: anchor("#aanpak") },
+    { label: t.nav.work, href: "/portfolio", external: true },
+    // Op smallere desktops past de balk niet met alle links; Aanpak wijkt dan.
+    { label: t.nav.approach, href: anchor("#aanpak"), wideOnly: true },
+    { label: t.nav.pricing, href: "/prijzen", external: true },
     { label: t.nav.faq, href: anchor("#faq") },
     { label: t.nav.blog, href: "/blog", external: true },
-    { label: t.nav.contact, href: anchor("#contact") },
+    { label: t.nav.contact, href: "/contact", external: true },
   ];
 
   return (
@@ -87,13 +94,13 @@ export default function Navbar() {
 
           <div className="ml-auto hidden h-full items-stretch lg:flex">
             {navLinks.map((link) => (
-              <NavItem key={link.href} link={link} className="nav-link" />
+              <NavItem key={link.href} link={link} className={`nav-link ${link.wideOnly ? "!hidden xl:!inline-flex" : ""}`} />
             ))}
           </div>
 
           <div className="hidden items-center gap-4 lg:flex">
             <LangToggle lang={lang} setLang={setLang} label={t.nav.langLabel} />
-            <a href={anchor("#contact")} className="btn btn-primary">
+            <a href={contactHref} className="btn btn-primary">
               {t.nav.cta}
             </a>
           </div>
@@ -133,7 +140,7 @@ export default function Navbar() {
           ))}
         </ul>
         <div className="flex w-full max-w-xs flex-col items-center gap-6 border-t border-white/30 pt-8">
-          <a href={anchor("#contact")} onClick={closeMenu} className="btn btn-light w-full">
+          <a href={contactHref} onClick={closeMenu} className="btn btn-light w-full">
             {t.nav.cta}
           </a>
           <LangToggle lang={lang} setLang={setLang} label={t.nav.langLabel} onDark />

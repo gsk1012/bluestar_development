@@ -4,6 +4,7 @@
 // Zonder scrollImage valt de kaart terug op statische thumbnail.
 export const projects = [
   {
+    slug: "prince-schilder", // case op /portfolio/prince-schilder (data/sitePages.js)
     title: "Prince Schilder",
     description: "Professionele bedrijfswebsite voor een schildersbedrijf in Amsterdam.",
     url: "https://prince-schilder.vercel.app/",
@@ -17,6 +18,7 @@ export const projects = [
     ],
   },
   {
+    slug: "gsk-portfolio",
     title: "GSK Portfolio",
     description: "Strakke, moderne portfolio-website om werk en vaardigheden te presenteren.",
     url: "https://gurpreetsingh-gsk.vercel.app/",

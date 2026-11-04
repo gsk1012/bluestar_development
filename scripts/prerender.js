@@ -1,7 +1,11 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { getLocalizedPostBySlug, getLocalizedPosts } from '../src/data/posts.js'
+import { getLocalizedPostBySlug, getLocalizedPosts, postMetaTitle } from '../src/data/posts.js'
+import { SERVICE_SLUGS, getServicePage, buildServicePageJsonLd } from '../src/data/servicePages.js'
+import { getExtraPages } from '../src/data/pageMeta.js'
+
+const EXTRA_PAGES = getExtraPages()
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const root = path.resolve(__dirname, '..')
@@ -13,7 +17,7 @@ const BLOG_SLUGS = getLocalizedPosts('nl').map(p => p.slug)
 function getMetaForUrl(url) {
   if (url === '/blog') {
     return {
-      title: 'Blog | Webdevelopment tips voor ondernemers — BlueStar Development',
+      title: 'Webdevelopment tips voor ondernemers | BlueStar Development',
       description: 'Technische inzichten over hoe moderne websites worden gebouwd, hoe Google ze beoordeelt en waarom dat voor jou als ondernemer uitmaakt.',
       canonical: `${BASE}/blog`,
       ogType: 'website',
@@ -43,7 +47,7 @@ function getMetaForUrl(url) {
     if (post) {
       const canonical = `${BASE}/blog/${slug}`
       return {
-        title: `${post.title} — BlueStar Development`,
+        title: postMetaTitle(post.title),
         description: post.metaDescription,
         canonical,
         ogType: 'article',
@@ -82,7 +86,7 @@ function getMetaForUrl(url) {
               '@type': 'WebPage',
               '@id': `${canonical}#webpage`,
               url: canonical,
-              name: `${post.title} — BlueStar Development`,
+              name: postMetaTitle(post.title),
               inLanguage: 'nl-NL',
               isPartOf: { '@id': `${BASE}/#website` },
               breadcrumb: {
@@ -100,11 +104,44 @@ function getMetaForUrl(url) {
     }
   }
 
+  const extra = EXTRA_PAGES.find(p => p.path === url)
+  if (extra) {
+    return {
+      title: extra.title,
+      description: extra.description,
+      canonical: `${BASE}${extra.path}`,
+      ogType: 'website',
+      ogTitle: extra.title,
+      ogDescription: extra.description,
+      ogImage: `${BASE}/logo.png`,
+      jsonLd: extra.jsonLd,
+    }
+  }
+
+  const page = getServicePage(url.slice(1), 'nl')
+  if (page) {
+    return {
+      title: page.metaTitle,
+      description: page.metaDescription,
+      canonical: `${BASE}/${page.slug}`,
+      ogType: 'website',
+      ogTitle: page.metaTitle,
+      ogDescription: page.metaDescription,
+      ogImage: `${BASE}/logo.png`,
+      jsonLd: buildServicePageJsonLd(page),
+    }
+  }
+
   return null // homepage keeps its own meta from index.html
 }
 
 function injectMeta(html, meta) {
   if (!meta) return html
+
+  // De JSON-LD in index.html beschrijft de homepage (WebPage, FAQ, reviews).
+  // Andere pagina's krijgen alleen hun eigen blok, anders claimt elke pagina
+  // de FAQ en reviews van de homepage.
+  html = html.replace(/\s*<!-- JSON-LD Structured Data -->\s*<script type="application\/ld\+json">[\s\S]*?<\/script>/, '')
 
   html = html.replace(/<title>[^<]*<\/title>/, `<title>${meta.title}</title>`)
 
@@ -193,6 +230,20 @@ function generateSitemap() {
     <priority>0.7</priority>
   </url>`).join('\n')
 
+  const servicePageUrls = SERVICE_SLUGS.map(slug => `  <url>
+    <loc>${BASE}/${slug}</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>`).join('\n')
+
+  const extraPageUrls = EXTRA_PAGES.map(p => `  <url>
+    <loc>${BASE}${p.path}</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>${p.path.startsWith('/portfolio') ? 'monthly' : 'yearly'}</changefreq>
+    <priority>${p.path.startsWith('/portfolio') || p.path === '/contact' || p.path === '/over-ons' ? '0.7' : '0.3'}</priority>
+  </url>`).join('\n')
+
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
@@ -201,6 +252,8 @@ function generateSitemap() {
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
+${servicePageUrls}
+${extraPageUrls}
   <url>
     <loc>${BASE}/blog</loc>
     <lastmod>${today}</lastmod>
@@ -213,7 +266,7 @@ ${postUrls}
 
   const sitemapPath = path.join(root, 'public/sitemap.xml')
   fs.writeFileSync(sitemapPath, xml)
-  console.log(`✓ Sitemap generated: ${posts.length} posts`)
+  console.log(`✓ Sitemap generated: ${SERVICE_SLUGS.length} service pages, ${EXTRA_PAGES.length} other pages, ${posts.length} posts`)
 }
 
 async function prerender() {
@@ -247,6 +300,16 @@ async function prerender() {
 
   // Blog overzicht
   renderPage('/blog', path.join(root, 'dist/blog/index.html'))
+
+  // Dienstpagina's
+  for (const slug of SERVICE_SLUGS) {
+    renderPage(`/${slug}`, path.join(root, `dist/${slug}/index.html`))
+  }
+
+  // Contact, over ons, portfolio, cases en juridisch
+  for (const { path: p } of EXTRA_PAGES) {
+    renderPage(p, path.join(root, `dist${p}/index.html`))
+  }
 
   // Individuele blogposts
   for (const slug of BLOG_SLUGS) {

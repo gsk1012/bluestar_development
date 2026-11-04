@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { getServicePages } from "../data/servicePages";
 import { useLanguage } from "../i18n/LanguageContext";
 import BrandMark from "./BrandMark";
 
@@ -9,17 +10,33 @@ const linkCls =
   "inline-flex min-h-[44px] items-center text-ink-soft transition-colors duration-150 hover:text-brand md:min-h-0 md:py-1";
 
 export default function Footer() {
-  const { t } = useLanguage();
+  const { lang, t } = useLanguage();
+  const { pathname } = useLocation();
   const f = t.footer;
+  // Ankers als #faq bestaan alleen op de homepage.
+  const anchor = (href) => (pathname === "/" ? href : `/${href}`);
 
   return (
     <footer className="bg-bone">
       <div className="wrap py-16">
-        <div className="grid gap-10 md:grid-cols-[1.6fr_1fr_1fr] md:gap-8">
+        <div className="grid gap-10 sm:grid-cols-2 md:grid-cols-[1.4fr_1fr_1fr_1fr] md:gap-8">
           <div>
             <BrandMark ariaLabel={t.nav.logoAria} />
             <p className="mt-5 max-w-xs text-ink-soft">{f.tagline}</p>
           </div>
+
+          <nav aria-label={f.services}>
+            <h2 className="text-[0.9375rem] font-semibold tracking-normal">{f.services}</h2>
+            <ul className="mt-3 flex flex-col">
+              {getServicePages(lang).map((page) => (
+                <li key={page.slug}>
+                  <Link to={`/${page.slug}`} className={linkCls}>
+                    {page.card.title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
 
           <nav aria-label={f.navigation}>
             <h2 className="text-[0.9375rem] font-semibold tracking-normal">{f.navigation}</h2>
@@ -31,7 +48,7 @@ export default function Footer() {
                       {link.label}
                     </Link>
                   ) : (
-                    <a href={link.href} className={linkCls}>
+                    <a href={anchor(link.href)} className={linkCls}>
                       {link.label}
                     </a>
                   )}
@@ -65,19 +82,13 @@ export default function Footer() {
           </p>
           <div className="flex flex-wrap gap-x-7 gap-y-2">
             {[
-              ["/algemene_voorwaarden_bluestar.pdf", f.terms],
-              ["/privacybeleid_bluestar.pdf", f.privacy],
-              ["/disclaimer_bluestar.pdf", f.disclaimer],
+              ["/algemene-voorwaarden", f.terms],
+              ["/privacybeleid", f.privacy],
+              ["/disclaimer", f.disclaimer],
             ].map(([href, label]) => (
-              <a
-                key={href}
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-ink-soft transition-colors duration-150 hover:text-brand"
-              >
+              <Link key={href} to={href} className="text-ink-soft transition-colors duration-150 hover:text-brand">
                 {label}
-              </a>
+              </Link>
             ))}
           </div>
         </div>

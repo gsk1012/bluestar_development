@@ -187,12 +187,7 @@ export default function CookieBanner() {
             <div className="mx-auto max-w-4xl rounded-t-card border border-line bg-ground px-6 py-5 shadow-lift md:rounded-card">
               <p className="text-[0.9375rem] leading-relaxed text-ink">
                 {ck.bannerText}{" "}
-                <a
-                  href="/privacybeleid_bluestar.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-link"
-                >
+                <a href="/privacybeleid" className="text-link">
                   {ck.privacyLabel}
                 </a>{" "}
                 {ck.bannerTextSuffix}

@@ -9,6 +9,20 @@
 - **Onderhoud & support** — Updates, back-ups en snelle hulp zodat je site veilig en actueel blijft.
 - **Hosting** — Betrouwbare hosting met SSL en dagelijkse back-ups.
 
+## Pagina's per dienst
+
+- [Website laten maken](https://bluestardevelopment.nl/website-laten-maken): bedrijfswebsite op maat, vanaf €495 (excl. btw), binnen 2 tot 4 weken live.
+- [Webapplicatie laten maken](https://bluestardevelopment.nl/webapplicatie-laten-maken): klantportalen, planningstools en interne dashboards, offerte na een scopinggesprek.
+- [Website onderhoud en hosting](https://bluestardevelopment.nl/website-onderhoud): onderhoud vanaf €49 per maand (excl. btw), hosting met SSL en dagelijkse back-ups.
+- [Prijzen](https://bluestardevelopment.nl/prijzen): alle pakketten en wat de prijs van een website bepaalt.
+
+## Overige pagina's
+
+- [Portfolio](https://bluestardevelopment.nl/portfolio): opgeleverde websites, met per project een case ([Prince Schilder](https://bluestardevelopment.nl/portfolio/prince-schilder), [GSK Portfolio](https://bluestardevelopment.nl/portfolio/gsk-portfolio)).
+- [Over ons](https://bluestardevelopment.nl/over-ons): uitgangspunten, werkwijze en techniek.
+- [Contact](https://bluestardevelopment.nl/contact): e-mail, telefoon en contactformulier; reactie binnen 24 uur.
+- [Privacybeleid](https://bluestardevelopment.nl/privacybeleid), [Algemene voorwaarden](https://bluestardevelopment.nl/algemene-voorwaarden), [Disclaimer](https://bluestardevelopment.nl/disclaimer).
+
 ## Waarom BlueStar Development
 
 - Elke website haalt standaard een Lighthouse-score van 100/100 (Performance, Accessibility, Best Practices, SEO).

@@ -38,8 +38,10 @@ function FAQItem({ item, index, open, onToggle }) {
 
   return (
     <div
-      className={`rounded-card border transition-colors duration-200 ${
-        open ? "border-line-strong bg-ground" : "border-line hover:border-line-strong"
+      // Altijd een wit vlak, ook dicht: op een bone sectie (dienstpagina's)
+      // zouden de gesloten vragen anders grijs ogen.
+      className={`rounded-card border bg-ground transition-colors duration-200 ${
+        open ? "border-line-strong" : "border-line hover:border-line-strong"
       }`}
     >
       <h3>
@@ -74,9 +76,13 @@ function FAQItem({ item, index, open, onToggle }) {
   );
 }
 
-export default function FAQ() {
+/**
+ * Zonder props de algemene FAQ van de homepage; een dienstpagina geeft eigen
+ * `heading` en `items` mee (de rest valt terug op i18n).
+ */
+export default function FAQ({ heading, subheading, items }) {
   const { t } = useLanguage();
-  const faq = t.faq;
+  const faq = { ...t.faq, ...(heading && { heading }), ...(subheading && { subheading }), ...(items && { items }) };
   const [openIndex, setOpenIndex] = useState(0);
 
   return (

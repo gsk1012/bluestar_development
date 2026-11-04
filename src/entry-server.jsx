@@ -5,7 +5,6 @@ import { StrictMode } from 'react'
 import { LanguageProvider } from './i18n/LanguageContext'
 import { MenuProvider } from './lib/menu'
 import Navbar from './components/Navbar'
-import CookieBanner from './components/CookieBanner'
 import Hero from './components/Hero'
 import Services from './components/Services'
 import Portfolio from './components/Portfolio'
@@ -19,6 +18,14 @@ import Contact from './components/Contact'
 import Footer from './components/Footer'
 import Blog from './pages/Blog'
 import BlogPost from './pages/BlogPost'
+import ServicePage from './pages/ServicePage'
+import { SERVICE_SLUGS } from './data/servicePages'
+import ContactPage from './pages/ContactPage'
+import AboutPage from './pages/AboutPage'
+import PortfolioPage from './pages/PortfolioPage'
+import CasePage from './pages/CasePage'
+import LegalPage from './pages/LegalPage'
+import { LEGAL_SLUGS } from './data/legalPages'
 
 function HomePage() {
   return (
@@ -28,16 +35,15 @@ function HomePage() {
         <Hero />
         <Services />
         <Why />
-        <Pricing />
+        <Pricing moreLink />
         <Portfolio />
         <Process />
         <Testimonials />
         <FAQ />
         <BlogPreview />
-        <Contact />
+        <Contact above="bone" />
       </main>
       <Footer />
-      <CookieBanner />
     </>
   )
 }
@@ -47,7 +53,19 @@ function ServerApp({ url }) {
   if (url === '/blog') {
     content = <Blog />
   } else if (url.startsWith('/blog/')) {
-    content = <BlogPost />
+    content = <BlogPost slug={url.slice('/blog/'.length)} />
+  } else if (url === '/contact') {
+    content = <ContactPage />
+  } else if (url === '/over-ons') {
+    content = <AboutPage />
+  } else if (url === '/portfolio') {
+    content = <PortfolioPage />
+  } else if (url.startsWith('/portfolio/')) {
+    content = <CasePage slug={url.slice('/portfolio/'.length)} />
+  } else if (LEGAL_SLUGS.includes(url.slice(1))) {
+    content = <LegalPage slug={url.slice(1)} />
+  } else if (SERVICE_SLUGS.includes(url.slice(1))) {
+    content = <ServicePage slug={url.slice(1)} />
   } else {
     content = <HomePage />
   }

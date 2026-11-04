@@ -1,4 +1,5 @@
-import { Check, Clock, CloudCheck } from "@phosphor-icons/react";
+import { Link } from "react-router-dom";
+import { ArrowRight, Check, Clock, CloudCheck } from "@phosphor-icons/react";
 import { useLanguage } from "../i18n/LanguageContext";
 import { sendIntent } from "../lib/intent";
 import Heading from "./Heading";
@@ -10,7 +11,7 @@ import Heading from "./Heading";
  *
  * De bedragen komen uit public/pricing.md; houd die twee gelijk.
  */
-function PriceTag({ plan, from, featured }) {
+export function PriceTag({ plan, from, featured }) {
   return (
     <div
       className={`inline-flex flex-wrap items-baseline gap-x-2 py-3 pl-5 pr-10 ${
@@ -31,15 +32,23 @@ function PriceTag({ plan, from, featured }) {
   );
 }
 
-export default function Pricing() {
+/**
+ * @param {string[]} [heading] - eigen kop, bv. op /prijzen waar de h1 de vraag al stelt
+ * @param {string} [subheading]
+ * @param {boolean} [plain] - zonder eigen bone-band, als de pagina de achtergrond bepaalt
+ * @param {boolean} [moreLink] - link naar /prijzen onder de pakketten (op de homepage)
+ */
+export default function Pricing({ heading, subheading, plain = false, moreLink = false }) {
   const { t } = useLanguage();
-  const pr = t.pricing;
+  const pr = { ...t.pricing, ...(heading && { heading }), ...(subheading && { subheading }) };
 
   return (
-    <section id="prijzen" className="band section">
-      <div className="band__lanes" aria-hidden="true">
-        <span className="band__lane band__lane--one" />
-      </div>
+    <section id="prijzen" className={`section ${plain ? "relative" : "band"}`}>
+      {!plain && (
+        <div className="band__lanes" aria-hidden="true">
+          <span className="band__lane band__lane--one" />
+        </div>
+      )}
 
       <div className="wrap relative">
         {/* Gecentreerd op desktop: de drie pakketten eronder staan symmetrisch om het middelste. */}
@@ -127,7 +136,15 @@ export default function Pricing() {
           </div>
         </div>
 
-        <p className="mt-5 text-[0.9375rem] text-ink-soft">{pr.vatNote}</p>
+        <div className="mt-5 flex flex-wrap items-center justify-between gap-4 text-[0.9375rem]">
+          <p className="text-ink-soft">{pr.vatNote}</p>
+          {moreLink && (
+            <Link to="/prijzen" className="text-link inline-flex items-center gap-1.5">
+              {pr.moreLink}
+              <ArrowRight size={15} weight="bold" aria-hidden="true" />
+            </Link>
+          )}
+        </div>
       </div>
     </section>
   );

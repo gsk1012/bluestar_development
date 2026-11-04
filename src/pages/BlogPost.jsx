@@ -1,12 +1,13 @@
 import { useEffect } from "react";
 import { useParams, Link, Navigate } from "react-router-dom";
 import { ArrowLeft } from "@phosphor-icons/react";
-import { getLocalizedPostBySlug, getLocalizedPosts } from "../data/posts";
+import { getLocalizedPostBySlug, getLocalizedPosts, postMetaTitle } from "../data/posts";
 import { useLanguage } from "../i18n/LanguageContext";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Heading from "../components/Heading";
 import BlogCover from "../components/BlogCover";
+import Prose from "../components/Prose";
 
 function Section({ heading, body }) {
   return (
@@ -14,21 +15,8 @@ function Section({ heading, body }) {
       <h2 className="text-[1.5rem] font-bold tracking-[-0.012em] sm:text-[1.75rem]">
         {heading}
       </h2>
-      <div className="mt-4 space-y-4">
-        {body.split("\n\n").map((paragraph, i) => {
-          // Bold tekst: **tekst** → <strong>
-          const rendered = paragraph.replace(
-            /\*\*(.*?)\*\*/g,
-            (_, match) => `<strong class="font-semibold text-ink">${match}</strong>`
-          );
-          return (
-            <p
-              key={i}
-              className="text-[1.0625rem] leading-[1.7] text-ink-soft"
-              dangerouslySetInnerHTML={{ __html: rendered }}
-            />
-          );
-        })}
+      <div className="mt-4">
+        <Prose body={body} />
       </div>
     </div>
   );
@@ -36,8 +24,10 @@ function Section({ heading, body }) {
 
 const BASE = 'https://bluestardevelopment.nl';
 
-export default function BlogPost() {
-  const { slug } = useParams();
+// `slug` komt in de browser uit de route; bij het voorrenderen geeft entry-server hem mee.
+export default function BlogPost({ slug: slugProp }) {
+  const params = useParams();
+  const slug = slugProp ?? params.slug;
   const { lang, t } = useLanguage();
   const b = t.blog;
   const post = getLocalizedPostBySlug(slug, lang);
@@ -48,7 +38,7 @@ export default function BlogPost() {
     const metaDesc = document.querySelector('meta[name="description"]');
     const prevDesc = metaDesc?.getAttribute('content') ?? '';
 
-    document.title = `${post.title} — BlueStar Development`;
+    document.title = postMetaTitle(post.title);
     if (metaDesc) metaDesc.setAttribute('content', post.metaDescription);
 
     const canonical = `${BASE}/blog/${post.slug}`;

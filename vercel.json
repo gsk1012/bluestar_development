@@ -1,5 +1,16 @@
 {
   "rewrites": [
+    { "source": "/website-laten-maken", "destination": "/website-laten-maken/index.html" },
+    { "source": "/webapplicatie-laten-maken", "destination": "/webapplicatie-laten-maken/index.html" },
+    { "source": "/website-onderhoud", "destination": "/website-onderhoud/index.html" },
+    { "source": "/prijzen", "destination": "/prijzen/index.html" },
+    { "source": "/contact", "destination": "/contact/index.html" },
+    { "source": "/over-ons", "destination": "/over-ons/index.html" },
+    { "source": "/portfolio", "destination": "/portfolio/index.html" },
+    { "source": "/privacybeleid", "destination": "/privacybeleid/index.html" },
+    { "source": "/algemene-voorwaarden", "destination": "/algemene-voorwaarden/index.html" },
+    { "source": "/disclaimer", "destination": "/disclaimer/index.html" },
+    { "source": "/portfolio/:slug", "destination": "/portfolio/:slug/index.html" },
     { "source": "/blog", "destination": "/blog/index.html" },
     { "source": "/blog/:slug", "destination": "/blog/:slug/index.html" }
   ],

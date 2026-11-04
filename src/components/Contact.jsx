@@ -23,8 +23,11 @@ function FieldError({ id, message }) {
 /**
  * Het slotblok van de pagina: een antraciet vlak met de buitenmaatse hoek
  * linksboven, met links de uitnodiging en rechts het formulier op wit.
+ *
+ * @param {"white"|"bone"} [above] - kleur van de sectie erboven; die kleur
+ *   vult de grond achter de ronde hoek, zodat de naad onzichtbaar is.
  */
-export default function Contact() {
+export default function Contact({ above = "white" }) {
   const { t } = useLanguage();
   const c = t.contact;
 
@@ -83,8 +86,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="bg-bone">
-      {/* De grond achter de ronde hoek is de bone van het blogblok erboven. */}
+    <section id="contact" className={above === "bone" ? "bg-bone" : "bg-ground"}>
       <div className="rounded-tl-[var(--radius-big)] bg-dark py-[var(--section-gap)] text-white">
         <div className="wrap grid gap-12 lg:grid-cols-[5fr_7fr] lg:gap-16">
           <div className="lg:pt-6">

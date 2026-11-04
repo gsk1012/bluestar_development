@@ -1,9 +1,12 @@
-import { Article, Atom, ChartLineUp, Eye, Gauge, Lightning } from "@phosphor-icons/react";
+import { Article, Atom, ChartLineUp, Eye, Gauge, Lightning, Scales, Timer, UserCircle } from "@phosphor-icons/react";
 
 // Omslag van een blogpost: een rustig bone vlak met een icoon dat bij het
 // onderwerp past, en rechts een smalle indigo chevron als merkaccent. Vervangt
 // de gegenereerde coverbeelden op de site; die blijven alleen als og:image.
 const ICONS = {
+  "hoe-lang-duurt-website-laten-maken": Timer,
+  "website-laten-maken-of-zelf-bouwen": Scales,
+  "wat-is-een-klantportaal": UserCircle,
   "core-web-vitals-uitgelegd": Gauge,
   "wcag-toegankelijkheid-website": Eye,
   "ssg-vs-ssr-razendsnel-website": Lightning,

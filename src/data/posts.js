@@ -3,6 +3,226 @@
 
 const postData = [
   {
+    slug: "hoe-lang-duurt-website-laten-maken",
+    publishedAt: "2026-11-04",
+    readingTime: 5,
+    image: "/logo.png",
+    nl: {
+      category: "Advies",
+      imageAlt: "Planning voor het laten maken van een website",
+      title: "Hoe lang duurt het om een website te laten maken?",
+      metaDescription:
+        "Hoe lang duurt het om een website te laten maken? Een bedrijfswebsite staat meestal binnen 2 tot 4 weken live. Lees waar de tijd in gaat en hoe het sneller kan.",
+      excerpt:
+        "Een bedrijfswebsite staat meestal binnen 2 tot 4 weken live. Of dat lukt, hangt minder af van het bouwen dan van wat er vooraf klaarligt.",
+      sections: [
+        {
+          heading: "Een realistische planning",
+          body: `Een bedrijfswebsite op maat staat bij ons meestal binnen **2 tot 4 weken** live. Een site met een handvol pagina's en kant-en-klare teksten zit aan de korte kant. Meer pagina's, een tweede taal of een blog vragen meer tijd.\n\nVoor een webapplicatie geldt een andere rekensom. Daar hangt de doorlooptijd af van wat de applicatie moet kunnen, en die planning maken we pas na een scopinggesprek. Lees meer bij [webapplicatie laten maken](/webapplicatie-laten-maken).`,
+        },
+        {
+          heading: "Waar de tijd in gaat",
+          body: `Een website laten maken verloopt in vier stappen:\n- **Kennismaking**: we bespreken je doelen, je merk en wat je klanten nodig hebben\n- **Ontwerp**: je ziet het ontwerp voordat we gaan bouwen en kunt bijsturen\n- **Bouw**: we bouwen een snelle, vindbare site die op elk scherm werkt\n- **Lancering**: de site gaat live en we blijven bereikbaar voor vragen\n\nDe bouw zelf is zelden het langste deel. De meeste tijd zit in afstemming: wachten op teksten, beelden en feedback.`,
+        },
+        {
+          heading: "Wat een project vertraagt",
+          body: `De vertragingen die we het vaakst zien, hebben weinig met techniek te maken:\n- Teksten die nog geschreven moeten worden\n- Een logo of foto's die er nog niet zijn\n- Feedback die van meerdere mensen moet komen en lang op zich laat wachten\n- Nieuwe wensen halverwege het project\n\nNieuwe wensen zijn geen probleem, maar ze schuiven de planning op. Daarom leggen we vooraf vast wat er gebouwd wordt.`,
+        },
+        {
+          heading: "Zo gaat het sneller",
+          body: `Wil je snel live? Dan helpen deze vier dingen het meest:\n- Zorg dat teksten, logo en foto's klaarstaan voordat we beginnen\n- Wijs één persoon aan die beslist over ontwerp en inhoud\n- Verzamel feedback in één keer in plaats van in losse berichten\n- Begin met de pagina's die echt nodig zijn en breid later uit\n\nEen kleinere eerste versie die snel live staat, levert vaak meer op dan een grote site die maanden op zich laat wachten.`,
+        },
+        {
+          heading: "En na de lancering?",
+          body: `Na de livegang krijg je 30 dagen gratis support. Daarna kun je kiezen voor [onderhoud en support](/website-onderhoud), zodat je site veilig en actueel blijft. Wat een website kost, lees je op de [prijzenpagina](/prijzen).`,
+        },
+      ],
+    },
+    en: {
+      category: "Advice",
+      imageAlt: "Planning for having a website built",
+      title: "How long does it take to have a website built?",
+      metaDescription:
+        "How long does it take to have a website built? A business website is usually live within 2 to 4 weeks. Read where the time goes and how to speed it up.",
+      excerpt:
+        "A business website is usually live within 2 to 4 weeks. Whether that works depends less on the building than on what's ready in advance.",
+      sections: [
+        {
+          heading: "A realistic schedule",
+          body: `A custom business website is usually live within **2 to 4 weeks** with us. A site with a handful of pages and ready-made copy is at the short end. More pages, a second language or a blog take more time.\n\nA web application is a different calculation. There, the turnaround depends on what the application needs to do, and we only plan it after a scoping call. Read more on [web application development](/webapplicatie-laten-maken).`,
+        },
+        {
+          heading: "Where the time goes",
+          body: `Having a website built follows four steps:\n- **Introduction**: we discuss your goals, your brand and what your customers need\n- **Design**: you see the design before we build and can adjust it\n- **Build**: we build a fast, findable site that works on every screen\n- **Launch**: the site goes live and we stay available for questions\n\nThe build itself is rarely the longest part. Most time goes into coordination: waiting for copy, images and feedback.`,
+        },
+        {
+          heading: "What slows a project down",
+          body: `The delays we see most often have little to do with technology:\n- Copy that still needs to be written\n- A logo or photos that don't exist yet\n- Feedback that has to come from several people and takes a long time\n- New wishes halfway through the project\n\nNew wishes are no problem, but they push the schedule. That's why we agree up front what will be built.`,
+        },
+        {
+          heading: "How to go faster",
+          body: `Want to go live quickly? These four things help most:\n- Have copy, logo and photos ready before we start\n- Appoint one person who decides on design and content\n- Collect feedback in one go instead of in separate messages\n- Start with the pages you really need and expand later\n\nA smaller first version that goes live quickly often delivers more than a large site that takes months.`,
+        },
+        {
+          heading: "And after launch?",
+          body: `After going live you get 30 days of free support. After that you can choose [maintenance and support](/website-onderhoud), so your site stays secure and up to date. What a website costs is on the [pricing page](/prijzen).`,
+        },
+      ],
+    },
+  },
+  {
+    slug: "website-laten-maken-of-zelf-bouwen",
+    publishedAt: "2026-11-04",
+    readingTime: 5,
+    image: "/logo.png",
+    nl: {
+      category: "Advies",
+      imageAlt: "Een website laten maken of zelf bouwen vergeleken",
+      title: "Website laten maken of zelf bouwen met een websitebouwer?",
+      metaDescription:
+        "Website laten maken of zelf bouwen met een websitebouwer? We zetten de voor- en nadelen eerlijk op een rij, zodat je kunt kiezen wat bij je bedrijf past.",
+      excerpt:
+        "Met een websitebouwer heb je in een weekend een site. Toch is dat niet altijd de goedkoopste keuze. Wanneer is zelf bouwen prima, en wanneer loont laten maken?",
+      sections: [
+        {
+          heading: "Twee routes naar een website",
+          body: `Je kunt een website zelf in elkaar zetten met een websitebouwer: een online dienst waarmee je met een template en een editor zonder code een site maakt. Of je laat een website op maat ontwerpen en bouwen door een webbureau.\n\nBeide routes zijn prima, voor verschillende situaties. Het gaat er vooral om wat je website moet opleveren.`,
+        },
+        {
+          heading: "Wanneer zelf bouwen prima is",
+          body: `Een websitebouwer is een goede keuze als:\n- Je net begint en vooral online vindbaar wilt zijn met je contactgegevens\n- Je site weinig hoeft te doen behalve informeren\n- Je zelf tijd en plezier hebt om eraan te werken\n- Je budget nu echt beperkt is\n\nVoor een eerste online visitekaartje is dat vaak genoeg.`,
+        },
+        {
+          heading: "Waar een websitebouwer tegen grenzen aanloopt",
+          body: `Zodra je website klanten moet opleveren, merk je de beperkingen:\n- **Snelheid**: sites uit een bouwer laden vaak veel extra code mee, wat ten koste gaat van de laadtijd en je positie in Google\n- **Herkenbaarheid**: templates worden door veel bedrijven gebruikt, waardoor je site lijkt op die van anderen\n- **Vrijheid**: wil je iets wat de bouwer niet ondersteunt, dan houdt het op\n- **Afhankelijkheid**: je site zit vast aan het platform en verhuizen is lastig\n- **Doorlopende kosten**: je betaalt zolang je site online staat\n\nHoe [Core Web Vitals](/blog/core-web-vitals-uitgelegd) je positie in Google beïnvloeden, lees je in een eerder artikel.`,
+        },
+        {
+          heading: "Wanneer laten maken loont",
+          body: `Een website laten maken loont als:\n- Je site aanvragen, telefoontjes of offertes moet opleveren\n- Je gevonden wilt worden op zoekwoorden waar concurrenten ook op zitten\n- Je een professionele eerste indruk wilt maken met een eigen ontwerp\n- Je tijd beter besteed is aan je bedrijf dan aan je website\n\nBij ons krijg je daarbij een eigen ontwerp, een Lighthouse-score van 100/100 en toegankelijkheid volgens WCAG AA als standaard. Lees meer bij [website laten maken](/website-laten-maken).`,
+        },
+        {
+          heading: "De kosten naast elkaar",
+          body: `Bij een websitebouwer betaal je een abonnement, plus je eigen tijd om de site te bouwen en bij te houden. Die tijd wordt vaak vergeten.\n\nEen bedrijfswebsite op maat begint bij ons bij **€495 excl. btw**, eenmalig, met hosting inbegrepen. Onderhoud is optioneel, vanaf €49 per maand. Alle pakketten staan op de [prijzenpagina](/prijzen).`,
+        },
+        {
+          heading: "Onze conclusie",
+          body: `Zoek je alleen een online visitekaartje en heb je er zelf tijd voor, begin dan gerust met een websitebouwer. Moet je website klanten opleveren, dan is een site op maat meestal de betere investering: sneller, beter vindbaar en helemaal van jou.`,
+        },
+      ],
+    },
+    en: {
+      category: "Advice",
+      imageAlt: "Having a website built versus building it yourself",
+      title: "Have a website built, or build it yourself with a website builder?",
+      metaDescription:
+        "Have a website built or build it yourself with a website builder? We list the pros and cons honestly, so you can choose what fits your business.",
+      excerpt:
+        "With a website builder you have a site in a weekend. Yet that's not always the cheapest choice. When is building it yourself fine, and when does having it built pay off?",
+      sections: [
+        {
+          heading: "Two routes to a website",
+          body: `You can put a website together yourself with a website builder: an online service that lets you make a site from a template and an editor without code. Or you have a custom website designed and built by a web agency.\n\nBoth routes are fine, for different situations. It mainly comes down to what your website needs to deliver.`,
+        },
+        {
+          heading: "When building it yourself is fine",
+          body: `A website builder is a good choice if:\n- You're just starting out and mainly want to be findable with your contact details\n- Your site doesn't need to do much beyond informing\n- You have the time and enjoy working on it yourself\n- Your budget really is limited right now\n\nFor a first online business card, that's often enough.`,
+        },
+        {
+          heading: "Where a website builder hits its limits",
+          body: `As soon as your website needs to bring in customers, you notice the limits:\n- **Speed**: builder sites often load a lot of extra code, which costs load time and your position in Google\n- **Recognisability**: templates are used by many businesses, so your site looks like others\n- **Freedom**: if you want something the builder doesn't support, that's the end of it\n- **Dependence**: your site is tied to the platform and moving is difficult\n- **Ongoing costs**: you pay for as long as your site is online\n\nHow [Core Web Vitals](/blog/core-web-vitals-uitgelegd) affect your position in Google is explained in an earlier article.`,
+        },
+        {
+          heading: "When having it built pays off",
+          body: `Having a website built pays off if:\n- Your site needs to bring in enquiries, calls or quote requests\n- You want to rank for keywords your competitors also target\n- You want to make a professional first impression with a design of your own\n- Your time is better spent on your business than on your website\n\nWith us you get a design of your own, a Lighthouse score of 100/100 and WCAG AA accessibility as standard. Read more on [custom website design](/website-laten-maken).`,
+        },
+        {
+          heading: "The costs side by side",
+          body: `With a website builder you pay a subscription, plus your own time to build and maintain the site. That time is often forgotten.\n\nA custom business website starts at **€495 excl. VAT** with us, one-off, with hosting included. Maintenance is optional, from €49 per month. All packages are on the [pricing page](/prijzen).`,
+        },
+        {
+          heading: "Our conclusion",
+          body: `If you're only looking for an online business card and have the time yourself, feel free to start with a website builder. If your website needs to bring in customers, a custom site is usually the better investment: faster, more findable and entirely yours.`,
+        },
+      ],
+    },
+  },
+  {
+    slug: "wat-is-een-klantportaal",
+    publishedAt: "2026-11-04",
+    readingTime: 5,
+    image: "/logo.png",
+    nl: {
+      category: "Webapplicaties",
+      imageAlt: "Een klantportaal op een laptop",
+      title: "Wat is een klantportaal en heb je er een nodig?",
+      metaDescription:
+        "Wat is een klantportaal, wat levert het op en wanneer heb je er een nodig? Uitleg in gewone taal, met signalen dat het tijd is.",
+      excerpt:
+        "Een klantportaal is een beveiligde omgeving waar klanten zelf hun gegevens, documenten of status bekijken. Het scheelt mails en telefoontjes, mits het goed gebouwd is.",
+      sections: [
+        {
+          heading: "Wat is een klantportaal?",
+          body: `Een klantportaal is een beveiligde omgeving op internet waar je klanten inloggen om hun eigen informatie te bekijken. Denk aan de status van een opdracht, offertes en facturen, rapporten of afspraken.\n\nIn plaats van te mailen of te bellen, zoekt de klant het zelf op, wanneer het uitkomt. Een klantportaal is daarmee een vorm van een webapplicatie: software die in de browser draait.`,
+        },
+        {
+          heading: "Voorbeelden uit de praktijk",
+          body: `Een klantportaal past bij veel soorten bedrijven:\n- Een installatiebedrijf dat onderhoudsafspraken en rapporten deelt\n- Een adviesbureau dat documenten en voortgang met klanten deelt\n- Een verhuurder die contracten en facturen op één plek zet\n- Een dienstverlener die klanten zelf afspraken laat inplannen`,
+        },
+        {
+          heading: "Wat levert het op?",
+          body: `Een goed klantportaal levert vooral tijd op, aan beide kanten:\n- **Minder vragen**: klanten zoeken zelf op wat ze nu nog per mail vragen\n- **Altijd beschikbaar**: informatie is ook buiten kantoortijden in te zien\n- **Minder fouten**: één bron van waarheid in plaats van losse bestanden\n- **Een professionele indruk**: klanten zien dat je je zaken op orde hebt`,
+        },
+        {
+          heading: "Signalen dat je er een nodig hebt",
+          body: `Herken je een of meer van deze situaties? Dan is een klantportaal het overwegen waard:\n- Je beantwoordt steeds dezelfde vragen over de status van een opdracht\n- Je mailt regelmatig documenten heen en weer\n- Klantinformatie staat verspreid over mailboxen en spreadsheets\n- Klanten vragen om meer inzicht in wat je voor ze doet`,
+        },
+        {
+          heading: "Waar een goed klantportaal aan voldoet",
+          body: `Een portaal werkt alleen als klanten het ook gebruiken. Let daarom op deze punten:\n- **Veilig**: klanten zien alleen hun eigen gegevens\n- **Eenvoudig**: inloggen en vinden wat je zoekt zonder uitleg\n- **Mobiel**: het werkt net zo goed op een telefoon als op een computer\n- **Toegankelijk**: bruikbaar voor iedereen, ook met een schermlezer\n- **Passend**: het sluit aan op hoe jij nu werkt, in plaats van andersom`,
+        },
+        {
+          heading: "Hoe begin je?",
+          body: `Begin klein. Kies het onderdeel dat nu de meeste vragen of het meeste handwerk oplevert, en bouw dat eerst. Later breid je het portaal uit.\n\nIn een kort scopinggesprek brengen we in kaart wat je portaal moet kunnen en krijg je een offerte op maat. Lees meer bij [webapplicatie laten maken](/webapplicatie-laten-maken).`,
+        },
+      ],
+    },
+    en: {
+      category: "Web applications",
+      imageAlt: "A client portal on a laptop",
+      title: "What is a client portal and do you need one?",
+      metaDescription:
+        "What is a client portal, what does it deliver and when do you need one? Explained in plain language, with signs that it's time and what a good portal needs.",
+      excerpt:
+        "A client portal is a secure environment where customers view their own details, documents or status. It saves emails and phone calls, provided it's built well.",
+      sections: [
+        {
+          heading: "What is a client portal?",
+          body: `A client portal is a secure online environment where your customers log in to view their own information. Think of the status of a job, quotes and invoices, reports or appointments.\n\nInstead of emailing or calling, the customer looks it up themselves, whenever it suits them. That makes a client portal a type of web application: software that runs in the browser.`,
+        },
+        {
+          heading: "Examples from practice",
+          body: `A client portal fits many kinds of businesses:\n- An installation company sharing maintenance appointments and reports\n- A consultancy sharing documents and progress with clients\n- A landlord putting contracts and invoices in one place\n- A service provider letting customers book appointments themselves`,
+        },
+        {
+          heading: "What does it deliver?",
+          body: `A good client portal mainly saves time, on both sides:\n- **Fewer questions**: customers look up what they now ask by email\n- **Always available**: information can be viewed outside office hours too\n- **Fewer mistakes**: one source of truth instead of separate files\n- **A professional impression**: customers see you have things in order`,
+        },
+        {
+          heading: "Signs that you need one",
+          body: `Recognise one or more of these situations? Then a client portal is worth considering:\n- You keep answering the same questions about the status of a job\n- You regularly email documents back and forth\n- Customer information is scattered across inboxes and spreadsheets\n- Customers ask for more insight into what you do for them`,
+        },
+        {
+          heading: "What a good client portal needs",
+          body: `A portal only works if customers actually use it. So pay attention to these points:\n- **Secure**: customers only see their own data\n- **Simple**: logging in and finding things without explanation\n- **Mobile**: it works just as well on a phone as on a computer\n- **Accessible**: usable for everyone, including with a screen reader\n- **Fitting**: it matches how you work today, not the other way round`,
+        },
+        {
+          heading: "How to get started",
+          body: `Start small. Pick the part that currently causes the most questions or manual work, and build that first. Later you expand the portal.\n\nIn a short scoping call we map out what your portal needs to do and you get a custom quote. Read more on [web application development](/webapplicatie-laten-maken).`,
+        },
+      ],
+    },
+  },
+  {
     slug: "core-web-vitals-uitgelegd",
     publishedAt: "2026-06-10",
     readingTime: 6,
@@ -12,7 +232,7 @@ const postData = [
       imageAlt: "Dashboard met prestatiecijfers op een scherm",
       title: "Core Web Vitals uitgelegd: wat Google écht meet",
       metaDescription:
-        "LCP, INP en CLS klinken als jargon, maar ze bepalen direct of Google jouw site hoog of laag in de zoekresultaten zet. Wij leggen uit wat ze betekenen en hoe je ze verbetert.",
+        "LCP, INP en CLS klinken als jargon, maar ze bepalen of Google je site hoog of laag zet. Wij leggen uit wat ze betekenen en hoe je ze verbetert.",
       excerpt:
         "Google beoordeelt websites niet alleen op content, maar ook op hoe ze aanvoelen. Drie meetwaarden bepalen of jouw site snel genoeg is om hoog te scoren.",
       sections: [
@@ -156,7 +376,7 @@ const postData = [
       imageAlt: "Code op een scherm met snelheidsindicatoren",
       title: "SSG vs SSR: hoe wij websites razendsnel maken",
       metaDescription:
-        "Static Site Generation (SSG) en Server-Side Rendering (SSR) zijn twee technieken om websites te bouwen. Wij leggen uit wat het verschil is en waarom wij voor SSG kiezen.",
+        "SSG en SSR zijn twee technieken om websites te bouwen. Wij leggen uit wat het verschil is en waarom wij voor SSG kiezen.",
       excerpt:
         "De techniek achter een website bepaalt hoe snel hij laadt. SSG en SSR zijn twee fundamenteel verschillende aanpakken, met grote gevolgen voor snelheid en SEO.",
       sections: [
@@ -353,6 +573,9 @@ const postData = [
 ];
 
 // Helper: geeft gelokaliseerde posts terug
+/** Titel voor de browser en Google: met merknaam als die binnen ~60 tekens past, anders alleen de titel. */
+export const postMetaTitle = (title) => (`${title} | BlueStar`.length <= 60 ? `${title} | BlueStar` : title);
+
 export function getLocalizedPosts(lang = "nl") {
   return postData.map((p) => ({
     slug: p.slug,

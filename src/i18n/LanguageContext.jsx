@@ -4,6 +4,11 @@ import en from "./en";
 
 const translations = { nl, en };
 
+// Verandert een vertaling, dan herlaadt Vite de hele pagina. Anders maakt hot
+// reload een nieuwe context aan die niet bij de bestaande provider hoort, en
+// crasht elke component die useLanguage() aanroept.
+if (import.meta.hot) import.meta.hot.decline();
+
 function getInitialLang() {
   try {
     const stored = localStorage.getItem("lang");

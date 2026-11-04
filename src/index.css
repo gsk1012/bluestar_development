@@ -294,6 +294,13 @@ h3 {
   transition: color 180ms var(--ease-out);
 }
 
+/* Tussen 1024 en 1280 px moet de balk met minder lucht toe. */
+@media (max-width: 1279px) {
+  .nav-link {
+    padding-inline: 0.625rem;
+  }
+}
+
 /* De streep loopt tegen de onderrand van de balk, niet vlak onder de letters. */
 .nav-link::after {
   content: "";
@@ -652,7 +659,9 @@ h3 {
   z-index: 1;
   width: clamp(3.5rem, 12vw, 4.5rem);
   height: clamp(1.875rem, 6vw, 2.25rem);
-  transform: translate(-50%, 100%);
+  /* 1px overlap met de band zelf: bij een band met een hoogte in halve
+     pixels liet de browser anders een witte haarlijn op de naad staan. */
+  transform: translate(-50%, calc(100% - 1px));
   background: var(--color-bone);
   clip-path: polygon(0 0, 100% 0, 50% 100%);
   pointer-events: none;

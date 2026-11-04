@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 import { useReducedMotion } from "motion/react";
-import { ArrowUpRight, ArrowsDownUp } from "@phosphor-icons/react";
+import { Link } from "react-router-dom";
+import { ArrowRight, ArrowUpRight, ArrowsDownUp } from "@phosphor-icons/react";
 import { projects } from "../data/projects";
 import { useLanguage } from "../i18n/LanguageContext";
 import Heading from "./Heading";
@@ -115,16 +116,22 @@ function Project({ project, translated, reversed }) {
           ))}
         </ul>
 
-        <a
-          href={project.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label={`${p.viewTabAriaPrefix} ${translated.title} ${p.viewTabAriaSuffix}`}
-          className="text-link mt-7 inline-flex items-center gap-1.5"
-        >
-          {p.viewProject}
-          <ArrowUpRight size={16} weight="bold" />
-        </a>
+        <div className="mt-7 flex flex-wrap items-center gap-x-7 gap-y-3">
+          <Link to={`/portfolio/${project.slug}`} className="btn btn-primary">
+            {p.readCase}
+            <ArrowRight size={16} weight="bold" aria-hidden="true" />
+          </Link>
+          <a
+            href={project.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`${p.viewTabAriaPrefix} ${translated.title} ${p.viewTabAriaSuffix}`}
+            className="text-link inline-flex items-center gap-1.5"
+          >
+            {p.viewProject}
+            <ArrowUpRight size={16} weight="bold" />
+          </a>
+        </div>
       </div>
     </article>
   );
