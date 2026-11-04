@@ -40,7 +40,7 @@ function Toggle({ checked, onChange, disabled, id }) {
         "relative inline-flex h-6 w-11 shrink-0 rounded-full border-2 transition-colors duration-200",
         "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent",
         disabled
-          ? "cursor-not-allowed border-brand/40 bg-brand/40"
+          ? "cursor-not-allowed border-brand bg-brand opacity-50"
           : checked
           ? "cursor-pointer border-brand bg-brand"
           : "cursor-pointer border-line-strong bg-bone",
@@ -256,7 +256,7 @@ export default function CookieBanner() {
                         className="block text-[0.9375rem] font-semibold"
                       >
                         {cat.label}
-                        {cat.required && (
+                        {(cat.id === "necessary") && (
                           <span className="ml-2 text-sm font-normal text-ink-soft">
                             {ck.alwaysActive}
                           </span>
@@ -269,9 +269,9 @@ export default function CookieBanner() {
                     <div className="pt-0.5 shrink-0">
                       <Toggle
                         id={`cookie-${cat.id}`}
-                        checked={prefs[cat.id]}
+                        checked={(cat.id === "necessary") || prefs[cat.id]}
                         onChange={() => toggle(cat.id)}
-                        disabled={cat.required}
+                        disabled={(cat.id === "necessary")}
                       />
                     </div>
                   </motion.div>
