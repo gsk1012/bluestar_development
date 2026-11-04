@@ -42,10 +42,10 @@ export default function Pricing() {
       </div>
 
       <div className="wrap relative">
-        {/* Gecentreerd: de drie pakketten eronder staan symmetrisch om het middelste. */}
-        <div className="mx-auto max-w-[56rem] text-center">
+        {/* Gecentreerd op desktop: de drie pakketten eronder staan symmetrisch om het middelste. */}
+        <div className="max-w-[56rem] lg:mx-auto lg:text-center">
           <Heading parts={pr.heading} />
-          <p className="lead mx-auto mt-5 max-w-[54rem]">{pr.subheading}</p>
+          <p className="lead mt-5 max-w-[54rem] lg:mx-auto">{pr.subheading}</p>
         </div>
 
         <div className="mt-14 grid gap-6 lg:grid-cols-3 lg:items-stretch">

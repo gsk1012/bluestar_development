@@ -22,7 +22,7 @@ export default function Hero() {
       </svg>
 
       <div className="hero__content wrap">
-        <h1 id="hero-title" className="hero__title mx-auto max-w-4xl">
+        <h1 id="hero-title" className="hero__title max-w-4xl lg:mx-auto">
           <span className="block font-bold">{h.line1}</span>
           <span className="block">{h.line2}</span>
           {/* De clip houdt het wisselende woord binnen zijn eigen regel. */}
@@ -32,17 +32,17 @@ export default function Hero() {
           </span>
         </h1>
 
-        <p className="mx-auto mt-6 max-w-[44rem] text-lg leading-normal text-white/90">
+        <p className="mt-6 max-w-[44rem] lg:mx-auto text-lg leading-normal text-white/90">
           {h.sub1} {h.sub2}
         </p>
 
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-          <a href="#contact" className="btn btn-light btn-large max-[480px]:w-full">
+        <div className="mt-8 flex flex-wrap items-center gap-3 lg:justify-center">
+          <a href="#contact" className="btn btn-light sm:min-h-[3.625rem] sm:px-[1.875rem]">
             {h.cta}
           </a>
           <a
             href="#portfolio"
-            className="btn btn-large border border-white/60 text-white hover:border-white hover:bg-white/10 max-[480px]:w-full"
+            className="btn border border-white/60 text-white hover:border-white hover:bg-white/10 max-sm:border-transparent max-sm:px-3 max-sm:underline max-sm:underline-offset-4 sm:min-h-[3.625rem] sm:px-[1.875rem]"
           >
             {h.secondary}
           </a>

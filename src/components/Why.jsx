@@ -16,7 +16,7 @@ export default function Why() {
       <div className="wrap grid items-center gap-[clamp(2.5rem,5vw,5rem)] lg:grid-cols-2">
         <figure>
           <Laptop src="/work/prince-schilder.webp" fullSrc="/work/prince-schilder-full.webp" alt={w.imageAlt} />
-          <figcaption className="mt-5 text-center text-[0.9375rem] text-ink-soft">{w.imageCaption}</figcaption>
+          <figcaption className="mt-5 text-[0.9375rem] lg:text-center text-ink-soft">{w.imageCaption}</figcaption>
         </figure>
 
         <div>

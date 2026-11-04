@@ -3,6 +3,9 @@
 // en de handgeschreven vormen (chevrons, banden) dezelfde bron delen.
 export default {
   content: ["./index.html", "./src/**/*.{js,jsx}"],
+  // hover: alleen op apparaten met een echte muis; anders blijft op iPhone na
+  // een tik de hoverstaat hangen.
+  future: { hoverOnlyWhenSupported: true },
   theme: {
     extend: {
       colors: {

@@ -19,10 +19,10 @@ export default function Testimonials() {
   return (
     <section id="reviews" className="band section">
       <div className="wrap">
-        {/* Gecentreerd: twee even grote quotes eronder. */}
-        <div className="mx-auto max-w-3xl text-center">
+        {/* Gecentreerd op desktop: twee even grote quotes eronder. */}
+        <div className="max-w-3xl lg:mx-auto lg:text-center">
           <Heading parts={te.heading} />
-          <p className="lead mx-auto mt-4 max-w-[40rem]">{te.subheading}</p>
+          <p className="lead mt-4 max-w-[40rem] lg:mx-auto">{te.subheading}</p>
         </div>
 
         <div className="mt-12 grid gap-6 lg:grid-cols-2">

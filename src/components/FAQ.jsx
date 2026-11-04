@@ -1,9 +1,41 @@
-import { useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { CaretDown } from "@phosphor-icons/react";
 import { useLanguage } from "../i18n/LanguageContext";
 import Heading from "./Heading";
 
+// useLayoutEffect waarschuwt tijdens de prerender; op de server is er niets te meten.
+const useIsoLayoutEffect = typeof window === "undefined" ? useEffect : useLayoutEffect;
+
+/*
+ * Opent en sluit met een hoogte in pixels via de Web Animations API. Een
+ * transitie op grid-template-rows laat Safari elke frame de grid opnieuw
+ * uitrekenen, wat op iPhone merkbaar hapert; een px-hoogte is goedkope
+ * block-layout. Na afloop staat de hoogte weer op auto, dus herschalen en
+ * taalwissel blijven kloppen.
+ */
+function useCollapse(ref, open) {
+  const mounted = useRef(false);
+
+  useIsoLayoutEffect(() => {
+    const el = ref.current;
+    if (!mounted.current) {
+      mounted.current = true;
+      return;
+    }
+    if (!el.animate || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const full = `${el.scrollHeight}px`;
+    el.animate(
+      { height: open ? ["0px", full] : [full, "0px"], opacity: open ? [0, 1] : [1, 0] },
+      { duration: open ? 280 : 220, easing: "cubic-bezier(0.22, 1, 0.36, 1)" },
+    );
+  }, [open]);
+}
+
 function FAQItem({ item, index, open, onToggle }) {
+  const panelRef = useRef(null);
+  useCollapse(panelRef, open);
+
   return (
     <div
       className={`rounded-card border transition-colors duration-200 ${
@@ -28,17 +60,15 @@ function FAQItem({ item, index, open, onToggle }) {
         </button>
       </h3>
 
-      {/* Grid-truc: animeert de hoogte zonder JS-meting. */}
       <div
+        ref={panelRef}
         id={`faq-answer-${index}`}
         role="region"
         aria-labelledby={`faq-question-${index}`}
-        className="grid transition-[grid-template-rows] duration-300 ease-out"
-        style={{ gridTemplateRows: open ? "1fr" : "0fr" }}
+        className="overflow-hidden"
+        style={{ height: open ? "auto" : 0 }}
       >
-        <div className="overflow-hidden">
-          <p className="max-w-[60ch] px-6 pb-6 text-ink-soft sm:px-7">{item.answer}</p>
-        </div>
+        <p className="max-w-[60ch] px-6 pb-6 text-ink-soft sm:px-7">{item.answer}</p>
       </div>
     </div>
   );
