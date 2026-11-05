@@ -6,6 +6,7 @@
 const legalData = [
   {
     slug: "privacybeleid",
+    updatedAt: "2026-06-17",
     pdf: "/privacybeleid_bluestar.pdf",
     title: "Privacybeleid",
     heading: ["", "Privacybeleid"],
@@ -66,6 +67,7 @@ const legalData = [
   },
   {
     slug: "algemene-voorwaarden",
+    updatedAt: "2026-06-17",
     pdf: "/algemene_voorwaarden_bluestar.pdf",
     title: "Algemene voorwaarden",
     heading: ["", "Algemene voorwaarden"],
@@ -133,6 +135,7 @@ const legalData = [
   },
   {
     slug: "disclaimer",
+    updatedAt: "2026-06-17",
     pdf: "/disclaimer_bluestar.pdf",
     title: "Disclaimer",
     heading: ["", "Disclaimer"],

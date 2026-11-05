@@ -73,7 +73,7 @@ const nl = {
     ],
   },
   pricing: {
-    heading: ["Wat kost een ", "website laten maken", "?"],
+    heading: ["Heldere prijzen, ", "vooraf bekend"],
     subheading:
       "De kosten hangen af van wat je nodig hebt. Wil je snel en eenvoudig online, dan begint een basiswebsite bij €495. Een website op maat en maatwerk software prijzen we na een kort gesprek over je wensen, zodat je nooit betaalt voor iets wat je niet gebruikt. Geen verborgen kosten: je weet vooraf precies waar je aan toe bent.",
     from: "vanaf",

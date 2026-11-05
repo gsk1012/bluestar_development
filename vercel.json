@@ -1,4 +1,12 @@
 {
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.bluestardevelopment.nl" }],
+      "destination": "https://bluestardevelopment.nl/:path*",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     { "source": "/website-laten-maken", "destination": "/website-laten-maken/index.html" },
     { "source": "/webapplicatie-laten-maken", "destination": "/webapplicatie-laten-maken/index.html" },

@@ -3,7 +3,8 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { getLocalizedPostBySlug, getLocalizedPosts, postMetaTitle } from '../src/data/posts.js'
 import { SERVICE_SLUGS, getServicePage, buildServicePageJsonLd } from '../src/data/servicePages.js'
-import { getExtraPages } from '../src/data/pageMeta.js'
+import { getExtraPages, HOME_UPDATED } from '../src/data/pageMeta.js'
+import { ogImageName } from './og-name.js'
 
 const EXTRA_PAGES = getExtraPages()
 
@@ -160,10 +161,6 @@ function injectMeta(html, meta) {
     `<link rel="alternate" hreflang="nl" href="${meta.canonical}" />`
   )
   html = html.replace(
-    /<link rel="alternate" hreflang="en" href="[^"]*" \/>/,
-    `<link rel="alternate" hreflang="en" href="${meta.canonical}" />`
-  )
-  html = html.replace(
     /<link rel="alternate" hreflang="x-default" href="[^"]*" \/>/,
     `<link rel="alternate" hreflang="x-default" href="${meta.canonical}" />`
   )
@@ -204,6 +201,11 @@ function injectMeta(html, meta) {
   )
 
   html = html.replace(
+    /<meta property="og:image:alt" content="[^"]*" \/>/,
+    `<meta property="og:image:alt" content="${meta.ogTitle}" />`
+  )
+
+  html = html.replace(
     /<meta name="twitter:image" content="[^"]*" \/>/,
     `<meta name="twitter:image" content="${meta.ogImage}" />`
   )
@@ -220,8 +222,9 @@ function injectMeta(html, meta) {
 }
 
 function generateSitemap() {
-  const today = new Date().toISOString().slice(0, 10)
   const posts = getLocalizedPosts('nl')
+  // Het blogoverzicht verandert als er een artikel bijkomt.
+  const latestPost = posts.map(p => p.publishedAt).sort().at(-1)
 
   const postUrls = posts.map(p => `  <url>
     <loc>${BASE}/blog/${p.slug}</loc>
@@ -232,14 +235,14 @@ function generateSitemap() {
 
   const servicePageUrls = SERVICE_SLUGS.map(slug => `  <url>
     <loc>${BASE}/${slug}</loc>
-    <lastmod>${today}</lastmod>
+    <lastmod>${getServicePage(slug, 'nl').updatedAt}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>`).join('\n')
 
   const extraPageUrls = EXTRA_PAGES.map(p => `  <url>
     <loc>${BASE}${p.path}</loc>
-    <lastmod>${today}</lastmod>
+    <lastmod>${p.updatedAt}</lastmod>
     <changefreq>${p.path.startsWith('/portfolio') ? 'monthly' : 'yearly'}</changefreq>
     <priority>${p.path.startsWith('/portfolio') || p.path === '/contact' || p.path === '/over-ons' ? '0.7' : '0.3'}</priority>
   </url>`).join('\n')
@@ -248,7 +251,7 @@ function generateSitemap() {
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>${BASE}/</loc>
-    <lastmod>${today}</lastmod>
+    <lastmod>${HOME_UPDATED}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -256,7 +259,7 @@ ${servicePageUrls}
 ${extraPageUrls}
   <url>
     <loc>${BASE}/blog</loc>
-    <lastmod>${today}</lastmod>
+    <lastmod>${latestPost}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -264,8 +267,11 @@ ${postUrls}
 </urlset>
 `
 
-  const sitemapPath = path.join(root, 'public/sitemap.xml')
-  fs.writeFileSync(sitemapPath, xml)
+  // Ook naar dist: Vite heeft public/ al gekopieerd vóór dit script draait, dus
+  // anders loopt de gepubliceerde sitemap steeds één build achter.
+  for (const dir of ['public', 'dist']) {
+    fs.writeFileSync(path.join(root, dir, 'sitemap.xml'), xml)
+  }
   console.log(`✓ Sitemap generated: ${SERVICE_SLUGS.length} service pages, ${EXTRA_PAGES.length} other pages, ${posts.length} posts`)
 }
 
@@ -284,6 +290,9 @@ async function prerender() {
   function renderPage(url, outFile) {
     const appHtml = render(url)
     const meta = getMetaForUrl(url)
+    // Eigen deelafbeelding per pagina (npm run og); valt terug op wat de meta al had.
+    const og = `og/${ogImageName(url)}.jpg`
+    if (meta && fs.existsSync(path.join(root, 'public', og))) meta.ogImage = `${BASE}/${og}`
     let html = template.replace(
       '<div id="root"></div>',
       `<div id="root">${appHtml}</div>`

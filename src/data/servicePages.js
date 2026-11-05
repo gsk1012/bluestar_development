@@ -14,24 +14,24 @@ const BASE = "https://bluestardevelopment.nl";
 const pageData = [
   {
     slug: "website-laten-maken",
+    updatedAt: "2026-11-05", // voor de sitemap; pas aan als de inhoud wijzigt
     icon: "website",
     serviceType: "Website laten maken",
-    price: "495",
     blocks: ["included", "case", "sections", "process", "faq", "related"],
     sectionIcons: ["users", "gauge", "tag", "lifebuoy"],
     nl: {
       breadcrumb: "Website laten maken",
-      metaTitle: "Website laten maken vanaf €495 | BlueStar Development",
+      metaTitle: "Website laten maken op maat | BlueStar Development",
       metaDescription:
-        "Website laten maken die snel laadt, goed vindbaar is in Google en klanten oplevert. Basiswebsite vanaf €495, website op maat in overleg. Prijzen excl. btw.",
+        "Website laten maken die snel laadt, goed vindbaar is in Google en klanten oplevert. Eigen ontwerp, prijs in overleg en meestal binnen 4 tot 8 weken live.",
       heading: ["", "Website laten maken", " die klanten oplevert"],
       lead:
         "Je website is vaak de eerste kennismaking met je bedrijf. Wij ontwerpen en bouwen bedrijfswebsites op maat voor zzp'ers, kleine bedrijven en het mkb: snel, vindbaar in Google en gemaakt om bezoekers te laten bellen, mailen of een offerte aanvragen. Je hebt één aanspreekpunt, van het eerste gesprek tot ver na de lancering.",
       intent: "Ik wil graag een website laten maken.",
       secondary: { label: "Bekijk de prijzen", href: "/prijzen" },
       panel: {
-        price: { from: true, value: "€495", unit: "basiswebsite, excl. btw" },
-        facts: ["Website op maat: prijs in overleg", "Op maat binnen 4 tot 8 weken live", "Lighthouse-score 100/100 op maat", "Hosting altijd inbegrepen"],
+        price: { from: false, value: "In overleg", unit: "offerte op maat" },
+        facts: ["Binnen 4 tot 8 weken live", "Eén vast aanspreekpunt", "30 dagen support na de lancering", "Hosting altijd inbegrepen"],
       },
       card: { title: "Website op maat", desc: "Een snelle, vindbare bedrijfswebsite met een eigen ontwerp." },
       included: {
@@ -116,17 +116,17 @@ const pageData = [
     },
     en: {
       breadcrumb: "Website design",
-      metaTitle: "Custom website design from €495 | BlueStar Development",
+      metaTitle: "Custom website design | BlueStar Development",
       metaDescription:
-        "A website that loads fast, ranks well in Google and brings in customers. Basic website from €495, custom website by arrangement. Prices excl. VAT.",
+        "A website that loads fast, ranks well in Google and brings in customers. A design of your own, price by arrangement and usually live within 4 to 8 weeks.",
       heading: ["A ", "custom website", " that brings in customers"],
       lead:
         "Your website is often the first introduction to your business. We design and build custom business websites for freelancers, small businesses and SMEs: fast, findable in Google and made to get visitors to call, email or request a quote. You have one point of contact, from the first conversation until well after launch.",
       intent: "I would like to have a website built.",
       secondary: { label: "View pricing", href: "/prijzen" },
       panel: {
-        price: { from: true, value: "€495", unit: "basic website, excl. VAT" },
-        facts: ["Custom website: price by arrangement", "Custom sites live in 4 to 8 weeks", "Lighthouse score 100/100 when custom", "Hosting always included"],
+        price: { from: false, value: "By arrangement", unit: "custom quote" },
+        facts: ["Live within 4 to 8 weeks", "One fixed point of contact", "30 days of support after launch", "Hosting always included"],
       },
       card: { title: "Custom website", desc: "A fast, findable business website with its own design." },
       included: {
@@ -174,6 +174,7 @@ const pageData = [
   },
   {
     slug: "webapplicatie-laten-maken",
+    updatedAt: "2026-11-05", // voor de sitemap; pas aan als de inhoud wijzigt
     icon: "webapp",
     serviceType: "Webapplicatie laten maken",
     blocks: ["included", "sections", "process", "faq", "related"],
@@ -325,6 +326,7 @@ const pageData = [
   },
   {
     slug: "website-onderhoud",
+    updatedAt: "2026-11-05", // voor de sitemap; pas aan als de inhoud wijzigt
     icon: "maintenance",
     serviceType: "Website onderhoud en hosting",
     price: "49",
@@ -474,6 +476,7 @@ const pageData = [
   },
   {
     slug: "prijzen",
+    updatedAt: "2026-11-05", // voor de sitemap; pas aan als de inhoud wijzigt
     icon: "pricing",
     blocks: ["pricing", "sections", "faq", "related"],
     sectionIcons: ["sliders", "cycle", "scales"],

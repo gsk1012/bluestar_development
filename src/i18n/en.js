@@ -71,7 +71,7 @@ const en = {
     ],
   },
   pricing: {
-    heading: ["What does a ", "website", " cost?"],
+    heading: ["Clear prices, ", "known up front"],
     subheading:
       "The cost depends on what you need. If you want to get online quickly and simply, a basic website starts at €495. A custom website and custom software are priced after a short conversation about your needs, so you never pay for something you won't use. No hidden costs: you know exactly where you stand in advance.",
     from: "from",

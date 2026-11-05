@@ -7,6 +7,9 @@ import { getLegalPages } from "./legalPages.js";
 
 const BASE = "https://bluestardevelopment.nl";
 
+// Laatste inhoudelijke wijziging van de homepage, voor de sitemap.
+export const HOME_UPDATED = "2026-11-05";
+
 export function getExtraPages() {
   const nl = (page) => ({ ...page, ...page.nl });
   const contact = nl(contactPage);
@@ -16,6 +19,7 @@ export function getExtraPages() {
 
   const page = (path, p, type, crumbs, extra) => ({
     path,
+    updatedAt: p.updatedAt,
     title: p.metaTitle,
     description: p.metaDescription,
     jsonLd: pageJsonLd({ path, type, name: p.metaTitle, description: p.metaDescription, crumbs, extra }),

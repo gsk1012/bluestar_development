@@ -37,6 +37,8 @@ export default function PortfolioPage() {
                     </Link>
                   </h2>
                   <p className="lead mt-4">{c.lead}</p>
+                  {/* Het doel van het project: eigen tekst per case, ook voor Google. */}
+                  <p className="mt-4 text-ink-soft">{c.sections[0].body}</p>
                   <ul className="register mt-7">
                     {c.project.highlights.map((h, j) => (
                       <li key={h} className="flex items-center gap-3 py-3">

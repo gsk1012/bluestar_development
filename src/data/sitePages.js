@@ -11,6 +11,7 @@ export const PHONE = { label: "06 8647 7249", tel: "0686477249" };
 
 export const contactPage = {
   path: "/contact",
+  updatedAt: "2026-11-05",
   nl: {
     breadcrumb: "Contact",
     metaTitle: "Contact | BlueStar Development",
@@ -51,6 +52,7 @@ export const contactPage = {
 
 export const aboutPage = {
   path: "/over-ons",
+  updatedAt: "2026-11-05",
   nl: {
     breadcrumb: "Over ons",
     metaTitle: "Over ons | BlueStar Development",
@@ -132,12 +134,13 @@ export const aboutPage = {
 
 export const portfolioPage = {
   path: "/portfolio",
+  updatedAt: "2026-11-05",
   nl: {
     breadcrumb: "Portfolio",
     metaTitle: "Portfolio | Websites van BlueStar Development",
     metaDescription:
       "Bekijk websites die BlueStar Development ontwierp en bouwde: snelle, vindbare sites met een eigen ontwerp, van bedrijfswebsite tot portfolio.",
-    heading: ["Ons ", "werk"],
+    heading: ["", "Websites", " die we bouwden"],
     lead:
       "Elk project begint bij het bedrijf erachter: wie zijn de klanten, wat zoeken ze en wat moeten ze kunnen doen? Daar ontwerpen we de site omheen, steeds met een eigen ontwerp in plaats van een template. Hier lees je per project wat we bouwden en waarom.",
     viewCase: "Bekijk de case",
@@ -147,7 +150,7 @@ export const portfolioPage = {
     metaTitle: "Portfolio | Websites by BlueStar Development",
     metaDescription:
       "See websites designed and built by BlueStar Development: fast, findable sites with a design of their own, from business website to portfolio.",
-    heading: ["Our ", "work"],
+    heading: ["", "Websites", " we built"],
     lead:
       "Every project starts with the business behind it: who are the customers, what are they looking for and what do they need to do? We design the site around that, always with a design of its own instead of a template. Here you can read per project what we built and why.",
     viewCase: "View the case",
@@ -157,6 +160,7 @@ export const portfolioPage = {
 const caseData = [
   {
     slug: "prince-schilder",
+    updatedAt: "2026-11-05",
     project: projects[0],
     nl: {
       breadcrumb: "Prince Schilder",
@@ -211,6 +215,7 @@ const caseData = [
   },
   {
     slug: "gsk-portfolio",
+    updatedAt: "2026-11-05",
     project: projects[1],
     nl: {
       breadcrumb: "GSK Portfolio",
