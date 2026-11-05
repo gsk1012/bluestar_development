@@ -12,13 +12,13 @@ const postData = [
       imageAlt: "Planning voor het laten maken van een website",
       title: "Hoe lang duurt het om een website te laten maken?",
       metaDescription:
-        "Hoe lang duurt het om een website te laten maken? Een bedrijfswebsite staat meestal binnen 2 tot 4 weken live. Lees waar de tijd in gaat en hoe het sneller kan.",
+        "Hoe lang duurt het om een website te laten maken? Een website op maat staat meestal binnen 4 tot 8 weken live. Lees waar de tijd in gaat en hoe het sneller kan.",
       excerpt:
-        "Een bedrijfswebsite staat meestal binnen 2 tot 4 weken live. Of dat lukt, hangt minder af van het bouwen dan van wat er vooraf klaarligt.",
+        "Een website op maat staat meestal binnen 4 tot 8 weken live. Of dat lukt, hangt minder af van het bouwen dan van wat er vooraf klaarligt.",
       sections: [
         {
           heading: "Een realistische planning",
-          body: `Een bedrijfswebsite op maat staat bij ons meestal binnen **2 tot 4 weken** live. Een site met een handvol pagina's en kant-en-klare teksten zit aan de korte kant. Meer pagina's, een tweede taal of een blog vragen meer tijd.\n\nVoor een webapplicatie geldt een andere rekensom. Daar hangt de doorlooptijd af van wat de applicatie moet kunnen, en die planning maken we pas na een scopinggesprek. Lees meer bij [webapplicatie laten maken](/webapplicatie-laten-maken).`,
+          body: `Een website op maat staat bij ons meestal binnen **4 tot 8 weken** live; de precieze planning spreken we samen af. Een site met een handvol pagina's en kant-en-klare teksten zit aan de korte kant, een basiswebsite (one-pager) is nog sneller klaar. Meer pagina's, een tweede taal of een blog vragen meer tijd.\n\nVoor een webapplicatie geldt een andere rekensom. Daar hangt de doorlooptijd af van wat de applicatie moet kunnen, en die planning maken we pas na een scopinggesprek. Lees meer bij [webapplicatie laten maken](/webapplicatie-laten-maken).`,
         },
         {
           heading: "Waar de tijd in gaat",
@@ -43,13 +43,13 @@ const postData = [
       imageAlt: "Planning for having a website built",
       title: "How long does it take to have a website built?",
       metaDescription:
-        "How long does it take to have a website built? A business website is usually live within 2 to 4 weeks. Read where the time goes and how to speed it up.",
+        "How long does it take to have a website built? A custom website is usually live within 4 to 8 weeks. Read where the time goes and how to speed it up.",
       excerpt:
-        "A business website is usually live within 2 to 4 weeks. Whether that works depends less on the building than on what's ready in advance.",
+        "A custom website is usually live within 4 to 8 weeks. Whether that works depends less on the building than on what's ready in advance.",
       sections: [
         {
           heading: "A realistic schedule",
-          body: `A custom business website is usually live within **2 to 4 weeks** with us. A site with a handful of pages and ready-made copy is at the short end. More pages, a second language or a blog take more time.\n\nA web application is a different calculation. There, the turnaround depends on what the application needs to do, and we only plan it after a scoping call. Read more on [web application development](/webapplicatie-laten-maken).`,
+          body: `A custom website is usually live within **4 to 8 weeks** with us; we agree on the exact schedule together. A site with a handful of pages and ready-made copy is at the short end, and a basic website (one-pager) is ready even sooner. More pages, a second language or a blog take more time.\n\nA web application is a different calculation. There, the turnaround depends on what the application needs to do, and we only plan it after a scoping call. Read more on [web application development](/webapplicatie-laten-maken).`,
         },
         {
           heading: "Where the time goes",
@@ -102,7 +102,7 @@ const postData = [
         },
         {
           heading: "De kosten naast elkaar",
-          body: `Bij een websitebouwer betaal je een abonnement, plus je eigen tijd om de site te bouwen en bij te houden. Die tijd wordt vaak vergeten.\n\nEen bedrijfswebsite op maat begint bij ons bij **€495 excl. btw**, eenmalig, met hosting inbegrepen. Onderhoud is optioneel, vanaf €49 per maand. Alle pakketten staan op de [prijzenpagina](/prijzen).`,
+          body: `Bij een websitebouwer betaal je een abonnement, plus je eigen tijd om de site te bouwen en bij te houden. Die tijd wordt vaak vergeten.\n\nEen basiswebsite (één pagina) begint bij ons bij **€495 excl. btw**, eenmalig, met hosting inbegrepen. Een website op maat prijzen we in overleg. Onderhoud is optioneel, vanaf €49 per maand. Alle pakketten staan op de [prijzenpagina](/prijzen).`,
         },
         {
           heading: "Onze conclusie",
@@ -137,7 +137,7 @@ const postData = [
         },
         {
           heading: "The costs side by side",
-          body: `With a website builder you pay a subscription, plus your own time to build and maintain the site. That time is often forgotten.\n\nA custom business website starts at **€495 excl. VAT** with us, one-off, with hosting included. Maintenance is optional, from €49 per month. All packages are on the [pricing page](/prijzen).`,
+          body: `With a website builder you pay a subscription, plus your own time to build and maintain the site. That time is often forgotten.\n\nA basic website (one page) starts at **€495 excl. VAT** with us, one-off, with hosting included. A custom website is priced by arrangement. Maintenance is optional, from €49 per month. All packages are on the [pricing page](/prijzen).`,
         },
         {
           heading: "Our conclusion",

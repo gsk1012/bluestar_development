@@ -23,21 +23,21 @@ const pageData = [
       breadcrumb: "Website laten maken",
       metaTitle: "Website laten maken vanaf €495 | BlueStar Development",
       metaDescription:
-        "Website laten maken die snel laadt, goed vindbaar is in Google en klanten oplevert. Eigen ontwerp, binnen 2 tot 4 weken live, vanaf €495 excl. btw.",
+        "Website laten maken die snel laadt, goed vindbaar is in Google en klanten oplevert. Basiswebsite vanaf €495, website op maat in overleg. Prijzen excl. btw.",
       heading: ["", "Website laten maken", " die klanten oplevert"],
       lead:
         "Je website is vaak de eerste kennismaking met je bedrijf. Wij ontwerpen en bouwen bedrijfswebsites op maat voor zzp'ers, kleine bedrijven en het mkb: snel, vindbaar in Google en gemaakt om bezoekers te laten bellen, mailen of een offerte aanvragen. Je hebt één aanspreekpunt, van het eerste gesprek tot ver na de lancering.",
       intent: "Ik wil graag een website laten maken.",
       secondary: { label: "Bekijk de prijzen", href: "/prijzen" },
       panel: {
-        price: { from: true, value: "€495", unit: "eenmalig, excl. btw" },
-        facts: ["Binnen 2 tot 4 weken live", "Lighthouse-score 100/100", "30 dagen gratis support", "Hosting inbegrepen"],
+        price: { from: true, value: "€495", unit: "basiswebsite, excl. btw" },
+        facts: ["Website op maat: prijs in overleg", "Op maat binnen 4 tot 8 weken live", "Lighthouse-score 100/100 op maat", "Hosting altijd inbegrepen"],
       },
       card: { title: "Website op maat", desc: "Een snelle, vindbare bedrijfswebsite met een eigen ontwerp." },
       included: {
         heading: ["Wat je ", "krijgt"],
         lead:
-          "Elke website die we bouwen voldoet aan dezelfde basis. Die zit standaard in de prijs: je hoeft er niet apart om te vragen en er komt achteraf niets bij.",
+          "Bij een website op maat zit dit standaard in de prijs: je hoeft er niet apart om te vragen en er komt achteraf niets bij.",
         items: [
           {
             title: "Een eigen ontwerp",
@@ -76,7 +76,7 @@ const pageData = [
         },
         {
           heading: "Wat kost een website laten maken?",
-          body: `Een bedrijfswebsite op maat begint bij **€495 excl. btw**. De uiteindelijke prijs hangt af van het aantal pagina's, de functies die je nodig hebt en of je teksten en beelden al klaar zijn. Extra's zoals een tweede taal of een blog spreken we vooraf af, zodat je alleen betaalt voor wat je gebruikt.\n\nVoor de start weet je precies wat je krijgt en wat het kost. Op de [prijzenpagina](/prijzen) lees je meer over de pakketten en wat de prijs bepaalt.`,
+          body: `Wil je snel en eenvoudig online, dan begint een **basiswebsite bij €495 excl. btw**: één pagina met een contactformulier, hosting en SSL. Een **website op maat** prijzen we in overleg. Die prijs hangt af van het aantal pagina's, de functies die je nodig hebt en of je teksten en beelden al klaar zijn, zodat je alleen betaalt voor wat je gebruikt.\n\nVoor de start weet je precies wat je krijgt en wat het kost. Op de [prijzenpagina](/prijzen) lees je meer over de pakketten en wat de prijs bepaalt.`,
         },
         {
           heading: "Na de lancering",
@@ -89,7 +89,7 @@ const pageData = [
           {
             question: "Hoe lang duurt het om een website te laten maken?",
             answer:
-              "Een bedrijfswebsite staat meestal binnen 2 tot 4 weken live. De exacte planning hangt af van de omvang en van hoe snel teksten en beelden beschikbaar zijn. Na het eerste gesprek krijg je een concrete planning.",
+              "Een website op maat staat meestal binnen 4 tot 8 weken live. De exacte planning spreken we samen af; die hangt af van de omvang en van hoe snel teksten en beelden beschikbaar zijn. Na het eerste gesprek krijg je een concrete planning.",
           },
           {
             question: "Wat heb ik nodig om te beginnen?",
@@ -104,7 +104,7 @@ const pageData = [
           {
             question: "Is hosting inbegrepen?",
             answer:
-              "Ja. Elke website draait op een snel CDN met een SSL-certificaat en dagelijkse back-ups. Dat zit standaard in de prijs.",
+              "Ja. Elke website draait op een snel CDN met een SSL-certificaat. Bij een website op maat horen daar ook dagelijkse back-ups bij.",
           },
           {
             question: "In welke regio werken jullie?",
@@ -118,21 +118,21 @@ const pageData = [
       breadcrumb: "Website design",
       metaTitle: "Custom website design from €495 | BlueStar Development",
       metaDescription:
-        "A website that loads fast, ranks well in Google and brings in customers. Custom design, live within 2 to 4 weeks, from €495 excl. VAT.",
+        "A website that loads fast, ranks well in Google and brings in customers. Basic website from €495, custom website by arrangement. Prices excl. VAT.",
       heading: ["A ", "custom website", " that brings in customers"],
       lead:
         "Your website is often the first introduction to your business. We design and build custom business websites for freelancers, small businesses and SMEs: fast, findable in Google and made to get visitors to call, email or request a quote. You have one point of contact, from the first conversation until well after launch.",
       intent: "I would like to have a website built.",
       secondary: { label: "View pricing", href: "/prijzen" },
       panel: {
-        price: { from: true, value: "€495", unit: "one-off, excl. VAT" },
-        facts: ["Live within 2 to 4 weeks", "Lighthouse score 100/100", "30 days of free support", "Hosting included"],
+        price: { from: true, value: "€495", unit: "basic website, excl. VAT" },
+        facts: ["Custom website: price by arrangement", "Custom sites live in 4 to 8 weeks", "Lighthouse score 100/100 when custom", "Hosting always included"],
       },
       card: { title: "Custom website", desc: "A fast, findable business website with its own design." },
       included: {
         heading: ["What you ", "get"],
         lead:
-          "Every website we build meets the same baseline. It is included in the price as standard: you don't have to ask for it and nothing is added afterwards.",
+          "With a custom website this is included in the price as standard: you don't have to ask for it and nothing is added afterwards.",
         items: [
           { title: "A design of your own", text: "No template, but a design built around your brand, your customers and what they need to do on your site." },
           { title: "Fast on every screen", text: "Responsive and optimised to a Lighthouse score of 100/100, on mobile and desktop." },
@@ -153,7 +153,7 @@ const pageData = [
         },
         {
           heading: "What does a website cost?",
-          body: `A custom business website starts at **€495 excl. VAT**. The final price depends on the number of pages, the features you need and whether your copy and images are ready. Extras such as a second language or a blog are agreed in advance, so you only pay for what you use.\n\nBefore we start, you know exactly what you get and what it costs. The [pricing page](/prijzen) explains the packages and what determines the price.`,
+          body: `If you want to get online quickly and simply, a **basic website starts at €495 excl. VAT**: one page with a contact form, hosting and SSL. A **custom website** is priced by arrangement. That price depends on the number of pages, the features you need and whether your copy and images are ready, so you only pay for what you use.\n\nBefore we start, you know exactly what you get and what it costs. The [pricing page](/prijzen) explains the packages and what determines the price.`,
         },
         {
           heading: "After launch",
@@ -163,10 +163,10 @@ const pageData = [
       faq: {
         heading: ["Questions about ", "websites"],
         items: [
-          { question: "How long does it take to build a website?", answer: "A business website is usually live within 2 to 4 weeks. The exact schedule depends on the scope and on how quickly copy and images are available. After the first conversation you get a concrete planning." },
+          { question: "How long does it take to build a website?", answer: "A custom website is usually live within 4 to 8 weeks. We agree on the exact schedule together; the schedule depends on the scope and on how quickly copy and images are available. After the first conversation you get a concrete planning." },
           { question: "What do I need to get started?", answer: "An idea of what your site should achieve is enough to start. If you already have a logo, brand style, copy or photos, we'll use them. If something is missing, we'll discuss how to fill it in." },
           { question: "Do you build with WordPress?", answer: "No. We build with React and prebuilt, static pages. That makes your site faster and there are no plugins you constantly have to update and secure." },
-          { question: "Is hosting included?", answer: "Yes. Every website runs on a fast CDN with an SSL certificate and daily backups. That is included in the price as standard." },
+          { question: "Is hosting included?", answer: "Yes. Every website runs on a fast CDN with an SSL certificate. A custom website also comes with daily backups." },
           { question: "Which region do you work in?", answer: "We work for businesses across the Netherlands. Projects are mostly guided remotely, but a face-to-face meeting is always possible." },
         ],
       },
@@ -481,26 +481,26 @@ const pageData = [
       breadcrumb: "Prijzen",
       metaTitle: "Wat kost een website laten maken? | BlueStar Development",
       metaDescription:
-        "Wat kost een website laten maken? Een bedrijfswebsite op maat vanaf €495, onderhoud vanaf €49 per maand en webapplicaties op aanvraag. Alle prijzen excl. btw.",
+        "Wat kost een website laten maken? Een basiswebsite vanaf €495, een website op maat in overleg, onderhoud vanaf €49 per maand en webapplicaties op aanvraag. Prijzen excl. btw.",
       heading: ["Wat kost een ", "website laten maken", "?"],
       lead:
-        "Een website laten maken kan een paar honderd euro kosten, maar ook tienduizenden. Het verschil zit in wat er gebouwd wordt en wat er in de prijs zit. Bij ons weet je vooraf waar je aan toe bent: een bedrijfswebsite op maat begint bij €495, onderhoud bij €49 per maand en voor een webapplicatie krijg je een offerte op maat.",
+        "Een website laten maken kan een paar honderd euro kosten, maar ook tienduizenden. Het verschil zit in wat er gebouwd wordt en wat er in de prijs zit. Bij ons weet je vooraf waar je aan toe bent: een basiswebsite begint bij €495, onderhoud bij €49 per maand, en voor een website op maat of een webapplicatie krijg je een offerte op maat.",
       intent: "Ik wil graag een offerte.",
       secondary: { label: "Bekijk wat je krijgt", href: "/website-laten-maken" },
       panel: {
-        price: { from: true, value: "€495", unit: "eenmalig, excl. btw" },
-        facts: ["Geen verborgen kosten", "Hosting altijd inbegrepen", "30 dagen gratis support", "Vooraf duidelijke afspraken"],
+        price: { from: true, value: "€495", unit: "basiswebsite, excl. btw" },
+        facts: ["Website op maat in overleg", "Geen verborgen kosten", "Hosting altijd inbegrepen", "Vooraf duidelijke afspraken"],
       },
       card: { title: "Prijzen", desc: "Alle pakketten en wat de prijs van een website bepaalt." },
       pricing: {
         heading: ["Onze ", "pakketten"],
         lead:
-          "Drie vormen van samenwerking, elk met een duidelijke prijs of een offerte op maat. In elke website zitten een uniek ontwerp, een Lighthouse-score van 100/100, toegankelijkheid volgens WCAG AA, SSL en 30 dagen support na de lancering.",
+          "Een basiswebsite om snel online te zijn, een website op maat voor bedrijven die meer willen, en maatwerk software. Bij elk pakket weet je vooraf wat je krijgt en wat het kost.",
       },
       sections: [
         {
           heading: "Wat bepaalt de prijs van een website?",
-          body: `De prijs van een website hangt vooral af van vier dingen:\n\n- **Omvang**: een site met vijf pagina's vraagt minder werk dan een site met twintig.\n- **Functies**: een tweede taal, een blog of animaties op maat komen erbij.\n- **Inhoud**: zijn de teksten en beelden klaar, of moeten ze nog gemaakt worden?\n- **Ontwerp**: een template is goedkoper, maar dan lijkt je site op die van anderen. Wij werken altijd met een eigen ontwerp.\n\nIn het eerste gesprek lopen we deze punten samen door. Daarna krijg je een voorstel met een duidelijke prijs.`,
+          body: `De prijs van een website hangt vooral af van vier dingen:\n\n- **Omvang**: een site met vijf pagina's vraagt minder werk dan een site met twintig.\n- **Functies**: een tweede taal, een blog of animaties op maat komen erbij.\n- **Inhoud**: zijn de teksten en beelden klaar, of moeten ze nog gemaakt worden?\n- **Ontwerp**: een eenvoudig ontwerp is goedkoper, maar een eigen ontwerp maakt je site herkenbaar. Bij een website op maat ontwerpen we alles rond jouw merk.\n\nIn het eerste gesprek lopen we deze punten samen door. Daarna krijg je een voorstel met een duidelijke prijs.`,
         },
         {
           heading: "Eenmalige en doorlopende kosten",
@@ -508,16 +508,21 @@ const pageData = [
         },
         {
           heading: "Waarom de goedkoopste website vaak duurder uitvalt",
-          body: `Een website van een paar honderd euro op basis van een standaardtemplate lijkt aantrekkelijk. Maar zo'n site laadt vaak traag, scoort matig in Google en lijkt op die van concurrenten. Dan betaal je alsnog: in gemiste aanvragen, of met een nieuwe website een paar jaar later.\n\nOnze prijs begint laag, maar de basis is altijd hetzelfde: een eigen ontwerp, een Lighthouse-score van 100/100, toegankelijkheid volgens WCAG AA en 30 dagen support na de lancering. Hoe we dat doen, lees je bij [website laten maken](/website-laten-maken).`,
+          body: `Een website van een paar honderd euro op basis van een standaardtemplate lijkt aantrekkelijk. Maar zo'n site laadt vaak traag, scoort matig in Google en lijkt op die van concurrenten. Dan betaal je alsnog: in gemiste aanvragen, of met een nieuwe website een paar jaar later.\n\nDaarom is onze basiswebsite eerlijk over wat hij is: een nette one-pager om snel online te zijn. Moet je site klanten opleveren, dan kies je een website op maat, met een eigen ontwerp, een Lighthouse-score van 100/100, toegankelijkheid volgens WCAG AA en 30 dagen support na de lancering. Hoe we dat doen, lees je bij [website laten maken](/website-laten-maken).`,
         },
       ],
       faq: {
         heading: ["Vragen over ", "prijzen"],
         items: [
           {
-            question: "Wat zit er in de prijs van €495?",
+            question: "Wat zit er in de basiswebsite van €495?",
             answer:
-              "Een uniek ontwerp, een responsieve site met een Lighthouse-score van 100/100, optimalisatie voor zoekmachines, toegankelijkheid volgens WCAG AA, een SSL-certificaat met dagelijkse back-ups, 30 dagen support na de lancering en de volledige overdracht van alle bestanden.",
+              "Eén pagina (one-pager) in een eenvoudig ontwerp in je huisstijl, responsief op elk scherm, met één contactformulier, hosting en een SSL-certificaat. Extra pagina's, zoekmachine-optimalisatie en support na de lancering zitten er niet in; daarvoor is er de website op maat.",
+          },
+          {
+            question: "Wat kost een website op maat?",
+            answer:
+              "Dat bespreken we in een kort gesprek, omdat de prijs afhangt van het aantal pagina's, de functies en of je teksten en beelden al klaar zijn. Je krijgt daarna een offerte op maat, zonder verrassingen achteraf.",
           },
           {
             question: "Zijn de prijzen inclusief btw?",
@@ -545,26 +550,26 @@ const pageData = [
       breadcrumb: "Pricing",
       metaTitle: "What does a website cost? | BlueStar Development",
       metaDescription:
-        "What does a website cost? A custom business website from €495, maintenance from €49 per month and web applications on request. All prices excl. VAT.",
+        "What does a website cost? A basic website from €495, a custom website by arrangement, maintenance from €49 per month and web applications on request. Prices excl. VAT.",
       heading: ["What does a ", "website", " cost?"],
       lead:
-        "A website can cost a few hundred euros, but also tens of thousands. The difference lies in what gets built and what the price includes. With us you know where you stand in advance: a custom business website starts at €495, maintenance at €49 per month, and for a web application you get a custom quote.",
+        "A website can cost a few hundred euros, but also tens of thousands. The difference lies in what gets built and what the price includes. With us you know where you stand in advance: a basic website starts at €495, maintenance at €49 per month, and for a custom website or a web application you get a custom quote.",
       intent: "I would like a quote.",
       secondary: { label: "See what you get", href: "/website-laten-maken" },
       panel: {
-        price: { from: true, value: "€495", unit: "one-off, excl. VAT" },
-        facts: ["No hidden costs", "Hosting always included", "30 days of free support", "Clear agreements up front"],
+        price: { from: true, value: "€495", unit: "basic website, excl. VAT" },
+        facts: ["Custom website by arrangement", "No hidden costs", "Hosting always included", "Clear agreements up front"],
       },
       card: { title: "Pricing", desc: "All packages and what determines the price of a website." },
       pricing: {
         heading: ["Our ", "packages"],
         lead:
-          "Three ways of working together, each with a clear price or a custom quote. Every website includes a unique design, a Lighthouse score of 100/100, WCAG AA accessibility, SSL and 30 days of support after launch.",
+          "A basic website to get online quickly, a custom website for businesses that want more, and custom software. With every package you know in advance what you get and what it costs.",
       },
       sections: [
         {
           heading: "What determines the price of a website?",
-          body: `The price of a website mainly depends on four things:\n\n- **Scope**: a site with five pages takes less work than one with twenty.\n- **Features**: a second language, a blog or custom animations come on top.\n- **Content**: are the copy and images ready, or do they still need to be made?\n- **Design**: a template is cheaper, but then your site looks like everyone else's. We always work with a design of your own.\n\nIn the first conversation we go through these points together. You then get a proposal with a clear price.`,
+          body: `The price of a website mainly depends on four things:\n\n- **Scope**: a site with five pages takes less work than one with twenty.\n- **Features**: a second language, a blog or custom animations come on top.\n- **Content**: are the copy and images ready, or do they still need to be made?\n- **Design**: a simple design is cheaper, but a design of your own makes your site recognisable. With a custom website we design everything around your brand.\n\nIn the first conversation we go through these points together. You then get a proposal with a clear price.`,
         },
         {
           heading: "One-off and ongoing costs",
@@ -572,13 +577,14 @@ const pageData = [
         },
         {
           heading: "Why the cheapest website often costs more",
-          body: `A website of a few hundred euros based on a standard template looks attractive. But such a site often loads slowly, ranks poorly in Google and looks like your competitors'. You end up paying anyway: in missed enquiries, or with a new website a few years later.\n\nOur price starts low, but the baseline is always the same: a design of your own, a Lighthouse score of 100/100, WCAG AA accessibility and 30 days of support after launch. Read how we do that on [custom website design](/website-laten-maken).`,
+          body: `A website of a few hundred euros based on a standard template looks attractive. But such a site often loads slowly, ranks poorly in Google and looks like your competitors'. You end up paying anyway: in missed enquiries, or with a new website a few years later.\n\nThat's why our basic website is honest about what it is: a tidy one-pager to get online quickly. If your site needs to bring in customers, choose a custom website, with a design of your own, a Lighthouse score of 100/100, WCAG AA accessibility and 30 days of support after launch. Read how we do that on [custom website design](/website-laten-maken).`,
         },
       ],
       faq: {
         heading: ["Questions about ", "pricing"],
         items: [
-          { question: "What is included in the €495 price?", answer: "A unique design, a responsive site with a Lighthouse score of 100/100, search engine optimisation, WCAG AA accessibility, an SSL certificate with daily backups, 30 days of support after launch and full handover of all files." },
+          { question: "What is included in the €495 basic website?", answer: "One page (one-pager) in a simple design in your brand style, responsive on every screen, with one contact form, hosting and an SSL certificate. Extra pages, search engine optimisation and support after launch are not included; that's what the custom website is for." },
+          { question: "What does a custom website cost?", answer: "We discuss that in a short conversation, because the price depends on the number of pages, the features and whether your copy and images are ready. You then get a custom quote, without surprises afterwards." },
           { question: "Are prices including VAT?", answer: "No, all prices are excluding VAT." },
           { question: "Are there hidden costs?", answer: "No. You know in advance what you get and what it costs. Extras, such as a second language or a blog, are agreed with you up front." },
           { question: "What does a web application cost?", answer: "That depends on the features, the users and any integrations. After a short scoping call you get a custom quote." },

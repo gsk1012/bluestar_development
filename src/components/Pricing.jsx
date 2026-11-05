@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, Check, Clock, CloudCheck } from "@phosphor-icons/react";
+import { ArrowRight, Check, Clock, Wrench } from "@phosphor-icons/react";
 import { useLanguage } from "../i18n/LanguageContext";
 import { sendIntent } from "../lib/intent";
 import Heading from "./Heading";
@@ -84,7 +84,11 @@ export default function Pricing({ heading, subheading, plain = false, moreLink =
                   </span>
                 </p>
 
-                <ul className={`mb-8 mt-6 flex flex-col gap-2.5 border-t pt-6 text-[0.9375rem] ${featured ? "border-white/25" : "border-line"}`}>
+                <ul
+                  className={`mt-6 flex flex-col gap-2.5 border-t pt-6 text-[0.9375rem] ${
+                    featured ? "border-white/25" : "border-line"
+                  } ${plan.excluded ? "" : "mb-8"}`}
+                >
                   {plan.features.map((feature) => (
                     <li key={feature} className="flex items-start gap-2.5">
                       <Check
@@ -97,6 +101,12 @@ export default function Pricing({ heading, subheading, plain = false, moreLink =
                     </li>
                   ))}
                 </ul>
+                {/* De basiswebsite zegt eerlijk wat er níet in zit, zodat het verschil met maatwerk duidelijk is. */}
+                {plan.excluded && (
+                  <p className="mb-8 mt-4 text-sm text-ink-soft">
+                    <span className="font-semibold">{pr.excludedLabel}:</span> {plan.excluded}
+                  </p>
+                )}
 
                 <a
                   href="#contact"
@@ -115,13 +125,24 @@ export default function Pricing({ heading, subheading, plain = false, moreLink =
         </div>
 
         <div className="mt-10 grid gap-6 rounded-card bg-ground p-[clamp(1.5rem,3vw,2.25rem)] shadow-soft md:grid-cols-[1.4fr_1fr] md:items-center md:gap-10">
+          {/* Onderhoud is geen los pakket maar iets wat je bij elke site afneemt. */}
           <div className="flex items-start gap-4">
             <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-inner bg-bone text-brand">
-              <CloudCheck size={24} aria-hidden="true" />
+              <Wrench size={24} aria-hidden="true" />
             </span>
             <div>
-              <h3 className="text-lg font-bold">{pr.hostingTitle}</h3>
-              <p className="mt-1 text-[0.9375rem] text-ink-soft">{pr.hostingBody}</p>
+              <h3 className="text-lg font-bold">
+                {pr.maintenanceTitle} <span className="font-semibold text-brand">· {pr.maintenancePrice}</span>
+              </h3>
+              <p className="mt-1 text-[0.9375rem] text-ink-soft">{pr.maintenanceBody}</p>
+              <a
+                href="#contact"
+                onClick={() => sendIntent(`${pr.intentMessage}: ${pr.maintenanceTitle}.`)}
+                className="text-link mt-3 inline-flex items-center gap-1.5 text-[0.9375rem]"
+              >
+                {pr.maintenanceCta}
+                <ArrowRight size={15} weight="bold" aria-hidden="true" />
+              </a>
             </div>
           </div>
           <div className="md:border-l md:border-line md:pl-10">

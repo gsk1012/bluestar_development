@@ -2,19 +2,41 @@
 
 BlueStar Development bouwt snelle, vindbare websites en web-applicaties op maat voor Nederlandse ondernemers.
 
-Elke prijs is inclusief uniek ontwerp, Lighthouse 100/100, WCAG AA, SSL en 30 dagen support na lancering. Geen verborgen kosten.
+Geen verborgen kosten: je weet vooraf wat je krijgt en wat het kost. Alle prijzen zijn exclusief btw.
+
+---
+
+## Basiswebsite
+
+- **Prijs:** Vanaf €495 (eenmalig)
+- **Geschikt voor:** Starters die snel en eenvoudig online willen
+
+### Inbegrepen
+
+- Eén pagina (one-pager)
+- Eenvoudig ontwerp in de huisstijl van de klant
+- Responsief op elk scherm
+- Eén contactformulier
+- Hosting en SSL-certificaat
+
+### Niet inbegrepen
+
+- Extra pagina's
+- Zoekmachine-optimalisatie
+- Support na de lancering
 
 ---
 
 ## Website op maat
 
-- **Prijs:** Vanaf €495 (eenmalig)
-- **Doorlooptijd:** 2 tot 4 weken
-- **Geschikt voor:** Zzp'ers, kleine bedrijven, MKB dat een professionele eerste online aanwezigheid wil
+- **Prijs:** In overleg (offerte op maat)
+- **Doorlooptijd:** 4 tot 8 weken
+- **Geschikt voor:** Bedrijven die meer willen dan een visitekaartje: vindbaar, compleet en volledig op maat
 
 ### Standaard inbegrepen
 
 - Uniek ontwerp (geen templates)
+- Zoveel pagina's als nodig
 - Responsive op alle schermformaten en apparaten
 - Lighthouse-score 100/100 (Performance, Accessibility, Best Practices, SEO)
 - SSL-certificaat
@@ -27,7 +49,6 @@ Elke prijs is inclusief uniek ontwerp, Lighthouse 100/100, WCAG AA, SSL en 30 da
 
 ### Optioneel extra
 
-- Contactformulier met e-mailintegratie
 - Meertaligheid (NL + EN)
 - Blog / kenniscentrum
 - Animaties en interactieve elementen op maat

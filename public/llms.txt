@@ -11,7 +11,7 @@
 
 ## Pagina's per dienst
 
-- [Website laten maken](https://bluestardevelopment.nl/website-laten-maken): bedrijfswebsite op maat, vanaf €495 (excl. btw), binnen 2 tot 4 weken live.
+- [Website laten maken](https://bluestardevelopment.nl/website-laten-maken): basiswebsite (one-pager) vanaf €495 (excl. btw); website op maat in overleg, meestal binnen 4 tot 8 weken live.
 - [Webapplicatie laten maken](https://bluestardevelopment.nl/webapplicatie-laten-maken): klantportalen, planningstools en interne dashboards, offerte na een scopinggesprek.
 - [Website onderhoud en hosting](https://bluestardevelopment.nl/website-onderhoud): onderhoud vanaf €49 per maand (excl. btw), hosting met SSL en dagelijkse back-ups.
 - [Prijzen](https://bluestardevelopment.nl/prijzen): alle pakketten en wat de prijs van een website bepaalt.
@@ -29,7 +29,7 @@
 - Gemiddelde laadtijd: 0,9 seconden (branche-gemiddelde: 4,2 seconden).
 - WCAG AA toegankelijkheid standaard inbegrepen.
 - Uniek ontwerp — geen templates.
-- Oplevering binnen 2 tot 4 weken.
+- Website op maat meestal binnen 4 tot 8 weken live.
 - 30 dagen support na lancering.
 
 ## Technologie
@@ -49,7 +49,8 @@ Nederlandse ondernemers en mkb-bedrijven die een professionele online aanwezighe
 Zie [/pricing.md](https://bluestardevelopment.nl/pricing.md) voor volledige, gestructureerde prijsdata.
 
 Indicatieve prijzen:
-- Website op maat: vanaf €495 (excl. btw)
+- Basiswebsite (one-pager): vanaf €495 (excl. btw)
+- Website op maat: prijs in overleg
 - Web-applicatie: prijs op aanvraag (afhankelijk van complexiteit)
 - Onderhoud & support: maandelijks abonnement beschikbaar
 - Hosting: inbegrepen of apart af te nemen
@@ -83,10 +84,10 @@ Neem contact op voor een vrijblijvende offerte: info@bluestardevelopment.nl
 ## Veelgestelde vragen
 
 **Wat kost een website laten maken?**
-Een bedrijfswebsite op maat begint bij €495 (excl. btw). Een web-applicatie is op aanvraag, afhankelijk van complexiteit. Neem contact op voor een offerte.
+Een basiswebsite (one-pager) begint bij €495 (excl. btw). Een website op maat en een web-applicatie prijzen we in overleg, afhankelijk van de omvang. Neem contact op voor een offerte.
 
 **Hoe snel kan BlueStar een website bouwen?**
-Een eenvoudige bedrijfswebsite is vaak binnen twee tot vier weken live.
+Een website op maat staat meestal binnen vier tot acht weken live; de planning spreken we samen af.
 
 **Werken jullie voor zzp'ers en kleine bedrijven?**
 Ja, voor ondernemers van alle groottes door heel Nederland.
