@@ -101,8 +101,8 @@ const postData = [
           body: `Een website laten maken loont als:\n- Je site aanvragen, telefoontjes of offertes moet opleveren\n- Je gevonden wilt worden op zoekwoorden waar concurrenten ook op zitten\n- Je een professionele eerste indruk wilt maken met een eigen ontwerp\n- Je tijd beter besteed is aan je bedrijf dan aan je website\n\nBij ons krijg je daarbij een eigen ontwerp, een Lighthouse-score van 100/100 en toegankelijkheid volgens WCAG AA als standaard. Lees meer bij [website laten maken](/website-laten-maken).`,
         },
         {
-          heading: "De kosten naast elkaar",
-          body: `Bij een websitebouwer betaal je een abonnement, plus je eigen tijd om de site te bouwen en bij te houden. Die tijd wordt vaak vergeten.\n\nEen basiswebsite (één pagina) begint bij ons bij **€495 excl. btw**, eenmalig, met hosting inbegrepen. Een website op maat prijzen we in overleg. Onderhoud is optioneel, vanaf €49 per maand. Alle pakketten staan op de [prijzenpagina](/prijzen).`,
+          heading: "Websitebouwer of website op maat: de verschillen",
+          body: `| | Websitebouwer | Website op maat |\n|---|---|---|\n| Kosten | Maandelijks abonnement, plus je eigen tijd | Eenmalig: basiswebsite vanaf €495, op maat in overleg |\n| Ontwerp | Template, lijkt vaak op andere sites | Eigen ontwerp rond jouw merk |\n| Snelheid | Laadt vaak veel extra code mee | Licht gebouwd, Lighthouse-score 100/100 |\n| Vrijheid | Beperkt tot wat de bouwer ondersteunt | Gebouwd op wat je bedrijf nodig heeft |\n| Eigendom | Vast aan het platform | Alle bestanden worden aan je overgedragen |\n| Jouw tijd | Je bouwt en onderhoudt zelf | Wij bouwen; onderhoud kan vanaf €49 per maand |\n\nBij een websitebouwer betaal je een abonnement, plus je eigen tijd om de site te bouwen en bij te houden. Die tijd wordt vaak vergeten.\n\nEen basiswebsite (één pagina) begint bij ons bij **€495 excl. btw**, eenmalig, met hosting inbegrepen. Een website op maat prijzen we in overleg. Onderhoud is optioneel, vanaf €49 per maand. Alle pakketten staan op de [prijzenpagina](/prijzen).`,
         },
         {
           heading: "Onze conclusie",
@@ -136,8 +136,8 @@ const postData = [
           body: `Having a website built pays off if:\n- Your site needs to bring in enquiries, calls or quote requests\n- You want to rank for keywords your competitors also target\n- You want to make a professional first impression with a design of your own\n- Your time is better spent on your business than on your website\n\nWith us you get a design of your own, a Lighthouse score of 100/100 and WCAG AA accessibility as standard. Read more on [custom website design](/website-laten-maken).`,
         },
         {
-          heading: "The costs side by side",
-          body: `With a website builder you pay a subscription, plus your own time to build and maintain the site. That time is often forgotten.\n\nA basic website (one page) starts at **€495 excl. VAT** with us, one-off, with hosting included. A custom website is priced by arrangement. Maintenance is optional, from €49 per month. All packages are on the [pricing page](/prijzen).`,
+          heading: "Website builder or custom website: the differences",
+          body: `| | Website builder | Custom website |\n|---|---|---|\n| Cost | Monthly subscription, plus your own time | One-off: basic website from €495, custom by arrangement |\n| Design | Template, often looks like other sites | A design of your own around your brand |\n| Speed | Often loads a lot of extra code | Lightweight, Lighthouse score 100/100 |\n| Freedom | Limited to what the builder supports | Built around what your business needs |\n| Ownership | Tied to the platform | All files are handed over to you |\n| Your time | You build and maintain it yourself | We build it; maintenance from €49 per month |\n\nWith a website builder you pay a subscription, plus your own time to build and maintain the site. That time is often forgotten.\n\nA basic website (one page) starts at **€495 excl. VAT** with us, one-off, with hosting included. A custom website is priced by arrangement. Maintenance is optional, from €49 per month. All packages are on the [pricing page](/prijzen).`,
         },
         {
           heading: "Our conclusion",
@@ -242,7 +242,7 @@ const postData = [
         },
         {
           heading: "LCP: Largest Contentful Paint",
-          body: `LCP meet hoe lang het duurt voordat het grootste zichtbare element op de pagina volledig geladen is. Dat is vaak een grote afbeelding, een video of een grote koptekst.\n\nGoogle hanteert de volgende normen:\n- Goed: onder 2,5 seconden\n- Verbetering nodig: 2,5 tot 4 seconden\n- Slecht: meer dan 4 seconden\n\nEen trage LCP betekent dat bezoekers lang naar een lege of half-geladen pagina staren. Dat verhoogt de kans dat ze afhaken voordat ze iets hebben gezien. Onze sites scoren gemiddeld 0,9 seconden LCP door slimme preloads, geoptimaliseerde afbeeldingen en een lichtgewicht architectuur.`,
+          body: `LCP meet hoe lang het duurt voordat het grootste zichtbare element op de pagina volledig geladen is. Dat is vaak een grote afbeelding, een video of een grote koptekst.\n\nGoogle hanteert de volgende normen:\n- Goed: onder 2,5 seconden\n- Verbetering nodig: 2,5 tot 4 seconden\n- Slecht: meer dan 4 seconden\n\nEen trage LCP betekent dat bezoekers lang naar een lege of half-geladen pagina staren. Dat verhoogt de kans dat ze afhaken voordat ze iets hebben gezien. Wij houden de LCP laag met slimme preloads, geoptimaliseerde afbeeldingen en een lichtgewicht opbouw.`,
         },
         {
           heading: "INP: Interaction to Next Paint",
@@ -254,7 +254,7 @@ const postData = [
         },
         {
           heading: "Waarom zijn Core Web Vitals belangrijk voor jouw bedrijf?",
-          body: `Google gebruikt Core Web Vitals als ranking-signaal. Een site die slecht scoort, staat direct achter op concurrenten die beter scoren, zelfs als de inhoud vergelijkbaar is.\n\nDaarnaast heeft het een direct effect op conversie. Onderzoek van Google toont aan dat sites met een goede LCP 24% minder bezoekers verliezen dan sites met een slechte LCP. Elke seconde vertraging kost gemiddeld 7% conversie.\n\nKort gezegd: een snelle site verdient zichzelf terug.`,
+          body: `Google gebruikt Core Web Vitals als ranking-signaal. Een site die slecht scoort, kan achterblijven bij concurrenten die beter scoren, ook als de inhoud vergelijkbaar is.\n\nDaarnaast merk je het in je conversie. Volgens een analyse van Google Chrome haken bezoekers **24% minder vaak** af voordat de pagina geladen is op sites die aan de Core Web Vitals voldoen ([Chromium Blog, 2020](https://blog.chromium.org/2020/05/the-science-behind-web-vitals.html)). En volgens Akamai kan op mobiel al **100 milliseconden** extra laadtijd tot **7% conversie** kosten ([Akamai, 2017](https://www.akamai.com/newsroom/press-release/akamai-releases-spring-2017-state-of-online-retail-performance-report)).\n\nKort gezegd: een snelle site verdient zichzelf terug.`,
         },
         {
           heading: "Hoe meet je jouw Core Web Vitals?",
@@ -277,7 +277,7 @@ const postData = [
         },
         {
           heading: "LCP: Largest Contentful Paint",
-          body: `LCP measures how long it takes for the largest visible element on the page to fully load. That is usually a large image, a video or a big heading.\n\nGoogle's benchmarks are:\n- Good: under 2.5 seconds\n- Needs improvement: 2.5 to 4 seconds\n- Poor: more than 4 seconds\n\nA slow LCP means visitors stare at an empty or half-loaded page for too long, which increases the chance they leave before seeing anything. Our sites average 0.9 seconds LCP thanks to smart preloads, optimised images and a lightweight architecture.`,
+          body: `LCP measures how long it takes for the largest visible element on the page to fully load. That is usually a large image, a video or a big heading.\n\nGoogle's benchmarks are:\n- Good: under 2.5 seconds\n- Needs improvement: 2.5 to 4 seconds\n- Poor: more than 4 seconds\n\nA slow LCP means visitors stare at an empty or half-loaded page for too long, which increases the chance they leave before seeing anything. We keep LCP low with smart preloads, optimised images and a lightweight build.`,
         },
         {
           heading: "INP: Interaction to Next Paint",
@@ -289,7 +289,7 @@ const postData = [
         },
         {
           heading: "Why do Core Web Vitals matter for your business?",
-          body: `Google uses Core Web Vitals as a ranking signal. A site that scores poorly is directly behind competitors who score better, even if the content is comparable.\n\nIt also has a direct effect on conversion. Google research shows that sites with a good LCP lose 24% fewer visitors than sites with a poor LCP. Every second of delay costs roughly 7% in conversions on average.\n\nIn short: a fast site pays for itself.`,
+          body: `Google uses Core Web Vitals as a ranking signal. A site that scores poorly can fall behind competitors who score better, even when the content is comparable.\n\nYou also notice it in your conversion. According to an analysis by Google Chrome, visitors are **24% less likely** to leave before the page has loaded on sites that meet the Core Web Vitals ([Chromium Blog, 2020](https://blog.chromium.org/2020/05/the-science-behind-web-vitals.html)). And according to Akamai, on mobile just **100 milliseconds** of extra load time can cost up to **7% in conversions** ([Akamai, 2017](https://www.akamai.com/newsroom/press-release/akamai-releases-spring-2017-state-of-online-retail-performance-report)).\n\nIn short: a fast site pays for itself.`,
         },
         {
           heading: "How do you measure your Core Web Vitals?",
@@ -462,7 +462,7 @@ const postData = [
         },
         {
           heading: "Waarom zou jij als ondernemer om Lighthouse geven?",
-          body: `Ten eerste: Google gebruikt de Performance-score als ranking-signaal. Een trage site scoort lager in de zoekresultaten dan een snelle site met vergelijkbare content.\n\nTen tweede: een trage site kost klanten. Onderzoek toont consistent aan dat 53% van de mobiele bezoekers afhaakt als een pagina langer dan 3 seconden laadt. Bij 0,9 seconden, onze gemiddelde laadtijd, haken bijna geen bezoekers af.\n\nTen derde: een hoge Accessibility-score betekent dat jouw site werkt voor meer mensen. Meer mensen die jouw site kunnen gebruiken, betekent meer potentiële klanten.`,
+          body: `Ten eerste: Google weegt de snelheid van je site mee in de zoekresultaten, via de Core Web Vitals die bij echte bezoekers worden gemeten. De Performance-score van Lighthouse is een goede voorspeller daarvan.\n\nTen tweede: een trage site kost klanten. Volgens onderzoek van Google haakt **53% van de mobiele bezoekers** af als een pagina langer dan 3 seconden laadt ([Think with Google](https://www.thinkwithgoogle.com/consumer-insights/consumer-trends/mobile-site-load-time-statistics/)). Elke seconde die je wint, houdt dus bezoekers vast.\n\nTen derde: een hoge Accessibility-score betekent dat jouw site werkt voor meer mensen. Meer mensen die jouw site kunnen gebruiken, betekent meer potentiële klanten.`,
         },
         {
           heading: "Test jouw eigen site",
@@ -493,7 +493,7 @@ const postData = [
         },
         {
           heading: "Why should you as a business owner care about Lighthouse?",
-          body: `First: Google uses the Performance score as a ranking signal. A slow site ranks lower in search results than a fast site with comparable content.\n\nSecond: a slow site costs you customers. Research consistently shows that 53% of mobile visitors leave if a page takes longer than 3 seconds to load. At 0.9 seconds, our average load time, almost no visitors drop off.\n\nThird: a high Accessibility score means your site works for more people. More people who can use your site means more potential customers.`,
+          body: `First: Google takes your site's speed into account in search results, through the Core Web Vitals measured with real visitors. Lighthouse's Performance score is a good predictor of those.\n\nSecond: a slow site costs you customers. According to Google research, **53% of mobile visitors** leave if a page takes longer than 3 seconds to load ([Think with Google](https://www.thinkwithgoogle.com/consumer-insights/consumer-trends/mobile-site-load-time-statistics/)). Every second you gain keeps visitors on your site.\n\nThird: a high Accessibility score means your site works for more people. More people who can use your site means more potential customers.`,
         },
         {
           heading: "Test your own site",

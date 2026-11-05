@@ -14,6 +14,8 @@ import Heading from "./Heading";
  * @param {React.ReactNode} [aside] - vlak rechts naast de tekst (desktop)
  * @param {boolean} [chevron] - indigo merkchevron tegen de rechterrand, achter het vlak
  * @param {boolean} [arrow] - merkpijl onderaan; uit als er direct een donker blok volgt
+ * @param {string} [updated] - ISO-datum van de laatste inhoudelijke wijziging; zichtbaar voor
+ *   bezoekers en AI-zoekmachines, die versheid meewegen
  */
 export default function PageIntro({
   crumbs = [],
@@ -24,9 +26,10 @@ export default function PageIntro({
   aside,
   chevron = false,
   arrow = true,
+  updated,
   children,
 }) {
-  const { t } = useLanguage();
+  const { lang, t } = useLanguage();
   const ui = t.servicePage;
 
   return (
@@ -75,6 +78,19 @@ export default function PageIntro({
             <Heading as="h1" parts={heading} className="max-w-[52rem] text-[clamp(2.375rem,1.5rem+3vw,4rem)]" />
             {lead && <p className="lead mt-6 max-w-[42rem]">{lead}</p>}
             {actions && <div className="mt-9 flex flex-wrap items-center gap-x-7 gap-y-4">{actions}</div>}
+            {updated && (
+              <p className="mt-6 text-sm text-ink-soft">
+                {ui.updated}{" "}
+                <time dateTime={updated}>
+                  {new Date(updated).toLocaleDateString(lang === "en" ? "en-GB" : "nl-NL", {
+                    day: "numeric",
+                    month: "long",
+                    year: "numeric",
+                    timeZone: "UTC",
+                  })}
+                </time>
+              </p>
+            )}
             {children}
           </div>
           {aside}

@@ -479,7 +479,7 @@ const pageData = [
     updatedAt: "2026-11-05", // voor de sitemap; pas aan als de inhoud wijzigt
     icon: "pricing",
     blocks: ["pricing", "sections", "faq", "related"],
-    sectionIcons: ["sliders", "cycle", "scales"],
+    sectionIcons: ["compare", "sliders", "cycle", "scales"],
     nl: {
       breadcrumb: "Prijzen",
       metaTitle: "Wat kost een website laten maken? | BlueStar Development",
@@ -501,6 +501,10 @@ const pageData = [
           "Een basiswebsite om snel online te zijn, een website op maat voor bedrijven die meer willen, en maatwerk software. Bij elk pakket weet je vooraf wat je krijgt en wat het kost.",
       },
       sections: [
+        {
+          heading: "Basiswebsite of website op maat?",
+          body: `Het verschil zit in wat je website moet doen. Wil je vooral online te vinden zijn met je gegevens, dan volstaat een basiswebsite. Moet je site klanten binnenhalen, dan kies je een website op maat.\n\n| | Basiswebsite | Website op maat |\n|---|---|---|\n| Prijs | Vanaf €495, eenmalig | In overleg, offerte op maat |\n| Pagina's | Eén pagina (one-pager) | Zoveel als je nodig hebt |\n| Ontwerp | Eenvoudig, in je huisstijl | Uniek ontwerp rond jouw merk |\n| Vindbaar in Google | Niet geoptimaliseerd | Geoptimaliseerd voor zoekmachines |\n| Support na lancering | Niet inbegrepen | 30 dagen inbegrepen |\n| Doorlooptijd | Kort traject | 4 tot 8 weken |`,
+        },
         {
           heading: "Wat bepaalt de prijs van een website?",
           body: `De prijs van een website hangt vooral af van vier dingen:\n\n- **Omvang**: een site met vijf pagina's vraagt minder werk dan een site met twintig.\n- **Functies**: een tweede taal, een blog of animaties op maat komen erbij.\n- **Inhoud**: zijn de teksten en beelden klaar, of moeten ze nog gemaakt worden?\n- **Ontwerp**: een eenvoudig ontwerp is goedkoper, maar een eigen ontwerp maakt je site herkenbaar. Bij een website op maat ontwerpen we alles rond jouw merk.\n\nIn het eerste gesprek lopen we deze punten samen door. Daarna krijg je een voorstel met een duidelijke prijs.`,
@@ -571,6 +575,10 @@ const pageData = [
       },
       sections: [
         {
+          heading: "Basic website or custom website?",
+          body: `The difference lies in what your website needs to do. If you mainly want to be findable online with your details, a basic website is enough. If your site needs to bring in customers, choose a custom website.\n\n| | Basic website | Custom website |\n|---|---|---|\n| Price | From €495, one-off | By arrangement, custom quote |\n| Pages | One page (one-pager) | As many as you need |\n| Design | Simple, in your brand style | Unique design around your brand |\n| Findable in Google | Not optimised | Search engine optimised |\n| Support after launch | Not included | 30 days included |\n| Turnaround | Short project | 4 to 8 weeks |`,
+        },
+        {
           heading: "What determines the price of a website?",
           body: `The price of a website mainly depends on four things:\n\n- **Scope**: a site with five pages takes less work than one with twenty.\n- **Features**: a second language, a blog or custom animations come on top.\n- **Content**: are the copy and images ready, or do they still need to be made?\n- **Design**: a simple design is cheaper, but a design of your own makes your site recognisable. With a custom website we design everything around your brand.\n\nIn the first conversation we go through these points together. You then get a proposal with a clear price.`,
         },
@@ -629,6 +637,7 @@ export function buildServicePageJsonLd(page) {
       name: page.metaTitle,
       description: page.metaDescription,
       inLanguage: "nl-NL",
+      dateModified: page.updatedAt,
       isPartOf: { "@id": `${BASE}/#website` },
       breadcrumb: {
         "@type": "BreadcrumbList",

@@ -54,6 +54,7 @@ function PageHeader({ page, ui }) {
       current={page.breadcrumb}
       heading={page.heading}
       lead={page.lead}
+      updated={page.updatedAt}
       chevron
       actions={
         <>

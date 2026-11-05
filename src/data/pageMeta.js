@@ -22,7 +22,7 @@ export function getExtraPages() {
     updatedAt: p.updatedAt,
     title: p.metaTitle,
     description: p.metaDescription,
-    jsonLd: pageJsonLd({ path, type, name: p.metaTitle, description: p.metaDescription, crumbs, extra }),
+    jsonLd: pageJsonLd({ path, type, name: p.metaTitle, description: p.metaDescription, crumbs, extra, updatedAt: p.updatedAt }),
   });
 
   return [

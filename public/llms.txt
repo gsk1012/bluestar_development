@@ -4,9 +4,10 @@
 
 ## Wat we doen
 
-- **Website op maat** — Een snelle, vindbare bedrijfswebsite afgestemd op jouw merk, scherp op elk scherm. Gemiddelde laadtijd: 0,9 seconden. Lighthouse-score: 100/100.
+- **Basiswebsite** — Een one-pager met eenvoudig ontwerp, één contactformulier, hosting en SSL. Vanaf €495 (excl. btw).
+- **Website op maat** — Een snelle, vindbare bedrijfswebsite met een eigen ontwerp rond jouw merk. Lighthouse-score 100/100, toegankelijk volgens WCAG AA. Prijs in overleg.
 - **Web-applicatie** — Maatwerk software in de browser: klantportalen, planningstools en meer.
-- **Onderhoud & support** — Updates, back-ups en snelle hulp zodat je site veilig en actueel blijft.
+- **Onderhoud & support** — Software-updates, beveiligingspatches, controle van de back-ups en technische hulp. Vanaf €49 per maand (excl. btw).
 - **Hosting** — Betrouwbare hosting met SSL en dagelijkse back-ups.
 
 ## Pagina's per dienst
@@ -25,10 +26,10 @@
 
 ## Waarom BlueStar Development
 
-- Elke website haalt standaard een Lighthouse-score van 100/100 (Performance, Accessibility, Best Practices, SEO).
-- Gemiddelde laadtijd: 0,9 seconden (branche-gemiddelde: 4,2 seconden).
-- WCAG AA toegankelijkheid standaard inbegrepen.
-- Uniek ontwerp — geen templates.
+- Een website op maat haalt standaard een Lighthouse-score van 100/100 (Performance, Accessibility, Best Practices, SEO).
+- Bij een website op maat is toegankelijkheid volgens WCAG AA standaard inbegrepen.
+- Website op maat: eigen ontwerp, geen templates.
+- Eén vast aanspreekpunt, van eerste gesprek tot na de lancering.
 - Website op maat meestal binnen 4 tot 8 weken live.
 - 30 dagen support na lancering.
 
@@ -37,7 +38,7 @@
 - React + Vite + Static Site Generation (SSG)
 - Tailwind CSS
 - CDN (wereldwijd netwerk)
-- Framer Motion voor animaties
+- Motion voor animaties
 - SSL + dagelijkse back-ups
 
 ## Doelgroep
@@ -52,8 +53,8 @@ Indicatieve prijzen:
 - Basiswebsite (one-pager): vanaf €495 (excl. btw)
 - Website op maat: prijs in overleg
 - Web-applicatie: prijs op aanvraag (afhankelijk van complexiteit)
-- Onderhoud & support: maandelijks abonnement beschikbaar
-- Hosting: inbegrepen of apart af te nemen
+- Onderhoud & support: vanaf €49 per maand (excl. btw), maandelijks opzegbaar met een opzegtermijn van één maand
+- Hosting: inbegrepen bij elke website; alleen hosting afnemen kan op aanvraag
 
 Neem contact op voor een vrijblijvende offerte: info@bluestardevelopment.nl
 
@@ -70,6 +71,9 @@ Neem contact op voor een vrijblijvende offerte: info@bluestardevelopment.nl
 
 ## Blog — kennisartikelen
 
+- [Hoe lang duurt het om een website te laten maken?](https://bluestardevelopment.nl/blog/hoe-lang-duurt-website-laten-maken) — Waar de tijd in gaat, wat een project vertraagt en hoe het sneller kan. Gepubliceerd: 2026-11-04.
+- [Website laten maken of zelf bouwen met een websitebouwer?](https://bluestardevelopment.nl/blog/website-laten-maken-of-zelf-bouwen) — Eerlijke vergelijking van websitebouwer en website op maat, met kosten naast elkaar. Gepubliceerd: 2026-11-04.
+- [Wat is een klantportaal en heb je er een nodig?](https://bluestardevelopment.nl/blog/wat-is-een-klantportaal) — Uitleg, voorbeelden en waar een goed klantportaal aan voldoet. Gepubliceerd: 2026-11-04.
 - [Core Web Vitals uitgelegd: wat Google écht meet](https://bluestardevelopment.nl/blog/core-web-vitals-uitgelegd) — LCP, INP en CLS: de drie meetwaarden die direct bepalen hoe Google jouw site rankt. Gepubliceerd: 2026-06-10.
 - [WCAG-toegankelijkheid: wat betekent het voor jouw website?](https://bluestardevelopment.nl/blog/wcag-toegankelijkheid-website) — Wat WCAG AA inhoudt, wie er baat bij heeft en hoe het SEO verbetert. Gepubliceerd: 2026-05-28.
 - [SSG vs SSR: hoe wij websites razendsnel maken](https://bluestardevelopment.nl/blog/ssg-vs-ssr-razendsnel-website) — Verschil tussen Static Site Generation en Server-Side Rendering, en wanneer je welke kiest. Gepubliceerd: 2026-05-14.

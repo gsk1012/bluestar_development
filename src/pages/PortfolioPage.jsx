@@ -20,7 +20,7 @@ export default function PortfolioPage() {
     <>
       <Navbar />
       <main>
-        <PageIntro current={page.breadcrumb} heading={page.heading} lead={page.lead} chevron />
+        <PageIntro current={page.breadcrumb} heading={page.heading} lead={page.lead} updated={page.updatedAt} chevron />
 
         <section className="section">
           <div className="wrap flex flex-col gap-[clamp(4rem,8vw,7rem)]">

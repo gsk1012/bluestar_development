@@ -304,6 +304,7 @@ const nl = {
   },
   servicePage: {
     breadcrumbLabel: "Kruimelpad",
+    updated: "Bijgewerkt op",
     home: "Home",
     services: "Diensten",
     cta: "Plan een gesprek",

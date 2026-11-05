@@ -299,6 +299,7 @@ const en = {
   },
   servicePage: {
     breadcrumbLabel: "Breadcrumb",
+    updated: "Updated on",
     home: "Home",
     services: "Services",
     cta: "Schedule a call",

@@ -39,6 +39,7 @@ export default function CasePage({ slug: slugProp }) {
           current={item.breadcrumb}
           heading={item.heading}
           lead={item.lead}
+          updated={item.updatedAt}
           chevron
           aside={
             <aside className="rounded-card bg-ground p-[clamp(1.5rem,3vw,2.25rem)] shadow-lift">

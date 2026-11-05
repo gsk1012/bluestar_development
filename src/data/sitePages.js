@@ -287,7 +287,7 @@ export function getCase(slug, lang = "nl") {
 }
 
 /** Gedeelde JSON-LD voor een subpagina: WebPage (of subtype) met kruimelpad. */
-export function pageJsonLd({ path, type = "WebPage", name, description, crumbs, extra = [] }) {
+export function pageJsonLd({ path, type = "WebPage", name, description, crumbs, extra = [], updatedAt }) {
   const url = `${BASE}${path}`;
   return {
     "@context": "https://schema.org",
@@ -299,6 +299,7 @@ export function pageJsonLd({ path, type = "WebPage", name, description, crumbs, 
         name,
         description,
         inLanguage: "nl-NL",
+        ...(updatedAt && { dateModified: updatedAt }),
         isPartOf: { "@id": `${BASE}/#website` },
         about: { "@id": `${BASE}/#organization` },
         breadcrumb: {
