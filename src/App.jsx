@@ -23,6 +23,7 @@ const AboutPage    = lazy(() => import("./pages/AboutPage"));
 const PortfolioPage = lazy(() => import("./pages/PortfolioPage"));
 const CasePage     = lazy(() => import("./pages/CasePage"));
 const LegalPage    = lazy(() => import("./pages/LegalPage"));
+const NotFoundPage = lazy(() => import("./pages/NotFoundPage"));
 
 // ── Scrollgedrag ───────────────────────────────────────────────────────────
 // Een nieuwe pagina opent bovenaan, een anker scrolt naar zijn sectie, en met
@@ -217,8 +218,9 @@ function App() {
           {["privacybeleid", "algemene-voorwaarden", "disclaimer"].map((slug) => (
             <Route key={slug} path={`/${slug}`} element={<LegalPage slug={slug} />} />
           ))}
-          {/* Dienstpagina's (data/servicePages.js); onbekende slugs gaan terug naar home. */}
+          {/* Dienstpagina's (data/servicePages.js); een onbekende slug toont de 404. */}
           <Route path="/:slug" element={<ServicePage />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Suspense>
       {/* Op elke pagina, zodat het cookie-icoon en de voorkeuren overal bereikbaar zijn. */}

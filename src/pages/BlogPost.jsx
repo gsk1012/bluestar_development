@@ -1,8 +1,9 @@
 import { useEffect } from "react";
-import { useParams, Link, Navigate } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { ArrowLeft } from "@phosphor-icons/react";
 import { getLocalizedPostBySlug, getLocalizedPosts, postMetaTitle } from "../data/posts";
 import { useLanguage } from "../i18n/LanguageContext";
+import NotFoundPage from "./NotFoundPage";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Heading from "../components/Heading";
@@ -113,7 +114,7 @@ export default function BlogPost({ slug: slugProp }) {
     };
   }, [post?.slug, post?.title, lang]);
 
-  if (!post) return <Navigate to="/blog" replace />;
+  if (!post) return <NotFoundPage />;
 
   const otherPosts = getLocalizedPosts(lang).filter((p) => p.slug !== slug).slice(0, 2);
 

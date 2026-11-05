@@ -25,6 +25,7 @@ import AboutPage from './pages/AboutPage'
 import PortfolioPage from './pages/PortfolioPage'
 import CasePage from './pages/CasePage'
 import LegalPage from './pages/LegalPage'
+import NotFoundPage from './pages/NotFoundPage'
 import { LEGAL_SLUGS } from './data/legalPages'
 
 function HomePage() {
@@ -54,6 +55,8 @@ function ServerApp({ url }) {
     content = <Blog />
   } else if (url.startsWith('/blog/')) {
     content = <BlogPost slug={url.slice('/blog/'.length)} />
+  } else if (url === '/404') {
+    content = <NotFoundPage />
   } else if (url === '/contact') {
     content = <ContactPage />
   } else if (url === '/over-ons') {

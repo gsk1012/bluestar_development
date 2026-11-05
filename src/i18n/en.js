@@ -324,6 +324,22 @@ const en = {
     legalOnlyDutch: "This document is only available in Dutch.",
     aboutFacts: "In short",
   },
+  notFound: {
+    metaTitle: "Page not found | BlueStar Development",
+    label: "ERROR 404",
+    line1: "This building",
+    line2: "isn't here.",
+    body: "The page you're looking for doesn't exist (anymore) or has moved. No worries: you'll find your way back below.",
+    home: "Go to the homepage",
+    contact: "Get in touch",
+    popularLabel: "Or go straight to",
+    links: [
+      { label: "Custom websites", href: "/website-laten-maken" },
+      { label: "Pricing", href: "/prijzen" },
+      { label: "Portfolio", href: "/portfolio" },
+      { label: "Blog", href: "/blog" },
+    ],
+  },
   footer: {
     tagline: "Fast, findable websites and web applications built to order for entrepreneurs.",
     services: "Services",

@@ -329,6 +329,22 @@ const nl = {
     legalOnlyDutch: "",
     aboutFacts: "In het kort",
   },
+  notFound: {
+    metaTitle: "Pagina niet gevonden | BlueStar Development",
+    label: "FOUT 404",
+    line1: "Dit pand",
+    line2: "staat er niet.",
+    body: "De pagina die je zoekt bestaat niet (meer) of is verhuisd. Geen zorgen: hieronder vind je de weg terug.",
+    home: "Naar de homepage",
+    contact: "Neem contact op",
+    popularLabel: "Of ga direct naar",
+    links: [
+      { label: "Website laten maken", href: "/website-laten-maken" },
+      { label: "Prijzen", href: "/prijzen" },
+      { label: "Portfolio", href: "/portfolio" },
+      { label: "Blog", href: "/blog" },
+    ],
+  },
   footer: {
     tagline: "Snelle, vindbare websites en web-applicaties op maat voor ondernemers.",
     navigation: "Navigatie",

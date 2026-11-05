@@ -1,8 +1,9 @@
-import { Link, Navigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { ArrowRight, ArrowUpRight } from "@phosphor-icons/react";
 import { getCase, getCases } from "../data/sitePages";
 import { useLanguage } from "../i18n/LanguageContext";
 import usePageMeta from "../lib/usePageMeta";
+import NotFoundPage from "./NotFoundPage";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Heading from "../components/Heading";
@@ -24,7 +25,7 @@ export default function CasePage({ slug: slugProp }) {
   const item = getCase(slugProp ?? params.slug, lang);
   usePageMeta(item && `/portfolio/${item.slug}`, item?.metaTitle, item?.metaDescription);
 
-  if (!item) return <Navigate to="/portfolio" replace />;
+  if (!item) return <NotFoundPage />;
 
   const [goal, built, how] = item.sections;
   const other = getCases(lang).find((c) => c.slug !== item.slug);

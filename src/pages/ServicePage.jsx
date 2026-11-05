@@ -1,4 +1,4 @@
-import { Link, Navigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import {
   ArrowRight,
   ArrowsClockwise,
@@ -23,6 +23,7 @@ import { getServicePage, getServicePages } from "../data/servicePages";
 import { projects } from "../data/projects";
 import { useLanguage } from "../i18n/LanguageContext";
 import { sendIntent } from "../lib/intent";
+import NotFoundPage from "./NotFoundPage";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Heading from "../components/Heading";
@@ -277,7 +278,7 @@ export default function ServicePage({ slug: slugProp }) {
   const page = getServicePage(slugProp ?? params.slug, lang);
   usePageMeta(page && `/${page.slug}`, page?.metaTitle, page?.metaDescription);
 
-  if (!page) return <Navigate to="/" replace />;
+  if (!page) return <NotFoundPage />;
 
   const render = {
     included: () => <Included page={page} />,

@@ -133,6 +133,19 @@ function getMetaForUrl(url) {
     }
   }
 
+  if (url === '/404') {
+    return {
+      title: 'Pagina niet gevonden | BlueStar Development',
+      description: 'Deze pagina bestaat niet (meer). Ga naar de homepage of bekijk onze diensten, prijzen en portfolio.',
+      canonical: `${BASE}/`,
+      noindex: true,
+      ogType: 'website',
+      ogTitle: 'Pagina niet gevonden | BlueStar Development',
+      ogDescription: 'Deze pagina bestaat niet (meer).',
+      ogImage: `${BASE}/og/home.jpg`,
+    }
+  }
+
   return null // homepage keeps its own meta from index.html
 }
 
@@ -209,6 +222,12 @@ function injectMeta(html, meta) {
     /<meta name="twitter:image" content="[^"]*" \/>/,
     `<meta name="twitter:image" content="${meta.ogImage}" />`
   )
+
+  if (meta.noindex) {
+    html = html.replace('</head>', '    <meta name="robots" content="noindex" />\n  </head>')
+    // Een 404 claimt geen canonical of taalvarianten.
+    html = html.replace(/\s*<link rel="canonical"[^>]*\/>/, '').replace(/\s*<link rel="alternate" hreflang[^>]*\/>/g, '')
+  }
 
   if (meta.jsonLd) {
     const jsonLdStr = JSON.stringify(meta.jsonLd, null, 2).replace(/\n/g, '\n    ')
@@ -309,6 +328,9 @@ async function prerender() {
 
   // Blog overzicht
   renderPage('/blog', path.join(root, 'dist/blog/index.html'))
+
+  // 404: Vercel serveert dist/404.html voor elk onbekend adres, met status 404.
+  renderPage('/404', path.join(root, 'dist/404.html'))
 
   // Dienstpagina's
   for (const slug of SERVICE_SLUGS) {
