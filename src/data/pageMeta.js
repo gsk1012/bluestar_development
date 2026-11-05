@@ -27,7 +27,18 @@ export function getExtraPages() {
 
   return [
     page("/contact", contact, "ContactPage", [{ name: contact.breadcrumb, path: "/contact" }]),
-    page("/over-ons", about, "AboutPage", [{ name: about.breadcrumb, path: "/over-ons" }]),
+    page("/over-ons", about, "AboutPage", [{ name: about.breadcrumb, path: "/over-ons" }], [
+      {
+        "@type": "Person",
+        "@id": `${BASE}/over-ons#gurpreet-singh`,
+        name: about.founder.name,
+        jobTitle: "Oprichter",
+        image: `${BASE}${about.founder.photo}`,
+        worksFor: { "@id": `${BASE}/#organization` },
+        affiliation: { "@type": "CollegeOrUniversity", name: "Hogeschool van Amsterdam" },
+        homeLocation: { "@type": "Place", name: "Amsterdam" },
+      },
+    ]),
     page("/portfolio", portfolio, "CollectionPage", [{ name: portfolio.breadcrumb, path: "/portfolio" }], [
       {
         "@type": "ItemList",

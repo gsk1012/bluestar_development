@@ -287,6 +287,7 @@ h3 {
   display: inline-flex;
   align-items: center;
   height: 100%;
+  white-space: nowrap;
   padding-inline: 0.875rem;
   font-weight: 500;
   color: var(--color-ink);
@@ -297,7 +298,11 @@ h3 {
 /* Tussen 1024 en 1280 px moet de balk met minder lucht toe. */
 @media (max-width: 1279px) {
   .nav-link {
-    padding-inline: 0.625rem;
+    padding-inline: 0.5rem;
+  }
+
+  .site-nav__pill .btn {
+    padding-inline: 1rem;
   }
 }
 

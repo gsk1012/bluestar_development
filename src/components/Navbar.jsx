@@ -77,10 +77,10 @@ export default function Navbar() {
   const navLinks = [
     { label: t.nav.services, href: anchor("#diensten") },
     { label: t.nav.work, href: "/portfolio", external: true },
-    // Op smallere desktops past de balk niet met alle links; Aanpak wijkt dan.
-    { label: t.nav.approach, href: anchor("#aanpak"), wideOnly: true },
+    { label: t.nav.about, href: "/over-ons", external: true },
     { label: t.nav.pricing, href: "/prijzen", external: true },
-    { label: t.nav.faq, href: anchor("#faq") },
+    // Op smallere desktops past de balk niet met alle links; FAQ wijkt dan.
+    { label: t.nav.faq, href: anchor("#faq"), wideOnly: true },
     { label: t.nav.blog, href: "/blog", external: true },
     { label: t.nav.contact, href: "/contact", external: true },
   ];

@@ -19,13 +19,13 @@ export default function Testimonials() {
   return (
     <section id="reviews" className="band section">
       <div className="wrap">
-        {/* Gecentreerd op desktop: twee even grote quotes eronder. */}
+        {/* Gecentreerd op desktop, met de quotes eronder: twee naast elkaar, of één in het midden. */}
         <div className="max-w-3xl lg:mx-auto lg:text-center">
           <Heading parts={te.heading} />
           <p className="lead mt-4 max-w-[40rem] lg:mx-auto">{te.subheading}</p>
         </div>
 
-        <div className="mt-12 grid gap-6 lg:grid-cols-2">
+        <div className={`mt-12 grid gap-6 ${te.items.length > 1 ? "lg:grid-cols-2" : "mx-auto max-w-3xl"}`}>
           {te.items.map((item) => (
             <figure
               key={item.name}

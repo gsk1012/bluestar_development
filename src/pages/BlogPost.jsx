@@ -79,7 +79,7 @@ export default function BlogPost({ slug: slugProp }) {
           },
           datePublished: post.publishedAt,
           dateModified: post.publishedAt,
-          author: { '@type': 'Organization', name: 'BlueStar Development', '@id': `${BASE}/#organization` },
+          author: { '@type': 'Person', '@id': `${BASE}/over-ons#gurpreet-singh`, name: 'Gurpreet Singh', url: `${BASE}/over-ons` },
           publisher: {
             '@type': 'Organization',
             name: 'BlueStar Development',
@@ -140,7 +140,10 @@ export default function BlogPost({ slug: slugProp }) {
                   year: "numeric",
                 })}
               </time>{" "}
-              · {post.readingTime} {b.readingTime}
+              · {post.readingTime} {b.readingTime} · {b.by}{" "}
+              <Link to="/over-ons" className="font-semibold text-ink underline-offset-4 hover:text-brand hover:underline">
+                Gurpreet Singh
+              </Link>
             </p>
 
             <p className="lead mt-6">{post.excerpt}</p>

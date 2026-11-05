@@ -5,7 +5,7 @@ const nl = {
     home: "Home",
     services: "Diensten",
     work: "Werk",
-    approach: "Aanpak",
+    about: "Over ons",
     faq: "FAQ",
     blog: "Blog",
     contact: "Contact",
@@ -68,7 +68,7 @@ const nl = {
     facts: [
       { value: "4–8 weken", label: "tot je site op maat live staat" },
       { value: "30 dagen", label: "gratis support na lancering" },
-      { value: "100/100", label: "Lighthouse-score, standaard" },
+      { value: "100/100", label: "Lighthouse-score bij maatwerk" },
       { value: "1", label: "vast aanspreekpunt" },
     ],
   },
@@ -220,13 +220,6 @@ const nl = {
         role: "Eigenaar, Prince Schilder",
         photoNote: "Foto ter illustratie, niet de opdrachtgever.",
       },
-      {
-        quote:
-          "Het ontwerp is strak en modern, precies wat ik zocht. Alles wat ik wilde laten zien staat er exact zoals ik het voor ogen had.",
-        name: "Gurpreet Singh",
-        role: "Opdrachtgever, GSK Portfolio",
-        photoNote: "Foto ter illustratie, niet de opdrachtgever.",
-      },
     ],
   },
   contact: {
@@ -292,6 +285,7 @@ const nl = {
     read: "Lees",
     readMore: "Lees verder",
     readingTime: "min leestijd",
+    by: "door",
     viewAll: "Bekijk alle blogs",
     filterLabel: "Filter op onderwerp",
     filterAll: "Alle",

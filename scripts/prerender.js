@@ -67,9 +67,10 @@ function getMetaForUrl(url) {
               datePublished: post.publishedAt,
               dateModified: post.publishedAt,
               author: {
-                '@type': 'Organization',
-                name: 'BlueStar Development',
-                '@id': `${BASE}/#organization`,
+                '@type': 'Person',
+                '@id': `${BASE}/over-ons#gurpreet-singh`,
+                name: 'Gurpreet Singh',
+                url: `${BASE}/over-ons`,
               },
               publisher: {
                 '@type': 'Organization',

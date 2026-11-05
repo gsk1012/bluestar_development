@@ -5,7 +5,7 @@ const en = {
     home: "Home",
     services: "Services",
     work: "Work",
-    approach: "Approach",
+    about: "About us",
     faq: "FAQ",
     blog: "Blog",
     contact: "Contact",
@@ -66,7 +66,7 @@ const en = {
     facts: [
       { value: "4–8 weeks", label: "until your custom site is live" },
       { value: "30 days", label: "free support after launch" },
-      { value: "100/100", label: "Lighthouse score, as standard" },
+      { value: "100/100", label: "Lighthouse score on custom sites" },
       { value: "1", label: "dedicated point of contact" },
     ],
   },
@@ -215,13 +215,6 @@ const en = {
         role: "Owner, Prince Schilder",
         photoNote: "Illustrative photo, not the client.",
       },
-      {
-        quote:
-          "The design is sharp and modern, exactly what I was looking for. Everything I wanted to showcase is there just as I envisioned it.",
-        name: "Gurpreet Singh",
-        role: "Client, GSK Portfolio",
-        photoNote: "Illustrative photo, not the client.",
-      },
     ],
   },
   contact: {
@@ -287,6 +280,7 @@ const en = {
     read: "Read",
     readMore: "Read more",
     readingTime: "min read",
+    by: "by",
     filterLabel: "Filter by topic",
     filterAll: "All",
     viewAll: "View all posts",

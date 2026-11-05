@@ -61,25 +61,31 @@ export const aboutPage = {
     heading: ["Over ", "BlueStar Development"],
     lead:
       "We bouwen websites en webapplicaties voor ondernemers die online professioneel willen overkomen en daar resultaat van willen zien. Geen templates en geen vage offertes, maar een eigen ontwerp, vooraf duidelijke afspraken en één vast aanspreekpunt van de eerste schets tot ver na de lancering.",
+    founder: {
+      label: "Oprichter",
+      name: "Gurpreet Singh",
+      photo: "/team/gurpreet-singh.webp",
+      photoAlt: "Gurpreet Singh, oprichter van BlueStar Development",
+      heading: ["Hoi, ik ben ", "Gurpreet"],
+      body: `Ik ben de oprichter van BlueStar Development en het vaste aanspreekpunt voor elk project. Na mijn MBO-opleiding Software Development studeer ik nu Software Engineering aan de Hogeschool van Amsterdam.\n\nBlueStar ben ik naast mijn studie begonnen, omdat ik zag hoeveel ondernemers een website hebben die traag is, slecht vindbaar of gewoon niet bij ze past. Ik bouw liever minder projecten met volle aandacht dan veel projecten op de automatische piloot. Je praat dus altijd met mij, van het eerste gesprek tot ver na de lancering.`,
+      facts: [
+        { label: "Opleiding", value: "Software Engineering, HvA" },
+        { label: "Achtergrond", value: "MBO 4 Software Development" },
+        { label: "Gevestigd in", value: "Amsterdam" },
+      ],
+    },
+    review: {
+      label: "Wat een klant zegt",
+    },
     principles: {
       heading: ["Waar we voor ", "staan"],
       lead:
-        "Zes uitgangspunten die voor elk project gelden, klein of groot. Ze zitten in de prijs en zijn niet onderhandelbaar.",
+        "Vier uitgangspunten die voor elk project gelden, klein of groot.",
       items: [
         {
           icon: "pen",
           title: "Een eigen ontwerp",
           text: "Elke site begint bij het bedrijf erachter: wie zijn de klanten en wat moeten ze kunnen doen? Daar ontwerpen we omheen, nooit vanuit een template.",
-        },
-        {
-          icon: "gauge",
-          title: "Snelheid is standaard",
-          text: "Elke website haalt een Lighthouse-score van 100/100. Niet als extra, maar als uitgangspunt.",
-        },
-        {
-          icon: "eye",
-          title: "Toegankelijk voor iedereen",
-          text: "We bouwen volgens WCAG AA, zodat je site ook werkt met een schermlezer of alleen een toetsenbord.",
         },
         {
           icon: "chat",
@@ -101,7 +107,13 @@ export const aboutPage = {
     stack: {
       heading: ["Waarmee we ", "bouwen"],
       body: `We bouwen met React en vooraf opgebouwde, statische pagina's. De browser krijgt direct een complete pagina en hoeft weinig code te laden, daardoor is je site snel en goed leesbaar voor Google. In ons blog lees je [waarom we voor React kiezen](/blog/waarom-wij-react-gebruiken) en wat [het verschil tussen SSG en SSR](/blog/ssg-vs-ssr-razendsnel-website) is.\n\nJe site draait op een snel CDN met een SSL-certificaat en dagelijkse back-ups. Na de oplevering dragen we alle bestanden aan je over.`,
-      tools: ["React", "Vite", "Static Site Generation", "Tailwind CSS", "CDN-hosting", "SSL", "Dagelijkse back-ups"],
+      tools: [
+        { icon: "react", name: "React", desc: "Moderne, snelle onderdelen die je site prettig laten werken" },
+        { icon: "pages", name: "Static Site Generation", desc: "Elke pagina staat vooraf klaar als complete HTML" },
+        { icon: "design", name: "Tailwind CSS", desc: "Een strak, consistent ontwerp zonder overbodige code" },
+        { icon: "globe", name: "CDN-hosting", desc: "Geladen vanaf servers dicht bij je bezoeker" },
+        { icon: "shield", name: "SSL en dagelijkse back-ups", desc: "Een veilige verbinding en altijd een werkende versie" },
+      ],
     },
   },
   en: {
@@ -112,13 +124,27 @@ export const aboutPage = {
     heading: ["About ", "BlueStar Development"],
     lead:
       "We build websites and web applications for businesses that want to come across professionally online and see results from it. No templates and no vague quotes, but a design of your own, clear agreements up front and one fixed point of contact from the first sketch until well after launch.",
+    founder: {
+      label: "Founder",
+      name: "Gurpreet Singh",
+      photo: "/team/gurpreet-singh.webp",
+      photoAlt: "Gurpreet Singh, founder of BlueStar Development",
+      heading: ["Hi, I'm ", "Gurpreet"],
+      body: `I'm the founder of BlueStar Development and the fixed point of contact for every project. After my vocational degree in Software Development, I'm now studying Software Engineering at the Amsterdam University of Applied Sciences (HvA).\n\nI started BlueStar alongside my studies, because I saw how many business owners have a website that's slow, hard to find or simply doesn't suit them. I'd rather build fewer projects with full attention than many on autopilot. So you always talk to me, from the first conversation until well after launch.`,
+      facts: [
+        { label: "Education", value: "Software Engineering, HvA" },
+        { label: "Background", value: "Vocational degree in Software Development" },
+        { label: "Based in", value: "Amsterdam" },
+      ],
+    },
+    review: {
+      label: "What a client says",
+    },
     principles: {
       heading: ["What we ", "stand for"],
-      lead: "Six principles that apply to every project, small or large. They are included in the price and not up for negotiation.",
+      lead: "Four principles that apply to every project, small or large.",
       items: [
         { icon: "pen", title: "A design of your own", text: "Every site starts with the business behind it: who are the customers and what do they need to do? We design around that, never from a template." },
-        { icon: "gauge", title: "Speed is standard", text: "Every website achieves a Lighthouse score of 100/100. Not as an extra, but as the starting point." },
-        { icon: "eye", title: "Accessible to everyone", text: "We build to WCAG AA, so your site also works with a screen reader or just a keyboard." },
         { icon: "chat", title: "One fixed point of contact", text: "You always deal with the same point of contact, who knows your project and your site. No handoffs." },
         { icon: "list", title: "Clear agreements", text: "You know in advance what you get, what it costs and when it's ready. Nothing is added afterwards." },
         { icon: "lifebuoy", title: "Also after launch", text: "30 days of free support after going live. After that we keep your site up to date if you want, from €49 per month." },
@@ -127,7 +153,13 @@ export const aboutPage = {
     stack: {
       heading: ["What we ", "build with"],
       body: `We build with React and prebuilt, static pages. The browser receives a complete page straight away and has little code to load, which makes your site fast and easy for Google to read. Our blog explains [why we choose React](/blog/waarom-wij-react-gebruiken) and [the difference between SSG and SSR](/blog/ssg-vs-ssr-razendsnel-website).\n\nYour site runs on a fast CDN with an SSL certificate and daily backups. After delivery we hand over all files to you.`,
-      tools: ["React", "Vite", "Static Site Generation", "Tailwind CSS", "CDN hosting", "SSL", "Daily backups"],
+      tools: [
+        { icon: "react", name: "React", desc: "Modern, fast building blocks that make your site pleasant to use" },
+        { icon: "pages", name: "Static Site Generation", desc: "Every page is ready in advance as complete HTML" },
+        { icon: "design", name: "Tailwind CSS", desc: "A clean, consistent design without unnecessary code" },
+        { icon: "globe", name: "CDN hosting", desc: "Served from servers close to your visitor" },
+        { icon: "shield", name: "SSL and daily backups", desc: "A secure connection and always a working version" },
+      ],
     },
   },
 };
