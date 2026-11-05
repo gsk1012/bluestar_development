@@ -71,10 +71,7 @@ async function deliverEmails({ data, from, to, safeSubject }) {
   }
 
   try {
-    const confirmation = renderConfirmationEmail({
-      name: data.name,
-      message: data.message,
-    });
+    const confirmation = renderConfirmationEmail();
     await sendMail({
       from: `"Bluestar Development" <${from}>`,
       to: data.email,

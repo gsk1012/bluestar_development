@@ -39,11 +39,17 @@ describe("renderSubmissionEmail", () => {
 });
 
 describe("renderConfirmationEmail", () => {
-  it("groet de bezoeker en toont het bericht", () => {
-    const out = renderConfirmationEmail({ name: "Sanne", message: "Hoi" });
+  it("bevestigt de ontvangst", () => {
+    const out = renderConfirmationEmail();
     expect(out.subject).toContain("ontvangen");
-    expect(out.html).toContain("Sanne");
-    expect(out.html).toContain("Hoi");
-    expect(out.text).toContain("Sanne");
+    expect(out.html).toContain("Bedankt voor je bericht");
+  });
+
+  it("neemt niets over van wat de bezoeker invulde", () => {
+    // Het adres is vrij in te vullen; eigen tekst erin zou het formulier tot spamrelais maken.
+    const out = renderConfirmationEmail({ name: "Klik hier", message: "https://phish.example" });
+    expect(out.html).not.toContain("Klik hier");
+    expect(out.html).not.toContain("phish.example");
+    expect(out.text).not.toContain("phish.example");
   });
 });

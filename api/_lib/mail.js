@@ -118,16 +118,18 @@ ${button(`mailto:${safeEmail}?subject=${encodeURIComponent("Re: " + finalSubject
   return { subject: finalSubject, html, text };
 }
 
-export function renderConfirmationEmail({ name, message } = {}) {
-  const safeName = escapeHtml(name);
+// Bewust zonder naam of bericht van de bezoeker: deze mail gaat naar het adres
+// dat in het formulier staat, en dat kan iedereen invullen. Met tekst van de
+// afzender erin kon het formulier mail met eigen inhoud vanaf ons domein naar
+// willekeurige mensen laten sturen.
+export function renderConfirmationEmail() {
   const subject = "We hebben je bericht ontvangen — Bluestar Development";
 
   const inner = `
 <tr><td style="padding:32px 32px 8px 32px;">
-<h1 style="margin:0 0 12px 0; font-size:20px; color:${BRAND.ink};">Bedankt voor je bericht, ${safeName}!</h1>
+<h1 style="margin:0 0 12px 0; font-size:20px; color:${BRAND.ink};">Bedankt voor je bericht!</h1>
 <p style="margin:0 0 8px 0; font-size:15px; line-height:1.6; color:${BRAND.ink};">We hebben je bericht goed ontvangen en reageren doorgaans binnen 1 werkdag.</p>
-<p style="margin:0 0 20px 0; font-size:14px; color:${BRAND.inkSoft};">Dit is een kopie van wat je ons stuurde:</p>
-<div style="background:${BRAND.surface}; border-left:3px solid ${BRAND.accentBright}; border-radius:8px; padding:16px 18px; font-size:15px; line-height:1.6; color:${BRAND.ink};">${nl2br(message)}</div>
+<p style="margin:0; font-size:14px; color:${BRAND.inkSoft};">Heb je deze mail niet zelf aangevraagd? Dan kun je hem negeren.</p>
 </td></tr>
 <tr><td style="padding:24px 32px 32px 32px;">
 <p style="margin:0 0 6px 0; font-size:13px; color:${BRAND.inkSoft};">Liever direct contact?</p>
@@ -138,12 +140,10 @@ export function renderConfirmationEmail({ name, message } = {}) {
 
   const html = shell(inner);
   const text = [
-    `Bedankt voor je bericht, ${name}!`,
+    "Bedankt voor je bericht!",
     "",
     "We hebben je bericht goed ontvangen en reageren doorgaans binnen 1 werkdag.",
-    "",
-    "Jouw bericht:",
-    message,
+    "Heb je deze mail niet zelf aangevraagd? Dan kun je hem negeren.",
     "",
     `Liever direct contact? ${EMAIL} · ${PHONES.join(" · ")}`,
   ].join("\n");
