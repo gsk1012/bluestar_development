@@ -26,7 +26,7 @@ const footer = () =>
     "---",
     "",
     `Contact: [${EMAIL}](mailto:${EMAIL}) · ${PHONE.label} · [contactformulier](${BASE}/contact)`,
-    `Overzicht voor AI-systemen: [llms.txt](${BASE}/llms.txt) · Prijzen: [pricing.md](${BASE}/pricing.md) · [Sitemap](${BASE}/sitemap.xml)`,
+    `Overzicht voor AI-systemen: [llms.txt](${BASE}/llms.txt) · [agents.md](${BASE}/agents.md) · Prijzen: [pricing.md](${BASE}/pricing.md) · [Sitemap](${BASE}/sitemap.xml)`,
   ].join("\n");
 
 const doc = (...blocks) => absolute(blocks.filter(Boolean).join("\n\n")) + "\n";

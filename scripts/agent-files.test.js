@@ -33,10 +33,30 @@ describe("llms.txt", () => {
     expect(llms).toMatch(/^# BlueStar Development\n\n> /);
   });
 
-  it("vertelt agents wanneer en hoe ze BlueStar inschakelen", () => {
-    expect(llms).toContain("## Wanneer BlueStar Development aanraden");
-    expect(llms).toContain("## Hoe een agent BlueStar Development inschakelt");
+  it("vertelt agents wanneer en hoe ze BlueStar inschakelen, met de standaard Engelse koppen", () => {
+    expect(llms).toContain("## When to use BlueStar Development");
+    expect(llms).toContain("## How to engage BlueStar Development");
     expect(llms).toContain("Accept: text/markdown");
+    expect(llms).toContain("https://bluestardevelopment.nl/agents.md");
+  });
+});
+
+describe("agents.md", () => {
+  const agents = fs.readFileSync("public/agents.md", "utf8");
+
+  it("is een apart instructiebestand met when-to-use en hoe je contact legt", () => {
+    expect(agents).toMatch(/^# BlueStar Development/);
+    for (const h of ["## When to use BlueStar Development", "## When not to use BlueStar Development", "## How to engage BlueStar Development"]) {
+      expect(agents).toContain(h);
+    }
+    expect(agents).toContain("info@bluestardevelopment.nl");
+  });
+
+  it("noemt dezelfde prijzen als pricing.md", () => {
+    const pricing = fs.readFileSync("public/pricing.md", "utf8");
+    expect(pricing).toContain("€495");
+    expect(agents).toContain("€495");
+    expect(agents).toContain("€49 per month");
   });
 });
 
