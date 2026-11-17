@@ -5,7 +5,10 @@
       "has": [{ "type": "host", "value": "www.bluestardevelopment.nl" }],
       "destination": "https://bluestardevelopment.nl/:path*",
       "permanent": true
-    }
+    },
+    { "source": "/about", "destination": "/over-ons", "permanent": true },
+    { "source": "/privacy", "destination": "/privacybeleid", "permanent": true },
+    { "source": "/terms", "destination": "/algemene-voorwaarden", "permanent": true }
   ],
   "rewrites": [
     { "source": "/website-laten-maken", "destination": "/website-laten-maken/index.html" },
